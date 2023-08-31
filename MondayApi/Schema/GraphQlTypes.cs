@@ -7,7 +7,7 @@ namespace MondayApi.Schema {
         public const string Date = "Date";
         public const string File = "File";
         public const string Float = "Float";
-        public const string Id = "ID";
+        public const string ID = "ID";
         public const string Int = "Int";
         public const string Iso8601DateTime = "ISO8601DateTime";
         public const string Json = "JSON";
@@ -76,18 +76,16 @@ namespace MondayApi.Schema {
         public const string CreateDocInput = "CreateDocInput";
         public const string CreateDocWorkspaceInput = "CreateDocWorkspaceInput";
 
-        public static readonly IReadOnlyDictionary<Type, string> ReverseMapping =
-            new Dictionary<Type, string>
-            {
-                { typeof(string), "String" },
-                { typeof(int), "Int" },
-                { typeof(bool), "Boolean" },
-                { typeof(DateTimeOffset), "String" },
-                { typeof(Guid), "ID" },
-                { typeof(decimal), "Float" },
-                { typeof(CreateDocBoardInput), "CreateDocBoardInput" },
-                { typeof(CreateDocInput), "CreateDocInput" },
-                { typeof(CreateDocWorkspaceInput), "CreateDocWorkspaceInput" }
-            };
+        public static readonly IReadOnlyDictionary<Type, string> ReverseMapping = new Dictionary<Type, string>() {
+            { typeof(string), "String" },
+            { typeof(int), "Int" },
+            { typeof(bool), "Boolean" },
+            { typeof(DateTimeOffset), "String" },
+            { typeof(Guid), "ID" },
+            { typeof(decimal), "Float" },
+            { typeof(CreateDocBoardInput), "CreateDocBoardInput" },
+            { typeof(CreateDocInput), "CreateDocInput" },
+            { typeof(CreateDocWorkspaceInput), "CreateDocWorkspaceInput" }
+        };
     }
 }
