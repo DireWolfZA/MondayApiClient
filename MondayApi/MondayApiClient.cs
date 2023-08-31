@@ -11,7 +11,6 @@ namespace MondayApi {
 
             client.HttpClient.DefaultRequestHeaders.Add("Authorization", token);
             client.HttpClient.DefaultRequestHeaders.Add("Accept", "application/json");
-            client.HttpClient.DefaultRequestHeaders.Add("Content-Type", "application/json");
         }
     }
 }

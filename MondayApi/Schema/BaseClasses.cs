@@ -144,7 +144,7 @@ namespace MondayApi.Schema {
         }
 
         public static string EscapeGraphQlStringValue(string value) {
-            return RegexEscapeGraphQlString.Replace(value, m => @$"\{GetEscapeSequence(m.Value)}");
+            return RegexEscapeGraphQlString.Replace(value, m => $@"\{GetEscapeSequence(m.Value)}");
         }
 
         private static string GetEscapeSequence(string input) {
@@ -343,7 +343,7 @@ namespace MondayApi.Schema {
     public class DefaultGraphQlArgumentBuilder : IGraphQlArgumentBuilder {
         private static readonly Regex RegexWhiteSpace = new Regex(@"\s", RegexOptions.Compiled);
 
-        public static readonly DefaultGraphQlArgumentBuilder Instance = new();
+        public static readonly DefaultGraphQlArgumentBuilder Instance = new DefaultGraphQlArgumentBuilder();
 
         public bool TryBuild(GraphQlArgumentBuilderContext context, out string graphQlString) {
             if (context.Value is JValue jValue) {
@@ -671,7 +671,7 @@ namespace MondayApi.Schema {
 
                     builder.Append(queryParameterInfo.ArgumentValue.GraphQlTypeName);
 
-                    if (!queryParameterInfo.ArgumentValue.GraphQlTypeName.EndsWith("!") && queryParameterInfo.ArgumentValue.Value is not null) {
+                    if (!queryParameterInfo.ArgumentValue.GraphQlTypeName.EndsWith("!") && queryParameterInfo.ArgumentValue.Value != null) {
                         builder.Append(indentationSpace);
                         builder.Append("=");
                         builder.Append(indentationSpace);
