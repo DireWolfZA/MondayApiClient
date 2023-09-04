@@ -4,6 +4,7 @@ using GraphQL.Client.Http;
 using GraphQL.Client.Serializer.Newtonsoft;
 using MondayApi.Boards;
 using MondayApi.Schema;
+using MondayApi.Users;
 
 namespace MondayApi {
     public class MondayApiClient : IMondayApiClient {
@@ -36,5 +37,6 @@ namespace MondayApi {
         }
 
         public IBoardActions Boards => new BoardActions(this);
+        public IUserActions Users => new UserActions(this);
     }
 }
