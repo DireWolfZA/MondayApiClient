@@ -139,13 +139,10 @@ namespace MondayApi.Schema {
         private static readonly Regex RegexGraphQlIdentifier = new Regex(@"^[_A-Za-z][_0-9A-Za-z]*$", RegexOptions.Compiled);
         private static readonly Regex RegexEscapeGraphQlString = new Regex(@"[\\\""/\b\f\n\r\t]", RegexOptions.Compiled);
 
-        public static string GetIndentation(int level, byte indentationSize) {
-            return new String(' ', level * indentationSize);
-        }
-
-        public static string EscapeGraphQlStringValue(string value) {
-            return RegexEscapeGraphQlString.Replace(value, m => $@"\{GetEscapeSequence(m.Value)}");
-        }
+        public static string GetIndentation(int level, byte indentationSize) =>
+            new string(' ', level * indentationSize);
+        public static string EscapeGraphQlStringValue(string value) =>
+            RegexEscapeGraphQlString.Replace(value, m => $@"\{GetEscapeSequence(m.Value)}");
 
         private static string GetEscapeSequence(string input) {
             switch (input) {
@@ -179,7 +176,7 @@ namespace MondayApi.Schema {
                 return "null";
 
             var enumerable = value as IEnumerable;
-            if (!String.IsNullOrEmpty(formatMask) && enumerable == null)
+            if (!string.IsNullOrEmpty(formatMask) && enumerable == null)
                 return
                     value is IFormattable formattable
                         ? $"\"{EscapeGraphQlStringValue(formattable.ToString(formatMask, CultureInfo.InvariantCulture))}\""
@@ -187,28 +184,20 @@ namespace MondayApi.Schema {
 
             if (value is Enum @enum)
                 return ConvertEnumToString(@enum);
-
             if (value is bool @bool)
                 return @bool ? "true" : "false";
-
             if (value is DateTime dateTime)
                 return $"\"{dateTime.ToString("O")}\"";
-
             if (value is DateTimeOffset dateTimeOffset)
                 return $"\"{dateTimeOffset.ToString("O")}\"";
-
             if (value is IGraphQlInputObject inputObject)
                 return BuildInputObject(inputObject, options, level + 2);
-
             if (value is Guid)
                 return $"\"{value}\"";
-
-            if (value is String @string)
+            if (value is string @string)
                 return $"\"{EscapeGraphQlStringValue(@string)}\"";
-
             if (enumerable != null)
                 return BuildEnumerableArgument(enumerable, formatMask, options, level, '[', ']');
-
             if (value is short || value is ushort || value is byte || value is int || value is uint || value is long || value is ulong || value is float || value is double || value is decimal)
                 return Convert.ToString(value, CultureInfo.InvariantCulture);
 
@@ -219,7 +208,7 @@ namespace MondayApi.Schema {
         public static string BuildEnumerableArgument(IEnumerable enumerable, string formatMask, GraphQlBuilderOptions options, int level, char openingSymbol, char closingSymbol) {
             var builder = new StringBuilder();
             builder.Append(openingSymbol);
-            var delimiter = String.Empty;
+            var delimiter = string.Empty;
             foreach (var item in enumerable) {
                 builder.Append(delimiter);
 
@@ -245,16 +234,16 @@ namespace MondayApi.Schema {
             if (isIndentedFormatting) {
                 builder.AppendLine();
                 valueSeparator = ": ";
-            } else
+            } else {
                 valueSeparator = ":";
+            }
 
-            var separator = String.Empty;
+            var separator = string.Empty;
             foreach (var propertyValue in inputObject.GetPropertyValues()) {
                 var queryBuilderParameter = propertyValue.Value as QueryBuilderParameter;
-                var value =
-                    queryBuilderParameter?.Name != null
-                        ? $"${queryBuilderParameter.Name}"
-                        : BuildArgumentValue(queryBuilderParameter == null ? propertyValue.Value : queryBuilderParameter.Value, propertyValue.FormatMask, options, level);
+                var value = queryBuilderParameter?.Name != null
+                    ? $"${queryBuilderParameter.Name}"
+                    : BuildArgumentValue(queryBuilderParameter == null ? propertyValue.Value : queryBuilderParameter.Value, propertyValue.FormatMask, options, level);
 
                 builder.Append(isIndentedFormatting ? GetIndentation(level, options.IndentationSize) : separator);
                 builder.Append(propertyValue.Name);
@@ -277,10 +266,10 @@ namespace MondayApi.Schema {
 
         public static string BuildDirective(GraphQlDirective directive, GraphQlBuilderOptions options, int level) {
             if (directive == null)
-                return String.Empty;
+                return string.Empty;
 
             var isIndentedFormatting = options.Formatting == Formatting.Indented;
-            var indentationSpace = isIndentedFormatting ? " " : String.Empty;
+            var indentationSpace = isIndentedFormatting ? " " : string.Empty;
             var builder = new StringBuilder();
             builder.Append(indentationSpace);
             builder.Append("@");
@@ -297,9 +286,9 @@ namespace MondayApi.Schema {
                 builder.Append(":");
                 builder.Append(indentationSpace);
 
-                if (argument.Name == null)
+                if (argument.Name == null) {
                     builder.Append(BuildArgumentValue(argument.Value, null, options, level));
-                else {
+                } else {
                     builder.Append("$");
                     builder.Append(argument.Name);
                 }
@@ -437,25 +426,15 @@ namespace MondayApi.Schema {
             set => base.Value = value;
         }
 
-        protected QueryBuilderParameter(string name, string graphQlTypeName, T value) : base(name, graphQlTypeName, value) {
-            EnsureGraphQlTypeName(graphQlTypeName);
-        }
-
-        protected QueryBuilderParameter(string name, string graphQlTypeName) : base(name, graphQlTypeName, null) {
-            EnsureGraphQlTypeName(graphQlTypeName);
-        }
-
-        private QueryBuilderParameter(T value) : base(value) {
-        }
-
+        protected QueryBuilderParameter(string name, string graphQlTypeName, T value) : base(name, graphQlTypeName, value) => EnsureGraphQlTypeName(graphQlTypeName);
+        protected QueryBuilderParameter(string name, string graphQlTypeName) : base(name, graphQlTypeName, null) => EnsureGraphQlTypeName(graphQlTypeName);
+        private QueryBuilderParameter(T value) : base(value) { }
         public void ResetValue() => base.Value = null;
-
         public static implicit operator QueryBuilderParameter<T>(T value) => new QueryBuilderParameter<T>(value);
-
         public static implicit operator T(QueryBuilderParameter<T> parameter) => parameter.Value;
 
         private static void EnsureGraphQlTypeName(string graphQlTypeName) {
-            if (String.IsNullOrWhiteSpace(graphQlTypeName))
+            if (string.IsNullOrWhiteSpace(graphQlTypeName))
                 throw new ArgumentException("value required", nameof(graphQlTypeName));
         }
     }
@@ -465,23 +444,14 @@ namespace MondayApi.Schema {
 
         public string FormatMask {
             get => _formatMask;
-            set => _formatMask =
-                typeof(IFormattable).IsAssignableFrom(typeof(T))
-                    ? value
-                    : throw new InvalidOperationException($"Value must be of {nameof(IFormattable)} type. ");
+            set => _formatMask = typeof(IFormattable).IsAssignableFrom(typeof(T))
+                ? value
+                : throw new InvalidOperationException($"Value must be of {nameof(IFormattable)} type. ");
         }
 
-        public GraphQlQueryParameter(string name, string graphQlTypeName = null)
-            : base(name, graphQlTypeName ?? GetGraphQlTypeName(typeof(T))) {
-        }
-
-        public GraphQlQueryParameter(string name, string graphQlTypeName, T defaultValue)
-            : base(name, graphQlTypeName, defaultValue) {
-        }
-
-        public GraphQlQueryParameter(string name, T defaultValue, bool isNullable = true)
-            : base(name, GetGraphQlTypeName(typeof(T), isNullable), defaultValue) {
-        }
+        public GraphQlQueryParameter(string name, string graphQlTypeName = null) : base(name, graphQlTypeName ?? GetGraphQlTypeName(typeof(T))) { }
+        public GraphQlQueryParameter(string name, string graphQlTypeName, T defaultValue) : base(name, graphQlTypeName, defaultValue) { }
+        public GraphQlQueryParameter(string name, T defaultValue, bool isNullable = true) : base(name, GetGraphQlTypeName(typeof(T), isNullable), defaultValue) { }
 
         private static string GetGraphQlTypeName(Type valueType, bool isNullable) {
             var graphQlTypeName = GetGraphQlTypeName(valueType);
@@ -522,26 +492,20 @@ namespace MondayApi.Schema {
         private static string GetValueTypeGraphQlTypeName(Type valueType) {
             if (valueType == typeof(bool))
                 return "Boolean";
-
             if (valueType == typeof(float) || valueType == typeof(double) || valueType == typeof(decimal))
                 return "Float";
-
             if (valueType == typeof(Guid))
                 return "ID";
-
             if (valueType == typeof(sbyte) || valueType == typeof(byte) || valueType == typeof(short) || valueType == typeof(ushort) || valueType == typeof(int) || valueType == typeof(uint) ||
                 valueType == typeof(long) || valueType == typeof(ulong))
                 return "Int";
-
             return null;
         }
     }
 
     public abstract class GraphQlDirective {
         private readonly Dictionary<string, QueryBuilderParameter> _arguments = new Dictionary<string, QueryBuilderParameter>();
-
         internal IEnumerable<KeyValuePair<string, QueryBuilderParameter>> Arguments => _arguments;
-
         public string Name { get; }
 
         protected GraphQlDirective(string name) {
@@ -570,7 +534,6 @@ namespace MondayApi.Schema {
         private List<QueryBuilderArgumentInfo> _queryParameters;
 
         protected abstract string TypeName { get; }
-
         public abstract IReadOnlyList<GraphQlFieldMetadata> AllFields { get; }
 
         protected GraphQlQueryBuilder(string operationType, string operationName) {
@@ -585,45 +548,34 @@ namespace MondayApi.Schema {
             _queryParameters?.Clear();
         }
 
-        void IGraphQlQueryBuilder.IncludeAllFields() {
-            IncludeAllFields();
-        }
-
-        public string Build(Formatting formatting = Formatting.None, byte indentationSize = 2) {
-            return Build(new GraphQlBuilderOptions { Formatting = formatting, IndentationSize = indentationSize });
-        }
-
-        public string Build(GraphQlBuilderOptions options) {
-            return Build(options, 1);
-        }
-
-        protected void IncludeAllFields() {
-            IncludeFields(AllFields.Where(f => !f.RequiresParameters));
-        }
+        void IGraphQlQueryBuilder.IncludeAllFields() => IncludeAllFields();
+        public string Build(Formatting formatting = Formatting.None, byte indentationSize = 2) =>
+            Build(new GraphQlBuilderOptions { Formatting = formatting, IndentationSize = indentationSize });
+        public string Build(GraphQlBuilderOptions options) => Build(options, 1);
+        protected void IncludeAllFields() => IncludeFields(AllFields.Where(f => !f.RequiresParameters));
 
         protected virtual string Build(GraphQlBuilderOptions options, int level) {
             var isIndentedFormatting = options.Formatting == Formatting.Indented;
-            var separator = String.Empty;
-            var indentationSpace = isIndentedFormatting ? " " : String.Empty;
+            var separator = string.Empty;
+            var indentationSpace = isIndentedFormatting ? " " : string.Empty;
             var builder = new StringBuilder();
 
             BuildOperationSignature(builder, options, indentationSpace, level);
 
             if (builder.Length > 0 || level > 1)
                 builder.Append(indentationSpace);
-
             builder.Append("{");
 
             if (isIndentedFormatting)
                 builder.AppendLine();
 
-            separator = String.Empty;
+            separator = string.Empty;
 
             foreach (var criteria in _fieldCriteria.Values.Concat(_fragments?.Values ?? Enumerable.Empty<GraphQlFragmentCriteria>())) {
                 var fieldCriteria = criteria.Build(options, level);
                 if (isIndentedFormatting)
                     builder.AppendLine(fieldCriteria);
-                else if (!String.IsNullOrEmpty(fieldCriteria)) {
+                else if (!string.IsNullOrEmpty(fieldCriteria)) {
                     builder.Append(separator);
                     builder.Append(fieldCriteria);
                 }
@@ -633,19 +585,18 @@ namespace MondayApi.Schema {
 
             if (isIndentedFormatting)
                 builder.Append(GraphQlQueryHelper.GetIndentation(level - 1, options.IndentationSize));
-
             builder.Append("}");
 
             return builder.ToString();
         }
 
         private void BuildOperationSignature(StringBuilder builder, GraphQlBuilderOptions options, string indentationSpace, int level) {
-            if (String.IsNullOrEmpty(_operationType))
+            if (string.IsNullOrEmpty(_operationType))
                 return;
 
             builder.Append(_operationType);
 
-            if (!String.IsNullOrEmpty(_operationName)) {
+            if (!string.IsNullOrEmpty(_operationName)) {
                 builder.Append(" ");
                 builder.Append(_operationName);
             }
@@ -654,7 +605,7 @@ namespace MondayApi.Schema {
                 builder.Append(indentationSpace);
                 builder.Append("(");
 
-                var separator = String.Empty;
+                var separator = string.Empty;
                 var isIndentedFormatting = options.Formatting == Formatting.Indented;
 
                 foreach (var queryParameterInfo in _queryParameters) {
@@ -686,13 +637,10 @@ namespace MondayApi.Schema {
             }
         }
 
-        protected void IncludeScalarField(string fieldName, string alias, IList<QueryBuilderArgumentInfo> args, GraphQlDirective[] directives) {
+        protected void IncludeScalarField(string fieldName, string alias, IList<QueryBuilderArgumentInfo> args, GraphQlDirective[] directives) =>
             _fieldCriteria[alias ?? fieldName] = new GraphQlScalarFieldCriteria(fieldName, alias, args, directives);
-        }
-
-        protected void IncludeObjectField(string fieldName, string alias, GraphQlQueryBuilder objectFieldQueryBuilder, IList<QueryBuilderArgumentInfo> args, GraphQlDirective[] directives) {
+        protected void IncludeObjectField(string fieldName, string alias, GraphQlQueryBuilder objectFieldQueryBuilder, IList<QueryBuilderArgumentInfo> args, GraphQlDirective[] directives) =>
             _fieldCriteria[alias ?? fieldName] = new GraphQlObjectFieldCriteria(fieldName, alias, objectFieldQueryBuilder, args, directives);
-        }
 
         protected void IncludeFragment(GraphQlQueryBuilder objectFieldQueryBuilder, GraphQlDirective[] directives) {
             _fragments = _fragments ?? new Dictionary<string, GraphQlFragmentCriteria>();
@@ -706,10 +654,7 @@ namespace MondayApi.Schema {
             _fieldCriteria.Remove(fieldName);
         }
 
-        protected void IncludeFields(IEnumerable<GraphQlFieldMetadata> fields) {
-            IncludeFields(fields, null);
-        }
-
+        protected void IncludeFields(IEnumerable<GraphQlFieldMetadata> fields) => IncludeFields(fields, null);
         private void IncludeFields(IEnumerable<GraphQlFieldMetadata> fields, List<Type> parentTypes) {
             foreach (var field in fields) {
                 if (field.QueryBuilderType == null)
@@ -781,28 +726,26 @@ namespace MondayApi.Schema {
                 var separator = options.Formatting == Formatting.Indented ? " " : null;
                 var argumentCount = _args?.Count ?? 0;
                 if (argumentCount == 0)
-                    return String.Empty;
+                    return string.Empty;
 
                 var arguments =
                     _args.Select(
                         a => $"{a.ArgumentName}:{separator}{(a.ArgumentValue.Name == null ? GraphQlQueryHelper.BuildArgumentValue(a.ArgumentValue.Value, a.FormatMask, options, level) : $"${a.ArgumentValue.Name}")}");
 
-                return $"({String.Join($",{separator}", arguments)})";
+                return $"({string.Join($",{separator}", arguments)})";
             }
 
             protected string BuildDirectiveClause(GraphQlBuilderOptions options, int level) =>
-                _directives == null ? null : String.Concat(_directives.Select(d => d == null ? null : GraphQlQueryHelper.BuildDirective(d, options, level)));
+                _directives == null ? null : string.Concat(_directives.Select(d => d == null ? null : GraphQlQueryHelper.BuildDirective(d, options, level)));
 
             protected static string BuildAliasPrefix(string alias, Formatting formatting) {
-                var separator = formatting == Formatting.Indented ? " " : String.Empty;
-                return String.IsNullOrWhiteSpace(alias) ? null : $"{alias}:{separator}";
+                var separator = formatting == Formatting.Indented ? " " : string.Empty;
+                return string.IsNullOrWhiteSpace(alias) ? null : $"{alias}:{separator}";
             }
         }
 
         private class GraphQlScalarFieldCriteria : GraphQlFieldCriteria {
-            public GraphQlScalarFieldCriteria(string fieldName, string alias, IList<QueryBuilderArgumentInfo> args, GraphQlDirective[] directives)
-                : base(fieldName, alias, args, directives) {
-            }
+            public GraphQlScalarFieldCriteria(string fieldName, string alias, IList<QueryBuilderArgumentInfo> args, GraphQlDirective[] directives) : base(fieldName, alias, args, directives) { }
 
             public override string Build(GraphQlBuilderOptions options, int level) =>
                 GetIndentation(options.Formatting, level, options.IndentationSize) +
@@ -815,10 +758,7 @@ namespace MondayApi.Schema {
         private class GraphQlObjectFieldCriteria : GraphQlFieldCriteria {
             private readonly GraphQlQueryBuilder _objectQueryBuilder;
 
-            public GraphQlObjectFieldCriteria(string fieldName, string alias, GraphQlQueryBuilder objectQueryBuilder, IList<QueryBuilderArgumentInfo> args, GraphQlDirective[] directives)
-                : base(fieldName, alias, args, directives) {
-                _objectQueryBuilder = objectQueryBuilder;
-            }
+            public GraphQlObjectFieldCriteria(string fieldName, string alias, GraphQlQueryBuilder objectQueryBuilder, IList<QueryBuilderArgumentInfo> args, GraphQlDirective[] directives) : base(fieldName, alias, args, directives) => _objectQueryBuilder = objectQueryBuilder;
 
             public override string Build(GraphQlBuilderOptions options, int level) =>
                 _objectQueryBuilder._fieldCriteria.Count > 0 || _objectQueryBuilder._fragments?.Count > 0
@@ -830,9 +770,7 @@ namespace MondayApi.Schema {
         private class GraphQlFragmentCriteria : GraphQlFieldCriteria {
             private readonly GraphQlQueryBuilder _objectQueryBuilder;
 
-            public GraphQlFragmentCriteria(GraphQlQueryBuilder objectQueryBuilder, GraphQlDirective[] directives) : base(objectQueryBuilder.TypeName, null, null, directives) {
-                _objectQueryBuilder = objectQueryBuilder;
-            }
+            public GraphQlFragmentCriteria(GraphQlQueryBuilder objectQueryBuilder, GraphQlDirective[] directives) : base(objectQueryBuilder.TypeName, null, null, directives) => _objectQueryBuilder = objectQueryBuilder;
 
             public override string Build(GraphQlBuilderOptions options, int level) =>
                 _objectQueryBuilder._fieldCriteria.Count == 0
@@ -843,8 +781,7 @@ namespace MondayApi.Schema {
     }
 
     public abstract partial class GraphQlQueryBuilder<TQueryBuilder> : GraphQlQueryBuilder where TQueryBuilder : GraphQlQueryBuilder<TQueryBuilder> {
-        protected GraphQlQueryBuilder(string operationType = null, string operationName = null) : base(operationType, operationName) {
-        }
+        protected GraphQlQueryBuilder(string operationType = null, string operationName = null) : base(operationType, operationName) { }
 
         /// <summary>
         /// Includes all fields that don't require parameters into the query.
