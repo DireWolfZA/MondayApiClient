@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using GraphQL.Client.Http;
 using GraphQL.Client.Serializer.Newtonsoft;
+using MondayApi.Boards;
 using MondayApi.Schema;
 
 namespace MondayApi {
@@ -33,5 +34,7 @@ namespace MondayApi {
 
             return response.Data;
         }
+
+        public IBoardActions Boards => new BoardActions(this);
     }
 }

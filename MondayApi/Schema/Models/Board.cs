@@ -15,7 +15,7 @@ namespace MondayApi.Schema {
         public User Creator { get; set; }
         public string Description { get; set; }
         public ICollection<Group> Groups { get; set; }
-        public Guid? ID { get; set; }
+        public long? ID { get; set; }
         [JsonProperty("item_terminology")]
         public string ItemTerminology { get; set; }
         [JsonProperty("items_count")]
