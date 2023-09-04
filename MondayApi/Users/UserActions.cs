@@ -19,6 +19,7 @@ namespace MondayApi.Users {
             var response = await client.RunQuery(query);
             return response.Users;
         }
+
         public async Task<User> GetOneAsync(int id) {
             var ids = new GraphQlQueryParameter<IEnumerable<int?>>(null, new int?[] { id });
 

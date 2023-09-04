@@ -19,6 +19,7 @@ namespace MondayApi.Boards {
             var response = await client.RunQuery(query);
             return response.Boards;
         }
+
         public async Task<Board> GetOneAsync(int id) {
             var ids = new GraphQlQueryParameter<IEnumerable<int?>>(null, new int?[] { id });
 
