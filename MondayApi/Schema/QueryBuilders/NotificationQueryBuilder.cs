@@ -7,24 +7,16 @@ namespace MondayApi.Schema {
             new GraphQlFieldMetadata { Name = "text" }
         };
 
-        protected override string TypeName { get { return "Notification"; } }
+        protected override string TypeName => "Notification";
+        public override IReadOnlyList<GraphQlFieldMetadata> AllFields => AllFieldMetadata;
 
-        public override IReadOnlyList<GraphQlFieldMetadata> AllFields { get { return AllFieldMetadata; } }
-
-        public NotificationQueryBuilder WithId(string alias = null, IncludeDirective include = null, SkipDirective skip = null) {
-            return WithScalarField("id", alias, new GraphQlDirective[] { include, skip });
-        }
-
-        public NotificationQueryBuilder ExceptId() {
-            return ExceptField("id");
-        }
-
-        public NotificationQueryBuilder WithText(string alias = null, IncludeDirective include = null, SkipDirective skip = null) {
-            return WithScalarField("text", alias, new GraphQlDirective[] { include, skip });
-        }
-
-        public NotificationQueryBuilder ExceptText() {
-            return ExceptField("text");
-        }
+        public NotificationQueryBuilder WithId(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
+            WithScalarField("id", alias, new GraphQlDirective[] { include, skip });
+        public NotificationQueryBuilder ExceptId() =>
+            ExceptField("id");
+        public NotificationQueryBuilder WithText(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
+            WithScalarField("text", alias, new GraphQlDirective[] { include, skip });
+        public NotificationQueryBuilder ExceptText() =>
+            ExceptField("text");
     }
 }

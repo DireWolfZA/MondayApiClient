@@ -10,48 +10,28 @@ namespace MondayApi.Schema {
             new GraphQlFieldMetadata { Name = "renewal_date", IsComplex = true }
         };
 
-        protected override string TypeName { get { return "AppSubscription"; } }
+        protected override string TypeName => "AppSubscription";
+        public override IReadOnlyList<GraphQlFieldMetadata> AllFields => AllFieldMetadata;
 
-        public override IReadOnlyList<GraphQlFieldMetadata> AllFields { get { return AllFieldMetadata; } }
-
-        public AppSubscriptionQueryBuilder WithBillingPeriod(string alias = null, IncludeDirective include = null, SkipDirective skip = null) {
-            return WithScalarField("billing_period", alias, new GraphQlDirective[] { include, skip });
-        }
-
-        public AppSubscriptionQueryBuilder ExceptBillingPeriod() {
-            return ExceptField("billing_period");
-        }
-
-        public AppSubscriptionQueryBuilder WithDaysLeft(string alias = null, IncludeDirective include = null, SkipDirective skip = null) {
-            return WithScalarField("days_left", alias, new GraphQlDirective[] { include, skip });
-        }
-
-        public AppSubscriptionQueryBuilder ExceptDaysLeft() {
-            return ExceptField("days_left");
-        }
-
-        public AppSubscriptionQueryBuilder WithIsTrial(string alias = null, IncludeDirective include = null, SkipDirective skip = null) {
-            return WithScalarField("is_trial", alias, new GraphQlDirective[] { include, skip });
-        }
-
-        public AppSubscriptionQueryBuilder ExceptIsTrial() {
-            return ExceptField("is_trial");
-        }
-
-        public AppSubscriptionQueryBuilder WithPlanId(string alias = null, IncludeDirective include = null, SkipDirective skip = null) {
-            return WithScalarField("plan_id", alias, new GraphQlDirective[] { include, skip });
-        }
-
-        public AppSubscriptionQueryBuilder ExceptPlanId() {
-            return ExceptField("plan_id");
-        }
-
-        public AppSubscriptionQueryBuilder WithRenewalDate(string alias = null, IncludeDirective include = null, SkipDirective skip = null) {
-            return WithScalarField("renewal_date", alias, new GraphQlDirective[] { include, skip });
-        }
-
-        public AppSubscriptionQueryBuilder ExceptRenewalDate() {
-            return ExceptField("renewal_date");
-        }
+        public AppSubscriptionQueryBuilder WithBillingPeriod(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
+            WithScalarField("billing_period", alias, new GraphQlDirective[] { include, skip });
+        public AppSubscriptionQueryBuilder ExceptBillingPeriod() =>
+            ExceptField("billing_period");
+        public AppSubscriptionQueryBuilder WithDaysLeft(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
+            WithScalarField("days_left", alias, new GraphQlDirective[] { include, skip });
+        public AppSubscriptionQueryBuilder ExceptDaysLeft() =>
+            ExceptField("days_left");
+        public AppSubscriptionQueryBuilder WithIsTrial(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
+            WithScalarField("is_trial", alias, new GraphQlDirective[] { include, skip });
+        public AppSubscriptionQueryBuilder ExceptIsTrial() =>
+            ExceptField("is_trial");
+        public AppSubscriptionQueryBuilder WithPlanId(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
+            WithScalarField("plan_id", alias, new GraphQlDirective[] { include, skip });
+        public AppSubscriptionQueryBuilder ExceptPlanId() =>
+            ExceptField("plan_id");
+        public AppSubscriptionQueryBuilder WithRenewalDate(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
+            WithScalarField("renewal_date", alias, new GraphQlDirective[] { include, skip });
+        public AppSubscriptionQueryBuilder ExceptRenewalDate() =>
+            ExceptField("renewal_date");
     }
 }

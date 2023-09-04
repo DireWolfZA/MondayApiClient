@@ -9,40 +9,24 @@ namespace MondayApi.Schema {
             new GraphQlFieldMetadata { Name = "id" }
         };
 
-        protected override string TypeName { get { return "Webhook"; } }
+        protected override string TypeName => "Webhook";
+        public override IReadOnlyList<GraphQlFieldMetadata> AllFields => AllFieldMetadata;
 
-        public override IReadOnlyList<GraphQlFieldMetadata> AllFields { get { return AllFieldMetadata; } }
-
-        public WebhookQueryBuilder WithBoardId(string alias = null, IncludeDirective include = null, SkipDirective skip = null) {
-            return WithScalarField("board_id", alias, new GraphQlDirective[] { include, skip });
-        }
-
-        public WebhookQueryBuilder ExceptBoardId() {
-            return ExceptField("board_id");
-        }
-
-        public WebhookQueryBuilder WithConfig(string alias = null, IncludeDirective include = null, SkipDirective skip = null) {
-            return WithScalarField("config", alias, new GraphQlDirective[] { include, skip });
-        }
-
-        public WebhookQueryBuilder ExceptConfig() {
-            return ExceptField("config");
-        }
-
-        public WebhookQueryBuilder WithEvent(string alias = null, IncludeDirective include = null, SkipDirective skip = null) {
-            return WithScalarField("event", alias, new GraphQlDirective[] { include, skip });
-        }
-
-        public WebhookQueryBuilder ExceptEvent() {
-            return ExceptField("event");
-        }
-
-        public WebhookQueryBuilder WithId(string alias = null, IncludeDirective include = null, SkipDirective skip = null) {
-            return WithScalarField("id", alias, new GraphQlDirective[] { include, skip });
-        }
-
-        public WebhookQueryBuilder ExceptId() {
-            return ExceptField("id");
-        }
+        public WebhookQueryBuilder WithBoardId(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
+            WithScalarField("board_id", alias, new GraphQlDirective[] { include, skip });
+        public WebhookQueryBuilder ExceptBoardId() =>
+            ExceptField("board_id");
+        public WebhookQueryBuilder WithConfig(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
+            WithScalarField("config", alias, new GraphQlDirective[] { include, skip });
+        public WebhookQueryBuilder ExceptConfig() =>
+            ExceptField("config");
+        public WebhookQueryBuilder WithEvent(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
+            WithScalarField("event", alias, new GraphQlDirective[] { include, skip });
+        public WebhookQueryBuilder ExceptEvent() =>
+            ExceptField("event");
+        public WebhookQueryBuilder WithId(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
+            WithScalarField("id", alias, new GraphQlDirective[] { include, skip });
+        public WebhookQueryBuilder ExceptId() =>
+            ExceptField("id");
     }
 }

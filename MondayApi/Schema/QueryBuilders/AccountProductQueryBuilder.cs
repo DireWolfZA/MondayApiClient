@@ -7,24 +7,16 @@ namespace MondayApi.Schema {
             new GraphQlFieldMetadata { Name = "kind" }
         };
 
-        protected override string TypeName { get { return "AccountProduct"; } }
+        protected override string TypeName => "AccountProduct";
+        public override IReadOnlyList<GraphQlFieldMetadata> AllFields => AllFieldMetadata;
 
-        public override IReadOnlyList<GraphQlFieldMetadata> AllFields { get { return AllFieldMetadata; } }
-
-        public AccountProductQueryBuilder WithId(string alias = null, IncludeDirective include = null, SkipDirective skip = null) {
-            return WithScalarField("id", alias, new GraphQlDirective[] { include, skip });
-        }
-
-        public AccountProductQueryBuilder ExceptId() {
-            return ExceptField("id");
-        }
-
-        public AccountProductQueryBuilder WithKind(string alias = null, IncludeDirective include = null, SkipDirective skip = null) {
-            return WithScalarField("kind", alias, new GraphQlDirective[] { include, skip });
-        }
-
-        public AccountProductQueryBuilder ExceptKind() {
-            return ExceptField("kind");
-        }
+        public AccountProductQueryBuilder WithId(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
+            WithScalarField("id", alias, new GraphQlDirective[] { include, skip });
+        public AccountProductQueryBuilder ExceptId() =>
+            ExceptField("id");
+        public AccountProductQueryBuilder WithKind(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
+            WithScalarField("kind", alias, new GraphQlDirective[] { include, skip });
+        public AccountProductQueryBuilder ExceptKind() =>
+            ExceptField("kind");
     }
 }

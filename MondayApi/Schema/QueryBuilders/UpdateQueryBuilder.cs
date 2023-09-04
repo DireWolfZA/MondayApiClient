@@ -15,88 +15,48 @@ namespace MondayApi.Schema {
             new GraphQlFieldMetadata { Name = "updated_at" }
         };
 
-        protected override string TypeName { get { return "Update"; } }
+        protected override string TypeName => "Update";
+        public override IReadOnlyList<GraphQlFieldMetadata> AllFields => AllFieldMetadata;
 
-        public override IReadOnlyList<GraphQlFieldMetadata> AllFields { get { return AllFieldMetadata; } }
-
-        public UpdateQueryBuilder WithAssets(AssetQueryBuilder assetQueryBuilder, string alias = null, IncludeDirective include = null, SkipDirective skip = null) {
-            return WithObjectField("assets", alias, assetQueryBuilder, new GraphQlDirective[] { include, skip });
-        }
-
-        public UpdateQueryBuilder ExceptAssets() {
-            return ExceptField("assets");
-        }
-
-        public UpdateQueryBuilder WithBody(string alias = null, IncludeDirective include = null, SkipDirective skip = null) {
-            return WithScalarField("body", alias, new GraphQlDirective[] { include, skip });
-        }
-
-        public UpdateQueryBuilder ExceptBody() {
-            return ExceptField("body");
-        }
-
-        public UpdateQueryBuilder WithCreatedAt(string alias = null, IncludeDirective include = null, SkipDirective skip = null) {
-            return WithScalarField("created_at", alias, new GraphQlDirective[] { include, skip });
-        }
-
-        public UpdateQueryBuilder ExceptCreatedAt() {
-            return ExceptField("created_at");
-        }
-
-        public UpdateQueryBuilder WithCreator(UserQueryBuilder userQueryBuilder, string alias = null, IncludeDirective include = null, SkipDirective skip = null) {
-            return WithObjectField("creator", alias, userQueryBuilder, new GraphQlDirective[] { include, skip });
-        }
-
-        public UpdateQueryBuilder ExceptCreator() {
-            return ExceptField("creator");
-        }
-
-        public UpdateQueryBuilder WithCreatorId(string alias = null, IncludeDirective include = null, SkipDirective skip = null) {
-            return WithScalarField("creator_id", alias, new GraphQlDirective[] { include, skip });
-        }
-
-        public UpdateQueryBuilder ExceptCreatorId() {
-            return ExceptField("creator_id");
-        }
-
-        public UpdateQueryBuilder WithId(string alias = null, IncludeDirective include = null, SkipDirective skip = null) {
-            return WithScalarField("id", alias, new GraphQlDirective[] { include, skip });
-        }
-
-        public UpdateQueryBuilder ExceptId() {
-            return ExceptField("id");
-        }
-
-        public UpdateQueryBuilder WithItemId(string alias = null, IncludeDirective include = null, SkipDirective skip = null) {
-            return WithScalarField("item_id", alias, new GraphQlDirective[] { include, skip });
-        }
-
-        public UpdateQueryBuilder ExceptItemId() {
-            return ExceptField("item_id");
-        }
-
-        public UpdateQueryBuilder WithReplies(ReplyQueryBuilder replyQueryBuilder, string alias = null, IncludeDirective include = null, SkipDirective skip = null) {
-            return WithObjectField("replies", alias, replyQueryBuilder, new GraphQlDirective[] { include, skip });
-        }
-
-        public UpdateQueryBuilder ExceptReplies() {
-            return ExceptField("replies");
-        }
-
-        public UpdateQueryBuilder WithTextBody(string alias = null, IncludeDirective include = null, SkipDirective skip = null) {
-            return WithScalarField("text_body", alias, new GraphQlDirective[] { include, skip });
-        }
-
-        public UpdateQueryBuilder ExceptTextBody() {
-            return ExceptField("text_body");
-        }
-
-        public UpdateQueryBuilder WithUpdatedAt(string alias = null, IncludeDirective include = null, SkipDirective skip = null) {
-            return WithScalarField("updated_at", alias, new GraphQlDirective[] { include, skip });
-        }
-
-        public UpdateQueryBuilder ExceptUpdatedAt() {
-            return ExceptField("updated_at");
-        }
+        public UpdateQueryBuilder WithAssets(AssetQueryBuilder assetQueryBuilder, string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
+            WithObjectField("assets", alias, assetQueryBuilder, new GraphQlDirective[] { include, skip });
+        public UpdateQueryBuilder ExceptAssets() =>
+            ExceptField("assets");
+        public UpdateQueryBuilder WithBody(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
+            WithScalarField("body", alias, new GraphQlDirective[] { include, skip });
+        public UpdateQueryBuilder ExceptBody() =>
+            ExceptField("body");
+        public UpdateQueryBuilder WithCreatedAt(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
+            WithScalarField("created_at", alias, new GraphQlDirective[] { include, skip });
+        public UpdateQueryBuilder ExceptCreatedAt() =>
+            ExceptField("created_at");
+        public UpdateQueryBuilder WithCreator(UserQueryBuilder userQueryBuilder, string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
+            WithObjectField("creator", alias, userQueryBuilder, new GraphQlDirective[] { include, skip });
+        public UpdateQueryBuilder ExceptCreator() =>
+            ExceptField("creator");
+        public UpdateQueryBuilder WithCreatorId(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
+            WithScalarField("creator_id", alias, new GraphQlDirective[] { include, skip });
+        public UpdateQueryBuilder ExceptCreatorId() =>
+            ExceptField("creator_id");
+        public UpdateQueryBuilder WithId(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
+            WithScalarField("id", alias, new GraphQlDirective[] { include, skip });
+        public UpdateQueryBuilder ExceptId() =>
+            ExceptField("id");
+        public UpdateQueryBuilder WithItemId(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
+            WithScalarField("item_id", alias, new GraphQlDirective[] { include, skip });
+        public UpdateQueryBuilder ExceptItemId() =>
+            ExceptField("item_id");
+        public UpdateQueryBuilder WithReplies(ReplyQueryBuilder replyQueryBuilder, string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
+            WithObjectField("replies", alias, replyQueryBuilder, new GraphQlDirective[] { include, skip });
+        public UpdateQueryBuilder ExceptReplies() =>
+            ExceptField("replies");
+        public UpdateQueryBuilder WithTextBody(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
+            WithScalarField("text_body", alias, new GraphQlDirective[] { include, skip });
+        public UpdateQueryBuilder ExceptTextBody() =>
+            ExceptField("text_body");
+        public UpdateQueryBuilder WithUpdatedAt(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
+            WithScalarField("updated_at", alias, new GraphQlDirective[] { include, skip });
+        public UpdateQueryBuilder ExceptUpdatedAt() =>
+            ExceptField("updated_at");
     }
 }

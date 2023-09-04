@@ -7,24 +7,16 @@ namespace MondayApi.Schema {
             new GraphQlFieldMetadata { Name = "value" }
         };
 
-        protected override string TypeName { get { return "Version"; } }
+        protected override string TypeName => "Version";
+        public override IReadOnlyList<GraphQlFieldMetadata> AllFields => AllFieldMetadata;
 
-        public override IReadOnlyList<GraphQlFieldMetadata> AllFields { get { return AllFieldMetadata; } }
-
-        public VersionQueryBuilder WithKind(string alias = null, IncludeDirective include = null, SkipDirective skip = null) {
-            return WithScalarField("kind", alias, new GraphQlDirective[] { include, skip });
-        }
-
-        public VersionQueryBuilder ExceptKind() {
-            return ExceptField("kind");
-        }
-
-        public VersionQueryBuilder WithValue(string alias = null, IncludeDirective include = null, SkipDirective skip = null) {
-            return WithScalarField("value", alias, new GraphQlDirective[] { include, skip });
-        }
-
-        public VersionQueryBuilder ExceptValue() {
-            return ExceptField("value");
-        }
+        public VersionQueryBuilder WithKind(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
+            WithScalarField("kind", alias, new GraphQlDirective[] { include, skip });
+        public VersionQueryBuilder ExceptKind() =>
+            ExceptField("kind");
+        public VersionQueryBuilder WithValue(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
+            WithScalarField("value", alias, new GraphQlDirective[] { include, skip });
+        public VersionQueryBuilder ExceptValue() =>
+            ExceptField("value");
     }
 }

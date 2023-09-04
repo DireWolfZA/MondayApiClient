@@ -10,48 +10,28 @@ namespace MondayApi.Schema {
             new GraphQlFieldMetadata { Name = "type" }
         };
 
-        protected override string TypeName { get { return "OutOfOffice"; } }
+        protected override string TypeName => "OutOfOffice";
+        public override IReadOnlyList<GraphQlFieldMetadata> AllFields => AllFieldMetadata;
 
-        public override IReadOnlyList<GraphQlFieldMetadata> AllFields { get { return AllFieldMetadata; } }
-
-        public OutOfOfficeQueryBuilder WithActive(string alias = null, IncludeDirective include = null, SkipDirective skip = null) {
-            return WithScalarField("active", alias, new GraphQlDirective[] { include, skip });
-        }
-
-        public OutOfOfficeQueryBuilder ExceptActive() {
-            return ExceptField("active");
-        }
-
-        public OutOfOfficeQueryBuilder WithDisableNotifications(string alias = null, IncludeDirective include = null, SkipDirective skip = null) {
-            return WithScalarField("disable_notifications", alias, new GraphQlDirective[] { include, skip });
-        }
-
-        public OutOfOfficeQueryBuilder ExceptDisableNotifications() {
-            return ExceptField("disable_notifications");
-        }
-
-        public OutOfOfficeQueryBuilder WithEndDate(string alias = null, IncludeDirective include = null, SkipDirective skip = null) {
-            return WithScalarField("end_date", alias, new GraphQlDirective[] { include, skip });
-        }
-
-        public OutOfOfficeQueryBuilder ExceptEndDate() {
-            return ExceptField("end_date");
-        }
-
-        public OutOfOfficeQueryBuilder WithStartDate(string alias = null, IncludeDirective include = null, SkipDirective skip = null) {
-            return WithScalarField("start_date", alias, new GraphQlDirective[] { include, skip });
-        }
-
-        public OutOfOfficeQueryBuilder ExceptStartDate() {
-            return ExceptField("start_date");
-        }
-
-        public OutOfOfficeQueryBuilder WithType(string alias = null, IncludeDirective include = null, SkipDirective skip = null) {
-            return WithScalarField("type", alias, new GraphQlDirective[] { include, skip });
-        }
-
-        public OutOfOfficeQueryBuilder ExceptType() {
-            return ExceptField("type");
-        }
+        public OutOfOfficeQueryBuilder WithActive(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
+            WithScalarField("active", alias, new GraphQlDirective[] { include, skip });
+        public OutOfOfficeQueryBuilder ExceptActive() =>
+            ExceptField("active");
+        public OutOfOfficeQueryBuilder WithDisableNotifications(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
+            WithScalarField("disable_notifications", alias, new GraphQlDirective[] { include, skip });
+        public OutOfOfficeQueryBuilder ExceptDisableNotifications() =>
+            ExceptField("disable_notifications");
+        public OutOfOfficeQueryBuilder WithEndDate(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
+            WithScalarField("end_date", alias, new GraphQlDirective[] { include, skip });
+        public OutOfOfficeQueryBuilder ExceptEndDate() =>
+            ExceptField("end_date");
+        public OutOfOfficeQueryBuilder WithStartDate(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
+            WithScalarField("start_date", alias, new GraphQlDirective[] { include, skip });
+        public OutOfOfficeQueryBuilder ExceptStartDate() =>
+            ExceptField("start_date");
+        public OutOfOfficeQueryBuilder WithType(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
+            WithScalarField("type", alias, new GraphQlDirective[] { include, skip });
+        public OutOfOfficeQueryBuilder ExceptType() =>
+            ExceptField("type");
     }
 }

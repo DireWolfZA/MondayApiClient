@@ -23,172 +23,81 @@ namespace MondayApi.Schema {
             new GraphQlFieldMetadata { Name = "workspaces", IsComplex = true, QueryBuilderType = typeof(WorkspaceQueryBuilder) }
         };
 
-        protected override string TypeName { get { return "Query"; } }
-
-        public override IReadOnlyList<GraphQlFieldMetadata> AllFields { get { return AllFieldMetadata; } }
-
-        public QueryQueryBuilder(string operationName = null) : base("query", operationName) {
-        }
-
-        public QueryQueryBuilder WithParameter<T>(GraphQlQueryParameter<T> parameter) {
-            return WithParameterInternal(parameter);
-        }
-
-        public QueryQueryBuilder WithAccount(AccountQueryBuilder accountQueryBuilder, string alias = null, IncludeDirective include = null, SkipDirective skip = null) {
-            return WithObjectField("account", alias, accountQueryBuilder, new GraphQlDirective[] { include, skip });
-        }
-
-        public QueryQueryBuilder ExceptAccount() {
-            return ExceptField("account");
-        }
-
-        public QueryQueryBuilder WithAppSubscription(AppSubscriptionQueryBuilder appSubscriptionQueryBuilder, string alias = null, IncludeDirective include = null, SkipDirective skip = null) {
-            return WithObjectField("app_subscription", alias, appSubscriptionQueryBuilder, new GraphQlDirective[] { include, skip });
-        }
-
-        public QueryQueryBuilder ExceptAppSubscription() {
-            return ExceptField("app_subscription");
-        }
-
-        public QueryQueryBuilder WithAppsMonetizationStatus(AppMonetizationStatusQueryBuilder appMonetizationStatusQueryBuilder, string alias = null, IncludeDirective include = null, SkipDirective skip = null) {
-            return WithObjectField("apps_monetization_status", alias, appMonetizationStatusQueryBuilder, new GraphQlDirective[] { include, skip });
-        }
-
-        public QueryQueryBuilder ExceptAppsMonetizationStatus() {
-            return ExceptField("apps_monetization_status");
-        }
+        protected override string TypeName => "Query";
+        public override IReadOnlyList<GraphQlFieldMetadata> AllFields => AllFieldMetadata;
 
         public QueryQueryBuilder WithAssets(AssetQueryBuilder assetQueryBuilder, QueryBuilderParameter<IEnumerable<int?>> ids, string alias = null, IncludeDirective include = null, SkipDirective skip = null) {
-            var args = new List<QueryBuilderArgumentInfo>();
-            args.Add(new QueryBuilderArgumentInfo { ArgumentName = "ids", ArgumentValue = ids });
+            var args = new List<QueryBuilderArgumentInfo> {
+                new QueryBuilderArgumentInfo { ArgumentName = "ids", ArgumentValue = ids }
+            };
             return WithObjectField("assets", alias, assetQueryBuilder, new GraphQlDirective[] { include, skip }, args);
         }
-
-        public QueryQueryBuilder ExceptAssets() {
-            return ExceptField("assets");
-        }
-
         public QueryQueryBuilder WithBoards(BoardQueryBuilder boardQueryBuilder, QueryBuilderParameter<int?> limit = null, QueryBuilderParameter<int?> page = null, QueryBuilderParameter<IEnumerable<int?>> ids = null, QueryBuilderParameter<BoardKind?> boardKind = null, QueryBuilderParameter<State?> state = null, QueryBuilderParameter<bool?> newestFirst = null, QueryBuilderParameter<BoardsOrderBy?> orderBy = null, QueryBuilderParameter<IEnumerable<int?>> workspaceIds = null, string alias = null, IncludeDirective include = null, SkipDirective skip = null) {
             var args = new List<QueryBuilderArgumentInfo>();
             if (limit != null)
                 args.Add(new QueryBuilderArgumentInfo { ArgumentName = "limit", ArgumentValue = limit });
-
             if (page != null)
                 args.Add(new QueryBuilderArgumentInfo { ArgumentName = "page", ArgumentValue = page });
-
             if (ids != null)
                 args.Add(new QueryBuilderArgumentInfo { ArgumentName = "ids", ArgumentValue = ids });
-
             if (boardKind != null)
                 args.Add(new QueryBuilderArgumentInfo { ArgumentName = "board_kind", ArgumentValue = boardKind });
-
             if (state != null)
                 args.Add(new QueryBuilderArgumentInfo { ArgumentName = "state", ArgumentValue = state });
-
             if (newestFirst != null)
                 args.Add(new QueryBuilderArgumentInfo { ArgumentName = "newest_first", ArgumentValue = newestFirst });
-
             if (orderBy != null)
                 args.Add(new QueryBuilderArgumentInfo { ArgumentName = "order_by", ArgumentValue = orderBy });
-
             if (workspaceIds != null)
                 args.Add(new QueryBuilderArgumentInfo { ArgumentName = "workspace_ids", ArgumentValue = workspaceIds });
 
             return WithObjectField("boards", alias, boardQueryBuilder, new GraphQlDirective[] { include, skip }, args);
         }
-
-        public QueryQueryBuilder ExceptBoards() {
-            return ExceptField("boards");
-        }
-
-        public QueryQueryBuilder WithComplexity(ComplexityQueryBuilder complexityQueryBuilder, string alias = null, IncludeDirective include = null, SkipDirective skip = null) {
-            return WithObjectField("complexity", alias, complexityQueryBuilder, new GraphQlDirective[] { include, skip });
-        }
-
-        public QueryQueryBuilder ExceptComplexity() {
-            return ExceptField("complexity");
-        }
-
         public QueryQueryBuilder WithDocs(DocumentQueryBuilder documentQueryBuilder, QueryBuilderParameter<int?> limit = null, QueryBuilderParameter<int?> page = null, QueryBuilderParameter<IEnumerable<int?>> ids = null, QueryBuilderParameter<IEnumerable<int?>> workspaceIds = null, QueryBuilderParameter<DocsOrderBy?> orderBy = null, QueryBuilderParameter<IEnumerable<int?>> objectIds = null, string alias = null, IncludeDirective include = null, SkipDirective skip = null) {
             var args = new List<QueryBuilderArgumentInfo>();
             if (limit != null)
                 args.Add(new QueryBuilderArgumentInfo { ArgumentName = "limit", ArgumentValue = limit });
-
             if (page != null)
                 args.Add(new QueryBuilderArgumentInfo { ArgumentName = "page", ArgumentValue = page });
-
             if (ids != null)
                 args.Add(new QueryBuilderArgumentInfo { ArgumentName = "ids", ArgumentValue = ids });
-
             if (workspaceIds != null)
                 args.Add(new QueryBuilderArgumentInfo { ArgumentName = "workspace_ids", ArgumentValue = workspaceIds });
-
             if (orderBy != null)
                 args.Add(new QueryBuilderArgumentInfo { ArgumentName = "order_by", ArgumentValue = orderBy });
-
             if (objectIds != null)
                 args.Add(new QueryBuilderArgumentInfo { ArgumentName = "object_ids", ArgumentValue = objectIds });
 
             return WithObjectField("docs", alias, documentQueryBuilder, new GraphQlDirective[] { include, skip }, args);
         }
-
-        public QueryQueryBuilder ExceptDocs() {
-            return ExceptField("docs");
-        }
-
         public QueryQueryBuilder WithFolders(FolderQueryBuilder folderQueryBuilder, QueryBuilderParameter<int?> limit = null, QueryBuilderParameter<int?> page = null, QueryBuilderParameter<IEnumerable<int>> ids = null, QueryBuilderParameter<IEnumerable<int?>> workspaceIds = null, string alias = null, IncludeDirective include = null, SkipDirective skip = null) {
             var args = new List<QueryBuilderArgumentInfo>();
             if (limit != null)
                 args.Add(new QueryBuilderArgumentInfo { ArgumentName = "limit", ArgumentValue = limit });
-
             if (page != null)
                 args.Add(new QueryBuilderArgumentInfo { ArgumentName = "page", ArgumentValue = page });
-
             if (ids != null)
                 args.Add(new QueryBuilderArgumentInfo { ArgumentName = "ids", ArgumentValue = ids });
-
             if (workspaceIds != null)
                 args.Add(new QueryBuilderArgumentInfo { ArgumentName = "workspace_ids", ArgumentValue = workspaceIds });
 
             return WithObjectField("folders", alias, folderQueryBuilder, new GraphQlDirective[] { include, skip }, args);
         }
-
-        public QueryQueryBuilder ExceptFolders() {
-            return ExceptField("folders");
-        }
-
         public QueryQueryBuilder WithItems(ItemQueryBuilder itemQueryBuilder, QueryBuilderParameter<int?> limit = null, QueryBuilderParameter<int?> page = null, QueryBuilderParameter<IEnumerable<int?>> ids = null, QueryBuilderParameter<bool?> newestFirst = null, QueryBuilderParameter<bool?> excludeNonactive = null, string alias = null, IncludeDirective include = null, SkipDirective skip = null) {
             var args = new List<QueryBuilderArgumentInfo>();
             if (limit != null)
                 args.Add(new QueryBuilderArgumentInfo { ArgumentName = "limit", ArgumentValue = limit });
-
             if (page != null)
                 args.Add(new QueryBuilderArgumentInfo { ArgumentName = "page", ArgumentValue = page });
-
             if (ids != null)
                 args.Add(new QueryBuilderArgumentInfo { ArgumentName = "ids", ArgumentValue = ids });
-
             if (newestFirst != null)
                 args.Add(new QueryBuilderArgumentInfo { ArgumentName = "newest_first", ArgumentValue = newestFirst });
-
             if (excludeNonactive != null)
                 args.Add(new QueryBuilderArgumentInfo { ArgumentName = "exclude_nonactive", ArgumentValue = excludeNonactive });
 
             return WithObjectField("items", alias, itemQueryBuilder, new GraphQlDirective[] { include, skip }, args);
         }
-
-        public QueryQueryBuilder ExceptItems() {
-            return ExceptField("items");
-        }
-
-        public QueryQueryBuilder WithMe(UserQueryBuilder userQueryBuilder, string alias = null, IncludeDirective include = null, SkipDirective skip = null) {
-            return WithObjectField("me", alias, userQueryBuilder, new GraphQlDirective[] { include, skip });
-        }
-
-        public QueryQueryBuilder ExceptMe() {
-            return ExceptField("me");
-        }
-
         public QueryQueryBuilder WithTags(TagQueryBuilder tagQueryBuilder, QueryBuilderParameter<IEnumerable<int?>> ids = null, string alias = null, IncludeDirective include = null, SkipDirective skip = null) {
             var args = new List<QueryBuilderArgumentInfo>();
             if (ids != null)
@@ -196,11 +105,6 @@ namespace MondayApi.Schema {
 
             return WithObjectField("tags", alias, tagQueryBuilder, new GraphQlDirective[] { include, skip }, args);
         }
-
-        public QueryQueryBuilder ExceptTags() {
-            return ExceptField("tags");
-        }
-
         public QueryQueryBuilder WithTeams(TeamQueryBuilder teamQueryBuilder, QueryBuilderParameter<IEnumerable<int?>> ids = null, string alias = null, IncludeDirective include = null, SkipDirective skip = null) {
             var args = new List<QueryBuilderArgumentInfo>();
             if (ids != null)
@@ -208,113 +112,115 @@ namespace MondayApi.Schema {
 
             return WithObjectField("teams", alias, teamQueryBuilder, new GraphQlDirective[] { include, skip }, args);
         }
-
-        public QueryQueryBuilder ExceptTeams() {
-            return ExceptField("teams");
-        }
-
         public QueryQueryBuilder WithUpdates(UpdateQueryBuilder updateQueryBuilder, QueryBuilderParameter<int?> limit = null, QueryBuilderParameter<int?> page = null, string alias = null, IncludeDirective include = null, SkipDirective skip = null) {
             var args = new List<QueryBuilderArgumentInfo>();
             if (limit != null)
                 args.Add(new QueryBuilderArgumentInfo { ArgumentName = "limit", ArgumentValue = limit });
-
             if (page != null)
                 args.Add(new QueryBuilderArgumentInfo { ArgumentName = "page", ArgumentValue = page });
 
             return WithObjectField("updates", alias, updateQueryBuilder, new GraphQlDirective[] { include, skip }, args);
         }
-
-        public QueryQueryBuilder ExceptUpdates() {
-            return ExceptField("updates");
-        }
-
         public QueryQueryBuilder WithUsers(UserQueryBuilder userQueryBuilder, QueryBuilderParameter<IEnumerable<int?>> ids = null, QueryBuilderParameter<UserKind?> kind = null, QueryBuilderParameter<bool?> newestFirst = null, QueryBuilderParameter<IEnumerable<string>> emails = null, QueryBuilderParameter<string> name = null, QueryBuilderParameter<bool?> nonActive = null, QueryBuilderParameter<int?> limit = null, QueryBuilderParameter<int?> page = null, string alias = null, IncludeDirective include = null, SkipDirective skip = null) {
             var args = new List<QueryBuilderArgumentInfo>();
             if (ids != null)
                 args.Add(new QueryBuilderArgumentInfo { ArgumentName = "ids", ArgumentValue = ids });
-
             if (kind != null)
                 args.Add(new QueryBuilderArgumentInfo { ArgumentName = "kind", ArgumentValue = kind });
-
             if (newestFirst != null)
                 args.Add(new QueryBuilderArgumentInfo { ArgumentName = "newest_first", ArgumentValue = newestFirst });
-
             if (emails != null)
                 args.Add(new QueryBuilderArgumentInfo { ArgumentName = "emails", ArgumentValue = emails });
-
             if (name != null)
                 args.Add(new QueryBuilderArgumentInfo { ArgumentName = "name", ArgumentValue = name });
-
             if (nonActive != null)
                 args.Add(new QueryBuilderArgumentInfo { ArgumentName = "non_active", ArgumentValue = nonActive });
-
             if (limit != null)
                 args.Add(new QueryBuilderArgumentInfo { ArgumentName = "limit", ArgumentValue = limit });
-
             if (page != null)
                 args.Add(new QueryBuilderArgumentInfo { ArgumentName = "page", ArgumentValue = page });
 
             return WithObjectField("users", alias, userQueryBuilder, new GraphQlDirective[] { include, skip }, args);
         }
-
-        public QueryQueryBuilder ExceptUsers() {
-            return ExceptField("users");
-        }
-
-        public QueryQueryBuilder WithVersion(VersionQueryBuilder versionQueryBuilder, string alias = null, IncludeDirective include = null, SkipDirective skip = null) {
-            return WithObjectField("version", alias, versionQueryBuilder, new GraphQlDirective[] { include, skip });
-        }
-
-        public QueryQueryBuilder ExceptVersion() {
-            return ExceptField("version");
-        }
-
-        public QueryQueryBuilder WithVersions(VersionQueryBuilder versionQueryBuilder, string alias = null, IncludeDirective include = null, SkipDirective skip = null) {
-            return WithObjectField("versions", alias, versionQueryBuilder, new GraphQlDirective[] { include, skip });
-        }
-
-        public QueryQueryBuilder ExceptVersions() {
-            return ExceptField("versions");
-        }
-
         public QueryQueryBuilder WithWebhooks(WebhookQueryBuilder webhookQueryBuilder, QueryBuilderParameter<int> boardId, QueryBuilderParameter<bool?> appWebhooksOnly = null, string alias = null, IncludeDirective include = null, SkipDirective skip = null) {
-            var args = new List<QueryBuilderArgumentInfo>();
-            args.Add(new QueryBuilderArgumentInfo { ArgumentName = "board_id", ArgumentValue = boardId });
+            var args = new List<QueryBuilderArgumentInfo> {
+                new QueryBuilderArgumentInfo { ArgumentName = "board_id", ArgumentValue = boardId }
+            };
             if (appWebhooksOnly != null)
                 args.Add(new QueryBuilderArgumentInfo { ArgumentName = "app_webhooks_only", ArgumentValue = appWebhooksOnly });
 
             return WithObjectField("webhooks", alias, webhookQueryBuilder, new GraphQlDirective[] { include, skip }, args);
         }
-
-        public QueryQueryBuilder ExceptWebhooks() {
-            return ExceptField("webhooks");
-        }
-
         public QueryQueryBuilder WithWorkspaces(WorkspaceQueryBuilder workspaceQueryBuilder, QueryBuilderParameter<int?> limit = null, QueryBuilderParameter<int?> page = null, QueryBuilderParameter<IEnumerable<int?>> ids = null, QueryBuilderParameter<WorkspaceKind?> kind = null, QueryBuilderParameter<State?> state = null, QueryBuilderParameter<WorkspacesOrderBy?> orderBy = null, string alias = null, IncludeDirective include = null, SkipDirective skip = null) {
             var args = new List<QueryBuilderArgumentInfo>();
             if (limit != null)
                 args.Add(new QueryBuilderArgumentInfo { ArgumentName = "limit", ArgumentValue = limit });
-
             if (page != null)
                 args.Add(new QueryBuilderArgumentInfo { ArgumentName = "page", ArgumentValue = page });
-
             if (ids != null)
                 args.Add(new QueryBuilderArgumentInfo { ArgumentName = "ids", ArgumentValue = ids });
-
             if (kind != null)
                 args.Add(new QueryBuilderArgumentInfo { ArgumentName = "kind", ArgumentValue = kind });
-
             if (state != null)
                 args.Add(new QueryBuilderArgumentInfo { ArgumentName = "state", ArgumentValue = state });
-
             if (orderBy != null)
                 args.Add(new QueryBuilderArgumentInfo { ArgumentName = "order_by", ArgumentValue = orderBy });
 
             return WithObjectField("workspaces", alias, workspaceQueryBuilder, new GraphQlDirective[] { include, skip }, args);
         }
 
-        public QueryQueryBuilder ExceptWorkspaces() {
-            return ExceptField("workspaces");
-        }
+        public QueryQueryBuilder(string operationName = null) : base("query", operationName) { }
+        public QueryQueryBuilder WithParameter<T>(GraphQlQueryParameter<T> parameter) =>
+            WithParameterInternal(parameter);
+        public QueryQueryBuilder WithAccount(AccountQueryBuilder accountQueryBuilder, string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
+            WithObjectField("account", alias, accountQueryBuilder, new GraphQlDirective[] { include, skip });
+        public QueryQueryBuilder ExceptAccount() =>
+            ExceptField("account");
+        public QueryQueryBuilder WithAppSubscription(AppSubscriptionQueryBuilder appSubscriptionQueryBuilder, string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
+            WithObjectField("app_subscription", alias, appSubscriptionQueryBuilder, new GraphQlDirective[] { include, skip });
+        public QueryQueryBuilder ExceptAppSubscription() =>
+            ExceptField("app_subscription");
+        public QueryQueryBuilder WithAppsMonetizationStatus(AppMonetizationStatusQueryBuilder appMonetizationStatusQueryBuilder, string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
+            WithObjectField("apps_monetization_status", alias, appMonetizationStatusQueryBuilder, new GraphQlDirective[] { include, skip });
+        public QueryQueryBuilder ExceptAppsMonetizationStatus() =>
+            ExceptField("apps_monetization_status");
+        public QueryQueryBuilder ExceptAssets() =>
+            ExceptField("assets");
+        public QueryQueryBuilder ExceptBoards() =>
+            ExceptField("boards");
+        public QueryQueryBuilder WithComplexity(ComplexityQueryBuilder complexityQueryBuilder, string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
+            WithObjectField("complexity", alias, complexityQueryBuilder, new GraphQlDirective[] { include, skip });
+        public QueryQueryBuilder ExceptComplexity() =>
+            ExceptField("complexity");
+        public QueryQueryBuilder ExceptDocs() =>
+            ExceptField("docs");
+        public QueryQueryBuilder ExceptFolders() =>
+            ExceptField("folders");
+        public QueryQueryBuilder ExceptItems() =>
+            ExceptField("items");
+        public QueryQueryBuilder WithMe(UserQueryBuilder userQueryBuilder, string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
+            WithObjectField("me", alias, userQueryBuilder, new GraphQlDirective[] { include, skip });
+        public QueryQueryBuilder ExceptMe() =>
+            ExceptField("me");
+        public QueryQueryBuilder ExceptTags() =>
+            ExceptField("tags");
+        public QueryQueryBuilder ExceptTeams() =>
+            ExceptField("teams");
+        public QueryQueryBuilder ExceptUpdates() =>
+            ExceptField("updates");
+        public QueryQueryBuilder ExceptUsers() =>
+            ExceptField("users");
+        public QueryQueryBuilder WithVersion(VersionQueryBuilder versionQueryBuilder, string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
+            WithObjectField("version", alias, versionQueryBuilder, new GraphQlDirective[] { include, skip });
+        public QueryQueryBuilder ExceptVersion() =>
+            ExceptField("version");
+        public QueryQueryBuilder WithVersions(VersionQueryBuilder versionQueryBuilder, string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
+            WithObjectField("versions", alias, versionQueryBuilder, new GraphQlDirective[] { include, skip });
+        public QueryQueryBuilder ExceptVersions() =>
+            ExceptField("versions");
+        public QueryQueryBuilder ExceptWebhooks() =>
+            ExceptField("webhooks");
+        public QueryQueryBuilder ExceptWorkspaces() =>
+            ExceptField("workspaces");
     }
 }

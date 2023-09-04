@@ -17,132 +17,85 @@ namespace MondayApi.Schema {
             new GraphQlFieldMetadata { Name = "users_subscribers", IsComplex = true, QueryBuilderType = typeof(UserQueryBuilder) }
         };
 
-        protected override string TypeName { get { return "Workspace"; } }
-
-        public override IReadOnlyList<GraphQlFieldMetadata> AllFields { get { return AllFieldMetadata; } }
-
-        public WorkspaceQueryBuilder WithAccountProduct(AccountProductQueryBuilder accountProductQueryBuilder, string alias = null, IncludeDirective include = null, SkipDirective skip = null) {
-            return WithObjectField("account_product", alias, accountProductQueryBuilder, new GraphQlDirective[] { include, skip });
-        }
-
-        public WorkspaceQueryBuilder ExceptAccountProduct() {
-            return ExceptField("account_product");
-        }
-
-        public WorkspaceQueryBuilder WithCreatedAt(string alias = null, IncludeDirective include = null, SkipDirective skip = null) {
-            return WithScalarField("created_at", alias, new GraphQlDirective[] { include, skip });
-        }
-
-        public WorkspaceQueryBuilder ExceptCreatedAt() {
-            return ExceptField("created_at");
-        }
-
-        public WorkspaceQueryBuilder WithDescription(string alias = null, IncludeDirective include = null, SkipDirective skip = null) {
-            return WithScalarField("description", alias, new GraphQlDirective[] { include, skip });
-        }
-
-        public WorkspaceQueryBuilder ExceptDescription() {
-            return ExceptField("description");
-        }
-
-        public WorkspaceQueryBuilder WithId(string alias = null, IncludeDirective include = null, SkipDirective skip = null) {
-            return WithScalarField("id", alias, new GraphQlDirective[] { include, skip });
-        }
-
-        public WorkspaceQueryBuilder ExceptId() {
-            return ExceptField("id");
-        }
-
-        public WorkspaceQueryBuilder WithKind(string alias = null, IncludeDirective include = null, SkipDirective skip = null) {
-            return WithScalarField("kind", alias, new GraphQlDirective[] { include, skip });
-        }
-
-        public WorkspaceQueryBuilder ExceptKind() {
-            return ExceptField("kind");
-        }
-
-        public WorkspaceQueryBuilder WithName(string alias = null, IncludeDirective include = null, SkipDirective skip = null) {
-            return WithScalarField("name", alias, new GraphQlDirective[] { include, skip });
-        }
-
-        public WorkspaceQueryBuilder ExceptName() {
-            return ExceptField("name");
-        }
+        protected override string TypeName => "Workspace";
+        public override IReadOnlyList<GraphQlFieldMetadata> AllFields => AllFieldMetadata;
 
         public WorkspaceQueryBuilder WithOwnersSubscribers(UserQueryBuilder userQueryBuilder, QueryBuilderParameter<int?> limit = null, QueryBuilderParameter<int?> page = null, string alias = null, IncludeDirective include = null, SkipDirective skip = null) {
             var args = new List<QueryBuilderArgumentInfo>();
             if (limit != null)
                 args.Add(new QueryBuilderArgumentInfo { ArgumentName = "limit", ArgumentValue = limit });
-
             if (page != null)
                 args.Add(new QueryBuilderArgumentInfo { ArgumentName = "page", ArgumentValue = page });
 
             return WithObjectField("owners_subscribers", alias, userQueryBuilder, new GraphQlDirective[] { include, skip }, args);
         }
-
-        public WorkspaceQueryBuilder ExceptOwnersSubscribers() {
-            return ExceptField("owners_subscribers");
-        }
-
-        public WorkspaceQueryBuilder WithSettings(WorkspaceSettingsQueryBuilder workspaceSettingsQueryBuilder, string alias = null, IncludeDirective include = null, SkipDirective skip = null) {
-            return WithObjectField("settings", alias, workspaceSettingsQueryBuilder, new GraphQlDirective[] { include, skip });
-        }
-
-        public WorkspaceQueryBuilder ExceptSettings() {
-            return ExceptField("settings");
-        }
-
-        public WorkspaceQueryBuilder WithState(string alias = null, IncludeDirective include = null, SkipDirective skip = null) {
-            return WithScalarField("state", alias, new GraphQlDirective[] { include, skip });
-        }
-
-        public WorkspaceQueryBuilder ExceptState() {
-            return ExceptField("state");
-        }
-
         public WorkspaceQueryBuilder WithTeamOwnersSubscribers(TeamQueryBuilder teamQueryBuilder, QueryBuilderParameter<int?> limit = null, QueryBuilderParameter<int?> page = null, string alias = null, IncludeDirective include = null, SkipDirective skip = null) {
             var args = new List<QueryBuilderArgumentInfo>();
             if (limit != null)
                 args.Add(new QueryBuilderArgumentInfo { ArgumentName = "limit", ArgumentValue = limit });
-
             if (page != null)
                 args.Add(new QueryBuilderArgumentInfo { ArgumentName = "page", ArgumentValue = page });
 
             return WithObjectField("team_owners_subscribers", alias, teamQueryBuilder, new GraphQlDirective[] { include, skip }, args);
         }
-
-        public WorkspaceQueryBuilder ExceptTeamOwnersSubscribers() {
-            return ExceptField("team_owners_subscribers");
-        }
-
         public WorkspaceQueryBuilder WithTeamsSubscribers(TeamQueryBuilder teamQueryBuilder, QueryBuilderParameter<int?> limit = null, QueryBuilderParameter<int?> page = null, string alias = null, IncludeDirective include = null, SkipDirective skip = null) {
             var args = new List<QueryBuilderArgumentInfo>();
             if (limit != null)
                 args.Add(new QueryBuilderArgumentInfo { ArgumentName = "limit", ArgumentValue = limit });
-
             if (page != null)
                 args.Add(new QueryBuilderArgumentInfo { ArgumentName = "page", ArgumentValue = page });
 
             return WithObjectField("teams_subscribers", alias, teamQueryBuilder, new GraphQlDirective[] { include, skip }, args);
         }
-
-        public WorkspaceQueryBuilder ExceptTeamsSubscribers() {
-            return ExceptField("teams_subscribers");
-        }
-
         public WorkspaceQueryBuilder WithUsersSubscribers(UserQueryBuilder userQueryBuilder, QueryBuilderParameter<int?> limit = null, QueryBuilderParameter<int?> page = null, string alias = null, IncludeDirective include = null, SkipDirective skip = null) {
             var args = new List<QueryBuilderArgumentInfo>();
             if (limit != null)
                 args.Add(new QueryBuilderArgumentInfo { ArgumentName = "limit", ArgumentValue = limit });
-
             if (page != null)
                 args.Add(new QueryBuilderArgumentInfo { ArgumentName = "page", ArgumentValue = page });
 
             return WithObjectField("users_subscribers", alias, userQueryBuilder, new GraphQlDirective[] { include, skip }, args);
         }
 
-        public WorkspaceQueryBuilder ExceptUsersSubscribers() {
-            return ExceptField("users_subscribers");
-        }
+        public WorkspaceQueryBuilder WithAccountProduct(AccountProductQueryBuilder accountProductQueryBuilder, string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
+            WithObjectField("account_product", alias, accountProductQueryBuilder, new GraphQlDirective[] { include, skip });
+        public WorkspaceQueryBuilder ExceptAccountProduct() =>
+            ExceptField("account_product");
+        public WorkspaceQueryBuilder WithCreatedAt(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
+            WithScalarField("created_at", alias, new GraphQlDirective[] { include, skip });
+        public WorkspaceQueryBuilder ExceptCreatedAt() =>
+            ExceptField("created_at");
+        public WorkspaceQueryBuilder WithDescription(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
+            WithScalarField("description", alias, new GraphQlDirective[] { include, skip });
+        public WorkspaceQueryBuilder ExceptDescription() =>
+            ExceptField("description");
+        public WorkspaceQueryBuilder WithId(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
+            WithScalarField("id", alias, new GraphQlDirective[] { include, skip });
+        public WorkspaceQueryBuilder ExceptId() =>
+            ExceptField("id");
+        public WorkspaceQueryBuilder WithKind(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
+            WithScalarField("kind", alias, new GraphQlDirective[] { include, skip });
+        public WorkspaceQueryBuilder ExceptKind() =>
+            ExceptField("kind");
+        public WorkspaceQueryBuilder WithName(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
+            WithScalarField("name", alias, new GraphQlDirective[] { include, skip });
+        public WorkspaceQueryBuilder ExceptName() =>
+            ExceptField("name");
+        public WorkspaceQueryBuilder ExceptOwnersSubscribers() =>
+            ExceptField("owners_subscribers");
+        public WorkspaceQueryBuilder WithSettings(WorkspaceSettingsQueryBuilder workspaceSettingsQueryBuilder, string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
+            WithObjectField("settings", alias, workspaceSettingsQueryBuilder, new GraphQlDirective[] { include, skip });
+        public WorkspaceQueryBuilder ExceptSettings() =>
+            ExceptField("settings");
+        public WorkspaceQueryBuilder WithState(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
+            WithScalarField("state", alias, new GraphQlDirective[] { include, skip });
+        public WorkspaceQueryBuilder ExceptState() =>
+            ExceptField("state");
+        public WorkspaceQueryBuilder ExceptTeamOwnersSubscribers() =>
+            ExceptField("team_owners_subscribers");
+        public WorkspaceQueryBuilder ExceptTeamsSubscribers() =>
+            ExceptField("teams_subscribers");
+        public WorkspaceQueryBuilder ExceptUsersSubscribers() =>
+            ExceptField("users_subscribers");
     }
 }

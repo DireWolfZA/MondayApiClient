@@ -10,48 +10,28 @@ namespace MondayApi.Schema {
             new GraphQlFieldMetadata { Name = "view_specific_data_str" }
         };
 
-        protected override string TypeName { get { return "BoardView"; } }
+        protected override string TypeName => "BoardView";
+        public override IReadOnlyList<GraphQlFieldMetadata> AllFields => AllFieldMetadata;
 
-        public override IReadOnlyList<GraphQlFieldMetadata> AllFields { get { return AllFieldMetadata; } }
-
-        public BoardViewQueryBuilder WithId(string alias = null, IncludeDirective include = null, SkipDirective skip = null) {
-            return WithScalarField("id", alias, new GraphQlDirective[] { include, skip });
-        }
-
-        public BoardViewQueryBuilder ExceptId() {
-            return ExceptField("id");
-        }
-
-        public BoardViewQueryBuilder WithName(string alias = null, IncludeDirective include = null, SkipDirective skip = null) {
-            return WithScalarField("name", alias, new GraphQlDirective[] { include, skip });
-        }
-
-        public BoardViewQueryBuilder ExceptName() {
-            return ExceptField("name");
-        }
-
-        public BoardViewQueryBuilder WithSettingsStr(string alias = null, IncludeDirective include = null, SkipDirective skip = null) {
-            return WithScalarField("settings_str", alias, new GraphQlDirective[] { include, skip });
-        }
-
-        public BoardViewQueryBuilder ExceptSettingsStr() {
-            return ExceptField("settings_str");
-        }
-
-        public BoardViewQueryBuilder WithType(string alias = null, IncludeDirective include = null, SkipDirective skip = null) {
-            return WithScalarField("type", alias, new GraphQlDirective[] { include, skip });
-        }
-
-        public BoardViewQueryBuilder ExceptType() {
-            return ExceptField("type");
-        }
-
-        public BoardViewQueryBuilder WithViewSpecificDataStr(string alias = null, IncludeDirective include = null, SkipDirective skip = null) {
-            return WithScalarField("view_specific_data_str", alias, new GraphQlDirective[] { include, skip });
-        }
-
-        public BoardViewQueryBuilder ExceptViewSpecificDataStr() {
-            return ExceptField("view_specific_data_str");
-        }
+        public BoardViewQueryBuilder WithId(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
+            WithScalarField("id", alias, new GraphQlDirective[] { include, skip });
+        public BoardViewQueryBuilder ExceptId() =>
+            ExceptField("id");
+        public BoardViewQueryBuilder WithName(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
+            WithScalarField("name", alias, new GraphQlDirective[] { include, skip });
+        public BoardViewQueryBuilder ExceptName() =>
+            ExceptField("name");
+        public BoardViewQueryBuilder WithSettingsStr(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
+            WithScalarField("settings_str", alias, new GraphQlDirective[] { include, skip });
+        public BoardViewQueryBuilder ExceptSettingsStr() =>
+            ExceptField("settings_str");
+        public BoardViewQueryBuilder WithType(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
+            WithScalarField("type", alias, new GraphQlDirective[] { include, skip });
+        public BoardViewQueryBuilder ExceptType() =>
+            ExceptField("type");
+        public BoardViewQueryBuilder WithViewSpecificDataStr(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
+            WithScalarField("view_specific_data_str", alias, new GraphQlDirective[] { include, skip });
+        public BoardViewQueryBuilder ExceptViewSpecificDataStr() =>
+            ExceptField("view_specific_data_str");
     }
 }

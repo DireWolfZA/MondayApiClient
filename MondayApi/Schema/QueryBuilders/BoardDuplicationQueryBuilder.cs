@@ -7,24 +7,16 @@ namespace MondayApi.Schema {
             new GraphQlFieldMetadata { Name = "is_async" }
         };
 
-        protected override string TypeName { get { return "BoardDuplication"; } }
+        protected override string TypeName => "BoardDuplication";
+        public override IReadOnlyList<GraphQlFieldMetadata> AllFields => AllFieldMetadata;
 
-        public override IReadOnlyList<GraphQlFieldMetadata> AllFields { get { return AllFieldMetadata; } }
-
-        public BoardDuplicationQueryBuilder WithBoard(BoardQueryBuilder boardQueryBuilder, string alias = null, IncludeDirective include = null, SkipDirective skip = null) {
-            return WithObjectField("board", alias, boardQueryBuilder, new GraphQlDirective[] { include, skip });
-        }
-
-        public BoardDuplicationQueryBuilder ExceptBoard() {
-            return ExceptField("board");
-        }
-
-        public BoardDuplicationQueryBuilder WithIsAsync(string alias = null, IncludeDirective include = null, SkipDirective skip = null) {
-            return WithScalarField("is_async", alias, new GraphQlDirective[] { include, skip });
-        }
-
-        public BoardDuplicationQueryBuilder ExceptIsAsync() {
-            return ExceptField("is_async");
-        }
+        public BoardDuplicationQueryBuilder WithBoard(BoardQueryBuilder boardQueryBuilder, string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
+            WithObjectField("board", alias, boardQueryBuilder, new GraphQlDirective[] { include, skip });
+        public BoardDuplicationQueryBuilder ExceptBoard() =>
+            ExceptField("board");
+        public BoardDuplicationQueryBuilder WithIsAsync(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
+            WithScalarField("is_async", alias, new GraphQlDirective[] { include, skip });
+        public BoardDuplicationQueryBuilder ExceptIsAsync() =>
+            ExceptField("is_async");
     }
 }

@@ -12,64 +12,36 @@ namespace MondayApi.Schema {
             new GraphQlFieldMetadata { Name = "width" }
         };
 
-        protected override string TypeName { get { return "Column"; } }
+        protected override string TypeName => "Column";
+        public override IReadOnlyList<GraphQlFieldMetadata> AllFields => AllFieldMetadata;
 
-        public override IReadOnlyList<GraphQlFieldMetadata> AllFields { get { return AllFieldMetadata; } }
-
-        public ColumnQueryBuilder WithArchived(string alias = null, IncludeDirective include = null, SkipDirective skip = null) {
-            return WithScalarField("archived", alias, new GraphQlDirective[] { include, skip });
-        }
-
-        public ColumnQueryBuilder ExceptArchived() {
-            return ExceptField("archived");
-        }
-
-        public ColumnQueryBuilder WithDescription(string alias = null, IncludeDirective include = null, SkipDirective skip = null) {
-            return WithScalarField("description", alias, new GraphQlDirective[] { include, skip });
-        }
-
-        public ColumnQueryBuilder ExceptDescription() {
-            return ExceptField("description");
-        }
-
-        public ColumnQueryBuilder WithId(string alias = null, IncludeDirective include = null, SkipDirective skip = null) {
-            return WithScalarField("id", alias, new GraphQlDirective[] { include, skip });
-        }
-
-        public ColumnQueryBuilder ExceptId() {
-            return ExceptField("id");
-        }
-
-        public ColumnQueryBuilder WithSettingsStr(string alias = null, IncludeDirective include = null, SkipDirective skip = null) {
-            return WithScalarField("settings_str", alias, new GraphQlDirective[] { include, skip });
-        }
-
-        public ColumnQueryBuilder ExceptSettingsStr() {
-            return ExceptField("settings_str");
-        }
-
-        public ColumnQueryBuilder WithTitle(string alias = null, IncludeDirective include = null, SkipDirective skip = null) {
-            return WithScalarField("title", alias, new GraphQlDirective[] { include, skip });
-        }
-
-        public ColumnQueryBuilder ExceptTitle() {
-            return ExceptField("title");
-        }
-
-        public ColumnQueryBuilder WithType(string alias = null, IncludeDirective include = null, SkipDirective skip = null) {
-            return WithScalarField("type", alias, new GraphQlDirective[] { include, skip });
-        }
-
-        public ColumnQueryBuilder ExceptType() {
-            return ExceptField("type");
-        }
-
-        public ColumnQueryBuilder WithWidth(string alias = null, IncludeDirective include = null, SkipDirective skip = null) {
-            return WithScalarField("width", alias, new GraphQlDirective[] { include, skip });
-        }
-
-        public ColumnQueryBuilder ExceptWidth() {
-            return ExceptField("width");
-        }
+        public ColumnQueryBuilder WithArchived(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
+            WithScalarField("archived", alias, new GraphQlDirective[] { include, skip });
+        public ColumnQueryBuilder ExceptArchived() =>
+            ExceptField("archived");
+        public ColumnQueryBuilder WithDescription(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
+            WithScalarField("description", alias, new GraphQlDirective[] { include, skip });
+        public ColumnQueryBuilder ExceptDescription() =>
+            ExceptField("description");
+        public ColumnQueryBuilder WithId(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
+            WithScalarField("id", alias, new GraphQlDirective[] { include, skip });
+        public ColumnQueryBuilder ExceptId() =>
+            ExceptField("id");
+        public ColumnQueryBuilder WithSettingsStr(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
+            WithScalarField("settings_str", alias, new GraphQlDirective[] { include, skip });
+        public ColumnQueryBuilder ExceptSettingsStr() =>
+            ExceptField("settings_str");
+        public ColumnQueryBuilder WithTitle(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
+            WithScalarField("title", alias, new GraphQlDirective[] { include, skip });
+        public ColumnQueryBuilder ExceptTitle() =>
+            ExceptField("title");
+        public ColumnQueryBuilder WithType(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
+            WithScalarField("type", alias, new GraphQlDirective[] { include, skip });
+        public ColumnQueryBuilder ExceptType() =>
+            ExceptField("type");
+        public ColumnQueryBuilder WithWidth(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
+            WithScalarField("width", alias, new GraphQlDirective[] { include, skip });
+        public ColumnQueryBuilder ExceptWidth() =>
+            ExceptField("width");
     }
 }

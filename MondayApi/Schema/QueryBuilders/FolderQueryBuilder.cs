@@ -14,80 +14,44 @@ namespace MondayApi.Schema {
             new GraphQlFieldMetadata { Name = "workspace", IsComplex = true, QueryBuilderType = typeof(WorkspaceQueryBuilder) }
         };
 
-        protected override string TypeName { get { return "Folder"; } }
+        protected override string TypeName => "Folder";
+        public override IReadOnlyList<GraphQlFieldMetadata> AllFields => AllFieldMetadata;
 
-        public override IReadOnlyList<GraphQlFieldMetadata> AllFields { get { return AllFieldMetadata; } }
-
-        public FolderQueryBuilder WithChildren(BoardQueryBuilder boardQueryBuilder, string alias = null, IncludeDirective include = null, SkipDirective skip = null) {
-            return WithObjectField("children", alias, boardQueryBuilder, new GraphQlDirective[] { include, skip });
-        }
-
-        public FolderQueryBuilder ExceptChildren() {
-            return ExceptField("children");
-        }
-
-        public FolderQueryBuilder WithColor(string alias = null, IncludeDirective include = null, SkipDirective skip = null) {
-            return WithScalarField("color", alias, new GraphQlDirective[] { include, skip });
-        }
-
-        public FolderQueryBuilder ExceptColor() {
-            return ExceptField("color");
-        }
-
-        public FolderQueryBuilder WithCreatedAt(string alias = null, IncludeDirective include = null, SkipDirective skip = null) {
-            return WithScalarField("created_at", alias, new GraphQlDirective[] { include, skip });
-        }
-
-        public FolderQueryBuilder ExceptCreatedAt() {
-            return ExceptField("created_at");
-        }
-
-        public FolderQueryBuilder WithId(string alias = null, IncludeDirective include = null, SkipDirective skip = null) {
-            return WithScalarField("id", alias, new GraphQlDirective[] { include, skip });
-        }
-
-        public FolderQueryBuilder ExceptId() {
-            return ExceptField("id");
-        }
-
-        public FolderQueryBuilder WithName(string alias = null, IncludeDirective include = null, SkipDirective skip = null) {
-            return WithScalarField("name", alias, new GraphQlDirective[] { include, skip });
-        }
-
-        public FolderQueryBuilder ExceptName() {
-            return ExceptField("name");
-        }
-
-        public FolderQueryBuilder WithOwnerId(string alias = null, IncludeDirective include = null, SkipDirective skip = null) {
-            return WithScalarField("owner_id", alias, new GraphQlDirective[] { include, skip });
-        }
-
-        public FolderQueryBuilder ExceptOwnerId() {
-            return ExceptField("owner_id");
-        }
-
-        public FolderQueryBuilder WithParent(FolderQueryBuilder folderQueryBuilder, string alias = null, IncludeDirective include = null, SkipDirective skip = null) {
-            return WithObjectField("parent", alias, folderQueryBuilder, new GraphQlDirective[] { include, skip });
-        }
-
-        public FolderQueryBuilder ExceptParent() {
-            return ExceptField("parent");
-        }
-
-        public FolderQueryBuilder WithSubFolders(FolderQueryBuilder folderQueryBuilder, string alias = null, IncludeDirective include = null, SkipDirective skip = null) {
-            return WithObjectField("sub_folders", alias, folderQueryBuilder, new GraphQlDirective[] { include, skip });
-        }
-
-        public FolderQueryBuilder ExceptSubFolders() {
-            return ExceptField("sub_folders");
-        }
-
-        public FolderQueryBuilder WithWorkspace(WorkspaceQueryBuilder workspaceQueryBuilder, string alias = null, IncludeDirective include = null, SkipDirective skip = null) {
-            return WithObjectField("workspace", alias, workspaceQueryBuilder, new GraphQlDirective[] { include, skip });
-        }
-
-        public FolderQueryBuilder ExceptWorkspace() {
-            return ExceptField("workspace");
-        }
+        public FolderQueryBuilder WithChildren(BoardQueryBuilder boardQueryBuilder, string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
+            WithObjectField("children", alias, boardQueryBuilder, new GraphQlDirective[] { include, skip });
+        public FolderQueryBuilder ExceptChildren() =>
+            ExceptField("children");
+        public FolderQueryBuilder WithColor(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
+            WithScalarField("color", alias, new GraphQlDirective[] { include, skip });
+        public FolderQueryBuilder ExceptColor() =>
+            ExceptField("color");
+        public FolderQueryBuilder WithCreatedAt(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
+            WithScalarField("created_at", alias, new GraphQlDirective[] { include, skip });
+        public FolderQueryBuilder ExceptCreatedAt() =>
+            ExceptField("created_at");
+        public FolderQueryBuilder WithId(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
+            WithScalarField("id", alias, new GraphQlDirective[] { include, skip });
+        public FolderQueryBuilder ExceptId() =>
+            ExceptField("id");
+        public FolderQueryBuilder WithName(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
+            WithScalarField("name", alias, new GraphQlDirective[] { include, skip });
+        public FolderQueryBuilder ExceptName() =>
+            ExceptField("name");
+        public FolderQueryBuilder WithOwnerId(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
+            WithScalarField("owner_id", alias, new GraphQlDirective[] { include, skip });
+        public FolderQueryBuilder ExceptOwnerId() =>
+            ExceptField("owner_id");
+        public FolderQueryBuilder WithParent(FolderQueryBuilder folderQueryBuilder, string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
+            WithObjectField("parent", alias, folderQueryBuilder, new GraphQlDirective[] { include, skip });
+        public FolderQueryBuilder ExceptParent() =>
+            ExceptField("parent");
+        public FolderQueryBuilder WithSubFolders(FolderQueryBuilder folderQueryBuilder, string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
+            WithObjectField("sub_folders", alias, folderQueryBuilder, new GraphQlDirective[] { include, skip });
+        public FolderQueryBuilder ExceptSubFolders() =>
+            ExceptField("sub_folders");
+        public FolderQueryBuilder WithWorkspace(WorkspaceQueryBuilder workspaceQueryBuilder, string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
+            WithObjectField("workspace", alias, workspaceQueryBuilder, new GraphQlDirective[] { include, skip });
+        public FolderQueryBuilder ExceptWorkspace() =>
+            ExceptField("workspace");
     }
 }

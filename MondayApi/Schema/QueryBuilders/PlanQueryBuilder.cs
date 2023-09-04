@@ -9,40 +9,24 @@ namespace MondayApi.Schema {
             new GraphQlFieldMetadata { Name = "version" }
         };
 
-        protected override string TypeName { get { return "Plan"; } }
+        protected override string TypeName => "Plan";
+        public override IReadOnlyList<GraphQlFieldMetadata> AllFields => AllFieldMetadata;
 
-        public override IReadOnlyList<GraphQlFieldMetadata> AllFields { get { return AllFieldMetadata; } }
-
-        public PlanQueryBuilder WithMaxUsers(string alias = null, IncludeDirective include = null, SkipDirective skip = null) {
-            return WithScalarField("max_users", alias, new GraphQlDirective[] { include, skip });
-        }
-
-        public PlanQueryBuilder ExceptMaxUsers() {
-            return ExceptField("max_users");
-        }
-
-        public PlanQueryBuilder WithPeriod(string alias = null, IncludeDirective include = null, SkipDirective skip = null) {
-            return WithScalarField("period", alias, new GraphQlDirective[] { include, skip });
-        }
-
-        public PlanQueryBuilder ExceptPeriod() {
-            return ExceptField("period");
-        }
-
-        public PlanQueryBuilder WithTier(string alias = null, IncludeDirective include = null, SkipDirective skip = null) {
-            return WithScalarField("tier", alias, new GraphQlDirective[] { include, skip });
-        }
-
-        public PlanQueryBuilder ExceptTier() {
-            return ExceptField("tier");
-        }
-
-        public PlanQueryBuilder WithVersion(string alias = null, IncludeDirective include = null, SkipDirective skip = null) {
-            return WithScalarField("version", alias, new GraphQlDirective[] { include, skip });
-        }
-
-        public PlanQueryBuilder ExceptVersion() {
-            return ExceptField("version");
-        }
+        public PlanQueryBuilder WithMaxUsers(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
+            WithScalarField("max_users", alias, new GraphQlDirective[] { include, skip });
+        public PlanQueryBuilder ExceptMaxUsers() =>
+            ExceptField("max_users");
+        public PlanQueryBuilder WithPeriod(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
+            WithScalarField("period", alias, new GraphQlDirective[] { include, skip });
+        public PlanQueryBuilder ExceptPeriod() =>
+            ExceptField("period");
+        public PlanQueryBuilder WithTier(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
+            WithScalarField("tier", alias, new GraphQlDirective[] { include, skip });
+        public PlanQueryBuilder ExceptTier() =>
+            ExceptField("tier");
+        public PlanQueryBuilder WithVersion(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
+            WithScalarField("version", alias, new GraphQlDirective[] { include, skip });
+        public PlanQueryBuilder ExceptVersion() =>
+            ExceptField("version");
     }
 }

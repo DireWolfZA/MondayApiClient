@@ -12,64 +12,36 @@ namespace MondayApi.Schema {
             new GraphQlFieldMetadata { Name = "user_id" }
         };
 
-        protected override string TypeName { get { return "ActivityLogType"; } }
+        protected override string TypeName => "ActivityLogType";
+        public override IReadOnlyList<GraphQlFieldMetadata> AllFields => AllFieldMetadata;
 
-        public override IReadOnlyList<GraphQlFieldMetadata> AllFields { get { return AllFieldMetadata; } }
-
-        public ActivityLogTypeQueryBuilder WithAccountId(string alias = null, IncludeDirective include = null, SkipDirective skip = null) {
-            return WithScalarField("account_id", alias, new GraphQlDirective[] { include, skip });
-        }
-
-        public ActivityLogTypeQueryBuilder ExceptAccountId() {
-            return ExceptField("account_id");
-        }
-
-        public ActivityLogTypeQueryBuilder WithCreatedAt(string alias = null, IncludeDirective include = null, SkipDirective skip = null) {
-            return WithScalarField("created_at", alias, new GraphQlDirective[] { include, skip });
-        }
-
-        public ActivityLogTypeQueryBuilder ExceptCreatedAt() {
-            return ExceptField("created_at");
-        }
-
-        public ActivityLogTypeQueryBuilder WithData(string alias = null, IncludeDirective include = null, SkipDirective skip = null) {
-            return WithScalarField("data", alias, new GraphQlDirective[] { include, skip });
-        }
-
-        public ActivityLogTypeQueryBuilder ExceptData() {
-            return ExceptField("data");
-        }
-
-        public ActivityLogTypeQueryBuilder WithEntity(string alias = null, IncludeDirective include = null, SkipDirective skip = null) {
-            return WithScalarField("entity", alias, new GraphQlDirective[] { include, skip });
-        }
-
-        public ActivityLogTypeQueryBuilder ExceptEntity() {
-            return ExceptField("entity");
-        }
-
-        public ActivityLogTypeQueryBuilder WithEvent(string alias = null, IncludeDirective include = null, SkipDirective skip = null) {
-            return WithScalarField("event", alias, new GraphQlDirective[] { include, skip });
-        }
-
-        public ActivityLogTypeQueryBuilder ExceptEvent() {
-            return ExceptField("event");
-        }
-
-        public ActivityLogTypeQueryBuilder WithId(string alias = null, IncludeDirective include = null, SkipDirective skip = null) {
-            return WithScalarField("id", alias, new GraphQlDirective[] { include, skip });
-        }
-
-        public ActivityLogTypeQueryBuilder ExceptId() {
-            return ExceptField("id");
-        }
-
-        public ActivityLogTypeQueryBuilder WithUserId(string alias = null, IncludeDirective include = null, SkipDirective skip = null) {
-            return WithScalarField("user_id", alias, new GraphQlDirective[] { include, skip });
-        }
-
-        public ActivityLogTypeQueryBuilder ExceptUserId() {
-            return ExceptField("user_id");
-        }
+        public ActivityLogTypeQueryBuilder WithAccountId(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
+            WithScalarField("account_id", alias, new GraphQlDirective[] { include, skip });
+        public ActivityLogTypeQueryBuilder ExceptAccountId() =>
+            ExceptField("account_id");
+        public ActivityLogTypeQueryBuilder WithCreatedAt(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
+            WithScalarField("created_at", alias, new GraphQlDirective[] { include, skip });
+        public ActivityLogTypeQueryBuilder ExceptCreatedAt() =>
+            ExceptField("created_at");
+        public ActivityLogTypeQueryBuilder WithData(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
+            WithScalarField("data", alias, new GraphQlDirective[] { include, skip });
+        public ActivityLogTypeQueryBuilder ExceptData() =>
+            ExceptField("data");
+        public ActivityLogTypeQueryBuilder WithEntity(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
+            WithScalarField("entity", alias, new GraphQlDirective[] { include, skip });
+        public ActivityLogTypeQueryBuilder ExceptEntity() =>
+            ExceptField("entity");
+        public ActivityLogTypeQueryBuilder WithEvent(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
+            WithScalarField("event", alias, new GraphQlDirective[] { include, skip });
+        public ActivityLogTypeQueryBuilder ExceptEvent() =>
+            ExceptField("event");
+        public ActivityLogTypeQueryBuilder WithId(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
+            WithScalarField("id", alias, new GraphQlDirective[] { include, skip });
+        public ActivityLogTypeQueryBuilder ExceptId() =>
+            ExceptField("id");
+        public ActivityLogTypeQueryBuilder WithUserId(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
+            WithScalarField("user_id", alias, new GraphQlDirective[] { include, skip });
+        public ActivityLogTypeQueryBuilder ExceptUserId() =>
+            ExceptField("user_id");
     }
 }

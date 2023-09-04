@@ -6,16 +6,12 @@ namespace MondayApi.Schema {
             new GraphQlFieldMetadata { Name = "icon", IsComplex = true, QueryBuilderType = typeof(WorkspaceIconQueryBuilder) }
         };
 
-        protected override string TypeName { get { return "WorkspaceSettings"; } }
+        protected override string TypeName => "WorkspaceSettings";
+        public override IReadOnlyList<GraphQlFieldMetadata> AllFields => AllFieldMetadata;
 
-        public override IReadOnlyList<GraphQlFieldMetadata> AllFields { get { return AllFieldMetadata; } }
-
-        public WorkspaceSettingsQueryBuilder WithIcon(WorkspaceIconQueryBuilder workspaceIconQueryBuilder, string alias = null, IncludeDirective include = null, SkipDirective skip = null) {
-            return WithObjectField("icon", alias, workspaceIconQueryBuilder, new GraphQlDirective[] { include, skip });
-        }
-
-        public WorkspaceSettingsQueryBuilder ExceptIcon() {
-            return ExceptField("icon");
-        }
+        public WorkspaceSettingsQueryBuilder WithIcon(WorkspaceIconQueryBuilder workspaceIconQueryBuilder, string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
+            WithObjectField("icon", alias, workspaceIconQueryBuilder, new GraphQlDirective[] { include, skip });
+        public WorkspaceSettingsQueryBuilder ExceptIcon() =>
+            ExceptField("icon");
     }
 }
