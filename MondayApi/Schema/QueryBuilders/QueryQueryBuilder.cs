@@ -34,7 +34,7 @@ namespace MondayApi.Schema {
             };
             return WithObjectField("assets", alias, assetQueryBuilder, new GraphQlDirective[] { include, skip }, args);
         }
-        public QueryQueryBuilder WithBoards(BoardQueryBuilder boardQueryBuilder, QueryBuilderParameter<int?> limit = null, QueryBuilderParameter<int?> page = null, QueryBuilderParameter<IEnumerable<Guid>> ids = null, QueryBuilderParameter<BoardKind?> boardKind = null, QueryBuilderParameter<State?> state = null, QueryBuilderParameter<BoardsOrderBy?> orderBy = null, QueryBuilderParameter<IEnumerable<Guid?>> workspaceIds = null, string alias = null, IncludeDirective include = null, SkipDirective skip = null) {
+        public QueryQueryBuilder WithBoards(BoardQueryBuilder boardQueryBuilder, QueryBuilderParameter<int?> limit = null, QueryBuilderParameter<int?> page = null, QueryBuilderParameter<IEnumerable<string>> ids = null, QueryBuilderParameter<BoardKind?> boardKind = null, QueryBuilderParameter<State?> state = null, QueryBuilderParameter<BoardsOrderBy?> orderBy = null, QueryBuilderParameter<IEnumerable<Guid?>> workspaceIds = null, string alias = null, IncludeDirective include = null, SkipDirective skip = null) {
             var args = new List<QueryBuilderArgumentInfo>();
             if (limit != null)
                 args.Add(new QueryBuilderArgumentInfo { ArgumentName = "limit", ArgumentValue = limit });

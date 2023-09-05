@@ -5,6 +5,6 @@ using MondayApi.Schema;
 namespace MondayApi.Boards {
     public interface IBoardActions {
         Task<IEnumerable<Board>> GetAsync(int pageNumber, int numPerPage);
-        //Task<Board> GetOneAsync(int id);
+        Task<Board> GetOneAsync(string id);
     }
 }

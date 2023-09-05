@@ -20,12 +20,12 @@ namespace MondayApi.Boards {
             return response.Boards;
         }
 
-        //public async Task<Board> GetOneAsync(int id) {
-        //    var ids = new GraphQlQueryParameter<IEnumerable<int?>>(null, new int?[] { id });
+        public async Task<Board> GetOneAsync(string id) {
+            var ids = new GraphQlQueryParameter<IEnumerable<string>>(null, new string[] { id });
 
-        //    var query = new QueryQueryBuilder().WithBoards(new BoardQueryBuilder().WithAllScalarFields(), ids: ids);
-        //    var response =  await client.RunQuery(query);
-        //    return response.Boards?.FirstOrDefault();
-        //}
+            var query = new QueryQueryBuilder().WithBoards(new BoardQueryBuilder().WithAllScalarFields(), ids: ids);
+            var response = await client.RunQuery(query);
+            return response.Boards?.FirstOrDefault();
+        }
     }
 }
