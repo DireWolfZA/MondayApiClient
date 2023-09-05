@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 
 namespace MondayApi.Schema {
@@ -12,6 +13,7 @@ namespace MondayApi.Schema {
             new GraphQlFieldMetadata { Name = "email" },
             new GraphQlFieldMetadata { Name = "group", IsComplex = true, QueryBuilderType = typeof(GroupQueryBuilder) },
             new GraphQlFieldMetadata { Name = "id" },
+            new GraphQlFieldMetadata { Name = "linked_items", RequiresParameters = true, IsComplex = true, QueryBuilderType = typeof(ItemQueryBuilder) },
             new GraphQlFieldMetadata { Name = "name" },
             new GraphQlFieldMetadata { Name = "parent_item", IsComplex = true, QueryBuilderType = typeof(ItemQueryBuilder) },
             new GraphQlFieldMetadata { Name = "relative_link" },
@@ -34,12 +36,21 @@ namespace MondayApi.Schema {
 
             return WithObjectField("assets", alias, assetQueryBuilder, new GraphQlDirective[] { include, skip }, args);
         }
-        public ItemQueryBuilder WithColumnValues(ColumnValueQueryBuilder columnValueQueryBuilder, QueryBuilderParameter<IEnumerable<string>> ids = null, string alias = null, IncludeDirective include = null, SkipDirective skip = null) {
+        public ItemQueryBuilder WithColumnValues(ColumnValueQueryBuilder columnValueQueryBuilder, QueryBuilderParameter<IEnumerable<string>> ids = null, QueryBuilderParameter<IEnumerable<ColumnType>> types = null, string alias = null, IncludeDirective include = null, SkipDirective skip = null) {
             var args = new List<QueryBuilderArgumentInfo>();
             if (ids != null)
                 args.Add(new QueryBuilderArgumentInfo { ArgumentName = "ids", ArgumentValue = ids });
+            if (types != null)
+                args.Add(new QueryBuilderArgumentInfo { ArgumentName = "types", ArgumentValue = types });
 
             return WithObjectField("column_values", alias, columnValueQueryBuilder, new GraphQlDirective[] { include, skip }, args);
+        }
+        public ItemQueryBuilder WithLinkedItems(ItemQueryBuilder itemQueryBuilder, QueryBuilderParameter<Guid> linkedBoardId, QueryBuilderParameter<string> linkToItemColumnId, string alias = null, IncludeDirective include = null, SkipDirective skip = null) {
+            var args = new List<QueryBuilderArgumentInfo> {
+                new QueryBuilderArgumentInfo { ArgumentName = "linked_board_id", ArgumentValue = linkedBoardId },
+                new QueryBuilderArgumentInfo { ArgumentName = "link_to_item_column_id", ArgumentValue = linkToItemColumnId }
+            };
+            return WithObjectField("linked_items", alias, itemQueryBuilder, new GraphQlDirective[] { include, skip }, args);
         }
         public ItemQueryBuilder WithUpdates(UpdateQueryBuilder updateQueryBuilder, QueryBuilderParameter<int?> limit = null, QueryBuilderParameter<int?> page = null, string alias = null, IncludeDirective include = null, SkipDirective skip = null) {
             var args = new List<QueryBuilderArgumentInfo>();
@@ -83,6 +94,8 @@ namespace MondayApi.Schema {
             WithScalarField("id", alias, new GraphQlDirective[] { include, skip });
         public ItemQueryBuilder ExceptId() =>
             ExceptField("id");
+        public ItemQueryBuilder ExceptLinkedItems() =>
+            ExceptField("linked_items");
         public ItemQueryBuilder WithName(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
             WithScalarField("name", alias, new GraphQlDirective[] { include, skip });
         public ItemQueryBuilder ExceptName() =>

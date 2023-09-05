@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 
 namespace MondayApi.Schema {
-    public class DocumentBlockIdOnlyQueryBuilder : GraphQlQueryBuilder<DocumentBlockIdOnlyQueryBuilder> {
+    public class DocumentBlockIDOnlyQueryBuilder : GraphQlQueryBuilder<DocumentBlockIDOnlyQueryBuilder> {
         private static readonly GraphQlFieldMetadata[] AllFieldMetadata = new[] {
             new GraphQlFieldMetadata { Name = "id" }
         };
@@ -9,9 +9,9 @@ namespace MondayApi.Schema {
         protected override string TypeName => "DocumentBlockIdOnly";
         public override IReadOnlyList<GraphQlFieldMetadata> AllFields => AllFieldMetadata;
 
-        public DocumentBlockIdOnlyQueryBuilder WithId(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
+        public DocumentBlockIDOnlyQueryBuilder WithId(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
             WithScalarField("id", alias, new GraphQlDirective[] { include, skip });
-        public DocumentBlockIdOnlyQueryBuilder ExceptId() =>
+        public DocumentBlockIDOnlyQueryBuilder ExceptId() =>
             ExceptField("id");
     }
 }

@@ -14,7 +14,7 @@ namespace MondayApi.Schema {
         public string CurrentLanguage { get; set; }
         public string Email { get; set; }
         public bool? Enabled { get; set; }
-        public int? ID { get; set; }
+        public string ID { get; set; }
         [JsonProperty("is_admin")]
         public bool? IsAdmin { get; set; }
         [JsonProperty("is_guest")]

@@ -8,14 +8,14 @@ namespace MondayApi.Schema {
 
         [JsonConverter(typeof(QueryBuilderParameterConverter<CreateDocBoardInput>))]
         public QueryBuilderParameter<CreateDocBoardInput> Board {
-            get { return (QueryBuilderParameter<CreateDocBoardInput>)_board.Value; }
-            set { _board = new InputPropertyInfo { Name = "board", Value = value }; }
+            get => (QueryBuilderParameter<CreateDocBoardInput>)_board.Value;
+            set => _board = new InputPropertyInfo { Name = "board", Value = value };
         }
 
         [JsonConverter(typeof(QueryBuilderParameterConverter<CreateDocWorkspaceInput>))]
         public QueryBuilderParameter<CreateDocWorkspaceInput> Workspace {
-            get { return (QueryBuilderParameter<CreateDocWorkspaceInput>)_workspace.Value; }
-            set { _workspace = new InputPropertyInfo { Name = "workspace", Value = value }; }
+            get => (QueryBuilderParameter<CreateDocWorkspaceInput>)_workspace.Value;
+            set => _workspace = new InputPropertyInfo { Name = "workspace", Value = value };
         }
 
         IEnumerable<InputPropertyInfo> IGraphQlInputObject.GetPropertyValues() {

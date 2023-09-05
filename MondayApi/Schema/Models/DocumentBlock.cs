@@ -9,7 +9,7 @@ namespace MondayApi.Schema {
         [JsonProperty("created_by")]
         public User CreatedBy { get; set; }
         [JsonProperty("doc_id")]
-        public int? DocID { get; set; }
+        public string DocID { get; set; }
         public string ID { get; set; }
         [JsonProperty("parent_block_id")]
         public string ParentBlockID { get; set; }

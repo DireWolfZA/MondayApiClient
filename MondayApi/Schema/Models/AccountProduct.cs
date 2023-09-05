@@ -1,6 +1,6 @@
 namespace MondayApi.Schema {
     public class AccountProduct {
-        public int? Id { get; set; }
+        public string ID { get; set; }
         public AccountProductKind? Kind { get; set; }
     }
 }

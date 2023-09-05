@@ -11,20 +11,20 @@ namespace MondayApi.Schema {
         [JsonProperty("workspace_id")]
         [JsonConverter(typeof(QueryBuilderParameterConverter<Guid?>))]
         public QueryBuilderParameter<Guid?> WorkspaceId {
-            get { return (QueryBuilderParameter<Guid?>)_workspaceId.Value; }
-            set { _workspaceId = new InputPropertyInfo { Name = "workspace_id", Value = value }; }
+            get => (QueryBuilderParameter<Guid?>)_workspaceId.Value;
+            set => _workspaceId = new InputPropertyInfo { Name = "workspace_id", Value = value };
         }
 
         [JsonConverter(typeof(QueryBuilderParameterConverter<BoardKind?>))]
         public QueryBuilderParameter<BoardKind?> Kind {
-            get { return (QueryBuilderParameter<BoardKind?>)_kind.Value; }
-            set { _kind = new InputPropertyInfo { Name = "kind", Value = value }; }
+            get => (QueryBuilderParameter<BoardKind?>)_kind.Value;
+            set => _kind = new InputPropertyInfo { Name = "kind", Value = value };
         }
 
         [JsonConverter(typeof(QueryBuilderParameterConverter<string>))]
         public QueryBuilderParameter<string> Name {
-            get { return (QueryBuilderParameter<string>)_name.Value; }
-            set { _name = new InputPropertyInfo { Name = "name", Value = value }; }
+            get => (QueryBuilderParameter<string>)_name.Value;
+            set => _name = new InputPropertyInfo { Name = "name", Value = value };
         }
 
         IEnumerable<InputPropertyInfo> IGraphQlInputObject.GetPropertyValues() {

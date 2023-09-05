@@ -14,6 +14,8 @@ namespace MondayApi.Schema {
         public ICollection<Document> Docs { get; set; }
         public ICollection<Folder> Folders { get; set; }
         public ICollection<Item> Items { get; set; }
+        [JsonProperty("items_page_by_column_values")]
+        public ItemsResponse ItemsPageByColumnValues { get; set; }
         public User Me { get; set; }
         public ICollection<Tag> Tags { get; set; }
         public ICollection<Team> Teams { get; set; }

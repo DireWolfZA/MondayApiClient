@@ -7,7 +7,8 @@ namespace MondayApi.Schema {
         public ICollection<Asset> Assets { get; set; }
         public Board Board { get; set; }
         [JsonProperty("column_values")]
-        public ICollection<ColumnValue> ColumnValues { get; set; }
+        [JsonConverter(typeof(GraphQlInterfaceJsonConverter))]
+        public ICollection<IColumnValue> ColumnValues { get; set; }
         [JsonProperty("created_at")]
         public DateTimeOffset? CreatedAt { get; set; }
         public User Creator { get; set; }
@@ -15,7 +16,9 @@ namespace MondayApi.Schema {
         public string CreatorID { get; set; }
         public string Email { get; set; }
         public Group Group { get; set; }
-        public Guid? ID { get; set; }
+        public string ID { get; set; }
+        [JsonProperty("linked_items")]
+        public ICollection<Item> LinkedItems { get; set; }
         public string Name { get; set; }
         [JsonProperty("parent_item")]
         public Item ParentItem { get; set; }

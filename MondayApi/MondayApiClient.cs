@@ -17,6 +17,7 @@ namespace MondayApi {
 
             client.HttpClient.DefaultRequestHeaders.Add("Authorization", token);
             client.HttpClient.DefaultRequestHeaders.Add("Accept", "application/json");
+            client.HttpClient.DefaultRequestHeaders.Add("API-Version", "2023-10");
         }
 
         public async Task<Query> RunQuery(QueryQueryBuilder queryBuilder) {

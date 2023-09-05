@@ -7,7 +7,7 @@ namespace MondayApi.Schema {
         [JsonProperty("activity_logs")]
         public ICollection<ActivityLogType> ActivityLogs { get; set; }
         [JsonProperty("board_folder_id")]
-        public int? BoardFolderID { get; set; }
+        public string BoardFolderID { get; set; }
         [JsonProperty("board_kind")]
         public BoardKind? BoardKind { get; set; }
         public ICollection<Column> Columns { get; set; }
@@ -15,11 +15,13 @@ namespace MondayApi.Schema {
         public User Creator { get; set; }
         public string Description { get; set; }
         public ICollection<Group> Groups { get; set; }
-        public long? ID { get; set; }
+        public string ID { get; set; }
         [JsonProperty("item_terminology")]
         public string ItemTerminology { get; set; }
         [JsonProperty("items_count")]
         public int? ItemsCount { get; set; }
+        [JsonProperty("items_page")]
+        public ItemsResponse ItemsPage { get; set; }
         public string Name { get; set; }
         public ICollection<User> Owners { get; set; }
         public string Permissions { get; set; }
@@ -37,6 +39,6 @@ namespace MondayApi.Schema {
         public ICollection<BoardView> Views { get; set; }
         public Workspace Workspace { get; set; }
         [JsonProperty("workspace_id")]
-        public int? WorkspaceID { get; set; }
+        public string WorkspaceID { get; set; }
     }
 }

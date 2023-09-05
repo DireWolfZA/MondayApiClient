@@ -9,7 +9,7 @@ namespace MondayApi.Schema {
         public User Creator { get; set; }
         [JsonProperty("creator_id")]
         public string CreatorID { get; set; }
-        public Guid? ID { get; set; }
+        public string ID { get; set; }
         [JsonProperty("text_body")]
         public string TextBody { get; set; }
         [JsonProperty("updated_at")]

@@ -65,7 +65,7 @@ namespace MondayApi.Schema {
         [JsonProperty("delete_column")]
         public Column DeleteColumn { get; set; }
         [JsonProperty("delete_doc_block")]
-        public DocumentBlockIdOnly DeleteDocBlock { get; set; }
+        public DocumentBlockIDOnly DeleteDocBlock { get; set; }
         [JsonProperty("delete_folder")]
         public Folder DeleteFolder { get; set; }
         [JsonProperty("delete_group")]
@@ -92,6 +92,8 @@ namespace MondayApi.Schema {
         public Item DuplicateItem { get; set; }
         [JsonProperty("like_update")]
         public Update LikeUpdate { get; set; }
+        [JsonProperty("move_item_to_board")]
+        public Item MoveItemToBoard { get; set; }
         [JsonProperty("move_item_to_group")]
         public Item MoveItemToGroup { get; set; }
         [JsonProperty("remove_mock_app_subscription")]

@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 
 namespace MondayApi.Schema {
@@ -39,7 +40,7 @@ namespace MondayApi.Schema {
         protected override string TypeName => "User";
         public override IReadOnlyList<GraphQlFieldMetadata> AllFields => AllFieldMetadata;
 
-        public UserQueryBuilder WithTeams(TeamQueryBuilder teamQueryBuilder, QueryBuilderParameter<IEnumerable<int?>> ids = null, string alias = null, IncludeDirective include = null, SkipDirective skip = null) {
+        public UserQueryBuilder WithTeams(TeamQueryBuilder teamQueryBuilder, QueryBuilderParameter<IEnumerable<Guid>> ids = null, string alias = null, IncludeDirective include = null, SkipDirective skip = null) {
             var args = new List<QueryBuilderArgumentInfo>();
             if (ids != null)
                 args.Add(new QueryBuilderArgumentInfo { ArgumentName = "ids", ArgumentValue = ids });

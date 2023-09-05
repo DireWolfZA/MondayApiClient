@@ -1,5 +1,5 @@
 namespace MondayApi.Schema {
-    public class DocumentBlockIdOnly {
+    public class DocumentBlockIDOnly {
         public string ID { get; set; }
     }
 }

@@ -9,7 +9,7 @@ namespace MondayApi.Schema {
         [JsonProperty("created_at")]
         public DateTimeOffset? CreatedAt { get; set; }
         public string Description { get; set; }
-        public int? ID { get; set; }
+        public string ID { get; set; }
         public WorkspaceKind? Kind { get; set; }
         public string Name { get; set; }
         [JsonProperty("owners_subscribers")]

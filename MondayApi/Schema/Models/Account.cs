@@ -7,7 +7,7 @@ namespace MondayApi.Schema {
         public string CountryCode { get; set; }
         [JsonProperty("first_day_of_the_week")]
         public FirstDayOfTheWeek? FirstDayOfTheWeek { get; set; }
-        public int? ID { get; set; }
+        public string ID { get; set; }
         public string Logo { get; set; }
         public string Name { get; set; }
         public Plan Plan { get; set; }
