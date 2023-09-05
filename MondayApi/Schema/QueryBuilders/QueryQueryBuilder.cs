@@ -133,7 +133,7 @@ namespace MondayApi.Schema {
 
             return WithObjectField("updates", alias, updateQueryBuilder, new GraphQlDirective[] { include, skip }, args);
         }
-        public QueryQueryBuilder WithUsers(UserQueryBuilder userQueryBuilder, QueryBuilderParameter<IEnumerable<Guid>> ids = null, QueryBuilderParameter<UserKind?> kind = null, QueryBuilderParameter<bool?> newestFirst = null, QueryBuilderParameter<IEnumerable<string>> emails = null, QueryBuilderParameter<string> name = null, QueryBuilderParameter<bool?> nonActive = null, QueryBuilderParameter<int?> limit = null, QueryBuilderParameter<int?> page = null, string alias = null, IncludeDirective include = null, SkipDirective skip = null) {
+        public QueryQueryBuilder WithUsers(UserQueryBuilder userQueryBuilder, QueryBuilderParameter<IEnumerable<string>> ids = null, QueryBuilderParameter<UserKind?> kind = null, QueryBuilderParameter<bool?> newestFirst = null, QueryBuilderParameter<IEnumerable<string>> emails = null, QueryBuilderParameter<string> name = null, QueryBuilderParameter<bool?> nonActive = null, QueryBuilderParameter<int?> limit = null, QueryBuilderParameter<int?> page = null, string alias = null, IncludeDirective include = null, SkipDirective skip = null) {
             var args = new List<QueryBuilderArgumentInfo>();
             if (ids != null)
                 args.Add(new QueryBuilderArgumentInfo { ArgumentName = "ids", ArgumentValue = ids });
