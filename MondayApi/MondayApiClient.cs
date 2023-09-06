@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
 using GraphQL.Client.Http;
-using GraphQL.Client.Serializer.Newtonsoft;
 using MondayApi.Boards;
 using MondayApi.Groups;
 using MondayApi.Schema;
@@ -13,13 +12,14 @@ namespace MondayApi {
         private readonly GraphQLHttpClient client;
 
         public MondayApiClient(string token) {
-            client = new GraphQLHttpClient(baseURL, new NewtonsoftJsonSerializer());
+            client = new GraphQLHttpClient(baseURL, new DebugSerializer(captureResponse: response => queryResponse = response));
 
             client.HttpClient.DefaultRequestHeaders.Add("Authorization", token);
             client.HttpClient.DefaultRequestHeaders.Add("Accept", "application/json");
             client.HttpClient.DefaultRequestHeaders.Add("API-Version", "2023-10");
         }
 
+        private string queryResponse;
         public async Task<Query> RunQuery(QueryQueryBuilder queryBuilder) {
             string query = null;
 #if DEBUG
@@ -34,6 +34,8 @@ namespace MondayApi {
             var response = await client.SendQueryAsync<Query>(new GraphQL.GraphQLRequest(query));
             if (response.Errors != null)
                 throw MondayException.FromErrors(response.Errors);
+            if (response.Data == null)
+                throw new MondayException(queryResponse);
 
             return response.Data;
         }
