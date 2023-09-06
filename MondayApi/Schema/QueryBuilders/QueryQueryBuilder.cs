@@ -83,7 +83,7 @@ namespace MondayApi.Schema {
 
             return WithObjectField("folders", alias, folderQueryBuilder, new GraphQlDirective[] { include, skip }, args);
         }
-        public QueryQueryBuilder WithItems(ItemQueryBuilder itemQueryBuilder, QueryBuilderParameter<int?> limit = null, QueryBuilderParameter<int?> page = null, QueryBuilderParameter<IEnumerable<Guid>> ids = null, QueryBuilderParameter<bool?> newestFirst = null, QueryBuilderParameter<bool?> excludeNonactive = null, string alias = null, IncludeDirective include = null, SkipDirective skip = null) {
+        public QueryQueryBuilder WithItems(ItemQueryBuilder itemQueryBuilder, QueryBuilderParameter<int?> limit = null, QueryBuilderParameter<int?> page = null, QueryBuilderParameter<IEnumerable<string>> ids = null, QueryBuilderParameter<bool?> newestFirst = null, QueryBuilderParameter<bool?> excludeNonactive = null, string alias = null, IncludeDirective include = null, SkipDirective skip = null) {
             var args = new List<QueryBuilderArgumentInfo>();
             if (limit != null)
                 args.Add(new QueryBuilderArgumentInfo { ArgumentName = "limit", ArgumentValue = limit });
