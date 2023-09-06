@@ -12,7 +12,7 @@ namespace MondayApi.Groups {
         }
 
         public async Task<IEnumerable<Group>> GetAsync(string boardID) {
-            var ids = new GraphQlQueryParameter<IEnumerable<string>>(null, new string[] { boardID });
+            var ids = new GraphQlQueryParameter<IEnumerable<string>>(null, defaultValue: new string[] { boardID });
 
             var query = new QueryQueryBuilder().WithBoards(new BoardQueryBuilder().WithGroups(new GroupQueryBuilder().WithAllScalarFields()), ids: ids);
             var response = await client.RunQuery(query);
@@ -20,8 +20,8 @@ namespace MondayApi.Groups {
         }
 
         public async Task<Group> GetOneAsync(string boardID, string groupID) {
-            var boardIDs = new GraphQlQueryParameter<IEnumerable<string>>(null, new string[] { boardID });
-            var groupIDs = new GraphQlQueryParameter<IEnumerable<string>>(null, new string[] { groupID });
+            var boardIDs = new GraphQlQueryParameter<IEnumerable<string>>(null, defaultValue: new string[] { boardID });
+            var groupIDs = new GraphQlQueryParameter<IEnumerable<string>>(null, defaultValue: new string[] { groupID });
 
             var query = new QueryQueryBuilder().WithBoards(new BoardQueryBuilder().WithGroups(new GroupQueryBuilder().WithAllScalarFields(), ids: groupIDs), ids: boardIDs);
             var response = await client.RunQuery(query);

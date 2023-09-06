@@ -12,8 +12,8 @@ namespace MondayApi.Boards {
         }
 
         public async Task<IEnumerable<Board>> GetAsync(int pageNumber, int numPerPage) {
-            var limit = new GraphQlQueryParameter<int?>(null, numPerPage);
-            var page = new GraphQlQueryParameter<int?>(null, pageNumber);
+            var limit = new GraphQlQueryParameter<int?>(null, defaultValue: numPerPage);
+            var page = new GraphQlQueryParameter<int?>(null, defaultValue: pageNumber);
 
             var query = new QueryQueryBuilder().WithBoards(new BoardQueryBuilder().WithAllScalarFields(), limit, page);
             var response = await client.RunQuery(query);
@@ -21,7 +21,7 @@ namespace MondayApi.Boards {
         }
 
         public async Task<Board> GetOneAsync(string id) {
-            var ids = new GraphQlQueryParameter<IEnumerable<string>>(null, new string[] { id });
+            var ids = new GraphQlQueryParameter<IEnumerable<string>>(null, defaultValue: new string[] { id });
 
             var query = new QueryQueryBuilder().WithBoards(new BoardQueryBuilder().WithAllScalarFields(), ids: ids);
             var response = await client.RunQuery(query);
