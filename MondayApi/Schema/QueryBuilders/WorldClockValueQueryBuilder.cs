@@ -19,9 +19,9 @@ namespace MondayApi.Schema {
             WithObjectField("column", alias, columnQueryBuilder, new GraphQlDirective[] { include, skip });
         public WorldClockValueQueryBuilder ExceptColumn() =>
             ExceptField("column");
-        public WorldClockValueQueryBuilder WithId(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
+        public WorldClockValueQueryBuilder WithID(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
             WithScalarField("id", alias, new GraphQlDirective[] { include, skip });
-        public WorldClockValueQueryBuilder ExceptId() =>
+        public WorldClockValueQueryBuilder ExceptID() =>
             ExceptField("id");
         public WorldClockValueQueryBuilder WithText(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
             WithScalarField("text", alias, new GraphQlDirective[] { include, skip });

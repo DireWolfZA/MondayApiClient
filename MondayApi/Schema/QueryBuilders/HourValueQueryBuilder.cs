@@ -24,9 +24,9 @@ namespace MondayApi.Schema {
             WithScalarField("hour", alias, new GraphQlDirective[] { include, skip });
         public HourValueQueryBuilder ExceptHour() =>
             ExceptField("hour");
-        public HourValueQueryBuilder WithId(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
+        public HourValueQueryBuilder WithID(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
             WithScalarField("id", alias, new GraphQlDirective[] { include, skip });
-        public HourValueQueryBuilder ExceptId() =>
+        public HourValueQueryBuilder ExceptID() =>
             ExceptField("id");
         public HourValueQueryBuilder WithMinute(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
             WithScalarField("minute", alias, new GraphQlDirective[] { include, skip });

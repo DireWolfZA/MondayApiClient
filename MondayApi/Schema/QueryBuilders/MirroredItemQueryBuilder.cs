@@ -16,9 +16,9 @@ namespace MondayApi.Schema {
             WithObjectField("linked_board", alias, boardQueryBuilder, new GraphQlDirective[] { include, skip });
         public MirroredItemQueryBuilder ExceptLinkedBoard() =>
             ExceptField("linked_board");
-        public MirroredItemQueryBuilder WithLinkedBoardId(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
+        public MirroredItemQueryBuilder WithLinkedBoardID(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
             WithScalarField("linked_board_id", alias, new GraphQlDirective[] { include, skip });
-        public MirroredItemQueryBuilder ExceptLinkedBoardId() =>
+        public MirroredItemQueryBuilder ExceptLinkedBoardID() =>
             ExceptField("linked_board_id");
         public MirroredItemQueryBuilder WithLinkedItem(ItemQueryBuilder itemQueryBuilder, string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
             WithObjectField("linked_item", alias, itemQueryBuilder, new GraphQlDirective[] { include, skip });

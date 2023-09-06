@@ -35,9 +35,9 @@ namespace MondayApi.Schema {
             return WithObjectField("users", alias, userQueryBuilder, new GraphQlDirective[] { include, skip }, args);
         }
 
-        public TeamQueryBuilder WithId(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
+        public TeamQueryBuilder WithID(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
             WithScalarField("id", alias, new GraphQlDirective[] { include, skip });
-        public TeamQueryBuilder ExceptId() =>
+        public TeamQueryBuilder ExceptID() =>
             ExceptField("id");
         public TeamQueryBuilder WithName(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
             WithScalarField("name", alias, new GraphQlDirective[] { include, skip });

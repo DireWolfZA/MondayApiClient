@@ -23,9 +23,9 @@ namespace MondayApi.Schema {
             WithObjectField("column", alias, columnQueryBuilder, new GraphQlDirective[] { include, skip });
         public ColorPickerValueQueryBuilder ExceptColumn() =>
             ExceptField("column");
-        public ColorPickerValueQueryBuilder WithId(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
+        public ColorPickerValueQueryBuilder WithID(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
             WithScalarField("id", alias, new GraphQlDirective[] { include, skip });
-        public ColorPickerValueQueryBuilder ExceptId() =>
+        public ColorPickerValueQueryBuilder ExceptID() =>
             ExceptField("id");
         public ColorPickerValueQueryBuilder WithText(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
             WithScalarField("text", alias, new GraphQlDirective[] { include, skip });

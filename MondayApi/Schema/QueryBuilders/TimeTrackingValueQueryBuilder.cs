@@ -30,9 +30,9 @@ namespace MondayApi.Schema {
             WithObjectField("history", alias, timeTrackingHistoryItemQueryBuilder, new GraphQlDirective[] { include, skip });
         public TimeTrackingValueQueryBuilder ExceptHistory() =>
             ExceptField("history");
-        public TimeTrackingValueQueryBuilder WithId(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
+        public TimeTrackingValueQueryBuilder WithID(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
             WithScalarField("id", alias, new GraphQlDirective[] { include, skip });
-        public TimeTrackingValueQueryBuilder ExceptId() =>
+        public TimeTrackingValueQueryBuilder ExceptID() =>
             ExceptField("id");
         public TimeTrackingValueQueryBuilder WithRunning(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
             WithScalarField("running", alias, new GraphQlDirective[] { include, skip });

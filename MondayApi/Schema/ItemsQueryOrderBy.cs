@@ -3,14 +3,14 @@ using Newtonsoft.Json;
 
 namespace MondayApi.Schema {
     public class ItemsQueryOrderBy : IGraphQlInputObject {
-        private InputPropertyInfo _columnId;
+        private InputPropertyInfo _columnID;
         private InputPropertyInfo _direction;
 
         [JsonProperty("column_id")]
         [JsonConverter(typeof(QueryBuilderParameterConverter<string>))]
-        public QueryBuilderParameter<string> ColumnId {
-            get => (QueryBuilderParameter<string>)_columnId.Value;
-            set => _columnId = new InputPropertyInfo { Name = "column_id", Value = value };
+        public QueryBuilderParameter<string> ColumnID {
+            get => (QueryBuilderParameter<string>)_columnID.Value;
+            set => _columnID = new InputPropertyInfo { Name = "column_id", Value = value };
         }
 
         [JsonConverter(typeof(QueryBuilderParameterConverter<ItemsOrderByDirection?>))]
@@ -20,7 +20,7 @@ namespace MondayApi.Schema {
         }
 
         IEnumerable<InputPropertyInfo> IGraphQlInputObject.GetPropertyValues() {
-            if (_columnId.Name != null) yield return _columnId;
+            if (_columnID.Name != null) yield return _columnID;
             if (_direction.Name != null) yield return _direction;
         }
     }

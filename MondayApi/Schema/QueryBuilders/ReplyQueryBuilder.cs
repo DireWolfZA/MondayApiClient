@@ -27,13 +27,13 @@ namespace MondayApi.Schema {
             WithObjectField("creator", alias, userQueryBuilder, new GraphQlDirective[] { include, skip });
         public ReplyQueryBuilder ExceptCreator() =>
             ExceptField("creator");
-        public ReplyQueryBuilder WithCreatorId(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
+        public ReplyQueryBuilder WithCreatorID(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
             WithScalarField("creator_id", alias, new GraphQlDirective[] { include, skip });
-        public ReplyQueryBuilder ExceptCreatorId() =>
+        public ReplyQueryBuilder ExceptCreatorID() =>
             ExceptField("creator_id");
-        public ReplyQueryBuilder WithId(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
+        public ReplyQueryBuilder WithID(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
             WithScalarField("id", alias, new GraphQlDirective[] { include, skip });
-        public ReplyQueryBuilder ExceptId() =>
+        public ReplyQueryBuilder ExceptID() =>
             ExceptField("id");
         public ReplyQueryBuilder WithTextBody(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
             WithScalarField("text_body", alias, new GraphQlDirective[] { include, skip });

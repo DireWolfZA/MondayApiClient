@@ -20,9 +20,9 @@ namespace MondayApi.Schema {
             WithObjectField("column", alias, columnQueryBuilder, new GraphQlDirective[] { include, skip });
         public VoteValueQueryBuilder ExceptColumn() =>
             ExceptField("column");
-        public VoteValueQueryBuilder WithId(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
+        public VoteValueQueryBuilder WithID(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
             WithScalarField("id", alias, new GraphQlDirective[] { include, skip });
-        public VoteValueQueryBuilder ExceptId() =>
+        public VoteValueQueryBuilder ExceptID() =>
             ExceptField("id");
         public VoteValueQueryBuilder WithText(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
             WithScalarField("text", alias, new GraphQlDirective[] { include, skip });
@@ -44,9 +44,9 @@ namespace MondayApi.Schema {
             WithScalarField("vote_count", alias, new GraphQlDirective[] { include, skip });
         public VoteValueQueryBuilder ExceptVoteCount() =>
             ExceptField("vote_count");
-        public VoteValueQueryBuilder WithVoterIds(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
+        public VoteValueQueryBuilder WithVoterIDs(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
             WithScalarField("voter_ids", alias, new GraphQlDirective[] { include, skip });
-        public VoteValueQueryBuilder ExceptVoterIds() =>
+        public VoteValueQueryBuilder ExceptVoterIDs() =>
             ExceptField("voter_ids");
     }
 }

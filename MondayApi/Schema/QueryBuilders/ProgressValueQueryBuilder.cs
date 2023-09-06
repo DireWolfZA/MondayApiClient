@@ -16,9 +16,9 @@ namespace MondayApi.Schema {
             WithObjectField("column", alias, columnQueryBuilder, new GraphQlDirective[] { include, skip });
         public ProgressValueQueryBuilder ExceptColumn() =>
             ExceptField("column");
-        public ProgressValueQueryBuilder WithId(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
+        public ProgressValueQueryBuilder WithID(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
             WithScalarField("id", alias, new GraphQlDirective[] { include, skip });
-        public ProgressValueQueryBuilder ExceptId() =>
+        public ProgressValueQueryBuilder ExceptID() =>
             ExceptField("id");
         public ProgressValueQueryBuilder WithText(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
             WithScalarField("text", alias, new GraphQlDirective[] { include, skip });

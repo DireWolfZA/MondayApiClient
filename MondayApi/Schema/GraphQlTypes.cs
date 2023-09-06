@@ -66,7 +66,7 @@ namespace MondayApi.Schema {
         public const string DependencyValue = "DependencyValue";
         public const string Document = "Document";
         public const string DocumentBlock = "DocumentBlock";
-        public const string DocumentBlockIdOnly = "DocumentBlockIdOnly";
+        public const string DocumentBlockIDOnly = "DocumentBlockIdOnly";
         public const string DocValue = "DocValue";
         public const string DropdownValue = "DropdownValue";
         public const string DropdownValueOption = "DropdownValueOption";
@@ -81,7 +81,7 @@ namespace MondayApi.Schema {
         public const string HourValue = "HourValue";
         public const string IntegrationValue = "IntegrationValue";
         public const string Item = "Item";
-        public const string ItemIdValue = "ItemIdValue";
+        public const string ItemIDValue = "ItemIdValue";
         public const string ItemsResponse = "ItemsResponse";
         public const string LastUpdatedValue = "LastUpdatedValue";
         public const string LinkValue = "LinkValue";

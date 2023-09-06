@@ -23,21 +23,21 @@ namespace MondayApi.Schema {
             WithObjectField("creator", alias, userQueryBuilder, new GraphQlDirective[] { include, skip });
         public FileDocValueQueryBuilder ExceptCreator() =>
             ExceptField("creator");
-        public FileDocValueQueryBuilder WithCreatorId(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
+        public FileDocValueQueryBuilder WithCreatorID(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
             WithScalarField("creator_id", alias, new GraphQlDirective[] { include, skip });
-        public FileDocValueQueryBuilder ExceptCreatorId() =>
+        public FileDocValueQueryBuilder ExceptCreatorID() =>
             ExceptField("creator_id");
         public FileDocValueQueryBuilder WithDoc(DocumentQueryBuilder documentQueryBuilder, string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
             WithObjectField("doc", alias, documentQueryBuilder, new GraphQlDirective[] { include, skip });
         public FileDocValueQueryBuilder ExceptDoc() =>
             ExceptField("doc");
-        public FileDocValueQueryBuilder WithFileId(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
+        public FileDocValueQueryBuilder WithFileID(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
             WithScalarField("file_id", alias, new GraphQlDirective[] { include, skip });
-        public FileDocValueQueryBuilder ExceptFileId() =>
+        public FileDocValueQueryBuilder ExceptFileID() =>
             ExceptField("file_id");
-        public FileDocValueQueryBuilder WithObjectId(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
+        public FileDocValueQueryBuilder WithObjectID(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
             WithScalarField("object_id", alias, new GraphQlDirective[] { include, skip });
-        public FileDocValueQueryBuilder ExceptObjectId() =>
+        public FileDocValueQueryBuilder ExceptObjectID() =>
             ExceptField("object_id");
         public FileDocValueQueryBuilder WithUrl(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
             WithScalarField("url", alias, new GraphQlDirective[] { include, skip });

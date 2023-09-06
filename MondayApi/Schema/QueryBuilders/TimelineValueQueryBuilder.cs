@@ -25,9 +25,9 @@ namespace MondayApi.Schema {
             WithScalarField("from", alias, new GraphQlDirective[] { include, skip });
         public TimelineValueQueryBuilder ExceptFrom() =>
             ExceptField("from");
-        public TimelineValueQueryBuilder WithId(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
+        public TimelineValueQueryBuilder WithID(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
             WithScalarField("id", alias, new GraphQlDirective[] { include, skip });
-        public TimelineValueQueryBuilder ExceptId() =>
+        public TimelineValueQueryBuilder ExceptID() =>
             ExceptField("id");
         public TimelineValueQueryBuilder WithText(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
             WithScalarField("text", alias, new GraphQlDirective[] { include, skip });

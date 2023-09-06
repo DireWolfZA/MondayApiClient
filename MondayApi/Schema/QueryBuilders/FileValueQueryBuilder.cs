@@ -22,9 +22,9 @@ namespace MondayApi.Schema {
             WithObjectField("files", alias, fileValueItemQueryBuilder, new GraphQlDirective[] { include, skip });
         public FileValueQueryBuilder ExceptFiles() =>
             ExceptField("files");
-        public FileValueQueryBuilder WithId(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
+        public FileValueQueryBuilder WithID(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
             WithScalarField("id", alias, new GraphQlDirective[] { include, skip });
-        public FileValueQueryBuilder ExceptId() =>
+        public FileValueQueryBuilder ExceptID() =>
             ExceptField("id");
         public FileValueQueryBuilder WithText(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
             WithScalarField("text", alias, new GraphQlDirective[] { include, skip });

@@ -34,17 +34,17 @@ namespace MondayApi.Schema {
             WithObjectField("creator", alias, userQueryBuilder, new GraphQlDirective[] { include, skip });
         public UpdateQueryBuilder ExceptCreator() =>
             ExceptField("creator");
-        public UpdateQueryBuilder WithCreatorId(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
+        public UpdateQueryBuilder WithCreatorID(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
             WithScalarField("creator_id", alias, new GraphQlDirective[] { include, skip });
-        public UpdateQueryBuilder ExceptCreatorId() =>
+        public UpdateQueryBuilder ExceptCreatorID() =>
             ExceptField("creator_id");
-        public UpdateQueryBuilder WithId(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
+        public UpdateQueryBuilder WithID(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
             WithScalarField("id", alias, new GraphQlDirective[] { include, skip });
-        public UpdateQueryBuilder ExceptId() =>
+        public UpdateQueryBuilder ExceptID() =>
             ExceptField("id");
-        public UpdateQueryBuilder WithItemId(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
+        public UpdateQueryBuilder WithItemID(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
             WithScalarField("item_id", alias, new GraphQlDirective[] { include, skip });
-        public UpdateQueryBuilder ExceptItemId() =>
+        public UpdateQueryBuilder ExceptItemID() =>
             ExceptField("item_id");
         public UpdateQueryBuilder WithReplies(ReplyQueryBuilder replyQueryBuilder, string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
             WithObjectField("replies", alias, replyQueryBuilder, new GraphQlDirective[] { include, skip });

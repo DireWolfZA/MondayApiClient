@@ -16,7 +16,7 @@ namespace MondayApi.Schema {
         }
 
         [JsonConverter(typeof(QueryBuilderParameterConverter<ICollection<Guid>>))]
-        public QueryBuilderParameter<ICollection<Guid>> Ids {
+        public QueryBuilderParameter<ICollection<Guid>> IDs {
             get => (QueryBuilderParameter<ICollection<Guid>>)_ids.Value;
             set => _ids = new InputPropertyInfo { Name = "ids", Value = value };
         }

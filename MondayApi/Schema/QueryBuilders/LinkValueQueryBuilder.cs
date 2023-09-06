@@ -20,9 +20,9 @@ namespace MondayApi.Schema {
             WithObjectField("column", alias, columnQueryBuilder, new GraphQlDirective[] { include, skip });
         public LinkValueQueryBuilder ExceptColumn() =>
             ExceptField("column");
-        public LinkValueQueryBuilder WithId(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
+        public LinkValueQueryBuilder WithID(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
             WithScalarField("id", alias, new GraphQlDirective[] { include, skip });
-        public LinkValueQueryBuilder ExceptId() =>
+        public LinkValueQueryBuilder ExceptID() =>
             ExceptField("id");
         public LinkValueQueryBuilder WithText(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
             WithScalarField("text", alias, new GraphQlDirective[] { include, skip });

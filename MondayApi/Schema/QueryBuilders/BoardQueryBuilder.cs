@@ -35,20 +35,20 @@ namespace MondayApi.Schema {
         protected override string TypeName => "Board";
         public override IReadOnlyList<GraphQlFieldMetadata> AllFields => AllFieldMetadata;
 
-        public BoardQueryBuilder WithActivityLogs(ActivityLogTypeQueryBuilder activityLogTypeQueryBuilder, QueryBuilderParameter<int?> limit = null, QueryBuilderParameter<int?> page = null, QueryBuilderParameter<IEnumerable<Guid>> userIds = null, QueryBuilderParameter<IEnumerable<string>> columnIds = null, QueryBuilderParameter<IEnumerable<string>> groupIds = null, QueryBuilderParameter<IEnumerable<Guid>> itemIds = null, QueryBuilderParameter<DateTimeOffset?> from = null, QueryBuilderParameter<DateTimeOffset?> to = null, string alias = null, IncludeDirective include = null, SkipDirective skip = null) {
+        public BoardQueryBuilder WithActivityLogs(ActivityLogTypeQueryBuilder activityLogTypeQueryBuilder, QueryBuilderParameter<int?> limit = null, QueryBuilderParameter<int?> page = null, QueryBuilderParameter<IEnumerable<Guid>> userIDs = null, QueryBuilderParameter<IEnumerable<string>> columnIDs = null, QueryBuilderParameter<IEnumerable<string>> groupIDs = null, QueryBuilderParameter<IEnumerable<Guid>> itemIDs = null, QueryBuilderParameter<DateTimeOffset?> from = null, QueryBuilderParameter<DateTimeOffset?> to = null, string alias = null, IncludeDirective include = null, SkipDirective skip = null) {
             var args = new List<QueryBuilderArgumentInfo>();
             if (limit != null)
                 args.Add(new QueryBuilderArgumentInfo { ArgumentName = "limit", ArgumentValue = limit });
             if (page != null)
                 args.Add(new QueryBuilderArgumentInfo { ArgumentName = "page", ArgumentValue = page });
-            if (userIds != null)
-                args.Add(new QueryBuilderArgumentInfo { ArgumentName = "user_ids", ArgumentValue = userIds });
-            if (columnIds != null)
-                args.Add(new QueryBuilderArgumentInfo { ArgumentName = "column_ids", ArgumentValue = columnIds });
-            if (groupIds != null)
-                args.Add(new QueryBuilderArgumentInfo { ArgumentName = "group_ids", ArgumentValue = groupIds });
-            if (itemIds != null)
-                args.Add(new QueryBuilderArgumentInfo { ArgumentName = "item_ids", ArgumentValue = itemIds });
+            if (userIDs != null)
+                args.Add(new QueryBuilderArgumentInfo { ArgumentName = "user_ids", ArgumentValue = userIDs });
+            if (columnIDs != null)
+                args.Add(new QueryBuilderArgumentInfo { ArgumentName = "column_ids", ArgumentValue = columnIDs });
+            if (groupIDs != null)
+                args.Add(new QueryBuilderArgumentInfo { ArgumentName = "group_ids", ArgumentValue = groupIDs });
+            if (itemIDs != null)
+                args.Add(new QueryBuilderArgumentInfo { ArgumentName = "item_ids", ArgumentValue = itemIDs });
             if (from != null)
                 args.Add(new QueryBuilderArgumentInfo { ArgumentName = "from", ArgumentValue = from });
             if (to != null)
@@ -112,9 +112,9 @@ namespace MondayApi.Schema {
 
         public BoardQueryBuilder ExceptActivityLogs() =>
             ExceptField("activity_logs");
-        public BoardQueryBuilder WithBoardFolderId(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
+        public BoardQueryBuilder WithBoardFolderID(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
             WithScalarField("board_folder_id", alias, new GraphQlDirective[] { include, skip });
-        public BoardQueryBuilder ExceptBoardFolderId() =>
+        public BoardQueryBuilder ExceptBoardFolderID() =>
             ExceptField("board_folder_id");
         public BoardQueryBuilder WithBoardKind(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
             WithScalarField("board_kind", alias, new GraphQlDirective[] { include, skip });
@@ -136,9 +136,9 @@ namespace MondayApi.Schema {
             ExceptField("description");
         public BoardQueryBuilder ExceptGroups() =>
             ExceptField("groups");
-        public BoardQueryBuilder WithId(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
+        public BoardQueryBuilder WithID(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
             WithScalarField("id", alias, new GraphQlDirective[] { include, skip });
-        public BoardQueryBuilder ExceptId() =>
+        public BoardQueryBuilder ExceptID() =>
             ExceptField("id");
         public BoardQueryBuilder WithItemTerminology(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
             WithScalarField("item_terminology", alias, new GraphQlDirective[] { include, skip });
@@ -196,9 +196,9 @@ namespace MondayApi.Schema {
             WithObjectField("workspace", alias, workspaceQueryBuilder, new GraphQlDirective[] { include, skip });
         public BoardQueryBuilder ExceptWorkspace() =>
             ExceptField("workspace");
-        public BoardQueryBuilder WithWorkspaceId(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
+        public BoardQueryBuilder WithWorkspaceID(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
             WithScalarField("workspace_id", alias, new GraphQlDirective[] { include, skip });
-        public BoardQueryBuilder ExceptWorkspaceId() =>
+        public BoardQueryBuilder ExceptWorkspaceID() =>
             ExceptField("workspace_id");
     }
 }

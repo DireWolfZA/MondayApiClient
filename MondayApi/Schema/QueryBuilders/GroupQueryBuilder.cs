@@ -39,9 +39,9 @@ namespace MondayApi.Schema {
             WithScalarField("deleted", alias, new GraphQlDirective[] { include, skip });
         public GroupQueryBuilder ExceptDeleted() =>
             ExceptField("deleted");
-        public GroupQueryBuilder WithId(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
+        public GroupQueryBuilder WithID(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
             WithScalarField("id", alias, new GraphQlDirective[] { include, skip });
-        public GroupQueryBuilder ExceptId() =>
+        public GroupQueryBuilder ExceptID() =>
             ExceptField("id");
         public GroupQueryBuilder ExceptItemsPage() =>
             ExceptField("items_page");

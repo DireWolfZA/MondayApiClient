@@ -4,15 +4,15 @@ using Newtonsoft.Json;
 
 namespace MondayApi.Schema {
     public class CreateDocWorkspaceInput : IGraphQlInputObject {
-        private InputPropertyInfo _workspaceId;
+        private InputPropertyInfo _workspaceID;
         private InputPropertyInfo _kind;
         private InputPropertyInfo _name;
 
         [JsonProperty("workspace_id")]
         [JsonConverter(typeof(QueryBuilderParameterConverter<Guid?>))]
-        public QueryBuilderParameter<Guid?> WorkspaceId {
-            get => (QueryBuilderParameter<Guid?>)_workspaceId.Value;
-            set => _workspaceId = new InputPropertyInfo { Name = "workspace_id", Value = value };
+        public QueryBuilderParameter<Guid?> WorkspaceID {
+            get => (QueryBuilderParameter<Guid?>)_workspaceID.Value;
+            set => _workspaceID = new InputPropertyInfo { Name = "workspace_id", Value = value };
         }
 
         [JsonConverter(typeof(QueryBuilderParameterConverter<BoardKind?>))]
@@ -28,7 +28,7 @@ namespace MondayApi.Schema {
         }
 
         IEnumerable<InputPropertyInfo> IGraphQlInputObject.GetPropertyValues() {
-            if (_workspaceId.Name != null) yield return _workspaceId;
+            if (_workspaceID.Name != null) yield return _workspaceID;
             if (_kind.Name != null) yield return _kind;
             if (_name.Name != null) yield return _name;
         }

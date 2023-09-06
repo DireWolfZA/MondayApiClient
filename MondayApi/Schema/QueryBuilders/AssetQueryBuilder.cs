@@ -30,9 +30,9 @@ namespace MondayApi.Schema {
             WithScalarField("file_size", alias, new GraphQlDirective[] { include, skip });
         public AssetQueryBuilder ExceptFileSize() =>
             ExceptField("file_size");
-        public AssetQueryBuilder WithId(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
+        public AssetQueryBuilder WithID(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
             WithScalarField("id", alias, new GraphQlDirective[] { include, skip });
-        public AssetQueryBuilder ExceptId() =>
+        public AssetQueryBuilder ExceptID() =>
             ExceptField("id");
         public AssetQueryBuilder WithName(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
             WithScalarField("name", alias, new GraphQlDirective[] { include, skip });

@@ -27,9 +27,9 @@ namespace MondayApi.Schema {
             WithScalarField("first_day_of_the_week", alias, new GraphQlDirective[] { include, skip });
         public AccountQueryBuilder ExceptFirstDayOfTheWeek() =>
             ExceptField("first_day_of_the_week");
-        public AccountQueryBuilder WithId(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
+        public AccountQueryBuilder WithID(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
             WithScalarField("id", alias, new GraphQlDirective[] { include, skip });
-        public AccountQueryBuilder ExceptId() =>
+        public AccountQueryBuilder ExceptID() =>
             ExceptField("id");
         public AccountQueryBuilder WithLogo(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
             WithScalarField("logo", alias, new GraphQlDirective[] { include, skip });

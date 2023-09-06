@@ -23,9 +23,9 @@ namespace MondayApi.Schema {
             WithObjectField("country", alias, countryQueryBuilder, new GraphQlDirective[] { include, skip });
         public CountryValueQueryBuilder ExceptCountry() =>
             ExceptField("country");
-        public CountryValueQueryBuilder WithId(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
+        public CountryValueQueryBuilder WithID(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
             WithScalarField("id", alias, new GraphQlDirective[] { include, skip });
-        public CountryValueQueryBuilder ExceptId() =>
+        public CountryValueQueryBuilder ExceptID() =>
             ExceptField("id");
         public CountryValueQueryBuilder WithText(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
             WithScalarField("text", alias, new GraphQlDirective[] { include, skip });

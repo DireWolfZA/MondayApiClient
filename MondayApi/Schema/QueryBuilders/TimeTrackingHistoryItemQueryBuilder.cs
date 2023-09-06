@@ -28,13 +28,13 @@ namespace MondayApi.Schema {
             WithScalarField("ended_at", alias, new GraphQlDirective[] { include, skip });
         public TimeTrackingHistoryItemQueryBuilder ExceptEndedAt() =>
             ExceptField("ended_at");
-        public TimeTrackingHistoryItemQueryBuilder WithEndedUserId(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
+        public TimeTrackingHistoryItemQueryBuilder WithEndedUserID(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
             WithScalarField("ended_user_id", alias, new GraphQlDirective[] { include, skip });
-        public TimeTrackingHistoryItemQueryBuilder ExceptEndedUserId() =>
+        public TimeTrackingHistoryItemQueryBuilder ExceptEndedUserID() =>
             ExceptField("ended_user_id");
-        public TimeTrackingHistoryItemQueryBuilder WithId(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
+        public TimeTrackingHistoryItemQueryBuilder WithID(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
             WithScalarField("id", alias, new GraphQlDirective[] { include, skip });
-        public TimeTrackingHistoryItemQueryBuilder ExceptId() =>
+        public TimeTrackingHistoryItemQueryBuilder ExceptID() =>
             ExceptField("id");
         public TimeTrackingHistoryItemQueryBuilder WithManuallyEnteredEndDate(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
             WithScalarField("manually_entered_end_date", alias, new GraphQlDirective[] { include, skip });
@@ -56,9 +56,9 @@ namespace MondayApi.Schema {
             WithScalarField("started_at", alias, new GraphQlDirective[] { include, skip });
         public TimeTrackingHistoryItemQueryBuilder ExceptStartedAt() =>
             ExceptField("started_at");
-        public TimeTrackingHistoryItemQueryBuilder WithStartedUserId(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
+        public TimeTrackingHistoryItemQueryBuilder WithStartedUserID(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
             WithScalarField("started_user_id", alias, new GraphQlDirective[] { include, skip });
-        public TimeTrackingHistoryItemQueryBuilder ExceptStartedUserId() =>
+        public TimeTrackingHistoryItemQueryBuilder ExceptStartedUserID() =>
             ExceptField("started_user_id");
         public TimeTrackingHistoryItemQueryBuilder WithStatus(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
             WithScalarField("status", alias, new GraphQlDirective[] { include, skip });

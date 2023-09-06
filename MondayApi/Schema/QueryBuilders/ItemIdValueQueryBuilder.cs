@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 
 namespace MondayApi.Schema {
-    public class ItemIdValueQueryBuilder : GraphQlQueryBuilder<ItemIdValueQueryBuilder> {
+    public class ItemIDValueQueryBuilder : GraphQlQueryBuilder<ItemIDValueQueryBuilder> {
         private static readonly GraphQlFieldMetadata[] AllFieldMetadata = new[] {
             new GraphQlFieldMetadata { Name = "column", IsComplex = true, QueryBuilderType = typeof(ColumnQueryBuilder) },
             new GraphQlFieldMetadata { Name = "id" },
@@ -11,32 +11,32 @@ namespace MondayApi.Schema {
             new GraphQlFieldMetadata { Name = "value", IsComplex = true }
         };
 
-        protected override string TypeName => "ItemIdValue";
+        protected override string TypeName => "ItemIDValue";
         public override IReadOnlyList<GraphQlFieldMetadata> AllFields => AllFieldMetadata;
 
-        public ItemIdValueQueryBuilder WithColumn(ColumnQueryBuilder columnQueryBuilder, string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
+        public ItemIDValueQueryBuilder WithColumn(ColumnQueryBuilder columnQueryBuilder, string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
             WithObjectField("column", alias, columnQueryBuilder, new GraphQlDirective[] { include, skip });
-        public ItemIdValueQueryBuilder ExceptColumn() =>
+        public ItemIDValueQueryBuilder ExceptColumn() =>
             ExceptField("column");
-        public ItemIdValueQueryBuilder WithId(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
+        public ItemIDValueQueryBuilder WithID(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
             WithScalarField("id", alias, new GraphQlDirective[] { include, skip });
-        public ItemIdValueQueryBuilder ExceptId() =>
+        public ItemIDValueQueryBuilder ExceptID() =>
             ExceptField("id");
-        public ItemIdValueQueryBuilder WithItemId(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
+        public ItemIDValueQueryBuilder WithItemID(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
             WithScalarField("item_id", alias, new GraphQlDirective[] { include, skip });
-        public ItemIdValueQueryBuilder ExceptItemId() =>
+        public ItemIDValueQueryBuilder ExceptItemID() =>
             ExceptField("item_id");
-        public ItemIdValueQueryBuilder WithText(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
+        public ItemIDValueQueryBuilder WithText(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
             WithScalarField("text", alias, new GraphQlDirective[] { include, skip });
-        public ItemIdValueQueryBuilder ExceptText() =>
+        public ItemIDValueQueryBuilder ExceptText() =>
             ExceptField("text");
-        public ItemIdValueQueryBuilder WithType(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
+        public ItemIDValueQueryBuilder WithType(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
             WithScalarField("type", alias, new GraphQlDirective[] { include, skip });
-        public ItemIdValueQueryBuilder ExceptType() =>
+        public ItemIDValueQueryBuilder ExceptType() =>
             ExceptField("type");
-        public ItemIdValueQueryBuilder WithValue(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
+        public ItemIDValueQueryBuilder WithValue(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
             WithScalarField("value", alias, new GraphQlDirective[] { include, skip });
-        public ItemIdValueQueryBuilder ExceptValue() =>
+        public ItemIDValueQueryBuilder ExceptValue() =>
             ExceptField("value");
     }
 }

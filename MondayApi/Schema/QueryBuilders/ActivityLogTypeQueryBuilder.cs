@@ -15,9 +15,9 @@ namespace MondayApi.Schema {
         protected override string TypeName => "ActivityLogType";
         public override IReadOnlyList<GraphQlFieldMetadata> AllFields => AllFieldMetadata;
 
-        public ActivityLogTypeQueryBuilder WithAccountId(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
+        public ActivityLogTypeQueryBuilder WithAccountID(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
             WithScalarField("account_id", alias, new GraphQlDirective[] { include, skip });
-        public ActivityLogTypeQueryBuilder ExceptAccountId() =>
+        public ActivityLogTypeQueryBuilder ExceptAccountID() =>
             ExceptField("account_id");
         public ActivityLogTypeQueryBuilder WithCreatedAt(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
             WithScalarField("created_at", alias, new GraphQlDirective[] { include, skip });
@@ -35,13 +35,13 @@ namespace MondayApi.Schema {
             WithScalarField("event", alias, new GraphQlDirective[] { include, skip });
         public ActivityLogTypeQueryBuilder ExceptEvent() =>
             ExceptField("event");
-        public ActivityLogTypeQueryBuilder WithId(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
+        public ActivityLogTypeQueryBuilder WithID(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
             WithScalarField("id", alias, new GraphQlDirective[] { include, skip });
-        public ActivityLogTypeQueryBuilder ExceptId() =>
+        public ActivityLogTypeQueryBuilder ExceptID() =>
             ExceptField("id");
-        public ActivityLogTypeQueryBuilder WithUserId(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
+        public ActivityLogTypeQueryBuilder WithUserID(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
             WithScalarField("user_id", alias, new GraphQlDirective[] { include, skip });
-        public ActivityLogTypeQueryBuilder ExceptUserId() =>
+        public ActivityLogTypeQueryBuilder ExceptUserID() =>
             ExceptField("user_id");
     }
 }

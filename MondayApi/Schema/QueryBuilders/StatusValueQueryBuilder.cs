@@ -23,9 +23,9 @@ namespace MondayApi.Schema {
             WithObjectField("column", alias, columnQueryBuilder, new GraphQlDirective[] { include, skip });
         public StatusValueQueryBuilder ExceptColumn() =>
             ExceptField("column");
-        public StatusValueQueryBuilder WithId(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
+        public StatusValueQueryBuilder WithID(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
             WithScalarField("id", alias, new GraphQlDirective[] { include, skip });
-        public StatusValueQueryBuilder ExceptId() =>
+        public StatusValueQueryBuilder ExceptID() =>
             ExceptField("id");
         public StatusValueQueryBuilder WithIndex(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
             WithScalarField("index", alias, new GraphQlDirective[] { include, skip });
@@ -51,9 +51,9 @@ namespace MondayApi.Schema {
             WithScalarField("type", alias, new GraphQlDirective[] { include, skip });
         public StatusValueQueryBuilder ExceptType() =>
             ExceptField("type");
-        public StatusValueQueryBuilder WithUpdateId(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
+        public StatusValueQueryBuilder WithUpdateID(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
             WithScalarField("update_id", alias, new GraphQlDirective[] { include, skip });
-        public StatusValueQueryBuilder ExceptUpdateId() =>
+        public StatusValueQueryBuilder ExceptUpdateID() =>
             ExceptField("update_id");
         public StatusValueQueryBuilder WithUpdatedAt(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
             WithScalarField("updated_at", alias, new GraphQlDirective[] { include, skip });

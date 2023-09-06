@@ -20,21 +20,21 @@ namespace MondayApi.Schema {
             WithObjectField("column", alias, columnQueryBuilder, new GraphQlDirective[] { include, skip });
         public IntegrationValueQueryBuilder ExceptColumn() =>
             ExceptField("column");
-        public IntegrationValueQueryBuilder WithEntityId(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
+        public IntegrationValueQueryBuilder WithEntityID(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
             WithScalarField("entity_id", alias, new GraphQlDirective[] { include, skip });
-        public IntegrationValueQueryBuilder ExceptEntityId() =>
+        public IntegrationValueQueryBuilder ExceptEntityID() =>
             ExceptField("entity_id");
-        public IntegrationValueQueryBuilder WithId(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
+        public IntegrationValueQueryBuilder WithID(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
             WithScalarField("id", alias, new GraphQlDirective[] { include, skip });
-        public IntegrationValueQueryBuilder ExceptId() =>
+        public IntegrationValueQueryBuilder ExceptID() =>
             ExceptField("id");
         public IntegrationValueQueryBuilder WithIssueApiUrl(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
             WithScalarField("issue_api_url", alias, new GraphQlDirective[] { include, skip });
         public IntegrationValueQueryBuilder ExceptIssueApiUrl() =>
             ExceptField("issue_api_url");
-        public IntegrationValueQueryBuilder WithIssueId(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
+        public IntegrationValueQueryBuilder WithIssueID(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
             WithScalarField("issue_id", alias, new GraphQlDirective[] { include, skip });
-        public IntegrationValueQueryBuilder ExceptIssueId() =>
+        public IntegrationValueQueryBuilder ExceptIssueID() =>
             ExceptField("issue_id");
         public IntegrationValueQueryBuilder WithText(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
             WithScalarField("text", alias, new GraphQlDirective[] { include, skip });

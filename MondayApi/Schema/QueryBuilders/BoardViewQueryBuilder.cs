@@ -13,9 +13,9 @@ namespace MondayApi.Schema {
         protected override string TypeName => "BoardView";
         public override IReadOnlyList<GraphQlFieldMetadata> AllFields => AllFieldMetadata;
 
-        public BoardViewQueryBuilder WithId(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
+        public BoardViewQueryBuilder WithID(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
             WithScalarField("id", alias, new GraphQlDirective[] { include, skip });
-        public BoardViewQueryBuilder ExceptId() =>
+        public BoardViewQueryBuilder ExceptID() =>
             ExceptField("id");
         public BoardViewQueryBuilder WithName(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
             WithScalarField("name", alias, new GraphQlDirective[] { include, skip });

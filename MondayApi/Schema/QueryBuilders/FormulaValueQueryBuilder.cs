@@ -17,9 +17,9 @@ namespace MondayApi.Schema {
             WithObjectField("column", alias, columnQueryBuilder, new GraphQlDirective[] { include, skip });
         public FormulaValueQueryBuilder ExceptColumn() =>
             ExceptField("column");
-        public FormulaValueQueryBuilder WithId(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
+        public FormulaValueQueryBuilder WithID(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
             WithScalarField("id", alias, new GraphQlDirective[] { include, skip });
-        public FormulaValueQueryBuilder ExceptId() =>
+        public FormulaValueQueryBuilder ExceptID() =>
             ExceptField("id");
         public FormulaValueQueryBuilder WithText(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
             WithScalarField("text", alias, new GraphQlDirective[] { include, skip });

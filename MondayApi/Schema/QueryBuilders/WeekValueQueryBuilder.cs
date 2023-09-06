@@ -23,9 +23,9 @@ namespace MondayApi.Schema {
             WithScalarField("end_date", alias, new GraphQlDirective[] { include, skip });
         public WeekValueQueryBuilder ExceptEndDate() =>
             ExceptField("end_date");
-        public WeekValueQueryBuilder WithId(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
+        public WeekValueQueryBuilder WithID(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
             WithScalarField("id", alias, new GraphQlDirective[] { include, skip });
-        public WeekValueQueryBuilder ExceptId() =>
+        public WeekValueQueryBuilder ExceptID() =>
             ExceptField("id");
         public WeekValueQueryBuilder WithStartDate(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
             WithScalarField("start_date", alias, new GraphQlDirective[] { include, skip });

@@ -18,13 +18,13 @@ namespace MondayApi.Schema {
             WithObjectField("column", alias, columnQueryBuilder, new GraphQlDirective[] { include, skip });
         public TagsValueQueryBuilder ExceptColumn() =>
             ExceptField("column");
-        public TagsValueQueryBuilder WithId(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
+        public TagsValueQueryBuilder WithID(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
             WithScalarField("id", alias, new GraphQlDirective[] { include, skip });
-        public TagsValueQueryBuilder ExceptId() =>
+        public TagsValueQueryBuilder ExceptID() =>
             ExceptField("id");
-        public TagsValueQueryBuilder WithTagIds(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
+        public TagsValueQueryBuilder WithTagIDs(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
             WithScalarField("tag_ids", alias, new GraphQlDirective[] { include, skip });
-        public TagsValueQueryBuilder ExceptTagIds() =>
+        public TagsValueQueryBuilder ExceptTagIDs() =>
             ExceptField("tag_ids");
         public TagsValueQueryBuilder WithText(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
             WithScalarField("text", alias, new GraphQlDirective[] { include, skip });

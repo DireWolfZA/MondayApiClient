@@ -18,9 +18,9 @@ namespace MondayApi.Schema {
             WithObjectField("column", alias, columnQueryBuilder, new GraphQlDirective[] { include, skip });
         public ColumnValueQueryBuilder ExceptColumn() =>
             ExceptField("column");
-        public ColumnValueQueryBuilder WithId(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
+        public ColumnValueQueryBuilder WithID(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
             WithScalarField("id", alias, new GraphQlDirective[] { include, skip });
-        public ColumnValueQueryBuilder ExceptId() =>
+        public ColumnValueQueryBuilder ExceptID() =>
             ExceptField("id");
         public ColumnValueQueryBuilder WithText(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
             WithScalarField("text", alias, new GraphQlDirective[] { include, skip });
@@ -64,8 +64,8 @@ namespace MondayApi.Schema {
             WithFragment(hourValueQueryBuilder, new GraphQlDirective[] { include, skip });
         public ColumnValueQueryBuilder WithIntegrationValueFragment(IntegrationValueQueryBuilder integrationValueQueryBuilder, IncludeDirective include = null, SkipDirective skip = null) =>
             WithFragment(integrationValueQueryBuilder, new GraphQlDirective[] { include, skip });
-        public ColumnValueQueryBuilder WithItemIdValueFragment(ItemIdValueQueryBuilder itemIdValueQueryBuilder, IncludeDirective include = null, SkipDirective skip = null) =>
-            WithFragment(itemIdValueQueryBuilder, new GraphQlDirective[] { include, skip });
+        public ColumnValueQueryBuilder WithItemIDValueFragment(ItemIDValueQueryBuilder itemIDValueQueryBuilder, IncludeDirective include = null, SkipDirective skip = null) =>
+            WithFragment(itemIDValueQueryBuilder, new GraphQlDirective[] { include, skip });
         public ColumnValueQueryBuilder WithLastUpdatedValueFragment(LastUpdatedValueQueryBuilder lastUpdatedValueQueryBuilder, IncludeDirective include = null, SkipDirective skip = null) =>
             WithFragment(lastUpdatedValueQueryBuilder, new GraphQlDirective[] { include, skip });
         public ColumnValueQueryBuilder WithLinkValueFragment(LinkValueQueryBuilder linkValueQueryBuilder, IncludeDirective include = null, SkipDirective skip = null) =>

@@ -25,9 +25,9 @@ namespace MondayApi.Schema {
             WithScalarField("is_trial", alias, new GraphQlDirective[] { include, skip });
         public AppSubscriptionQueryBuilder ExceptIsTrial() =>
             ExceptField("is_trial");
-        public AppSubscriptionQueryBuilder WithPlanId(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
+        public AppSubscriptionQueryBuilder WithPlanID(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
             WithScalarField("plan_id", alias, new GraphQlDirective[] { include, skip });
-        public AppSubscriptionQueryBuilder ExceptPlanId() =>
+        public AppSubscriptionQueryBuilder ExceptPlanID() =>
             ExceptField("plan_id");
         public AppSubscriptionQueryBuilder WithRenewalDate(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
             WithScalarField("renewal_date", alias, new GraphQlDirective[] { include, skip });

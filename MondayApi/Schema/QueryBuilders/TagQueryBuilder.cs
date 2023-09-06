@@ -15,9 +15,9 @@ namespace MondayApi.Schema {
             WithScalarField("color", alias, new GraphQlDirective[] { include, skip });
         public TagQueryBuilder ExceptColor() =>
             ExceptField("color");
-        public TagQueryBuilder WithId(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
+        public TagQueryBuilder WithID(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
             WithScalarField("id", alias, new GraphQlDirective[] { include, skip });
-        public TagQueryBuilder ExceptId() =>
+        public TagQueryBuilder ExceptID() =>
             ExceptField("id");
         public TagQueryBuilder WithName(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
             WithScalarField("name", alias, new GraphQlDirective[] { include, skip });

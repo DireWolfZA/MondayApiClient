@@ -50,9 +50,9 @@ namespace MondayApi.Schema {
             WithScalarField("country_short", alias, new GraphQlDirective[] { include, skip });
         public LocationValueQueryBuilder ExceptCountryShort() =>
             ExceptField("country_short");
-        public LocationValueQueryBuilder WithId(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
+        public LocationValueQueryBuilder WithID(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
             WithScalarField("id", alias, new GraphQlDirective[] { include, skip });
-        public LocationValueQueryBuilder ExceptId() =>
+        public LocationValueQueryBuilder ExceptID() =>
             ExceptField("id");
         public LocationValueQueryBuilder WithLat(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
             WithScalarField("lat", alias, new GraphQlDirective[] { include, skip });
@@ -62,9 +62,9 @@ namespace MondayApi.Schema {
             WithScalarField("lng", alias, new GraphQlDirective[] { include, skip });
         public LocationValueQueryBuilder ExceptLng() =>
             ExceptField("lng");
-        public LocationValueQueryBuilder WithPlaceId(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
+        public LocationValueQueryBuilder WithPlaceID(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
             WithScalarField("place_id", alias, new GraphQlDirective[] { include, skip });
-        public LocationValueQueryBuilder ExceptPlaceId() =>
+        public LocationValueQueryBuilder ExceptPlaceID() =>
             ExceptField("place_id");
         public LocationValueQueryBuilder WithStreet(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
             WithScalarField("street", alias, new GraphQlDirective[] { include, skip });

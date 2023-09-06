@@ -10,9 +10,9 @@ namespace MondayApi.Schema {
         protected override string TypeName => "PeopleEntity";
         public override IReadOnlyList<GraphQlFieldMetadata> AllFields => AllFieldMetadata;
 
-        public PeopleEntityQueryBuilder WithId(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
+        public PeopleEntityQueryBuilder WithID(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
             WithScalarField("id", alias, new GraphQlDirective[] { include, skip });
-        public PeopleEntityQueryBuilder ExceptId() =>
+        public PeopleEntityQueryBuilder ExceptID() =>
             ExceptField("id");
         public PeopleEntityQueryBuilder WithKind(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
             WithScalarField("kind", alias, new GraphQlDirective[] { include, skip });

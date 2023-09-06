@@ -10,9 +10,9 @@ namespace MondayApi.Schema {
         protected override string TypeName => "DropdownValueOption";
         public override IReadOnlyList<GraphQlFieldMetadata> AllFields => AllFieldMetadata;
 
-        public DropdownValueOptionQueryBuilder WithId(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
+        public DropdownValueOptionQueryBuilder WithID(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
             WithScalarField("id", alias, new GraphQlDirective[] { include, skip });
-        public DropdownValueOptionQueryBuilder ExceptId() =>
+        public DropdownValueOptionQueryBuilder ExceptID() =>
             ExceptField("id");
         public DropdownValueOptionQueryBuilder WithLabel(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
             WithScalarField("label", alias, new GraphQlDirective[] { include, skip });

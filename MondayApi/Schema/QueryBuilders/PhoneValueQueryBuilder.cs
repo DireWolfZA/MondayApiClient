@@ -24,9 +24,9 @@ namespace MondayApi.Schema {
             WithScalarField("country_short_name", alias, new GraphQlDirective[] { include, skip });
         public PhoneValueQueryBuilder ExceptCountryShortName() =>
             ExceptField("country_short_name");
-        public PhoneValueQueryBuilder WithId(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
+        public PhoneValueQueryBuilder WithID(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
             WithScalarField("id", alias, new GraphQlDirective[] { include, skip });
-        public PhoneValueQueryBuilder ExceptId() =>
+        public PhoneValueQueryBuilder ExceptID() =>
             ExceptField("id");
         public PhoneValueQueryBuilder WithPhone(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
             WithScalarField("phone", alias, new GraphQlDirective[] { include, skip });

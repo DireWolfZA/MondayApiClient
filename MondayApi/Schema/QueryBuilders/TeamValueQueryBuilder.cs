@@ -19,13 +19,13 @@ namespace MondayApi.Schema {
             WithObjectField("column", alias, columnQueryBuilder, new GraphQlDirective[] { include, skip });
         public TeamValueQueryBuilder ExceptColumn() =>
             ExceptField("column");
-        public TeamValueQueryBuilder WithId(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
+        public TeamValueQueryBuilder WithID(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
             WithScalarField("id", alias, new GraphQlDirective[] { include, skip });
-        public TeamValueQueryBuilder ExceptId() =>
+        public TeamValueQueryBuilder ExceptID() =>
             ExceptField("id");
-        public TeamValueQueryBuilder WithTeamId(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
+        public TeamValueQueryBuilder WithTeamID(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
             WithScalarField("team_id", alias, new GraphQlDirective[] { include, skip });
-        public TeamValueQueryBuilder ExceptTeamId() =>
+        public TeamValueQueryBuilder ExceptTeamID() =>
             ExceptField("team_id");
         public TeamValueQueryBuilder WithText(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
             WithScalarField("text", alias, new GraphQlDirective[] { include, skip });

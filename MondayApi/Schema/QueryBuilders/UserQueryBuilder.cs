@@ -76,9 +76,9 @@ namespace MondayApi.Schema {
             WithScalarField("enabled", alias, new GraphQlDirective[] { include, skip });
         public UserQueryBuilder ExceptEnabled() =>
             ExceptField("enabled");
-        public UserQueryBuilder WithId(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
+        public UserQueryBuilder WithID(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
             WithScalarField("id", alias, new GraphQlDirective[] { include, skip });
-        public UserQueryBuilder ExceptId() =>
+        public UserQueryBuilder ExceptID() =>
             ExceptField("id");
         public UserQueryBuilder WithIsAdmin(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
             WithScalarField("is_admin", alias, new GraphQlDirective[] { include, skip });

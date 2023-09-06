@@ -24,9 +24,9 @@ namespace MondayApi.Schema {
             WithScalarField("email", alias, new GraphQlDirective[] { include, skip });
         public EmailValueQueryBuilder ExceptEmail() =>
             ExceptField("email");
-        public EmailValueQueryBuilder WithId(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
+        public EmailValueQueryBuilder WithID(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
             WithScalarField("id", alias, new GraphQlDirective[] { include, skip });
-        public EmailValueQueryBuilder ExceptId() =>
+        public EmailValueQueryBuilder ExceptID() =>
             ExceptField("id");
         public EmailValueQueryBuilder WithLabel(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
             WithScalarField("label", alias, new GraphQlDirective[] { include, skip });

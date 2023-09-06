@@ -23,13 +23,13 @@ namespace MondayApi.Schema {
             WithObjectField("creator", alias, userQueryBuilder, new GraphQlDirective[] { include, skip });
         public FileLinkValueQueryBuilder ExceptCreator() =>
             ExceptField("creator");
-        public FileLinkValueQueryBuilder WithCreatorId(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
+        public FileLinkValueQueryBuilder WithCreatorID(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
             WithScalarField("creator_id", alias, new GraphQlDirective[] { include, skip });
-        public FileLinkValueQueryBuilder ExceptCreatorId() =>
+        public FileLinkValueQueryBuilder ExceptCreatorID() =>
             ExceptField("creator_id");
-        public FileLinkValueQueryBuilder WithFileId(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
+        public FileLinkValueQueryBuilder WithFileID(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
             WithScalarField("file_id", alias, new GraphQlDirective[] { include, skip });
-        public FileLinkValueQueryBuilder ExceptFileId() =>
+        public FileLinkValueQueryBuilder ExceptFileID() =>
             ExceptField("file_id");
         public FileLinkValueQueryBuilder WithKind(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
             WithScalarField("kind", alias, new GraphQlDirective[] { include, skip });

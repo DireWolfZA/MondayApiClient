@@ -29,17 +29,17 @@ namespace MondayApi.Schema {
             WithScalarField("created_at", alias, new GraphQlDirective[] { include, skip });
         public FolderQueryBuilder ExceptCreatedAt() =>
             ExceptField("created_at");
-        public FolderQueryBuilder WithId(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
+        public FolderQueryBuilder WithID(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
             WithScalarField("id", alias, new GraphQlDirective[] { include, skip });
-        public FolderQueryBuilder ExceptId() =>
+        public FolderQueryBuilder ExceptID() =>
             ExceptField("id");
         public FolderQueryBuilder WithName(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
             WithScalarField("name", alias, new GraphQlDirective[] { include, skip });
         public FolderQueryBuilder ExceptName() =>
             ExceptField("name");
-        public FolderQueryBuilder WithOwnerId(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
+        public FolderQueryBuilder WithOwnerID(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
             WithScalarField("owner_id", alias, new GraphQlDirective[] { include, skip });
-        public FolderQueryBuilder ExceptOwnerId() =>
+        public FolderQueryBuilder ExceptOwnerID() =>
             ExceptField("owner_id");
         public FolderQueryBuilder WithParent(FolderQueryBuilder folderQueryBuilder, string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
             WithObjectField("parent", alias, folderQueryBuilder, new GraphQlDirective[] { include, skip });

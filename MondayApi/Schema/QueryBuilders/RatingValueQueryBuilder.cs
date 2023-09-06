@@ -19,9 +19,9 @@ namespace MondayApi.Schema {
             WithObjectField("column", alias, columnQueryBuilder, new GraphQlDirective[] { include, skip });
         public RatingValueQueryBuilder ExceptColumn() =>
             ExceptField("column");
-        public RatingValueQueryBuilder WithId(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
+        public RatingValueQueryBuilder WithID(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
             WithScalarField("id", alias, new GraphQlDirective[] { include, skip });
-        public RatingValueQueryBuilder ExceptId() =>
+        public RatingValueQueryBuilder ExceptID() =>
             ExceptField("id");
         public RatingValueQueryBuilder WithRating(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
             WithScalarField("rating", alias, new GraphQlDirective[] { include, skip });

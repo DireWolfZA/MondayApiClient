@@ -10,9 +10,9 @@ namespace MondayApi.Schema {
         protected override string TypeName => "Notification";
         public override IReadOnlyList<GraphQlFieldMetadata> AllFields => AllFieldMetadata;
 
-        public NotificationQueryBuilder WithId(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
+        public NotificationQueryBuilder WithID(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
             WithScalarField("id", alias, new GraphQlDirective[] { include, skip });
-        public NotificationQueryBuilder ExceptId() =>
+        public NotificationQueryBuilder ExceptID() =>
             ExceptField("id");
         public NotificationQueryBuilder WithText(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
             WithScalarField("text", alias, new GraphQlDirective[] { include, skip });

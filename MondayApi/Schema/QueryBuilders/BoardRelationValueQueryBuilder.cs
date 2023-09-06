@@ -20,13 +20,13 @@ namespace MondayApi.Schema {
             WithObjectField("column", alias, columnQueryBuilder, new GraphQlDirective[] { include, skip });
         public BoardRelationValueQueryBuilder ExceptColumn() =>
             ExceptField("column");
-        public BoardRelationValueQueryBuilder WithId(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
+        public BoardRelationValueQueryBuilder WithID(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
             WithScalarField("id", alias, new GraphQlDirective[] { include, skip });
-        public BoardRelationValueQueryBuilder ExceptId() =>
+        public BoardRelationValueQueryBuilder ExceptID() =>
             ExceptField("id");
-        public BoardRelationValueQueryBuilder WithLinkedItemIds(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
+        public BoardRelationValueQueryBuilder WithLinkedItemIDs(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
             WithScalarField("linked_item_ids", alias, new GraphQlDirective[] { include, skip });
-        public BoardRelationValueQueryBuilder ExceptLinkedItemIds() =>
+        public BoardRelationValueQueryBuilder ExceptLinkedItemIDs() =>
             ExceptField("linked_item_ids");
         public BoardRelationValueQueryBuilder WithLinkedItems(ItemQueryBuilder itemQueryBuilder, string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
             WithObjectField("linked_items", alias, itemQueryBuilder, new GraphQlDirective[] { include, skip });

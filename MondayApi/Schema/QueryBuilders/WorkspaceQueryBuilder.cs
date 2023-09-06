@@ -69,9 +69,9 @@ namespace MondayApi.Schema {
             WithScalarField("description", alias, new GraphQlDirective[] { include, skip });
         public WorkspaceQueryBuilder ExceptDescription() =>
             ExceptField("description");
-        public WorkspaceQueryBuilder WithId(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
+        public WorkspaceQueryBuilder WithID(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
             WithScalarField("id", alias, new GraphQlDirective[] { include, skip });
-        public WorkspaceQueryBuilder ExceptId() =>
+        public WorkspaceQueryBuilder ExceptID() =>
             ExceptField("id");
         public WorkspaceQueryBuilder WithKind(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
             WithScalarField("kind", alias, new GraphQlDirective[] { include, skip });

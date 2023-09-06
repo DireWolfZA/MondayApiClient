@@ -42,8 +42,8 @@ namespace MondayApi.Schema {
             WithFragment(hourValueQueryBuilder, new GraphQlDirective[] { include, skip });
         public MirroredValueQueryBuilder WithIntegrationValueFragment(IntegrationValueQueryBuilder integrationValueQueryBuilder, IncludeDirective include = null, SkipDirective skip = null) =>
             WithFragment(integrationValueQueryBuilder, new GraphQlDirective[] { include, skip });
-        public MirroredValueQueryBuilder WithItemIdValueFragment(ItemIdValueQueryBuilder itemIdValueQueryBuilder, IncludeDirective include = null, SkipDirective skip = null) =>
-            WithFragment(itemIdValueQueryBuilder, new GraphQlDirective[] { include, skip });
+        public MirroredValueQueryBuilder WithItemIDValueFragment(ItemIDValueQueryBuilder itemIDValueQueryBuilder, IncludeDirective include = null, SkipDirective skip = null) =>
+            WithFragment(itemIDValueQueryBuilder, new GraphQlDirective[] { include, skip });
         public MirroredValueQueryBuilder WithLastUpdatedValueFragment(LastUpdatedValueQueryBuilder lastUpdatedValueQueryBuilder, IncludeDirective include = null, SkipDirective skip = null) =>
             WithFragment(lastUpdatedValueQueryBuilder, new GraphQlDirective[] { include, skip });
         public MirroredValueQueryBuilder WithLinkValueFragment(LinkValueQueryBuilder linkValueQueryBuilder, IncludeDirective include = null, SkipDirective skip = null) =>

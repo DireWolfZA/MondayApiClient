@@ -9,9 +9,9 @@ namespace MondayApi.Schema {
         protected override string TypeName => "DocumentBlockIdOnly";
         public override IReadOnlyList<GraphQlFieldMetadata> AllFields => AllFieldMetadata;
 
-        public DocumentBlockIDOnlyQueryBuilder WithId(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
+        public DocumentBlockIDOnlyQueryBuilder WithID(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
             WithScalarField("id", alias, new GraphQlDirective[] { include, skip });
-        public DocumentBlockIDOnlyQueryBuilder ExceptId() =>
+        public DocumentBlockIDOnlyQueryBuilder ExceptID() =>
             ExceptField("id");
     }
 }

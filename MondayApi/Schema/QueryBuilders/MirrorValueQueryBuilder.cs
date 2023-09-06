@@ -18,9 +18,9 @@ namespace MondayApi.Schema {
             WithObjectField("column", alias, columnQueryBuilder, new GraphQlDirective[] { include, skip });
         public MirrorValueQueryBuilder ExceptColumn() =>
             ExceptField("column");
-        public MirrorValueQueryBuilder WithId(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
+        public MirrorValueQueryBuilder WithID(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
             WithScalarField("id", alias, new GraphQlDirective[] { include, skip });
-        public MirrorValueQueryBuilder ExceptId() =>
+        public MirrorValueQueryBuilder ExceptID() =>
             ExceptField("id");
         public MirrorValueQueryBuilder WithMirroredItems(MirroredItemQueryBuilder mirroredItemQueryBuilder, string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
             WithObjectField("mirrored_items", alias, mirroredItemQueryBuilder, new GraphQlDirective[] { include, skip });

@@ -19,9 +19,9 @@ namespace MondayApi.Schema {
             WithObjectField("asset", alias, assetQueryBuilder, new GraphQlDirective[] { include, skip });
         public FileAssetValueQueryBuilder ExceptAsset() =>
             ExceptField("asset");
-        public FileAssetValueQueryBuilder WithAssetId(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
+        public FileAssetValueQueryBuilder WithAssetID(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
             WithScalarField("asset_id", alias, new GraphQlDirective[] { include, skip });
-        public FileAssetValueQueryBuilder ExceptAssetId() =>
+        public FileAssetValueQueryBuilder ExceptAssetID() =>
             ExceptField("asset_id");
         public FileAssetValueQueryBuilder WithCreatedAt(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
             WithScalarField("created_at", alias, new GraphQlDirective[] { include, skip });
@@ -31,9 +31,9 @@ namespace MondayApi.Schema {
             WithObjectField("creator", alias, userQueryBuilder, new GraphQlDirective[] { include, skip });
         public FileAssetValueQueryBuilder ExceptCreator() =>
             ExceptField("creator");
-        public FileAssetValueQueryBuilder WithCreatorId(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
+        public FileAssetValueQueryBuilder WithCreatorID(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
             WithScalarField("creator_id", alias, new GraphQlDirective[] { include, skip });
-        public FileAssetValueQueryBuilder ExceptCreatorId() =>
+        public FileAssetValueQueryBuilder ExceptCreatorID() =>
             ExceptField("creator_id");
         public FileAssetValueQueryBuilder WithIsImage(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
             WithScalarField("is_image", alias, new GraphQlDirective[] { include, skip });

@@ -62,82 +62,82 @@ namespace MondayApi.Schema {
         protected override string TypeName => "Mutation";
         public override IReadOnlyList<GraphQlFieldMetadata> AllFields => AllFieldMetadata;
 
-        public MutationQueryBuilder WithAddFileToColumn(AssetQueryBuilder assetQueryBuilder, QueryBuilderParameter<Guid> itemId, QueryBuilderParameter<string> columnId, QueryBuilderParameter<object> file, string alias = null, IncludeDirective include = null, SkipDirective skip = null) {
+        public MutationQueryBuilder WithAddFileToColumn(AssetQueryBuilder assetQueryBuilder, QueryBuilderParameter<Guid> itemID, QueryBuilderParameter<string> columnID, QueryBuilderParameter<object> file, string alias = null, IncludeDirective include = null, SkipDirective skip = null) {
             var args = new List<QueryBuilderArgumentInfo> {
-                new QueryBuilderArgumentInfo { ArgumentName = "item_id", ArgumentValue = itemId },
-                new QueryBuilderArgumentInfo { ArgumentName = "column_id", ArgumentValue = columnId },
+                new QueryBuilderArgumentInfo { ArgumentName = "item_id", ArgumentValue = itemID },
+                new QueryBuilderArgumentInfo { ArgumentName = "column_id", ArgumentValue = columnID },
                 new QueryBuilderArgumentInfo { ArgumentName = "file", ArgumentValue = file }
             };
             return WithObjectField("add_file_to_column", alias, assetQueryBuilder, new GraphQlDirective[] { include, skip }, args);
         }
-        public MutationQueryBuilder WithAddFileToUpdate(AssetQueryBuilder assetQueryBuilder, QueryBuilderParameter<Guid> updateId, QueryBuilderParameter<object> file, string alias = null, IncludeDirective include = null, SkipDirective skip = null) {
+        public MutationQueryBuilder WithAddFileToUpdate(AssetQueryBuilder assetQueryBuilder, QueryBuilderParameter<Guid> updateID, QueryBuilderParameter<object> file, string alias = null, IncludeDirective include = null, SkipDirective skip = null) {
             var args = new List<QueryBuilderArgumentInfo> {
-                new QueryBuilderArgumentInfo { ArgumentName = "update_id", ArgumentValue = updateId },
+                new QueryBuilderArgumentInfo { ArgumentName = "update_id", ArgumentValue = updateID },
                 new QueryBuilderArgumentInfo { ArgumentName = "file", ArgumentValue = file }
             };
             return WithObjectField("add_file_to_update", alias, assetQueryBuilder, new GraphQlDirective[] { include, skip }, args);
         }
-        public MutationQueryBuilder WithAddTeamsToBoard(TeamQueryBuilder teamQueryBuilder, QueryBuilderParameter<Guid> boardId, QueryBuilderParameter<IEnumerable<Guid>> teamIds, string alias = null, IncludeDirective include = null, SkipDirective skip = null) {
+        public MutationQueryBuilder WithAddTeamsToBoard(TeamQueryBuilder teamQueryBuilder, QueryBuilderParameter<Guid> boardID, QueryBuilderParameter<IEnumerable<Guid>> teamIDs, string alias = null, IncludeDirective include = null, SkipDirective skip = null) {
             var args = new List<QueryBuilderArgumentInfo> {
-                new QueryBuilderArgumentInfo { ArgumentName = "board_id", ArgumentValue = boardId },
-                new QueryBuilderArgumentInfo { ArgumentName = "team_ids", ArgumentValue = teamIds }
+                new QueryBuilderArgumentInfo { ArgumentName = "board_id", ArgumentValue = boardID },
+                new QueryBuilderArgumentInfo { ArgumentName = "team_ids", ArgumentValue = teamIDs }
             };
             return WithObjectField("add_teams_to_board", alias, teamQueryBuilder, new GraphQlDirective[] { include, skip }, args);
         }
-        public MutationQueryBuilder WithAddTeamsToWorkspace(TeamQueryBuilder teamQueryBuilder, QueryBuilderParameter<Guid> workspaceId, QueryBuilderParameter<IEnumerable<Guid>> teamIds, QueryBuilderParameter<WorkspaceSubscriberKind?> kind = null, string alias = null, IncludeDirective include = null, SkipDirective skip = null) {
+        public MutationQueryBuilder WithAddTeamsToWorkspace(TeamQueryBuilder teamQueryBuilder, QueryBuilderParameter<Guid> workspaceID, QueryBuilderParameter<IEnumerable<Guid>> teamIDs, QueryBuilderParameter<WorkspaceSubscriberKind?> kind = null, string alias = null, IncludeDirective include = null, SkipDirective skip = null) {
             var args = new List<QueryBuilderArgumentInfo> {
-                new QueryBuilderArgumentInfo { ArgumentName = "workspace_id", ArgumentValue = workspaceId },
-                new QueryBuilderArgumentInfo { ArgumentName = "team_ids", ArgumentValue = teamIds }
+                new QueryBuilderArgumentInfo { ArgumentName = "workspace_id", ArgumentValue = workspaceID },
+                new QueryBuilderArgumentInfo { ArgumentName = "team_ids", ArgumentValue = teamIDs }
             };
             if (kind != null)
                 args.Add(new QueryBuilderArgumentInfo { ArgumentName = "kind", ArgumentValue = kind });
 
             return WithObjectField("add_teams_to_workspace", alias, teamQueryBuilder, new GraphQlDirective[] { include, skip }, args);
         }
-        public MutationQueryBuilder WithAddUsersToBoard(UserQueryBuilder userQueryBuilder, QueryBuilderParameter<Guid> boardId, QueryBuilderParameter<IEnumerable<Guid>> userIds, QueryBuilderParameter<BoardSubscriberKind?> kind = null, string alias = null, IncludeDirective include = null, SkipDirective skip = null) {
+        public MutationQueryBuilder WithAddUsersToBoard(UserQueryBuilder userQueryBuilder, QueryBuilderParameter<Guid> boardID, QueryBuilderParameter<IEnumerable<Guid>> userIDs, QueryBuilderParameter<BoardSubscriberKind?> kind = null, string alias = null, IncludeDirective include = null, SkipDirective skip = null) {
             var args = new List<QueryBuilderArgumentInfo> {
-                new QueryBuilderArgumentInfo { ArgumentName = "board_id", ArgumentValue = boardId },
-                new QueryBuilderArgumentInfo { ArgumentName = "user_ids", ArgumentValue = userIds }
+                new QueryBuilderArgumentInfo { ArgumentName = "board_id", ArgumentValue = boardID },
+                new QueryBuilderArgumentInfo { ArgumentName = "user_ids", ArgumentValue = userIDs }
             };
             if (kind != null)
                 args.Add(new QueryBuilderArgumentInfo { ArgumentName = "kind", ArgumentValue = kind });
 
             return WithObjectField("add_users_to_board", alias, userQueryBuilder, new GraphQlDirective[] { include, skip }, args);
         }
-        public MutationQueryBuilder WithAddUsersToWorkspace(UserQueryBuilder userQueryBuilder, QueryBuilderParameter<Guid> workspaceId, QueryBuilderParameter<IEnumerable<Guid>> userIds, QueryBuilderParameter<WorkspaceSubscriberKind?> kind = null, string alias = null, IncludeDirective include = null, SkipDirective skip = null) {
+        public MutationQueryBuilder WithAddUsersToWorkspace(UserQueryBuilder userQueryBuilder, QueryBuilderParameter<Guid> workspaceID, QueryBuilderParameter<IEnumerable<Guid>> userIDs, QueryBuilderParameter<WorkspaceSubscriberKind?> kind = null, string alias = null, IncludeDirective include = null, SkipDirective skip = null) {
             var args = new List<QueryBuilderArgumentInfo> {
-                new QueryBuilderArgumentInfo { ArgumentName = "workspace_id", ArgumentValue = workspaceId },
-                new QueryBuilderArgumentInfo { ArgumentName = "user_ids", ArgumentValue = userIds }
+                new QueryBuilderArgumentInfo { ArgumentName = "workspace_id", ArgumentValue = workspaceID },
+                new QueryBuilderArgumentInfo { ArgumentName = "user_ids", ArgumentValue = userIDs }
             };
             if (kind != null)
                 args.Add(new QueryBuilderArgumentInfo { ArgumentName = "kind", ArgumentValue = kind });
 
             return WithObjectField("add_users_to_workspace", alias, userQueryBuilder, new GraphQlDirective[] { include, skip }, args);
         }
-        public MutationQueryBuilder WithArchiveBoard(BoardQueryBuilder boardQueryBuilder, QueryBuilderParameter<Guid> boardId, string alias = null, IncludeDirective include = null, SkipDirective skip = null) {
+        public MutationQueryBuilder WithArchiveBoard(BoardQueryBuilder boardQueryBuilder, QueryBuilderParameter<Guid> boardID, string alias = null, IncludeDirective include = null, SkipDirective skip = null) {
             var args = new List<QueryBuilderArgumentInfo> {
-                new QueryBuilderArgumentInfo { ArgumentName = "board_id", ArgumentValue = boardId }
+                new QueryBuilderArgumentInfo { ArgumentName = "board_id", ArgumentValue = boardID }
             };
             return WithObjectField("archive_board", alias, boardQueryBuilder, new GraphQlDirective[] { include, skip }, args);
         }
-        public MutationQueryBuilder WithArchiveGroup(GroupQueryBuilder groupQueryBuilder, QueryBuilderParameter<Guid> boardId, QueryBuilderParameter<string> groupId, string alias = null, IncludeDirective include = null, SkipDirective skip = null) {
+        public MutationQueryBuilder WithArchiveGroup(GroupQueryBuilder groupQueryBuilder, QueryBuilderParameter<Guid> boardID, QueryBuilderParameter<string> groupID, string alias = null, IncludeDirective include = null, SkipDirective skip = null) {
             var args = new List<QueryBuilderArgumentInfo> {
-                new QueryBuilderArgumentInfo { ArgumentName = "board_id", ArgumentValue = boardId },
-                new QueryBuilderArgumentInfo { ArgumentName = "group_id", ArgumentValue = groupId }
+                new QueryBuilderArgumentInfo { ArgumentName = "board_id", ArgumentValue = boardID },
+                new QueryBuilderArgumentInfo { ArgumentName = "group_id", ArgumentValue = groupID }
             };
             return WithObjectField("archive_group", alias, groupQueryBuilder, new GraphQlDirective[] { include, skip }, args);
         }
-        public MutationQueryBuilder WithArchiveItem(ItemQueryBuilder itemQueryBuilder, QueryBuilderParameter<Guid?> itemId = null, string alias = null, IncludeDirective include = null, SkipDirective skip = null) {
+        public MutationQueryBuilder WithArchiveItem(ItemQueryBuilder itemQueryBuilder, QueryBuilderParameter<Guid?> itemID = null, string alias = null, IncludeDirective include = null, SkipDirective skip = null) {
             var args = new List<QueryBuilderArgumentInfo>();
-            if (itemId != null)
-                args.Add(new QueryBuilderArgumentInfo { ArgumentName = "item_id", ArgumentValue = itemId });
+            if (itemID != null)
+                args.Add(new QueryBuilderArgumentInfo { ArgumentName = "item_id", ArgumentValue = itemID });
 
             return WithObjectField("archive_item", alias, itemQueryBuilder, new GraphQlDirective[] { include, skip }, args);
         }
-        public MutationQueryBuilder WithChangeColumnMetadata(ColumnQueryBuilder columnQueryBuilder, QueryBuilderParameter<string> columnId, QueryBuilderParameter<Guid> boardId, QueryBuilderParameter<ColumnProperty?> columnProperty = null, QueryBuilderParameter<string> value = null, string alias = null, IncludeDirective include = null, SkipDirective skip = null) {
+        public MutationQueryBuilder WithChangeColumnMetadata(ColumnQueryBuilder columnQueryBuilder, QueryBuilderParameter<string> columnID, QueryBuilderParameter<Guid> boardID, QueryBuilderParameter<ColumnProperty?> columnProperty = null, QueryBuilderParameter<string> value = null, string alias = null, IncludeDirective include = null, SkipDirective skip = null) {
             var args = new List<QueryBuilderArgumentInfo> {
-                new QueryBuilderArgumentInfo { ArgumentName = "column_id", ArgumentValue = columnId },
-                new QueryBuilderArgumentInfo { ArgumentName = "board_id", ArgumentValue = boardId }
+                new QueryBuilderArgumentInfo { ArgumentName = "column_id", ArgumentValue = columnID },
+                new QueryBuilderArgumentInfo { ArgumentName = "board_id", ArgumentValue = boardID }
             };
             if (columnProperty != null)
                 args.Add(new QueryBuilderArgumentInfo { ArgumentName = "column_property", ArgumentValue = columnProperty });
@@ -146,46 +146,46 @@ namespace MondayApi.Schema {
 
             return WithObjectField("change_column_metadata", alias, columnQueryBuilder, new GraphQlDirective[] { include, skip }, args);
         }
-        public MutationQueryBuilder WithChangeColumnTitle(ColumnQueryBuilder columnQueryBuilder, QueryBuilderParameter<string> columnId, QueryBuilderParameter<Guid> boardId, QueryBuilderParameter<string> title, string alias = null, IncludeDirective include = null, SkipDirective skip = null) {
+        public MutationQueryBuilder WithChangeColumnTitle(ColumnQueryBuilder columnQueryBuilder, QueryBuilderParameter<string> columnID, QueryBuilderParameter<Guid> boardID, QueryBuilderParameter<string> title, string alias = null, IncludeDirective include = null, SkipDirective skip = null) {
             var args = new List<QueryBuilderArgumentInfo> {
-                new QueryBuilderArgumentInfo { ArgumentName = "column_id", ArgumentValue = columnId },
-                new QueryBuilderArgumentInfo { ArgumentName = "board_id", ArgumentValue = boardId },
+                new QueryBuilderArgumentInfo { ArgumentName = "column_id", ArgumentValue = columnID },
+                new QueryBuilderArgumentInfo { ArgumentName = "board_id", ArgumentValue = boardID },
                 new QueryBuilderArgumentInfo { ArgumentName = "title", ArgumentValue = title }
             };
             return WithObjectField("change_column_title", alias, columnQueryBuilder, new GraphQlDirective[] { include, skip }, args);
         }
-        public MutationQueryBuilder WithChangeColumnValue(ItemQueryBuilder itemQueryBuilder, QueryBuilderParameter<string> columnId, QueryBuilderParameter<Guid> boardId, QueryBuilderParameter<object> value, QueryBuilderParameter<Guid?> itemId = null, QueryBuilderParameter<bool?> createLabelsIfMissing = null, string alias = null, IncludeDirective include = null, SkipDirective skip = null) {
+        public MutationQueryBuilder WithChangeColumnValue(ItemQueryBuilder itemQueryBuilder, QueryBuilderParameter<string> columnID, QueryBuilderParameter<Guid> boardID, QueryBuilderParameter<object> value, QueryBuilderParameter<Guid?> itemID = null, QueryBuilderParameter<bool?> createLabelsIfMissing = null, string alias = null, IncludeDirective include = null, SkipDirective skip = null) {
             var args = new List<QueryBuilderArgumentInfo> {
-                new QueryBuilderArgumentInfo { ArgumentName = "column_id", ArgumentValue = columnId },
-                new QueryBuilderArgumentInfo { ArgumentName = "board_id", ArgumentValue = boardId },
+                new QueryBuilderArgumentInfo { ArgumentName = "column_id", ArgumentValue = columnID },
+                new QueryBuilderArgumentInfo { ArgumentName = "board_id", ArgumentValue = boardID },
                 new QueryBuilderArgumentInfo { ArgumentName = "value", ArgumentValue = value }
             };
-            if (itemId != null)
-                args.Add(new QueryBuilderArgumentInfo { ArgumentName = "item_id", ArgumentValue = itemId });
+            if (itemID != null)
+                args.Add(new QueryBuilderArgumentInfo { ArgumentName = "item_id", ArgumentValue = itemID });
             if (createLabelsIfMissing != null)
                 args.Add(new QueryBuilderArgumentInfo { ArgumentName = "create_labels_if_missing", ArgumentValue = createLabelsIfMissing });
 
             return WithObjectField("change_column_value", alias, itemQueryBuilder, new GraphQlDirective[] { include, skip }, args);
         }
-        public MutationQueryBuilder WithChangeMultipleColumnValues(ItemQueryBuilder itemQueryBuilder, QueryBuilderParameter<Guid> boardId, QueryBuilderParameter<object> columnValues, QueryBuilderParameter<Guid?> itemId = null, QueryBuilderParameter<bool?> createLabelsIfMissing = null, string alias = null, IncludeDirective include = null, SkipDirective skip = null) {
+        public MutationQueryBuilder WithChangeMultipleColumnValues(ItemQueryBuilder itemQueryBuilder, QueryBuilderParameter<Guid> boardID, QueryBuilderParameter<object> columnValues, QueryBuilderParameter<Guid?> itemID = null, QueryBuilderParameter<bool?> createLabelsIfMissing = null, string alias = null, IncludeDirective include = null, SkipDirective skip = null) {
             var args = new List<QueryBuilderArgumentInfo> {
-                new QueryBuilderArgumentInfo { ArgumentName = "board_id", ArgumentValue = boardId },
+                new QueryBuilderArgumentInfo { ArgumentName = "board_id", ArgumentValue = boardID },
                 new QueryBuilderArgumentInfo { ArgumentName = "column_values", ArgumentValue = columnValues }
             };
-            if (itemId != null)
-                args.Add(new QueryBuilderArgumentInfo { ArgumentName = "item_id", ArgumentValue = itemId });
+            if (itemID != null)
+                args.Add(new QueryBuilderArgumentInfo { ArgumentName = "item_id", ArgumentValue = itemID });
             if (createLabelsIfMissing != null)
                 args.Add(new QueryBuilderArgumentInfo { ArgumentName = "create_labels_if_missing", ArgumentValue = createLabelsIfMissing });
 
             return WithObjectField("change_multiple_column_values", alias, itemQueryBuilder, new GraphQlDirective[] { include, skip }, args);
         }
-        public MutationQueryBuilder WithChangeSimpleColumnValue(ItemQueryBuilder itemQueryBuilder, QueryBuilderParameter<string> columnId, QueryBuilderParameter<Guid> boardId, QueryBuilderParameter<Guid?> itemId = null, QueryBuilderParameter<string> value = null, QueryBuilderParameter<bool?> createLabelsIfMissing = null, string alias = null, IncludeDirective include = null, SkipDirective skip = null) {
+        public MutationQueryBuilder WithChangeSimpleColumnValue(ItemQueryBuilder itemQueryBuilder, QueryBuilderParameter<string> columnID, QueryBuilderParameter<Guid> boardID, QueryBuilderParameter<Guid?> itemID = null, QueryBuilderParameter<string> value = null, QueryBuilderParameter<bool?> createLabelsIfMissing = null, string alias = null, IncludeDirective include = null, SkipDirective skip = null) {
             var args = new List<QueryBuilderArgumentInfo> {
-                new QueryBuilderArgumentInfo { ArgumentName = "column_id", ArgumentValue = columnId },
-                new QueryBuilderArgumentInfo { ArgumentName = "board_id", ArgumentValue = boardId }
+                new QueryBuilderArgumentInfo { ArgumentName = "column_id", ArgumentValue = columnID },
+                new QueryBuilderArgumentInfo { ArgumentName = "board_id", ArgumentValue = boardID }
             };
-            if (itemId != null)
-                args.Add(new QueryBuilderArgumentInfo { ArgumentName = "item_id", ArgumentValue = itemId });
+            if (itemID != null)
+                args.Add(new QueryBuilderArgumentInfo { ArgumentName = "item_id", ArgumentValue = itemID });
             if (value != null)
                 args.Add(new QueryBuilderArgumentInfo { ArgumentName = "value", ArgumentValue = value });
             if (createLabelsIfMissing != null)
@@ -193,41 +193,41 @@ namespace MondayApi.Schema {
 
             return WithObjectField("change_simple_column_value", alias, itemQueryBuilder, new GraphQlDirective[] { include, skip }, args);
         }
-        public MutationQueryBuilder WithClearItemUpdates(ItemQueryBuilder itemQueryBuilder, QueryBuilderParameter<Guid> itemId, string alias = null, IncludeDirective include = null, SkipDirective skip = null) {
+        public MutationQueryBuilder WithClearItemUpdates(ItemQueryBuilder itemQueryBuilder, QueryBuilderParameter<Guid> itemID, string alias = null, IncludeDirective include = null, SkipDirective skip = null) {
             var args = new List<QueryBuilderArgumentInfo> {
-                new QueryBuilderArgumentInfo { ArgumentName = "item_id", ArgumentValue = itemId }
+                new QueryBuilderArgumentInfo { ArgumentName = "item_id", ArgumentValue = itemID }
             };
             return WithObjectField("clear_item_updates", alias, itemQueryBuilder, new GraphQlDirective[] { include, skip }, args);
         }
-        public MutationQueryBuilder WithCreateBoard(BoardQueryBuilder boardQueryBuilder, QueryBuilderParameter<string> boardName, QueryBuilderParameter<BoardKind> boardKind, QueryBuilderParameter<string> description = null, QueryBuilderParameter<Guid?> folderId = null, QueryBuilderParameter<Guid?> workspaceId = null, QueryBuilderParameter<Guid?> templateId = null, QueryBuilderParameter<IEnumerable<Guid>> boardOwnerIds = null, QueryBuilderParameter<IEnumerable<Guid>> boardOwnerTeamIds = null, QueryBuilderParameter<IEnumerable<Guid>> boardSubscriberIds = null, QueryBuilderParameter<IEnumerable<Guid>> boardSubscriberTeamsIds = null, QueryBuilderParameter<bool?> empty = null, string alias = null, IncludeDirective include = null, SkipDirective skip = null) {
+        public MutationQueryBuilder WithCreateBoard(BoardQueryBuilder boardQueryBuilder, QueryBuilderParameter<string> boardName, QueryBuilderParameter<BoardKind> boardKind, QueryBuilderParameter<string> description = null, QueryBuilderParameter<Guid?> folderID = null, QueryBuilderParameter<Guid?> workspaceID = null, QueryBuilderParameter<Guid?> templateID = null, QueryBuilderParameter<IEnumerable<Guid>> boardOwnerIDs = null, QueryBuilderParameter<IEnumerable<Guid>> boardOwnerTeamIDs = null, QueryBuilderParameter<IEnumerable<Guid>> boardSubscriberIDs = null, QueryBuilderParameter<IEnumerable<Guid>> boardSubscriberTeamsIDs = null, QueryBuilderParameter<bool?> empty = null, string alias = null, IncludeDirective include = null, SkipDirective skip = null) {
             var args = new List<QueryBuilderArgumentInfo> {
                 new QueryBuilderArgumentInfo { ArgumentName = "board_name", ArgumentValue = boardName },
                 new QueryBuilderArgumentInfo { ArgumentName = "board_kind", ArgumentValue = boardKind }
             };
             if (description != null)
                 args.Add(new QueryBuilderArgumentInfo { ArgumentName = "description", ArgumentValue = description });
-            if (folderId != null)
-                args.Add(new QueryBuilderArgumentInfo { ArgumentName = "folder_id", ArgumentValue = folderId });
-            if (workspaceId != null)
-                args.Add(new QueryBuilderArgumentInfo { ArgumentName = "workspace_id", ArgumentValue = workspaceId });
-            if (templateId != null)
-                args.Add(new QueryBuilderArgumentInfo { ArgumentName = "template_id", ArgumentValue = templateId });
-            if (boardOwnerIds != null)
-                args.Add(new QueryBuilderArgumentInfo { ArgumentName = "board_owner_ids", ArgumentValue = boardOwnerIds });
-            if (boardOwnerTeamIds != null)
-                args.Add(new QueryBuilderArgumentInfo { ArgumentName = "board_owner_team_ids", ArgumentValue = boardOwnerTeamIds });
-            if (boardSubscriberIds != null)
-                args.Add(new QueryBuilderArgumentInfo { ArgumentName = "board_subscriber_ids", ArgumentValue = boardSubscriberIds });
-            if (boardSubscriberTeamsIds != null)
-                args.Add(new QueryBuilderArgumentInfo { ArgumentName = "board_subscriber_teams_ids", ArgumentValue = boardSubscriberTeamsIds });
+            if (folderID != null)
+                args.Add(new QueryBuilderArgumentInfo { ArgumentName = "folder_id", ArgumentValue = folderID });
+            if (workspaceID != null)
+                args.Add(new QueryBuilderArgumentInfo { ArgumentName = "workspace_id", ArgumentValue = workspaceID });
+            if (templateID != null)
+                args.Add(new QueryBuilderArgumentInfo { ArgumentName = "template_id", ArgumentValue = templateID });
+            if (boardOwnerIDs != null)
+                args.Add(new QueryBuilderArgumentInfo { ArgumentName = "board_owner_ids", ArgumentValue = boardOwnerIDs });
+            if (boardOwnerTeamIDs != null)
+                args.Add(new QueryBuilderArgumentInfo { ArgumentName = "board_owner_team_ids", ArgumentValue = boardOwnerTeamIDs });
+            if (boardSubscriberIDs != null)
+                args.Add(new QueryBuilderArgumentInfo { ArgumentName = "board_subscriber_ids", ArgumentValue = boardSubscriberIDs });
+            if (boardSubscriberTeamsIDs != null)
+                args.Add(new QueryBuilderArgumentInfo { ArgumentName = "board_subscriber_teams_ids", ArgumentValue = boardSubscriberTeamsIDs });
             if (empty != null)
                 args.Add(new QueryBuilderArgumentInfo { ArgumentName = "empty", ArgumentValue = empty });
 
             return WithObjectField("create_board", alias, boardQueryBuilder, new GraphQlDirective[] { include, skip }, args);
         }
-        public MutationQueryBuilder WithCreateColumn(ColumnQueryBuilder columnQueryBuilder, QueryBuilderParameter<Guid> boardId, QueryBuilderParameter<string> title, QueryBuilderParameter<ColumnType> columnType, QueryBuilderParameter<string> description = null, QueryBuilderParameter<object> defaults = null, QueryBuilderParameter<string> id = null, QueryBuilderParameter<Guid?> afterColumnId = null, string alias = null, IncludeDirective include = null, SkipDirective skip = null) {
+        public MutationQueryBuilder WithCreateColumn(ColumnQueryBuilder columnQueryBuilder, QueryBuilderParameter<Guid> boardID, QueryBuilderParameter<string> title, QueryBuilderParameter<ColumnType> columnType, QueryBuilderParameter<string> description = null, QueryBuilderParameter<object> defaults = null, QueryBuilderParameter<string> id = null, QueryBuilderParameter<Guid?> afterColumnID = null, string alias = null, IncludeDirective include = null, SkipDirective skip = null) {
             var args = new List<QueryBuilderArgumentInfo> {
-                new QueryBuilderArgumentInfo { ArgumentName = "board_id", ArgumentValue = boardId },
+                new QueryBuilderArgumentInfo { ArgumentName = "board_id", ArgumentValue = boardID },
                 new QueryBuilderArgumentInfo { ArgumentName = "title", ArgumentValue = title },
                 new QueryBuilderArgumentInfo { ArgumentName = "column_type", ArgumentValue = columnType }
             };
@@ -237,8 +237,8 @@ namespace MondayApi.Schema {
                 args.Add(new QueryBuilderArgumentInfo { ArgumentName = "defaults", ArgumentValue = defaults });
             if (id != null)
                 args.Add(new QueryBuilderArgumentInfo { ArgumentName = "id", ArgumentValue = id });
-            if (afterColumnId != null)
-                args.Add(new QueryBuilderArgumentInfo { ArgumentName = "after_column_id", ArgumentValue = afterColumnId });
+            if (afterColumnID != null)
+                args.Add(new QueryBuilderArgumentInfo { ArgumentName = "after_column_id", ArgumentValue = afterColumnID });
 
             return WithObjectField("create_column", alias, columnQueryBuilder, new GraphQlDirective[] { include, skip }, args);
         }
@@ -248,35 +248,35 @@ namespace MondayApi.Schema {
             };
             return WithObjectField("create_doc", alias, documentQueryBuilder, new GraphQlDirective[] { include, skip }, args);
         }
-        public MutationQueryBuilder WithCreateDocBlock(DocumentBlockQueryBuilder documentBlockQueryBuilder, QueryBuilderParameter<Guid> docId, QueryBuilderParameter<DocBlockContentType> type, QueryBuilderParameter<object> content, QueryBuilderParameter<string> afterBlockId = null, QueryBuilderParameter<string> parentBlockId = null, string alias = null, IncludeDirective include = null, SkipDirective skip = null) {
+        public MutationQueryBuilder WithCreateDocBlock(DocumentBlockQueryBuilder documentBlockQueryBuilder, QueryBuilderParameter<Guid> docID, QueryBuilderParameter<DocBlockContentType> type, QueryBuilderParameter<object> content, QueryBuilderParameter<string> afterBlockID = null, QueryBuilderParameter<string> parentBlockID = null, string alias = null, IncludeDirective include = null, SkipDirective skip = null) {
             var args = new List<QueryBuilderArgumentInfo> {
-                new QueryBuilderArgumentInfo { ArgumentName = "doc_id", ArgumentValue = docId },
+                new QueryBuilderArgumentInfo { ArgumentName = "doc_id", ArgumentValue = docID },
                 new QueryBuilderArgumentInfo { ArgumentName = "type", ArgumentValue = type },
                 new QueryBuilderArgumentInfo { ArgumentName = "content", ArgumentValue = content }
             };
-            if (afterBlockId != null)
-                args.Add(new QueryBuilderArgumentInfo { ArgumentName = "after_block_id", ArgumentValue = afterBlockId });
-            if (parentBlockId != null)
-                args.Add(new QueryBuilderArgumentInfo { ArgumentName = "parent_block_id", ArgumentValue = parentBlockId });
+            if (afterBlockID != null)
+                args.Add(new QueryBuilderArgumentInfo { ArgumentName = "after_block_id", ArgumentValue = afterBlockID });
+            if (parentBlockID != null)
+                args.Add(new QueryBuilderArgumentInfo { ArgumentName = "parent_block_id", ArgumentValue = parentBlockID });
 
             return WithObjectField("create_doc_block", alias, documentBlockQueryBuilder, new GraphQlDirective[] { include, skip }, args);
         }
-        public MutationQueryBuilder WithCreateFolder(FolderQueryBuilder folderQueryBuilder, QueryBuilderParameter<string> name, QueryBuilderParameter<Guid?> workspaceId = null, QueryBuilderParameter<FolderColor?> color = null, QueryBuilderParameter<Guid?> parentFolderId = null, string alias = null, IncludeDirective include = null, SkipDirective skip = null) {
+        public MutationQueryBuilder WithCreateFolder(FolderQueryBuilder folderQueryBuilder, QueryBuilderParameter<string> name, QueryBuilderParameter<Guid?> workspaceID = null, QueryBuilderParameter<FolderColor?> color = null, QueryBuilderParameter<Guid?> parentFolderID = null, string alias = null, IncludeDirective include = null, SkipDirective skip = null) {
             var args = new List<QueryBuilderArgumentInfo> {
                 new QueryBuilderArgumentInfo { ArgumentName = "name", ArgumentValue = name }
             };
-            if (workspaceId != null)
-                args.Add(new QueryBuilderArgumentInfo { ArgumentName = "workspace_id", ArgumentValue = workspaceId });
+            if (workspaceID != null)
+                args.Add(new QueryBuilderArgumentInfo { ArgumentName = "workspace_id", ArgumentValue = workspaceID });
             if (color != null)
                 args.Add(new QueryBuilderArgumentInfo { ArgumentName = "color", ArgumentValue = color });
-            if (parentFolderId != null)
-                args.Add(new QueryBuilderArgumentInfo { ArgumentName = "parent_folder_id", ArgumentValue = parentFolderId });
+            if (parentFolderID != null)
+                args.Add(new QueryBuilderArgumentInfo { ArgumentName = "parent_folder_id", ArgumentValue = parentFolderID });
 
             return WithObjectField("create_folder", alias, folderQueryBuilder, new GraphQlDirective[] { include, skip }, args);
         }
-        public MutationQueryBuilder WithCreateGroup(GroupQueryBuilder groupQueryBuilder, QueryBuilderParameter<Guid> boardId, QueryBuilderParameter<string> groupName, QueryBuilderParameter<string> position = null, QueryBuilderParameter<string> relativeTo = null, QueryBuilderParameter<PositionRelative?> positionRelativeMethod = null, string alias = null, IncludeDirective include = null, SkipDirective skip = null) {
+        public MutationQueryBuilder WithCreateGroup(GroupQueryBuilder groupQueryBuilder, QueryBuilderParameter<Guid> boardID, QueryBuilderParameter<string> groupName, QueryBuilderParameter<string> position = null, QueryBuilderParameter<string> relativeTo = null, QueryBuilderParameter<PositionRelative?> positionRelativeMethod = null, string alias = null, IncludeDirective include = null, SkipDirective skip = null) {
             var args = new List<QueryBuilderArgumentInfo> {
-                new QueryBuilderArgumentInfo { ArgumentName = "board_id", ArgumentValue = boardId },
+                new QueryBuilderArgumentInfo { ArgumentName = "board_id", ArgumentValue = boardID },
                 new QueryBuilderArgumentInfo { ArgumentName = "group_name", ArgumentValue = groupName }
             };
             if (position != null)
@@ -288,13 +288,13 @@ namespace MondayApi.Schema {
 
             return WithObjectField("create_group", alias, groupQueryBuilder, new GraphQlDirective[] { include, skip }, args);
         }
-        public MutationQueryBuilder WithCreateItem(ItemQueryBuilder itemQueryBuilder, QueryBuilderParameter<string> itemName, QueryBuilderParameter<Guid> boardId, QueryBuilderParameter<string> groupId = null, QueryBuilderParameter<object> columnValues = null, QueryBuilderParameter<bool?> createLabelsIfMissing = null, string alias = null, IncludeDirective include = null, SkipDirective skip = null) {
+        public MutationQueryBuilder WithCreateItem(ItemQueryBuilder itemQueryBuilder, QueryBuilderParameter<string> itemName, QueryBuilderParameter<Guid> boardID, QueryBuilderParameter<string> groupID = null, QueryBuilderParameter<object> columnValues = null, QueryBuilderParameter<bool?> createLabelsIfMissing = null, string alias = null, IncludeDirective include = null, SkipDirective skip = null) {
             var args = new List<QueryBuilderArgumentInfo> {
                 new QueryBuilderArgumentInfo { ArgumentName = "item_name", ArgumentValue = itemName },
-                new QueryBuilderArgumentInfo { ArgumentName = "board_id", ArgumentValue = boardId }
+                new QueryBuilderArgumentInfo { ArgumentName = "board_id", ArgumentValue = boardID }
             };
-            if (groupId != null)
-                args.Add(new QueryBuilderArgumentInfo { ArgumentName = "group_id", ArgumentValue = groupId });
+            if (groupID != null)
+                args.Add(new QueryBuilderArgumentInfo { ArgumentName = "group_id", ArgumentValue = groupID });
             if (columnValues != null)
                 args.Add(new QueryBuilderArgumentInfo { ArgumentName = "column_values", ArgumentValue = columnValues });
             if (createLabelsIfMissing != null)
@@ -302,27 +302,27 @@ namespace MondayApi.Schema {
 
             return WithObjectField("create_item", alias, itemQueryBuilder, new GraphQlDirective[] { include, skip }, args);
         }
-        public MutationQueryBuilder WithCreateNotification(NotificationQueryBuilder notificationQueryBuilder, QueryBuilderParameter<string> text, QueryBuilderParameter<Guid> userId, QueryBuilderParameter<Guid> targetId, QueryBuilderParameter<NotificationTargetType> targetType, string alias = null, IncludeDirective include = null, SkipDirective skip = null) {
+        public MutationQueryBuilder WithCreateNotification(NotificationQueryBuilder notificationQueryBuilder, QueryBuilderParameter<string> text, QueryBuilderParameter<Guid> userID, QueryBuilderParameter<Guid> targetID, QueryBuilderParameter<NotificationTargetType> targetType, string alias = null, IncludeDirective include = null, SkipDirective skip = null) {
             var args = new List<QueryBuilderArgumentInfo> {
                 new QueryBuilderArgumentInfo { ArgumentName = "text", ArgumentValue = text },
-                new QueryBuilderArgumentInfo { ArgumentName = "user_id", ArgumentValue = userId },
-                new QueryBuilderArgumentInfo { ArgumentName = "target_id", ArgumentValue = targetId },
+                new QueryBuilderArgumentInfo { ArgumentName = "user_id", ArgumentValue = userID },
+                new QueryBuilderArgumentInfo { ArgumentName = "target_id", ArgumentValue = targetID },
                 new QueryBuilderArgumentInfo { ArgumentName = "target_type", ArgumentValue = targetType }
             };
             return WithObjectField("create_notification", alias, notificationQueryBuilder, new GraphQlDirective[] { include, skip }, args);
         }
-        public MutationQueryBuilder WithCreateOrGetTag(TagQueryBuilder tagQueryBuilder, QueryBuilderParameter<string> tagName = null, QueryBuilderParameter<Guid?> boardId = null, string alias = null, IncludeDirective include = null, SkipDirective skip = null) {
+        public MutationQueryBuilder WithCreateOrGetTag(TagQueryBuilder tagQueryBuilder, QueryBuilderParameter<string> tagName = null, QueryBuilderParameter<Guid?> boardID = null, string alias = null, IncludeDirective include = null, SkipDirective skip = null) {
             var args = new List<QueryBuilderArgumentInfo>();
             if (tagName != null)
                 args.Add(new QueryBuilderArgumentInfo { ArgumentName = "tag_name", ArgumentValue = tagName });
-            if (boardId != null)
-                args.Add(new QueryBuilderArgumentInfo { ArgumentName = "board_id", ArgumentValue = boardId });
+            if (boardID != null)
+                args.Add(new QueryBuilderArgumentInfo { ArgumentName = "board_id", ArgumentValue = boardID });
 
             return WithObjectField("create_or_get_tag", alias, tagQueryBuilder, new GraphQlDirective[] { include, skip }, args);
         }
-        public MutationQueryBuilder WithCreateSubitem(ItemQueryBuilder itemQueryBuilder, QueryBuilderParameter<Guid> parentItemId, QueryBuilderParameter<string> itemName, QueryBuilderParameter<object> columnValues = null, QueryBuilderParameter<bool?> createLabelsIfMissing = null, string alias = null, IncludeDirective include = null, SkipDirective skip = null) {
+        public MutationQueryBuilder WithCreateSubitem(ItemQueryBuilder itemQueryBuilder, QueryBuilderParameter<Guid> parentItemID, QueryBuilderParameter<string> itemName, QueryBuilderParameter<object> columnValues = null, QueryBuilderParameter<bool?> createLabelsIfMissing = null, string alias = null, IncludeDirective include = null, SkipDirective skip = null) {
             var args = new List<QueryBuilderArgumentInfo> {
-                new QueryBuilderArgumentInfo { ArgumentName = "parent_item_id", ArgumentValue = parentItemId },
+                new QueryBuilderArgumentInfo { ArgumentName = "parent_item_id", ArgumentValue = parentItemID },
                 new QueryBuilderArgumentInfo { ArgumentName = "item_name", ArgumentValue = itemName }
             };
             if (columnValues != null)
@@ -332,20 +332,20 @@ namespace MondayApi.Schema {
 
             return WithObjectField("create_subitem", alias, itemQueryBuilder, new GraphQlDirective[] { include, skip }, args);
         }
-        public MutationQueryBuilder WithCreateUpdate(UpdateQueryBuilder updateQueryBuilder, QueryBuilderParameter<string> body, QueryBuilderParameter<Guid?> itemId = null, QueryBuilderParameter<Guid?> parentId = null, string alias = null, IncludeDirective include = null, SkipDirective skip = null) {
+        public MutationQueryBuilder WithCreateUpdate(UpdateQueryBuilder updateQueryBuilder, QueryBuilderParameter<string> body, QueryBuilderParameter<Guid?> itemID = null, QueryBuilderParameter<Guid?> parentID = null, string alias = null, IncludeDirective include = null, SkipDirective skip = null) {
             var args = new List<QueryBuilderArgumentInfo> {
                 new QueryBuilderArgumentInfo { ArgumentName = "body", ArgumentValue = body }
             };
-            if (itemId != null)
-                args.Add(new QueryBuilderArgumentInfo { ArgumentName = "item_id", ArgumentValue = itemId });
-            if (parentId != null)
-                args.Add(new QueryBuilderArgumentInfo { ArgumentName = "parent_id", ArgumentValue = parentId });
+            if (itemID != null)
+                args.Add(new QueryBuilderArgumentInfo { ArgumentName = "item_id", ArgumentValue = itemID });
+            if (parentID != null)
+                args.Add(new QueryBuilderArgumentInfo { ArgumentName = "parent_id", ArgumentValue = parentID });
 
             return WithObjectField("create_update", alias, updateQueryBuilder, new GraphQlDirective[] { include, skip }, args);
         }
-        public MutationQueryBuilder WithCreateWebhook(WebhookQueryBuilder webhookQueryBuilder, QueryBuilderParameter<Guid> boardId, QueryBuilderParameter<string> url, QueryBuilderParameter<WebhookEventType> @event, QueryBuilderParameter<object> config = null, string alias = null, IncludeDirective include = null, SkipDirective skip = null) {
+        public MutationQueryBuilder WithCreateWebhook(WebhookQueryBuilder webhookQueryBuilder, QueryBuilderParameter<Guid> boardID, QueryBuilderParameter<string> url, QueryBuilderParameter<WebhookEventType> @event, QueryBuilderParameter<object> config = null, string alias = null, IncludeDirective include = null, SkipDirective skip = null) {
             var args = new List<QueryBuilderArgumentInfo> {
-                new QueryBuilderArgumentInfo { ArgumentName = "board_id", ArgumentValue = boardId },
+                new QueryBuilderArgumentInfo { ArgumentName = "board_id", ArgumentValue = boardID },
                 new QueryBuilderArgumentInfo { ArgumentName = "url", ArgumentValue = url },
                 new QueryBuilderArgumentInfo { ArgumentName = "event", ArgumentValue = @event }
             };
@@ -364,56 +364,56 @@ namespace MondayApi.Schema {
 
             return WithObjectField("create_workspace", alias, workspaceQueryBuilder, new GraphQlDirective[] { include, skip }, args);
         }
-        public MutationQueryBuilder WithDeleteBoard(BoardQueryBuilder boardQueryBuilder, QueryBuilderParameter<Guid> boardId, string alias = null, IncludeDirective include = null, SkipDirective skip = null) {
+        public MutationQueryBuilder WithDeleteBoard(BoardQueryBuilder boardQueryBuilder, QueryBuilderParameter<Guid> boardID, string alias = null, IncludeDirective include = null, SkipDirective skip = null) {
             var args = new List<QueryBuilderArgumentInfo> {
-                new QueryBuilderArgumentInfo { ArgumentName = "board_id", ArgumentValue = boardId }
+                new QueryBuilderArgumentInfo { ArgumentName = "board_id", ArgumentValue = boardID }
             };
             return WithObjectField("delete_board", alias, boardQueryBuilder, new GraphQlDirective[] { include, skip }, args);
         }
-        public MutationQueryBuilder WithDeleteColumn(ColumnQueryBuilder columnQueryBuilder, QueryBuilderParameter<Guid> boardId, QueryBuilderParameter<string> columnId, string alias = null, IncludeDirective include = null, SkipDirective skip = null) {
+        public MutationQueryBuilder WithDeleteColumn(ColumnQueryBuilder columnQueryBuilder, QueryBuilderParameter<Guid> boardID, QueryBuilderParameter<string> columnID, string alias = null, IncludeDirective include = null, SkipDirective skip = null) {
             var args = new List<QueryBuilderArgumentInfo> {
-                new QueryBuilderArgumentInfo { ArgumentName = "board_id", ArgumentValue = boardId },
-                new QueryBuilderArgumentInfo { ArgumentName = "column_id", ArgumentValue = columnId }
+                new QueryBuilderArgumentInfo { ArgumentName = "board_id", ArgumentValue = boardID },
+                new QueryBuilderArgumentInfo { ArgumentName = "column_id", ArgumentValue = columnID }
             };
             return WithObjectField("delete_column", alias, columnQueryBuilder, new GraphQlDirective[] { include, skip }, args);
         }
-        public MutationQueryBuilder WithDeleteDocBlock(DocumentBlockIDOnlyQueryBuilder documentBlockIdOnlyQueryBuilder, QueryBuilderParameter<string> blockId, string alias = null, IncludeDirective include = null, SkipDirective skip = null) {
+        public MutationQueryBuilder WithDeleteDocBlock(DocumentBlockIDOnlyQueryBuilder documentBlockIDOnlyQueryBuilder, QueryBuilderParameter<string> blockID, string alias = null, IncludeDirective include = null, SkipDirective skip = null) {
             var args = new List<QueryBuilderArgumentInfo> {
-                new QueryBuilderArgumentInfo { ArgumentName = "block_id", ArgumentValue = blockId }
+                new QueryBuilderArgumentInfo { ArgumentName = "block_id", ArgumentValue = blockID }
             };
-            return WithObjectField("delete_doc_block", alias, documentBlockIdOnlyQueryBuilder, new GraphQlDirective[] { include, skip }, args);
+            return WithObjectField("delete_doc_block", alias, documentBlockIDOnlyQueryBuilder, new GraphQlDirective[] { include, skip }, args);
         }
-        public MutationQueryBuilder WithDeleteFolder(FolderQueryBuilder folderQueryBuilder, QueryBuilderParameter<Guid> folderId, string alias = null, IncludeDirective include = null, SkipDirective skip = null) {
+        public MutationQueryBuilder WithDeleteFolder(FolderQueryBuilder folderQueryBuilder, QueryBuilderParameter<Guid> folderID, string alias = null, IncludeDirective include = null, SkipDirective skip = null) {
             var args = new List<QueryBuilderArgumentInfo> {
-                new QueryBuilderArgumentInfo { ArgumentName = "folder_id", ArgumentValue = folderId }
+                new QueryBuilderArgumentInfo { ArgumentName = "folder_id", ArgumentValue = folderID }
             };
             return WithObjectField("delete_folder", alias, folderQueryBuilder, new GraphQlDirective[] { include, skip }, args);
         }
-        public MutationQueryBuilder WithDeleteGroup(GroupQueryBuilder groupQueryBuilder, QueryBuilderParameter<Guid> boardId, QueryBuilderParameter<string> groupId, string alias = null, IncludeDirective include = null, SkipDirective skip = null) {
+        public MutationQueryBuilder WithDeleteGroup(GroupQueryBuilder groupQueryBuilder, QueryBuilderParameter<Guid> boardID, QueryBuilderParameter<string> groupID, string alias = null, IncludeDirective include = null, SkipDirective skip = null) {
             var args = new List<QueryBuilderArgumentInfo> {
-                new QueryBuilderArgumentInfo { ArgumentName = "board_id", ArgumentValue = boardId },
-                new QueryBuilderArgumentInfo { ArgumentName = "group_id", ArgumentValue = groupId }
+                new QueryBuilderArgumentInfo { ArgumentName = "board_id", ArgumentValue = boardID },
+                new QueryBuilderArgumentInfo { ArgumentName = "group_id", ArgumentValue = groupID }
             };
             return WithObjectField("delete_group", alias, groupQueryBuilder, new GraphQlDirective[] { include, skip }, args);
         }
-        public MutationQueryBuilder WithDeleteItem(ItemQueryBuilder itemQueryBuilder, QueryBuilderParameter<Guid?> itemId = null, string alias = null, IncludeDirective include = null, SkipDirective skip = null) {
+        public MutationQueryBuilder WithDeleteItem(ItemQueryBuilder itemQueryBuilder, QueryBuilderParameter<Guid?> itemID = null, string alias = null, IncludeDirective include = null, SkipDirective skip = null) {
             var args = new List<QueryBuilderArgumentInfo>();
-            if (itemId != null)
-                args.Add(new QueryBuilderArgumentInfo { ArgumentName = "item_id", ArgumentValue = itemId });
+            if (itemID != null)
+                args.Add(new QueryBuilderArgumentInfo { ArgumentName = "item_id", ArgumentValue = itemID });
 
             return WithObjectField("delete_item", alias, itemQueryBuilder, new GraphQlDirective[] { include, skip }, args);
         }
-        public MutationQueryBuilder WithDeleteSubscribersFromBoard(UserQueryBuilder userQueryBuilder, QueryBuilderParameter<Guid> boardId, QueryBuilderParameter<IEnumerable<Guid>> userIds, string alias = null, IncludeDirective include = null, SkipDirective skip = null) {
+        public MutationQueryBuilder WithDeleteSubscribersFromBoard(UserQueryBuilder userQueryBuilder, QueryBuilderParameter<Guid> boardID, QueryBuilderParameter<IEnumerable<Guid>> userIDs, string alias = null, IncludeDirective include = null, SkipDirective skip = null) {
             var args = new List<QueryBuilderArgumentInfo> {
-                new QueryBuilderArgumentInfo { ArgumentName = "board_id", ArgumentValue = boardId },
-                new QueryBuilderArgumentInfo { ArgumentName = "user_ids", ArgumentValue = userIds }
+                new QueryBuilderArgumentInfo { ArgumentName = "board_id", ArgumentValue = boardID },
+                new QueryBuilderArgumentInfo { ArgumentName = "user_ids", ArgumentValue = userIDs }
             };
             return WithObjectField("delete_subscribers_from_board", alias, userQueryBuilder, new GraphQlDirective[] { include, skip }, args);
         }
-        public MutationQueryBuilder WithDeleteTeamsFromWorkspace(TeamQueryBuilder teamQueryBuilder, QueryBuilderParameter<Guid> workspaceId, QueryBuilderParameter<IEnumerable<Guid>> teamIds, string alias = null, IncludeDirective include = null, SkipDirective skip = null) {
+        public MutationQueryBuilder WithDeleteTeamsFromWorkspace(TeamQueryBuilder teamQueryBuilder, QueryBuilderParameter<Guid> workspaceID, QueryBuilderParameter<IEnumerable<Guid>> teamIDs, string alias = null, IncludeDirective include = null, SkipDirective skip = null) {
             var args = new List<QueryBuilderArgumentInfo> {
-                new QueryBuilderArgumentInfo { ArgumentName = "workspace_id", ArgumentValue = workspaceId },
-                new QueryBuilderArgumentInfo { ArgumentName = "team_ids", ArgumentValue = teamIds }
+                new QueryBuilderArgumentInfo { ArgumentName = "workspace_id", ArgumentValue = workspaceID },
+                new QueryBuilderArgumentInfo { ArgumentName = "team_ids", ArgumentValue = teamIDs }
             };
             return WithObjectField("delete_teams_from_workspace", alias, teamQueryBuilder, new GraphQlDirective[] { include, skip }, args);
         }
@@ -423,10 +423,10 @@ namespace MondayApi.Schema {
             };
             return WithObjectField("delete_update", alias, updateQueryBuilder, new GraphQlDirective[] { include, skip }, args);
         }
-        public MutationQueryBuilder WithDeleteUsersFromWorkspace(UserQueryBuilder userQueryBuilder, QueryBuilderParameter<Guid> workspaceId, QueryBuilderParameter<IEnumerable<Guid>> userIds, string alias = null, IncludeDirective include = null, SkipDirective skip = null) {
+        public MutationQueryBuilder WithDeleteUsersFromWorkspace(UserQueryBuilder userQueryBuilder, QueryBuilderParameter<Guid> workspaceID, QueryBuilderParameter<IEnumerable<Guid>> userIDs, string alias = null, IncludeDirective include = null, SkipDirective skip = null) {
             var args = new List<QueryBuilderArgumentInfo> {
-                new QueryBuilderArgumentInfo { ArgumentName = "workspace_id", ArgumentValue = workspaceId },
-                new QueryBuilderArgumentInfo { ArgumentName = "user_ids", ArgumentValue = userIds }
+                new QueryBuilderArgumentInfo { ArgumentName = "workspace_id", ArgumentValue = workspaceID },
+                new QueryBuilderArgumentInfo { ArgumentName = "user_ids", ArgumentValue = userIDs }
             };
             return WithObjectField("delete_users_from_workspace", alias, userQueryBuilder, new GraphQlDirective[] { include, skip }, args);
         }
@@ -436,32 +436,32 @@ namespace MondayApi.Schema {
             };
             return WithObjectField("delete_webhook", alias, webhookQueryBuilder, new GraphQlDirective[] { include, skip }, args);
         }
-        public MutationQueryBuilder WithDeleteWorkspace(WorkspaceQueryBuilder workspaceQueryBuilder, QueryBuilderParameter<Guid> workspaceId, string alias = null, IncludeDirective include = null, SkipDirective skip = null) {
+        public MutationQueryBuilder WithDeleteWorkspace(WorkspaceQueryBuilder workspaceQueryBuilder, QueryBuilderParameter<Guid> workspaceID, string alias = null, IncludeDirective include = null, SkipDirective skip = null) {
             var args = new List<QueryBuilderArgumentInfo> {
-                new QueryBuilderArgumentInfo { ArgumentName = "workspace_id", ArgumentValue = workspaceId }
+                new QueryBuilderArgumentInfo { ArgumentName = "workspace_id", ArgumentValue = workspaceID }
             };
             return WithObjectField("delete_workspace", alias, workspaceQueryBuilder, new GraphQlDirective[] { include, skip }, args);
         }
-        public MutationQueryBuilder WithDuplicateBoard(BoardDuplicationQueryBuilder boardDuplicationQueryBuilder, QueryBuilderParameter<Guid> boardId, QueryBuilderParameter<DuplicateBoardType> duplicateType, QueryBuilderParameter<string> boardName = null, QueryBuilderParameter<Guid?> workspaceId = null, QueryBuilderParameter<Guid?> folderId = null, QueryBuilderParameter<bool?> keepSubscribers = null, string alias = null, IncludeDirective include = null, SkipDirective skip = null) {
+        public MutationQueryBuilder WithDuplicateBoard(BoardDuplicationQueryBuilder boardDuplicationQueryBuilder, QueryBuilderParameter<Guid> boardID, QueryBuilderParameter<DuplicateBoardType> duplicateType, QueryBuilderParameter<string> boardName = null, QueryBuilderParameter<Guid?> workspaceID = null, QueryBuilderParameter<Guid?> folderID = null, QueryBuilderParameter<bool?> keepSubscribers = null, string alias = null, IncludeDirective include = null, SkipDirective skip = null) {
             var args = new List<QueryBuilderArgumentInfo> {
-                new QueryBuilderArgumentInfo { ArgumentName = "board_id", ArgumentValue = boardId },
+                new QueryBuilderArgumentInfo { ArgumentName = "board_id", ArgumentValue = boardID },
                 new QueryBuilderArgumentInfo { ArgumentName = "duplicate_type", ArgumentValue = duplicateType }
             };
             if (boardName != null)
                 args.Add(new QueryBuilderArgumentInfo { ArgumentName = "board_name", ArgumentValue = boardName });
-            if (workspaceId != null)
-                args.Add(new QueryBuilderArgumentInfo { ArgumentName = "workspace_id", ArgumentValue = workspaceId });
-            if (folderId != null)
-                args.Add(new QueryBuilderArgumentInfo { ArgumentName = "folder_id", ArgumentValue = folderId });
+            if (workspaceID != null)
+                args.Add(new QueryBuilderArgumentInfo { ArgumentName = "workspace_id", ArgumentValue = workspaceID });
+            if (folderID != null)
+                args.Add(new QueryBuilderArgumentInfo { ArgumentName = "folder_id", ArgumentValue = folderID });
             if (keepSubscribers != null)
                 args.Add(new QueryBuilderArgumentInfo { ArgumentName = "keep_subscribers", ArgumentValue = keepSubscribers });
 
             return WithObjectField("duplicate_board", alias, boardDuplicationQueryBuilder, new GraphQlDirective[] { include, skip }, args);
         }
-        public MutationQueryBuilder WithDuplicateGroup(GroupQueryBuilder groupQueryBuilder, QueryBuilderParameter<Guid> boardId, QueryBuilderParameter<string> groupId, QueryBuilderParameter<bool?> addToTop = null, QueryBuilderParameter<string> groupTitle = null, string alias = null, IncludeDirective include = null, SkipDirective skip = null) {
+        public MutationQueryBuilder WithDuplicateGroup(GroupQueryBuilder groupQueryBuilder, QueryBuilderParameter<Guid> boardID, QueryBuilderParameter<string> groupID, QueryBuilderParameter<bool?> addToTop = null, QueryBuilderParameter<string> groupTitle = null, string alias = null, IncludeDirective include = null, SkipDirective skip = null) {
             var args = new List<QueryBuilderArgumentInfo> {
-                new QueryBuilderArgumentInfo { ArgumentName = "board_id", ArgumentValue = boardId },
-                new QueryBuilderArgumentInfo { ArgumentName = "group_id", ArgumentValue = groupId }
+                new QueryBuilderArgumentInfo { ArgumentName = "board_id", ArgumentValue = boardID },
+                new QueryBuilderArgumentInfo { ArgumentName = "group_id", ArgumentValue = groupID }
             };
             if (addToTop != null)
                 args.Add(new QueryBuilderArgumentInfo { ArgumentName = "add_to_top", ArgumentValue = addToTop });
@@ -470,29 +470,29 @@ namespace MondayApi.Schema {
 
             return WithObjectField("duplicate_group", alias, groupQueryBuilder, new GraphQlDirective[] { include, skip }, args);
         }
-        public MutationQueryBuilder WithDuplicateItem(ItemQueryBuilder itemQueryBuilder, QueryBuilderParameter<Guid> boardId, QueryBuilderParameter<bool?> withUpdates = null, QueryBuilderParameter<Guid?> itemId = null, string alias = null, IncludeDirective include = null, SkipDirective skip = null) {
+        public MutationQueryBuilder WithDuplicateItem(ItemQueryBuilder itemQueryBuilder, QueryBuilderParameter<Guid> boardID, QueryBuilderParameter<bool?> withUpdates = null, QueryBuilderParameter<Guid?> itemID = null, string alias = null, IncludeDirective include = null, SkipDirective skip = null) {
             var args = new List<QueryBuilderArgumentInfo> {
-                new QueryBuilderArgumentInfo { ArgumentName = "board_id", ArgumentValue = boardId }
+                new QueryBuilderArgumentInfo { ArgumentName = "board_id", ArgumentValue = boardID }
             };
             if (withUpdates != null)
                 args.Add(new QueryBuilderArgumentInfo { ArgumentName = "with_updates", ArgumentValue = withUpdates });
-            if (itemId != null)
-                args.Add(new QueryBuilderArgumentInfo { ArgumentName = "item_id", ArgumentValue = itemId });
+            if (itemID != null)
+                args.Add(new QueryBuilderArgumentInfo { ArgumentName = "item_id", ArgumentValue = itemID });
 
             return WithObjectField("duplicate_item", alias, itemQueryBuilder, new GraphQlDirective[] { include, skip }, args);
         }
-        public MutationQueryBuilder WithLikeUpdate(UpdateQueryBuilder updateQueryBuilder, QueryBuilderParameter<Guid?> updateId = null, string alias = null, IncludeDirective include = null, SkipDirective skip = null) {
+        public MutationQueryBuilder WithLikeUpdate(UpdateQueryBuilder updateQueryBuilder, QueryBuilderParameter<Guid?> updateID = null, string alias = null, IncludeDirective include = null, SkipDirective skip = null) {
             var args = new List<QueryBuilderArgumentInfo>();
-            if (updateId != null)
-                args.Add(new QueryBuilderArgumentInfo { ArgumentName = "update_id", ArgumentValue = updateId });
+            if (updateID != null)
+                args.Add(new QueryBuilderArgumentInfo { ArgumentName = "update_id", ArgumentValue = updateID });
 
             return WithObjectField("like_update", alias, updateQueryBuilder, new GraphQlDirective[] { include, skip }, args);
         }
-        public MutationQueryBuilder WithMoveItemToBoard(ItemQueryBuilder itemQueryBuilder, QueryBuilderParameter<Guid> boardId, QueryBuilderParameter<Guid> groupId, QueryBuilderParameter<Guid> itemId, QueryBuilderParameter<IEnumerable<ColumnMappingInput>> columnsMapping = null, QueryBuilderParameter<IEnumerable<ColumnMappingInput>> subitemsColumnsMapping = null, string alias = null, IncludeDirective include = null, SkipDirective skip = null) {
+        public MutationQueryBuilder WithMoveItemToBoard(ItemQueryBuilder itemQueryBuilder, QueryBuilderParameter<Guid> boardID, QueryBuilderParameter<Guid> groupID, QueryBuilderParameter<Guid> itemID, QueryBuilderParameter<IEnumerable<ColumnMappingInput>> columnsMapping = null, QueryBuilderParameter<IEnumerable<ColumnMappingInput>> subitemsColumnsMapping = null, string alias = null, IncludeDirective include = null, SkipDirective skip = null) {
             var args = new List<QueryBuilderArgumentInfo> {
-                new QueryBuilderArgumentInfo { ArgumentName = "board_id", ArgumentValue = boardId },
-                new QueryBuilderArgumentInfo { ArgumentName = "group_id", ArgumentValue = groupId },
-                new QueryBuilderArgumentInfo { ArgumentName = "item_id", ArgumentValue = itemId }
+                new QueryBuilderArgumentInfo { ArgumentName = "board_id", ArgumentValue = boardID },
+                new QueryBuilderArgumentInfo { ArgumentName = "group_id", ArgumentValue = groupID },
+                new QueryBuilderArgumentInfo { ArgumentName = "item_id", ArgumentValue = itemID }
             };
             if (columnsMapping != null)
                 args.Add(new QueryBuilderArgumentInfo { ArgumentName = "columns_mapping", ArgumentValue = columnsMapping });
@@ -501,29 +501,29 @@ namespace MondayApi.Schema {
 
             return WithObjectField("move_item_to_board", alias, itemQueryBuilder, new GraphQlDirective[] { include, skip }, args);
         }
-        public MutationQueryBuilder WithMoveItemToGroup(ItemQueryBuilder itemQueryBuilder, QueryBuilderParameter<string> groupId, QueryBuilderParameter<Guid?> itemId = null, string alias = null, IncludeDirective include = null, SkipDirective skip = null) {
+        public MutationQueryBuilder WithMoveItemToGroup(ItemQueryBuilder itemQueryBuilder, QueryBuilderParameter<string> groupID, QueryBuilderParameter<Guid?> itemID = null, string alias = null, IncludeDirective include = null, SkipDirective skip = null) {
             var args = new List<QueryBuilderArgumentInfo> {
-                new QueryBuilderArgumentInfo { ArgumentName = "group_id", ArgumentValue = groupId }
+                new QueryBuilderArgumentInfo { ArgumentName = "group_id", ArgumentValue = groupID }
             };
-            if (itemId != null)
-                args.Add(new QueryBuilderArgumentInfo { ArgumentName = "item_id", ArgumentValue = itemId });
+            if (itemID != null)
+                args.Add(new QueryBuilderArgumentInfo { ArgumentName = "item_id", ArgumentValue = itemID });
 
             return WithObjectField("move_item_to_group", alias, itemQueryBuilder, new GraphQlDirective[] { include, skip }, args);
         }
-        public MutationQueryBuilder WithRemoveMockAppSubscription(AppSubscriptionQueryBuilder appSubscriptionQueryBuilder, QueryBuilderParameter<Guid> appId, QueryBuilderParameter<string> partialSigningSecret, string alias = null, IncludeDirective include = null, SkipDirective skip = null) {
+        public MutationQueryBuilder WithRemoveMockAppSubscription(AppSubscriptionQueryBuilder appSubscriptionQueryBuilder, QueryBuilderParameter<Guid> appID, QueryBuilderParameter<string> partialSigningSecret, string alias = null, IncludeDirective include = null, SkipDirective skip = null) {
             var args = new List<QueryBuilderArgumentInfo> {
-                new QueryBuilderArgumentInfo { ArgumentName = "app_id", ArgumentValue = appId },
+                new QueryBuilderArgumentInfo { ArgumentName = "app_id", ArgumentValue = appID },
                 new QueryBuilderArgumentInfo { ArgumentName = "partial_signing_secret", ArgumentValue = partialSigningSecret }
             };
             return WithObjectField("remove_mock_app_subscription", alias, appSubscriptionQueryBuilder, new GraphQlDirective[] { include, skip }, args);
         }
-        public MutationQueryBuilder WithSetMockAppSubscription(AppSubscriptionQueryBuilder appSubscriptionQueryBuilder, QueryBuilderParameter<Guid> appId, QueryBuilderParameter<string> partialSigningSecret, QueryBuilderParameter<string> planId = null, QueryBuilderParameter<bool?> isTrial = null, QueryBuilderParameter<object> renewalDate = null, QueryBuilderParameter<string> billingPeriod = null, QueryBuilderParameter<int?> pricingVersion = null, string alias = null, IncludeDirective include = null, SkipDirective skip = null) {
+        public MutationQueryBuilder WithSetMockAppSubscription(AppSubscriptionQueryBuilder appSubscriptionQueryBuilder, QueryBuilderParameter<Guid> appID, QueryBuilderParameter<string> partialSigningSecret, QueryBuilderParameter<string> planID = null, QueryBuilderParameter<bool?> isTrial = null, QueryBuilderParameter<object> renewalDate = null, QueryBuilderParameter<string> billingPeriod = null, QueryBuilderParameter<int?> pricingVersion = null, string alias = null, IncludeDirective include = null, SkipDirective skip = null) {
             var args = new List<QueryBuilderArgumentInfo> {
-                new QueryBuilderArgumentInfo { ArgumentName = "app_id", ArgumentValue = appId },
+                new QueryBuilderArgumentInfo { ArgumentName = "app_id", ArgumentValue = appID },
                 new QueryBuilderArgumentInfo { ArgumentName = "partial_signing_secret", ArgumentValue = partialSigningSecret }
             };
-            if (planId != null)
-                args.Add(new QueryBuilderArgumentInfo { ArgumentName = "plan_id", ArgumentValue = planId });
+            if (planID != null)
+                args.Add(new QueryBuilderArgumentInfo { ArgumentName = "plan_id", ArgumentValue = planID });
             if (isTrial != null)
                 args.Add(new QueryBuilderArgumentInfo { ArgumentName = "is_trial", ArgumentValue = isTrial });
             if (renewalDate != null)
@@ -535,38 +535,38 @@ namespace MondayApi.Schema {
 
             return WithObjectField("set_mock_app_subscription", alias, appSubscriptionQueryBuilder, new GraphQlDirective[] { include, skip }, args);
         }
-        public MutationQueryBuilder WithUpdateBoard(QueryBuilderParameter<Guid> boardId, QueryBuilderParameter<BoardAttributes> boardAttribute, QueryBuilderParameter<string> newValue, string alias = null, IncludeDirective include = null, SkipDirective skip = null) {
+        public MutationQueryBuilder WithUpdateBoard(QueryBuilderParameter<Guid> boardID, QueryBuilderParameter<BoardAttributes> boardAttribute, QueryBuilderParameter<string> newValue, string alias = null, IncludeDirective include = null, SkipDirective skip = null) {
             var args = new List<QueryBuilderArgumentInfo> {
-                new QueryBuilderArgumentInfo { ArgumentName = "board_id", ArgumentValue = boardId },
+                new QueryBuilderArgumentInfo { ArgumentName = "board_id", ArgumentValue = boardID },
                 new QueryBuilderArgumentInfo { ArgumentName = "board_attribute", ArgumentValue = boardAttribute },
                 new QueryBuilderArgumentInfo { ArgumentName = "new_value", ArgumentValue = newValue }
             };
             return WithScalarField("update_board", alias, new GraphQlDirective[] { include, skip }, args);
         }
-        public MutationQueryBuilder WithUpdateDocBlock(DocumentBlockQueryBuilder documentBlockQueryBuilder, QueryBuilderParameter<string> blockId, QueryBuilderParameter<object> content, string alias = null, IncludeDirective include = null, SkipDirective skip = null) {
+        public MutationQueryBuilder WithUpdateDocBlock(DocumentBlockQueryBuilder documentBlockQueryBuilder, QueryBuilderParameter<string> blockID, QueryBuilderParameter<object> content, string alias = null, IncludeDirective include = null, SkipDirective skip = null) {
             var args = new List<QueryBuilderArgumentInfo> {
-                new QueryBuilderArgumentInfo { ArgumentName = "block_id", ArgumentValue = blockId },
+                new QueryBuilderArgumentInfo { ArgumentName = "block_id", ArgumentValue = blockID },
                 new QueryBuilderArgumentInfo { ArgumentName = "content", ArgumentValue = content }
             };
             return WithObjectField("update_doc_block", alias, documentBlockQueryBuilder, new GraphQlDirective[] { include, skip }, args);
         }
-        public MutationQueryBuilder WithUpdateFolder(FolderQueryBuilder folderQueryBuilder, QueryBuilderParameter<Guid> folderId, QueryBuilderParameter<string> name = null, QueryBuilderParameter<FolderColor?> color = null, QueryBuilderParameter<Guid?> parentFolderId = null, string alias = null, IncludeDirective include = null, SkipDirective skip = null) {
+        public MutationQueryBuilder WithUpdateFolder(FolderQueryBuilder folderQueryBuilder, QueryBuilderParameter<Guid> folderID, QueryBuilderParameter<string> name = null, QueryBuilderParameter<FolderColor?> color = null, QueryBuilderParameter<Guid?> parentFolderID = null, string alias = null, IncludeDirective include = null, SkipDirective skip = null) {
             var args = new List<QueryBuilderArgumentInfo> {
-                new QueryBuilderArgumentInfo { ArgumentName = "folder_id", ArgumentValue = folderId }
+                new QueryBuilderArgumentInfo { ArgumentName = "folder_id", ArgumentValue = folderID }
             };
             if (name != null)
                 args.Add(new QueryBuilderArgumentInfo { ArgumentName = "name", ArgumentValue = name });
             if (color != null)
                 args.Add(new QueryBuilderArgumentInfo { ArgumentName = "color", ArgumentValue = color });
-            if (parentFolderId != null)
-                args.Add(new QueryBuilderArgumentInfo { ArgumentName = "parent_folder_id", ArgumentValue = parentFolderId });
+            if (parentFolderID != null)
+                args.Add(new QueryBuilderArgumentInfo { ArgumentName = "parent_folder_id", ArgumentValue = parentFolderID });
 
             return WithObjectField("update_folder", alias, folderQueryBuilder, new GraphQlDirective[] { include, skip }, args);
         }
-        public MutationQueryBuilder WithUpdateGroup(GroupQueryBuilder groupQueryBuilder, QueryBuilderParameter<Guid> boardId, QueryBuilderParameter<string> groupId, QueryBuilderParameter<GroupAttributes> groupAttribute, QueryBuilderParameter<string> newValue, string alias = null, IncludeDirective include = null, SkipDirective skip = null) {
+        public MutationQueryBuilder WithUpdateGroup(GroupQueryBuilder groupQueryBuilder, QueryBuilderParameter<Guid> boardID, QueryBuilderParameter<string> groupID, QueryBuilderParameter<GroupAttributes> groupAttribute, QueryBuilderParameter<string> newValue, string alias = null, IncludeDirective include = null, SkipDirective skip = null) {
             var args = new List<QueryBuilderArgumentInfo> {
-                new QueryBuilderArgumentInfo { ArgumentName = "board_id", ArgumentValue = boardId },
-                new QueryBuilderArgumentInfo { ArgumentName = "group_id", ArgumentValue = groupId },
+                new QueryBuilderArgumentInfo { ArgumentName = "board_id", ArgumentValue = boardID },
+                new QueryBuilderArgumentInfo { ArgumentName = "group_id", ArgumentValue = groupID },
                 new QueryBuilderArgumentInfo { ArgumentName = "group_attribute", ArgumentValue = groupAttribute },
                 new QueryBuilderArgumentInfo { ArgumentName = "new_value", ArgumentValue = newValue }
             };

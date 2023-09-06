@@ -12,9 +12,9 @@ namespace MondayApi.Schema {
         protected override string TypeName => "Webhook";
         public override IReadOnlyList<GraphQlFieldMetadata> AllFields => AllFieldMetadata;
 
-        public WebhookQueryBuilder WithBoardId(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
+        public WebhookQueryBuilder WithBoardID(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
             WithScalarField("board_id", alias, new GraphQlDirective[] { include, skip });
-        public WebhookQueryBuilder ExceptBoardId() =>
+        public WebhookQueryBuilder ExceptBoardID() =>
             ExceptField("board_id");
         public WebhookQueryBuilder WithConfig(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
             WithScalarField("config", alias, new GraphQlDirective[] { include, skip });
@@ -24,9 +24,9 @@ namespace MondayApi.Schema {
             WithScalarField("event", alias, new GraphQlDirective[] { include, skip });
         public WebhookQueryBuilder ExceptEvent() =>
             ExceptField("event");
-        public WebhookQueryBuilder WithId(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
+        public WebhookQueryBuilder WithID(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
             WithScalarField("id", alias, new GraphQlDirective[] { include, skip });
-        public WebhookQueryBuilder ExceptId() =>
+        public WebhookQueryBuilder ExceptID() =>
             ExceptField("id");
     }
 }

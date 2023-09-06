@@ -29,17 +29,17 @@ namespace MondayApi.Schema {
             WithObjectField("created_by", alias, userQueryBuilder, new GraphQlDirective[] { include, skip });
         public DocumentBlockQueryBuilder ExceptCreatedBy() =>
             ExceptField("created_by");
-        public DocumentBlockQueryBuilder WithDocId(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
+        public DocumentBlockQueryBuilder WithDocID(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
             WithScalarField("doc_id", alias, new GraphQlDirective[] { include, skip });
-        public DocumentBlockQueryBuilder ExceptDocId() =>
+        public DocumentBlockQueryBuilder ExceptDocID() =>
             ExceptField("doc_id");
-        public DocumentBlockQueryBuilder WithId(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
+        public DocumentBlockQueryBuilder WithID(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
             WithScalarField("id", alias, new GraphQlDirective[] { include, skip });
-        public DocumentBlockQueryBuilder ExceptId() =>
+        public DocumentBlockQueryBuilder ExceptID() =>
             ExceptField("id");
-        public DocumentBlockQueryBuilder WithParentBlockId(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
+        public DocumentBlockQueryBuilder WithParentBlockID(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
             WithScalarField("parent_block_id", alias, new GraphQlDirective[] { include, skip });
-        public DocumentBlockQueryBuilder ExceptParentBlockId() =>
+        public DocumentBlockQueryBuilder ExceptParentBlockID() =>
             ExceptField("parent_block_id");
         public DocumentBlockQueryBuilder WithPosition(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
             WithScalarField("position", alias, new GraphQlDirective[] { include, skip });

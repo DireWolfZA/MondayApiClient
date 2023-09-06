@@ -37,7 +37,7 @@ namespace MondayApi.Schema {
         [EnumMember(Value = "item_assignees")]
         ItemAssignees,
         [EnumMember(Value = "item_id")]
-        ItemId,
+        ItemID,
         [EnumMember(Value = "last_updated")]
         LastUpdated,
         [EnumMember(Value = "link")]

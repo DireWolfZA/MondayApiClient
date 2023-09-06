@@ -20,13 +20,13 @@ namespace MondayApi.Schema {
             WithObjectField("column", alias, columnQueryBuilder, new GraphQlDirective[] { include, skip });
         public DependencyValueQueryBuilder ExceptColumn() =>
             ExceptField("column");
-        public DependencyValueQueryBuilder WithId(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
+        public DependencyValueQueryBuilder WithID(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
             WithScalarField("id", alias, new GraphQlDirective[] { include, skip });
-        public DependencyValueQueryBuilder ExceptId() =>
+        public DependencyValueQueryBuilder ExceptID() =>
             ExceptField("id");
-        public DependencyValueQueryBuilder WithLinkedItemIds(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
+        public DependencyValueQueryBuilder WithLinkedItemIDs(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
             WithScalarField("linked_item_ids", alias, new GraphQlDirective[] { include, skip });
-        public DependencyValueQueryBuilder ExceptLinkedItemIds() =>
+        public DependencyValueQueryBuilder ExceptLinkedItemIDs() =>
             ExceptField("linked_item_ids");
         public DependencyValueQueryBuilder WithLinkedItems(ItemQueryBuilder itemQueryBuilder, string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
             WithObjectField("linked_items", alias, itemQueryBuilder, new GraphQlDirective[] { include, skip });
