@@ -1,5 +1,6 @@
 ﻿using System.Threading.Tasks;
 using MondayApi.Boards;
+using MondayApi.Columns;
 using MondayApi.Groups;
 using MondayApi.Items;
 using MondayApi.Schema;
@@ -10,6 +11,7 @@ namespace MondayApi {
         Task<Query> RunQuery(QueryQueryBuilder queryBuilder);
 
         IBoardActions Boards { get; }
+        IColumnActions Columns { get; }
         IGroupActions Groups { get; }
         IItemActions Items { get; }
         IUserActions Users { get; }

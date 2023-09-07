@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using GraphQL.Client.Http;
 using MondayApi.Boards;
+using MondayApi.Columns;
 using MondayApi.Groups;
 using MondayApi.Items;
 using MondayApi.Schema;
@@ -42,6 +43,7 @@ namespace MondayApi {
         }
 
         public IBoardActions Boards => new BoardActions(this);
+        public IColumnActions Columns => new ColumnActions(this);
         public IGroupActions Groups => new GroupActions(this);
         public IItemActions Items => new ItemActions(this);
         public IUserActions Users => new UserActions(this);
