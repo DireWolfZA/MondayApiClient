@@ -6,6 +6,7 @@ using MondayApi.Columns;
 using MondayApi.Groups;
 using MondayApi.Items;
 using MondayApi.Schema;
+using MondayApi.Subitems;
 using MondayApi.Users;
 
 namespace MondayApi {
@@ -46,6 +47,7 @@ namespace MondayApi {
         public IColumnActions Columns => new ColumnActions(this);
         public IGroupActions Groups => new GroupActions(this);
         public IItemActions Items => new ItemActions(this);
+        public ISubitemActions Subitems => new SubitemActions(this);
         public IUserActions Users => new UserActions(this);
     }
 }

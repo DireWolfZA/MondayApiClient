@@ -4,6 +4,7 @@ using MondayApi.Columns;
 using MondayApi.Groups;
 using MondayApi.Items;
 using MondayApi.Schema;
+using MondayApi.Subitems;
 using MondayApi.Users;
 
 namespace MondayApi {
@@ -14,6 +15,7 @@ namespace MondayApi {
         IColumnActions Columns { get; }
         IGroupActions Groups { get; }
         IItemActions Items { get; }
+        ISubitemActions Subitems { get; }
         IUserActions Users { get; }
     }
 }
