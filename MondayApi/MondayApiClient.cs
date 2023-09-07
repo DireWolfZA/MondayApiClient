@@ -26,7 +26,7 @@ namespace MondayApi {
         public async Task<Query> RunQuery(QueryQueryBuilder queryBuilder) {
             string query = null;
 #if DEBUG
-            if (Environment.GetEnvironmentVariable("DEBUG") != null) {
+            if (Environment.GetEnvironmentVariable("DEBUG_SHOWQUERY") != null) {
                 query = queryBuilder.Build(Formatting.Indented);
                 Console.WriteLine(query);
             }
@@ -39,6 +39,11 @@ namespace MondayApi {
                 throw MondayException.FromErrors(response.Errors);
             if (response.Data == null)
                 throw new MondayException(queryResponse);
+
+#if DEBUG
+            if (Environment.GetEnvironmentVariable("DEBUG_SHOWRESPONSE") != null)
+                Console.WriteLine(queryResponse);
+#endif
 
             return response.Data;
         }
