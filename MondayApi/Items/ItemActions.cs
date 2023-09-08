@@ -16,7 +16,7 @@ namespace MondayApi.Items {
             if (withColumnValues)
                 itemQueryBuilder = itemQueryBuilder.WithColumnValues(
                     new ColumnValueQueryBuilder().WithAllScalarFields(),
-                    columnIDs == null ? null : Utils.GetParameter(columnIDs)
+                    Utils.GetParameterIfNotNull(columnIDs)
                 );
             var query = new QueryQueryBuilder().WithBoards(
                 new BoardQueryBuilder().WithItemsPage(
@@ -35,7 +35,7 @@ namespace MondayApi.Items {
             if (withColumnValues)
                 itemQueryBuilder = itemQueryBuilder.WithColumnValues(
                     new ColumnValueQueryBuilder().WithAllScalarFields(),
-                    columnIDs == null ? null : Utils.GetParameter(columnIDs)
+                    Utils.GetParameterIfNotNull(columnIDs)
                 );
             var query = new QueryQueryBuilder().WithBoards(
                 new BoardQueryBuilder().WithGroups(
@@ -57,7 +57,7 @@ namespace MondayApi.Items {
             if (withColumnValues)
                 itemQueryBuilder = itemQueryBuilder.WithColumnValues(
                     new ColumnValueQueryBuilder().WithAllScalarFields(),
-                    columnIDs == null ? null : Utils.GetParameter(columnIDs)
+                    Utils.GetParameterIfNotNull(columnIDs)
                 );
             var query = new QueryQueryBuilder().WithItems(
                 itemQueryBuilder,
