@@ -12,18 +12,20 @@ namespace MondayApi.Users {
         }
 
         public async Task<IEnumerable<User>> GetAsync(int pageNumber, int numPerPage) {
-            var limit = new GraphQlQueryParameter<int?>(null, defaultValue: numPerPage);
-            var page = new GraphQlQueryParameter<int?>(null, defaultValue: pageNumber);
-
-            var query = new QueryQueryBuilder().WithUsers(new UserQueryBuilder().WithAllScalarFields(), limit: limit, page: page);
+            var query = new QueryQueryBuilder().WithUsers(
+                new UserQueryBuilder().WithAllScalarFields(),
+                limit: Utils.GetParameter<int?>(numPerPage),
+                page: Utils.GetParameter<int?>(pageNumber)
+            );
             var response = await client.RunQuery(query);
             return response.Users;
         }
 
         public async Task<User> GetOneAsync(string id) {
-            var ids = new GraphQlQueryParameter<IEnumerable<string>>(null, defaultValue: new string[] { id });
-
-            var query = new QueryQueryBuilder().WithUsers(new UserQueryBuilder().WithAllScalarFields(), ids: ids);
+            var query = new QueryQueryBuilder().WithUsers(
+                new UserQueryBuilder().WithAllScalarFields(),
+                ids: Utils.GetParameterToMulti(id)
+            );
             var response = await client.RunQuery(query);
             return response.Users?.FirstOrDefault();
         }

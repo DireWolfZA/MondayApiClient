@@ -12,9 +12,10 @@ namespace MondayApi.Subitems {
         }
 
         public async Task<IEnumerable<Item>> GetAsync(string parentItemID) {
-            var itemIDs = new GraphQlQueryParameter<IEnumerable<string>>(null, defaultValue: new string[] { parentItemID });
-
-            var query = new QueryQueryBuilder().WithItems(new ItemQueryBuilder().WithSubitems(new ItemQueryBuilder().WithAllScalarFields()), ids: itemIDs);
+            var query = new QueryQueryBuilder().WithItems(
+                new ItemQueryBuilder().WithSubitems(new ItemQueryBuilder().WithAllScalarFields()),
+                ids: Utils.GetParameterToMulti(parentItemID)
+            );
             var response = await client.RunQuery(query);
             return response.Items?.FirstOrDefault().Subitems;
         }

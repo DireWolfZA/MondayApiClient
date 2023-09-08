@@ -12,18 +12,20 @@ namespace MondayApi.Boards {
         }
 
         public async Task<IEnumerable<Board>> GetAsync(int pageNumber, int numPerPage) {
-            var limit = new GraphQlQueryParameter<int?>(null, defaultValue: numPerPage);
-            var page = new GraphQlQueryParameter<int?>(null, defaultValue: pageNumber);
-
-            var query = new QueryQueryBuilder().WithBoards(new BoardQueryBuilder().WithAllScalarFields(), limit, page);
+            var query = new QueryQueryBuilder().WithBoards(
+                new BoardQueryBuilder().WithAllScalarFields(),
+                limit: Utils.GetParameter<int?>(numPerPage),
+                page: Utils.GetParameter<int?>(pageNumber)
+            );
             var response = await client.RunQuery(query);
             return response.Boards;
         }
 
         public async Task<Board> GetOneAsync(string id) {
-            var ids = new GraphQlQueryParameter<IEnumerable<string>>(null, defaultValue: new string[] { id });
-
-            var query = new QueryQueryBuilder().WithBoards(new BoardQueryBuilder().WithAllScalarFields(), ids: ids);
+            var query = new QueryQueryBuilder().WithBoards(
+                new BoardQueryBuilder().WithAllScalarFields(),
+                ids: Utils.GetParameterToMulti(id)
+            );
             var response = await client.RunQuery(query);
             return response.Boards?.FirstOrDefault();
         }

@@ -12,18 +12,22 @@ namespace MondayApi.Columns {
         }
 
         public async Task<IEnumerable<Column>> GetAsync(string boardID) {
-            var ids = new GraphQlQueryParameter<IEnumerable<string>>(null, defaultValue: new string[] { boardID });
-
-            var query = new QueryQueryBuilder().WithBoards(new BoardQueryBuilder().WithColumns(new ColumnQueryBuilder().WithAllScalarFields()), ids: ids);
+            var query = new QueryQueryBuilder().WithBoards(
+                new BoardQueryBuilder().WithColumns(new ColumnQueryBuilder().WithAllScalarFields()),
+                ids: Utils.GetParameterToMulti(boardID)
+            );
             var response = await client.RunQuery(query);
             return response.Boards?.FirstOrDefault()?.Columns;
         }
 
         public async Task<Column> GetOneAsync(string boardID, string columnID) {
-            var boardIDs = new GraphQlQueryParameter<IEnumerable<string>>(null, defaultValue: new string[] { boardID });
-            var columnIDs = new GraphQlQueryParameter<IEnumerable<string>>(null, defaultValue: new string[] { columnID });
-
-            var query = new QueryQueryBuilder().WithBoards(new BoardQueryBuilder().WithColumns(new ColumnQueryBuilder().WithAllScalarFields(), ids: columnIDs), ids: boardIDs);
+            var query = new QueryQueryBuilder().WithBoards(
+                new BoardQueryBuilder().WithColumns(
+                    new ColumnQueryBuilder().WithAllScalarFields(),
+                    ids: Utils.GetParameterToMulti(columnID)
+                ),
+                ids: Utils.GetParameterToMulti(boardID)
+            );
             var response = await client.RunQuery(query);
             return response.Boards?.FirstOrDefault()?.Columns?.FirstOrDefault();
         }
