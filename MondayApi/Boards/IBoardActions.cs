@@ -6,5 +6,6 @@ namespace MondayApi.Boards {
     public interface IBoardActions {
         Task<IEnumerable<Board>> GetAsync(int pageNumber, int numPerPage);
         Task<Board> GetOneAsync(string id);
+        Task<Board> CreateAsync(Board board, string templateID = null, bool? empty = null);
     }
 }

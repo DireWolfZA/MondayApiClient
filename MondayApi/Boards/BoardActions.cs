@@ -29,5 +29,28 @@ namespace MondayApi.Boards {
             var response = await client.RunQuery(query);
             return response.Boards?.FirstOrDefault();
         }
+
+        public async Task<Board> CreateAsync(Board board, string templateID = null, bool? empty = null) {
+            Utils.RequireArgument(nameof(board.Name), board.Name);
+            Utils.RequireArgument(nameof(board.BoardKind), board.BoardKind);
+
+            var mutation = new MutationQueryBuilder().WithCreateBoard(
+                new BoardQueryBuilder().WithAllScalarFields(),
+                boardName: board.Name,
+                boardKind: board.BoardKind.Value,
+                description: board.Description,
+                folderID: board.BoardFolderID,
+                workspaceID: board.WorkspaceID,
+                templateID: templateID,
+                boardOwnerIDs: null,
+                boardOwnerTeamIDs: null,
+                boardSubscriberIDs: null,
+                boardSubscriberTeamsIDs: null,
+                empty: empty
+            );
+
+            var response = await client.RunMutation(mutation);
+            return response.CreateBoard;
+        }
     }
 }

@@ -10,6 +10,7 @@ using MondayApi.Users;
 namespace MondayApi {
     public interface IMondayApiClient {
         Task<Query> RunQuery(QueryQueryBuilder queryBuilder);
+        Task<Mutation> RunMutation(MutationQueryBuilder queryBuilder);
 
         IBoardActions Boards { get; }
         IColumnActions Columns { get; }

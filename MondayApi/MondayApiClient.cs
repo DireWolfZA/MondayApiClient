@@ -50,6 +50,31 @@ namespace MondayApi {
             return response.Data;
         }
 
+        public async Task<Mutation> RunMutation(MutationQueryBuilder queryBuilder) {
+            string query = null;
+#if DEBUG
+            if (Environment.GetEnvironmentVariable(EnvironmentDebugShowQuery) != null) {
+                query = queryBuilder.Build(Formatting.Indented);
+                Console.WriteLine(query);
+            }
+#endif
+            if (query == null)
+                query = queryBuilder.Build();
+
+            var response = await client.SendMutationAsync<Mutation>(new GraphQL.GraphQLRequest(query));
+            if (response.Errors != null)
+                throw MondayException.FromErrors(response.Errors);
+            if (response.Data == null)
+                throw new MondayException(queryResponse);
+
+#if DEBUG
+            if (Environment.GetEnvironmentVariable(EnvironmentDebugShowResponse) != null)
+                Console.WriteLine(queryResponse);
+#endif
+
+            return response.Data;
+        }
+
         public IBoardActions Boards => new BoardActions(this);
         public IColumnActions Columns => new ColumnActions(this);
         public IGroupActions Groups => new GroupActions(this);
