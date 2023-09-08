@@ -13,6 +13,8 @@ namespace MondayApi {
     public class MondayApiClient : IMondayApiClient {
         private readonly string baseURL = "https://api.monday.com/v2";
         private readonly GraphQLHttpClient client;
+        public const string EnvironmentDebugShowQuery = "DEBUG_SHOWQUERY";
+        public const string EnvironmentDebugShowResponse = "DEBUG_SHOWRESPONSE";
 
         public MondayApiClient(string token) {
             client = new GraphQLHttpClient(baseURL, new DebugSerializer(captureResponse: response => queryResponse = response));
@@ -26,7 +28,7 @@ namespace MondayApi {
         public async Task<Query> RunQuery(QueryQueryBuilder queryBuilder) {
             string query = null;
 #if DEBUG
-            if (Environment.GetEnvironmentVariable("DEBUG_SHOWQUERY") != null) {
+            if (Environment.GetEnvironmentVariable(EnvironmentDebugShowQuery) != null) {
                 query = queryBuilder.Build(Formatting.Indented);
                 Console.WriteLine(query);
             }
@@ -41,7 +43,7 @@ namespace MondayApi {
                 throw new MondayException(queryResponse);
 
 #if DEBUG
-            if (Environment.GetEnvironmentVariable("DEBUG_SHOWRESPONSE") != null)
+            if (Environment.GetEnvironmentVariable(EnvironmentDebugShowResponse) != null)
                 Console.WriteLine(queryResponse);
 #endif
 
