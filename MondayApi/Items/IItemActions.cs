@@ -6,5 +6,6 @@ namespace MondayApi.Items {
         Task<ItemsResponse> GetByBoardAsync(string cursor, int numPerPage, string boardID);
         Task<ItemsResponse> GetByBoardGroupAsync(string cursor, int numPerPage, string boardID, string groupID);
         Task<Item> GetOneAsync(string id);
+        Task<string> GetLinkAsync(string id);
     }
 }

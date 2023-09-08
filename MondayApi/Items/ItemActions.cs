@@ -62,5 +62,16 @@ namespace MondayApi.Items {
             var response = await client.RunQuery(query);
             return response.Items?.FirstOrDefault();
         }
+
+        public async Task<string> GetLinkAsync(string id) {
+            var ids = new GraphQlQueryParameter<IEnumerable<string>>(null, defaultValue: new string[] { id });
+
+            var query = new QueryQueryBuilder()
+                .WithItems(new ItemQueryBuilder().WithRelativeLink(), ids: ids)
+                .WithAccount(new AccountQueryBuilder().WithSlug());
+            var response = await client.RunQuery(query);
+
+            return string.Concat("https://", response.Account.Slug, ".monday.com", response.Items?.FirstOrDefault()?.RelativeLink);
+        }
     }
 }
