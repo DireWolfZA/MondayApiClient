@@ -163,7 +163,7 @@ namespace MondayApi.Schema {
 
             return WithObjectField("webhooks", alias, webhookQueryBuilder, new GraphQlDirective[] { include, skip }, args);
         }
-        public QueryQueryBuilder WithWorkspaces(WorkspaceQueryBuilder workspaceQueryBuilder, QueryBuilderParameter<int?> limit = null, QueryBuilderParameter<int?> page = null, QueryBuilderParameter<IEnumerable<Guid>> ids = null, QueryBuilderParameter<WorkspaceKind?> kind = null, QueryBuilderParameter<State?> state = null, QueryBuilderParameter<WorkspacesOrderBy?> orderBy = null, string alias = null, IncludeDirective include = null, SkipDirective skip = null) {
+        public QueryQueryBuilder WithWorkspaces(WorkspaceQueryBuilder workspaceQueryBuilder, QueryBuilderParameter<int?> limit = null, QueryBuilderParameter<int?> page = null, QueryBuilderParameter<IEnumerable<string>> ids = null, QueryBuilderParameter<WorkspaceKind?> kind = null, QueryBuilderParameter<State?> state = null, QueryBuilderParameter<WorkspacesOrderBy?> orderBy = null, string alias = null, IncludeDirective include = null, SkipDirective skip = null) {
             var args = new List<QueryBuilderArgumentInfo>();
             if (limit != null)
                 args.Add(new QueryBuilderArgumentInfo { ArgumentName = "limit", ArgumentValue = limit });

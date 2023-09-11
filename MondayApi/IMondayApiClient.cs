@@ -6,6 +6,7 @@ using MondayApi.Items;
 using MondayApi.Schema;
 using MondayApi.Subitems;
 using MondayApi.Users;
+using MondayApi.Workspaces;
 
 namespace MondayApi {
     public interface IMondayApiClient {
@@ -18,5 +19,6 @@ namespace MondayApi {
         IItemActions Items { get; }
         ISubitemActions Subitems { get; }
         IUserActions Users { get; }
+        IWorkspaceActions Workspaces { get; }
     }
 }

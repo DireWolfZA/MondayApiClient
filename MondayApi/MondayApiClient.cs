@@ -8,6 +8,7 @@ using MondayApi.Items;
 using MondayApi.Schema;
 using MondayApi.Subitems;
 using MondayApi.Users;
+using MondayApi.Workspaces;
 
 namespace MondayApi {
     public class MondayApiClient : IMondayApiClient {
@@ -81,5 +82,6 @@ namespace MondayApi {
         public IItemActions Items => new ItemActions(this);
         public ISubitemActions Subitems => new SubitemActions(this);
         public IUserActions Users => new UserActions(this);
+        public IWorkspaceActions Workspaces => new WorkspaceActions(this);
     }
 }
