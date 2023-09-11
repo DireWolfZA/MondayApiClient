@@ -29,5 +29,27 @@ namespace MondayApi.Workspaces {
             var response = await client.RunQuery(query);
             return response.Workspaces?.FirstOrDefault();
         }
+
+        public async Task<Workspace> CreateAsync(Workspace workspace) {
+            Utils.RequireArgument(nameof(workspace.Name), workspace.Name);
+            Utils.RequireArgument(nameof(workspace.Kind), workspace.Kind);
+
+            var mutation = new MutationQueryBuilder().WithCreateWorkspace(
+                new WorkspaceQueryBuilder().WithAllScalarFields(),
+                name: workspace.Name,
+                kind: workspace.Kind,
+                description: workspace.Description
+            );
+
+            var response = await client.RunMutation(mutation);
+            return response.CreateWorkspace;
+        }
+
+        public async Task<Workspace> DeleteAsync(string id) {
+            var mutation = new MutationQueryBuilder().WithDeleteWorkspace(new WorkspaceQueryBuilder().WithAllScalarFields(), id);
+
+            var response = await client.RunMutation(mutation);
+            return response.DeleteWorkspace;
+        }
     }
 }
