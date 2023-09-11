@@ -25,5 +25,21 @@ namespace MondayApi.Subitems {
             var response = await client.RunQuery(query);
             return response.Items?.FirstOrDefault().Subitems;
         }
+
+        public async Task<Item> CreateSubitem(string itemName, string parentItemID, bool? createLabelsIfMissing = null) {
+            Utils.RequireArgument(nameof(parentItemID), parentItemID);
+            Utils.RequireArgument(nameof(itemName), itemName);
+
+            var mutation = new MutationQueryBuilder().WithCreateSubitem(
+                new ItemQueryBuilder().WithAllScalarFields(),
+                parentItemID: parentItemID,
+                itemName: itemName,
+                columnValues: null,
+                createLabelsIfMissing: createLabelsIfMissing
+            );
+
+            var response = await client.RunMutation(mutation);
+            return response.CreateSubitem;
+        }
     }
 }
