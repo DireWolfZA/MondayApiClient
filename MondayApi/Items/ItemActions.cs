@@ -74,5 +74,36 @@ namespace MondayApi.Items {
             var response = await client.RunQuery(query);
             return string.Concat("https://", response.Account.Slug, ".monday.com", response.Items?.FirstOrDefault()?.RelativeLink);
         }
+
+        public async Task<Item> CreateAsync(Item item, string boardID, string groupID = null, bool? createLabelsIfMissing = null) {
+            Utils.RequireArgument(nameof(item.Name), item.Name);
+            Utils.RequireArgument(boardID, boardID);
+
+            var mutation = new MutationQueryBuilder().WithCreateItem(
+                new ItemQueryBuilder().WithAllScalarFields(),
+                itemName: item.Name,
+                boardID: boardID,
+                groupID: groupID,
+                columnValues: null,
+                createLabelsIfMissing: createLabelsIfMissing
+            );
+
+            var response = await client.RunMutation(mutation);
+            return response.CreateItem;
+        }
+
+        public async Task<Item> MoveToGroupAsync(string itemID, string groupID) {
+            var mutation = new MutationQueryBuilder().WithMoveItemToGroup(new ItemQueryBuilder().WithAllScalarFields(), groupID: groupID, itemID: itemID);
+
+            var response = await client.RunMutation(mutation);
+            return response.MoveItemToGroup;
+        }
+
+        public async Task<Item> DeleteAsync(string id) {
+            var mutation = new MutationQueryBuilder().WithDeleteItem(new ItemQueryBuilder().WithAllScalarFields(), id);
+
+            var response = await client.RunMutation(mutation);
+            return response.DeleteItem;
+        }
     }
 }
