@@ -52,5 +52,23 @@ namespace MondayApi.Boards {
             var response = await client.RunMutation(mutation);
             return response.CreateBoard;
         }
+
+        public async Task<UpdateBoardResponse> UpdateAsync(string id, BoardAttributes attribute, string newValue) {
+            var mutation = new MutationQueryBuilder().WithUpdateBoard(id, attribute, newValue);
+
+            var response = await client.RunMutation(mutation);
+            using (var sr = new System.IO.StringReader(response.UpdateBoard))
+            using (var reader = new Newtonsoft.Json.JsonTextReader(sr)) {
+                var serializer = Newtonsoft.Json.JsonSerializer.Create();
+                return serializer.Deserialize<UpdateBoardResponse>(reader);
+            }
+        }
+
+        public async Task<Board> DeleteAsync(string id) {
+            var mutation = new MutationQueryBuilder().WithDeleteBoard(new BoardQueryBuilder().WithAllScalarFields(), id);
+
+            var response = await client.RunMutation(mutation);
+            return response.DeleteBoard;
+        }
     }
 }

@@ -101,7 +101,7 @@ namespace MondayApi.Schema {
         [JsonProperty("set_mock_app_subscription")]
         public AppSubscription SetMockAppSubscription { get; set; }
         [JsonProperty("update_board")]
-        public object UpdateBoard { get; set; }
+        public string UpdateBoard { get; set; }
         [JsonProperty("update_doc_block")]
         public DocumentBlock UpdateDocBlock { get; set; }
         [JsonProperty("update_folder")]
