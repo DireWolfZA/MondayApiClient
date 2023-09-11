@@ -11,9 +11,15 @@ namespace MondayApi.Subitems {
             this.client = client;
         }
 
-        public async Task<IEnumerable<Item>> GetAsync(string parentItemID) {
+        public async Task<IEnumerable<Item>> GetAsync(string parentItemID, bool withColumnValues = false, IEnumerable<string> columnIDs = null) {
+            var subItemQueryBuilder = new ItemQueryBuilder().WithAllScalarFields();
+            if (withColumnValues)
+                subItemQueryBuilder = subItemQueryBuilder.WithColumnValues(
+                    new ColumnValueQueryBuilder().WithAllScalarFields(),
+                    Utils.GetParameterIfNotNull(columnIDs)
+                );
             var query = new QueryQueryBuilder().WithItems(
-                new ItemQueryBuilder().WithSubitems(new ItemQueryBuilder().WithAllScalarFields()),
+                new ItemQueryBuilder().WithSubitems(subItemQueryBuilder),
                 ids: Utils.GetParameterToMulti(parentItemID)
             );
             var response = await client.RunQuery(query);
