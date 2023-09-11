@@ -31,5 +31,36 @@ namespace MondayApi.Groups {
             var response = await client.RunQuery(query);
             return response.Boards?.FirstOrDefault()?.Groups?.FirstOrDefault();
         }
+
+        public async Task<Group> CreateAsync(string boardID, Group group, string relativeTo = null, PositionRelative? positionRelative = null) {
+            Utils.RequireArgument(nameof(boardID), boardID);
+            Utils.RequireArgument(nameof(group.Title), group.Title);
+
+            var mutation = new MutationQueryBuilder().WithCreateGroup(
+                new GroupQueryBuilder().WithAllScalarFields(),
+                boardID: boardID,
+                groupName: group.Title,
+                position: group.Position,
+                relativeTo: relativeTo,
+                positionRelativeMethod: positionRelative
+            );
+
+            var response = await client.RunMutation(mutation);
+            return response.CreateGroup;
+        }
+
+        public async Task<Group> UpdateAsync(string boardID, string groupID, GroupAttributes attribute, string newValue) {
+            var mutation = new MutationQueryBuilder().WithUpdateGroup(new GroupQueryBuilder().WithAllScalarFields(), boardID, groupID, attribute, newValue);
+
+            var response = await client.RunMutation(mutation);
+            return response.UpdateGroup;
+        }
+
+        public async Task<Group> DeleteAsync(string boardID, string groupID) {
+            var mutation = new MutationQueryBuilder().WithDeleteGroup(new GroupQueryBuilder().WithAllScalarFields(), boardID, groupID);
+
+            var response = await client.RunMutation(mutation);
+            return response.DeleteGroup;
+        }
     }
 }
