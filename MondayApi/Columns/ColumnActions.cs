@@ -32,6 +32,28 @@ namespace MondayApi.Columns {
             return response.Boards?.FirstOrDefault()?.Columns?.FirstOrDefault();
         }
 
+        public async Task<string> GetSubitemsBoardIDAsync(string boardID) {
+            var query = new QueryQueryBuilder().WithBoards(
+                new BoardQueryBuilder().WithColumns(
+                    new ColumnQueryBuilder().WithSettingsStr(),
+                    types: new GraphQlQueryParameter<IEnumerable<ColumnType>>(null, nameof(ColumnType), defaultValue: new ColumnType[] { ColumnType.Subtasks })
+                ),
+                ids: Utils.GetParameterToMulti(boardID)
+            );
+            var response = await client.RunQuery(query);
+
+            var columnSettingsStr = response.Boards?.FirstOrDefault()?.Columns?.FirstOrDefault()?.SettingsStr;
+            if (columnSettingsStr == null)
+                return null;
+
+            using (var sr = new System.IO.StringReader(columnSettingsStr))
+            using (var reader = new Newtonsoft.Json.JsonTextReader(sr)) {
+                var serializer = Newtonsoft.Json.JsonSerializer.Create();
+                var columnSettings = serializer.Deserialize<ColumnSettings>(reader);
+                return columnSettings.BoardIDs.FirstOrDefault();
+            }
+        }
+
         public async Task<Item> ChangeValueAsync(string boardID, string columnID, string itemID, IColumnValue value, bool? createLabelsIfMissing = null) {
             var mutation = new MutationQueryBuilder().WithChangeColumnValue(
                 new ItemQueryBuilder().WithAllScalarFields().WithColumnValues(
