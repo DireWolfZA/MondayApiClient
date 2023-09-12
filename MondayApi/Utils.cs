@@ -29,5 +29,7 @@ namespace MondayApi {
         };
         public static string SerializeColumnValues(Dictionary<string, IColumnValue> columnValues) =>
             Newtonsoft.Json.JsonConvert.SerializeObject(columnValues, settings);
+        public static string SerializeColumnValue(IColumnValue columnValue) =>
+            Newtonsoft.Json.JsonConvert.SerializeObject(columnValue, settings);
     }
 }

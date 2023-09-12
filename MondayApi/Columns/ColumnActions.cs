@@ -32,6 +32,38 @@ namespace MondayApi.Columns {
             return response.Boards?.FirstOrDefault()?.Columns?.FirstOrDefault();
         }
 
+        public async Task<Item> ChangeValueAsync(string boardID, string columnID, string itemID, IColumnValue value, bool? createLabelsIfMissing = null) {
+            var mutation = new MutationQueryBuilder().WithChangeColumnValue(
+                new ItemQueryBuilder().WithAllScalarFields().WithColumnValues(
+                    new ColumnValueQueryBuilder().WithAllScalarFields(),
+                    ids: Utils.GetParameterToMulti(columnID)
+                ),
+                columnID: columnID,
+                boardID: boardID,
+                value: Utils.SerializeColumnValue(value),
+                itemID: itemID,
+                createLabelsIfMissing: createLabelsIfMissing
+            );
+            var response = await client.RunMutation(mutation);
+            return response.ChangeColumnValue;
+        }
+
+        public async Task<Item> ChangeValueSimpleAsync(string boardID, string columnID, string itemID, string value, bool? createLabelsIfMissing = null) {
+            var mutation = new MutationQueryBuilder().WithChangeSimpleColumnValue(
+                new ItemQueryBuilder().WithAllScalarFields().WithColumnValues(
+                    new ColumnValueQueryBuilder().WithAllScalarFields(),
+                    ids: Utils.GetParameterToMulti(columnID)
+                ),
+                columnID: columnID,
+                boardID: boardID,
+                itemID: itemID,
+                value: value,
+                createLabelsIfMissing: createLabelsIfMissing
+            );
+            var response = await client.RunMutation(mutation);
+            return response.ChangeSimpleColumnValue;
+        }
+
         public async Task<Item> ChangeMultipleValuesAsync(string boardID, string itemID, Dictionary<string, IColumnValue> values, bool? createLabelsIfMissing = null) {
             var mutation = new MutationQueryBuilder().WithChangeMultipleColumnValues(
                 new ItemQueryBuilder().WithAllScalarFields().WithColumnValues(
