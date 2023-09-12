@@ -26,15 +26,17 @@ namespace MondayApi.Subitems {
             return response.Items?.FirstOrDefault().Subitems;
         }
 
-        public async Task<Item> CreateSubitem(string itemName, string parentItemID, bool? createLabelsIfMissing = null) {
+        public async Task<Item> CreateSubitem(string itemName, string parentItemID, Dictionary<string, IColumnValue> columnValues = null, bool? createLabelsIfMissing = null) {
             Utils.RequireArgument(nameof(parentItemID), parentItemID);
             Utils.RequireArgument(nameof(itemName), itemName);
 
             var mutation = new MutationQueryBuilder().WithCreateSubitem(
-                new ItemQueryBuilder().WithAllScalarFields(),
+                new ItemQueryBuilder().WithAllScalarFields().WithColumnValues(
+                    new ColumnValueQueryBuilder().WithAllScalarFields()
+                ),
                 parentItemID: parentItemID,
                 itemName: itemName,
-                columnValues: null,
+                columnValues: Utils.SerializeColumnValues(columnValues),
                 createLabelsIfMissing: createLabelsIfMissing
             );
 

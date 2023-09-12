@@ -75,16 +75,18 @@ namespace MondayApi.Items {
             return string.Concat("https://", response.Account.Slug, ".monday.com", response.Items?.FirstOrDefault()?.RelativeLink);
         }
 
-        public async Task<Item> CreateAsync(string itemName, string boardID, string groupID = null, bool? createLabelsIfMissing = null) {
+        public async Task<Item> CreateAsync(string itemName, string boardID, string groupID = null, Dictionary<string, IColumnValue> columnValues = null, bool? createLabelsIfMissing = null) {
             Utils.RequireArgument(nameof(itemName), itemName);
             Utils.RequireArgument(nameof(boardID), boardID);
 
             var mutation = new MutationQueryBuilder().WithCreateItem(
-                new ItemQueryBuilder().WithAllScalarFields(),
+                new ItemQueryBuilder().WithAllScalarFields().WithColumnValues(
+                    new ColumnValueQueryBuilder().WithAllScalarFields()
+                ),
                 itemName: itemName,
                 boardID: boardID,
                 groupID: groupID,
-                columnValues: null,
+                columnValues: Utils.SerializeColumnValues(columnValues),
                 createLabelsIfMissing: createLabelsIfMissing
             );
 
