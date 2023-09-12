@@ -31,5 +31,19 @@ namespace MondayApi.Columns {
             var response = await client.RunQuery(query);
             return response.Boards?.FirstOrDefault()?.Columns?.FirstOrDefault();
         }
+
+        public async Task<Item> ChangeMultipleValuesAsync(string boardID, string itemID, Dictionary<string, IColumnValue> values, bool? createLabelsIfMissing = null) {
+            var mutation = new MutationQueryBuilder().WithChangeMultipleColumnValues(
+                new ItemQueryBuilder().WithAllScalarFields().WithColumnValues(
+                    new ColumnValueQueryBuilder().WithAllScalarFields()
+                ),
+                boardID: boardID,
+                columnValues: Utils.SerializeColumnValues(values),
+                itemID: itemID,
+                createLabelsIfMissing: createLabelsIfMissing
+            );
+            var response = await client.RunMutation(mutation);
+            return response.ChangeMultipleColumnValues;
+        }
     }
 }
