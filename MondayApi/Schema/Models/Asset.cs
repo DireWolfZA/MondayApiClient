@@ -9,7 +9,7 @@ namespace MondayApi.Schema {
         public string FileExtension { get; set; }
         [JsonProperty("file_size")]
         public int? FileSize { get; set; }
-        public Guid? ID { get; set; }
+        public string ID { get; set; }
         public string Name { get; set; }
         [JsonProperty("original_geometry")]
         public string OriginalGeometry { get; set; }

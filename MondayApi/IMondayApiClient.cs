@@ -5,6 +5,7 @@ using MondayApi.Groups;
 using MondayApi.Items;
 using MondayApi.Schema;
 using MondayApi.Subitems;
+using MondayApi.Updates;
 using MondayApi.Users;
 using MondayApi.Workspaces;
 
@@ -18,6 +19,7 @@ namespace MondayApi {
         IGroupActions Groups { get; }
         IItemActions Items { get; }
         ISubitemActions Subitems { get; }
+        IUpdateActions Updates { get; }
         IUserActions Users { get; }
         IWorkspaceActions Workspaces { get; }
     }

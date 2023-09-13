@@ -1,0 +1,57 @@
+﻿using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using MondayApi.Schema;
+
+//https://developer.monday.com/api-reference/docs/updates
+namespace MondayApi.Updates {
+    public class UpdateActions : IUpdateActions {
+        private readonly IMondayApiClient client;
+        public UpdateActions(IMondayApiClient client) {
+            this.client = client;
+        }
+
+        private UpdateQueryBuilder getUpdateQueryBuilder(bool? includeReplies) {
+            var updateQueryBuilder = new UpdateQueryBuilder().WithAllScalarFields();
+            if (includeReplies.HasValue && includeReplies.Value)
+                updateQueryBuilder = updateQueryBuilder.WithReplies(new ReplyQueryBuilder().WithAllScalarFields());
+            return updateQueryBuilder;
+        }
+
+        public async Task<IEnumerable<Update>> GetAsync(int pageNumber, int numPerPage, bool? includeReplies = false) {
+            var query = new QueryQueryBuilder().WithUpdates(
+                getUpdateQueryBuilder(includeReplies),
+                limit: Utils.GetParameter<int?>(numPerPage),
+                page: Utils.GetParameter<int?>(pageNumber)
+            );
+            var response = await client.RunQuery(query);
+            return response.Updates;
+        }
+
+        public async Task<IEnumerable<Update>> GetByBoardAsync(int pageNumber, int numPerPage, string boardID, bool? includeReplies = false) {
+            var query = new QueryQueryBuilder().WithBoards(
+                new BoardQueryBuilder().WithUpdates(
+                    getUpdateQueryBuilder(includeReplies),
+                    limit: Utils.GetParameter<int?>(numPerPage),
+                    page: Utils.GetParameter<int?>(pageNumber)
+                ),
+                ids: Utils.GetParameterToMulti(boardID)
+            );
+            var response = await client.RunQuery(query);
+            return response.Boards?.FirstOrDefault()?.Updates;
+        }
+
+        public async Task<IEnumerable<Update>> GetByItemAsync(int pageNumber, int numPerPage, string itemID, bool? includeReplies = false) {
+            var query = new QueryQueryBuilder().WithItems(
+                new ItemQueryBuilder().WithUpdates(
+                    getUpdateQueryBuilder(includeReplies),
+                    limit: Utils.GetParameter<int?>(numPerPage),
+                    page: Utils.GetParameter<int?>(pageNumber)
+                ),
+                ids: Utils.GetParameterToMulti(itemID)
+            );
+            var response = await client.RunQuery(query);
+            return response.Items?.FirstOrDefault()?.Updates;
+        }
+    }
+}
