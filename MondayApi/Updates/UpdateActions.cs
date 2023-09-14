@@ -53,5 +53,28 @@ namespace MondayApi.Updates {
             var response = await client.RunQuery(query);
             return response.Items?.FirstOrDefault()?.Updates;
         }
+
+        public async Task<Update> CreateAsync(string itemID, string body, string parentUpdateID = null) {
+            Utils.RequireArgument(nameof(itemID), itemID);
+            Utils.RequireArgument(nameof(body), body);
+
+            var mutation = new MutationQueryBuilder().WithCreateUpdate(
+                getUpdateQueryBuilder(true),
+                body: body,
+                itemID: itemID,
+                parentID: parentUpdateID
+            );
+            var response = await client.RunMutation(mutation);
+            return response.CreateUpdate;
+        }
+
+        public async Task<Update> LikeAsync(string updateID) {
+            var mutation = new MutationQueryBuilder().WithLikeUpdate(
+                new UpdateQueryBuilder().WithID().WithCreatorID().WithCreatedAt().WithUpdatedAt(),
+                updateID: updateID
+            );
+            var response = await client.RunMutation(mutation);
+            return response.LikeUpdate;
+        }
     }
 }
