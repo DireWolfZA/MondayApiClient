@@ -76,5 +76,23 @@ namespace MondayApi.Updates {
             var response = await client.RunMutation(mutation);
             return response.LikeUpdate;
         }
+
+        public async Task<Update> DeleteAsync(string updateID) {
+            var mutation = new MutationQueryBuilder().WithDeleteUpdate(
+                getUpdateQueryBuilder(true),
+                id: updateID
+            );
+            var response = await client.RunMutation(mutation);
+            return response.DeleteUpdate;
+        }
+
+        public async Task<Item> ClearForItemAsync(string itemID) {
+            var mutation = new MutationQueryBuilder().WithClearItemUpdates(
+                new ItemQueryBuilder().WithUpdates(new UpdateQueryBuilder().WithAllScalarFields()),
+                itemID: itemID
+            );
+            var response = await client.RunMutation(mutation);
+            return response.ClearItemUpdates;
+        }
     }
 }

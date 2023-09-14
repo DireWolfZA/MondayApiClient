@@ -10,5 +10,7 @@ namespace MondayApi.Updates {
         Task<Update> CreateAsync(string itemID, string body, string parentUpdateID = null);
         /// <summary>Beware - returned data does not resemble the update, and the update ID is not valid</summary>
         Task<Update> LikeAsync(string updateID);
+        Task<Update> DeleteAsync(string updateID);
+        Task<Item> ClearForItemAsync(string itemID);
     }
 }
