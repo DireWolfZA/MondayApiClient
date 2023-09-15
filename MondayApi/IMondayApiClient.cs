@@ -1,4 +1,4 @@
-﻿using System.Threading.Tasks;
+using System.Threading.Tasks;
 using MondayApi.Boards;
 using MondayApi.Columns;
 using MondayApi.Groups;

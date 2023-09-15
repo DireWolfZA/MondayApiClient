@@ -1,4 +1,4 @@
-﻿using Newtonsoft.Json;
+using Newtonsoft.Json;
 
 namespace MondayApi.Boards {
     // https://developer.monday.com/api-reference/docs/boards#update-a-board
