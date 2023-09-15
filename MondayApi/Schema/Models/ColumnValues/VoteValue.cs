@@ -15,6 +15,6 @@ namespace MondayApi.Schema {
         [JsonProperty("vote_count")]
         public int? VoteCount { get; set; }
         [JsonProperty("voter_ids")]
-        public ICollection<Guid> VoterIDs { get; set; }
+        public ICollection<string> VoterIDs { get; set; }
     }
 }

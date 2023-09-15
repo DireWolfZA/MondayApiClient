@@ -1,4 +1,3 @@
-using System;
 using Newtonsoft.Json;
 
 namespace MondayApi.Schema {
@@ -7,7 +6,7 @@ namespace MondayApi.Schema {
         public Column Column { get; set; }
         public string ID { get; set; }
         [JsonProperty("item_id")]
-        public Guid? ItemID { get; set; }
+        public string ItemID { get; set; }
         public string Text { get; set; }
         public ColumnType? Type { get; set; }
         public object Value { get; set; }

@@ -15,7 +15,7 @@ namespace MondayApi.Schema {
         public string Text { get; set; }
         public ColumnType? Type { get; set; }
         [JsonProperty("update_id")]
-        public Guid? UpdateID { get; set; }
+        public string UpdateID { get; set; }
         [JsonProperty("updated_at")]
         public DateTimeOffset? UpdatedAt { get; set; }
         public object Value { get; set; }

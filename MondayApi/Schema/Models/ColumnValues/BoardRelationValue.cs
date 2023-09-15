@@ -8,7 +8,7 @@ namespace MondayApi.Schema {
         public Column Column { get; set; }
         public string ID { get; set; }
         [JsonProperty("linked_item_ids")]
-        public ICollection<Guid> LinkedItemIDs { get; set; }
+        public ICollection<string> LinkedItemIDs { get; set; }
         [JsonProperty("linked_items")]
         public ICollection<Item> LinkedItems { get; set; }
         public string Text { get; set; }
@@ -16,5 +16,11 @@ namespace MondayApi.Schema {
         [JsonProperty("updated_at")]
         public DateTimeOffset? UpdatedAt { get; set; }
         public object Value { get; set; }
+    }
+
+    [GraphQlObjectType("BoardRelationValue__unused")]
+    public class BoardRelationValueForUpdate : BoardRelationValue {
+        [JsonProperty("item_ids")]
+        public new ICollection<string> LinkedItemIDs { get; set; }
     }
 }
