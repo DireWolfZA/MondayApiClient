@@ -32,9 +32,12 @@ namespace MondayApi {
         public static string SerializeColumnValues(List<IColumnValue> columnValues) {
             if (columnValues == null)
                 return null;
-            var dict = columnValues.ToDictionary(column => column.ID);
-            foreach (var kv in dict)
-                kv.Value.ID = null;
+            var dict = columnValues.ToDictionary<IColumnValue, string, object>(column => column.ID, column => {
+                column.ID = null;
+                if (column is TextValue)
+                    return column.Text;
+                return column;
+            });
             return Newtonsoft.Json.JsonConvert.SerializeObject(dict, settings);
         }
 
