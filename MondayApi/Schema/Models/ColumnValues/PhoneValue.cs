@@ -15,4 +15,10 @@ namespace MondayApi.Schema {
         public DateTimeOffset? UpdatedAt { get; set; }
         public object Value { get; set; }
     }
+
+    [GraphQlObjectType("PhoneValue__unused")]
+    public class PhoneValueForUpdate : PhoneValue {
+        [JsonProperty("countryShortName")] // see https://developer.monday.com/api-reference/docs/phone#json
+        public new string CountryShortName { get; set; }
+    }
 }
