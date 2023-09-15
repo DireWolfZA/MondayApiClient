@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using MondayApi.Schema;
 
 namespace MondayApi {
@@ -27,9 +28,21 @@ namespace MondayApi {
             },
             NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore
         };
-        public static string SerializeColumnValues(Dictionary<string, IColumnValue> columnValues) =>
-            columnValues == null ? null : Newtonsoft.Json.JsonConvert.SerializeObject(columnValues, settings);
-        public static string SerializeColumnValue(IColumnValue columnValue) =>
-            columnValue == null ? null : Newtonsoft.Json.JsonConvert.SerializeObject(columnValue, settings);
+
+        public static string SerializeColumnValues(List<IColumnValue> columnValues) {
+            if (columnValues == null)
+                return null;
+            var dict = columnValues.ToDictionary(column => column.ID);
+            foreach (var kv in dict)
+                kv.Value.ID = null;
+            return Newtonsoft.Json.JsonConvert.SerializeObject(dict, settings);
+        }
+
+        public static string SerializeColumnValue(IColumnValue columnValue) {
+            if (columnValue == null)
+                return null;
+            columnValue.ID = null;
+            return Newtonsoft.Json.JsonConvert.SerializeObject(columnValue, settings);
+        }
     }
 }

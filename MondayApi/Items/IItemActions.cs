@@ -11,8 +11,7 @@ namespace MondayApi.Items {
         Task<Item> GetOneAsync(string id,
             bool withColumnValues = false, IEnumerable<string> columnIDs = null);
         Task<string> GetLinkAsync(string id);
-        /// <param name="columnValues"><see cref="KeyValuePair{TKey, TValue}.Key"/> in this Dictionary is the column ID</param>
-        Task<Item> CreateAsync(string itemName, string boardID, string groupID = null, Dictionary<string, IColumnValue> columnValues = null, bool? createLabelsIfMissing = null);
+        Task<Item> CreateAsync(string itemName, string boardID, string groupID = null, List<IColumnValue> columnValues = null, bool? createLabelsIfMissing = null);
         Task<Item> MoveToGroupAsync(string itemID, string groupID);
         Task<Item> DeleteAsync(string id);
     }

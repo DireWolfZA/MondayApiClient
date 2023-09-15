@@ -26,7 +26,7 @@ namespace MondayApi.Subitems {
             return response.Items?.FirstOrDefault().Subitems;
         }
 
-        public async Task<Item> CreateSubitem(string itemName, string parentItemID, Dictionary<string, IColumnValue> columnValues = null, bool? createLabelsIfMissing = null) {
+        public async Task<Item> CreateSubitem(string itemName, string parentItemID, List<IColumnValue> columnValues = null, bool? createLabelsIfMissing = null) {
             Utils.RequireArgument(nameof(parentItemID), parentItemID);
             Utils.RequireArgument(nameof(itemName), itemName);
 

@@ -54,13 +54,13 @@ namespace MondayApi.Columns {
             }
         }
 
-        public async Task<Item> ChangeValueAsync(string boardID, string columnID, string itemID, IColumnValue value, bool? createLabelsIfMissing = null) {
+        public async Task<Item> ChangeValueAsync(string boardID, string itemID, IColumnValue value, bool? createLabelsIfMissing = null) {
             var mutation = new MutationQueryBuilder().WithChangeColumnValue(
                 new ItemQueryBuilder().WithAllScalarFields().WithColumnValues(
                     new ColumnValueQueryBuilder().WithAllScalarFields(),
-                    ids: Utils.GetParameterToMulti(columnID)
+                    ids: Utils.GetParameterToMulti(value.ID)
                 ),
-                columnID: columnID,
+                columnID: value.ID,
                 boardID: boardID,
                 value: Utils.SerializeColumnValue(value),
                 itemID: itemID,
@@ -86,7 +86,7 @@ namespace MondayApi.Columns {
             return response.ChangeSimpleColumnValue;
         }
 
-        public async Task<Item> ChangeMultipleValuesAsync(string boardID, string itemID, Dictionary<string, IColumnValue> values, bool? createLabelsIfMissing = null) {
+        public async Task<Item> ChangeMultipleValuesAsync(string boardID, string itemID, List<IColumnValue> values, bool? createLabelsIfMissing = null) {
             var mutation = new MutationQueryBuilder().WithChangeMultipleColumnValues(
                 new ItemQueryBuilder().WithAllScalarFields().WithColumnValues(
                     new ColumnValueQueryBuilder().WithAllScalarFields()
