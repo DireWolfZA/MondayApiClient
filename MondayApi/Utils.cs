@@ -35,7 +35,13 @@ namespace MondayApi {
             var dict = columnValues.ToDictionary<IColumnValue, string, object>(column => column.ID, column => {
                 column.ID = null;
                 if (column is TextValue)
-                    return column.Text;
+                    return column.Text ?? column.Value;
+                if (column is NumbersValue nv)
+                    return nv.Number ?? nv.Text ?? nv.Value;
+                if (column is PeopleValue pv)
+                    return new PeopleValueForUpdate() {
+                        PersonsAndTeams = pv.PersonsAndTeams.Select(pe => new PeopleEntityForUpdate() { ID = pe.ID, Kind = pe.Kind.ToString().ToLowerInvariant() }).ToList()
+                    };
                 return column;
             });
             return Newtonsoft.Json.JsonConvert.SerializeObject(dict, settings);

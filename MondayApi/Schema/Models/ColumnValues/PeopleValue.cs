@@ -15,4 +15,13 @@ namespace MondayApi.Schema {
         public DateTimeOffset? UpdatedAt { get; set; }
         public object Value { get; set; }
     }
+
+    internal class PeopleValueForUpdate {
+        [JsonProperty("personsAndTeams")] // see https://developer.monday.com/api-reference/docs/people#json
+        public ICollection<PeopleEntityForUpdate> PersonsAndTeams { get; set; }
+    }
+    internal class PeopleEntityForUpdate {
+        public string ID { get; set; }
+        public string Kind { get; set; }
+    }
 }
