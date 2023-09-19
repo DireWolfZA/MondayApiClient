@@ -70,7 +70,7 @@ namespace MondayApi.Schema {
             };
             return WithObjectField("add_file_to_column", alias, assetQueryBuilder, new GraphQlDirective[] { include, skip }, args);
         }
-        public MutationQueryBuilder WithAddFileToUpdate(AssetQueryBuilder assetQueryBuilder, QueryBuilderParameter<Guid> updateID, QueryBuilderParameter<object> file, string alias = null, IncludeDirective include = null, SkipDirective skip = null) {
+        public MutationQueryBuilder WithAddFileToUpdate(AssetQueryBuilder assetQueryBuilder, QueryBuilderParameter<string> updateID, QueryBuilderParameter<object> file, string alias = null, IncludeDirective include = null, SkipDirective skip = null) {
             var args = new List<QueryBuilderArgumentInfo> {
                 new QueryBuilderArgumentInfo { ArgumentName = "update_id", ArgumentValue = updateID },
                 new QueryBuilderArgumentInfo { ArgumentName = "file", ArgumentValue = file }

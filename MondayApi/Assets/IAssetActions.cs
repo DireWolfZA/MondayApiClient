@@ -8,5 +8,7 @@ namespace MondayApi.Assets {
         Task<IEnumerable<Asset>> GetByItemAsync(string itemID);
         Task<IEnumerable<Update>> GetByItemUpdatesAsync(string itemID);
         Task<Asset> GetOneAsync(string id);
+        Task<Asset> UploadFileToUpdateAsync(string updateID, System.IO.Stream file, string filename);
+        Task<Asset> UploadFileToItemAsync(string itemID, string columnID, System.IO.Stream file, string filename);
     }
 }

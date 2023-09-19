@@ -63,5 +63,30 @@ namespace MondayApi.Assets {
             var response = await client.RunQuery(query);
             return response.Assets?.FirstOrDefault();
         }
+
+        public async Task<Asset> UploadFileToUpdateAsync(string updateID, System.IO.Stream file, string filename) {
+            var fileParam = new GraphQlQueryParameter<object>("file", "File!");
+
+            var mutation = new MutationQueryBuilder().WithAddFileToUpdate(
+                new AssetQueryBuilder().WithAllScalarFields(),
+                updateID: updateID,
+                file: fileParam
+            ).WithParameter(fileParam);
+            var response = await client.RunFileMutation(mutation, file, filename);
+            return response.AddFileToUpdate;
+        }
+
+        public async Task<Asset> UploadFileToItemAsync(string itemID, string columnID, System.IO.Stream file, string filename) {
+            var fileParam = new GraphQlQueryParameter<object>("file", "File!");
+
+            var mutation = new MutationQueryBuilder().WithAddFileToColumn(
+                new AssetQueryBuilder().WithAllScalarFields(),
+                itemID: itemID,
+                columnID: columnID,
+                file: fileParam
+            ).WithParameter(fileParam);
+            var response = await client.RunFileMutation(mutation, file, filename);
+            return response.AddFileToColumn;
+        }
     }
 }
