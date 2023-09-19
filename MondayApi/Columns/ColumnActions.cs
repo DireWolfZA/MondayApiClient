@@ -36,7 +36,7 @@ namespace MondayApi.Columns {
             var query = new QueryQueryBuilder().WithBoards(
                 new BoardQueryBuilder().WithColumns(
                     new ColumnQueryBuilder().WithSettingsStr(),
-                    types: new GraphQlQueryParameter<IEnumerable<ColumnType>>(null, nameof(ColumnType), defaultValue: new ColumnType[] { ColumnType.Subtasks })
+                    types: Utils.GetParameterWithNameToMulti(ColumnType.Subtasks)
                 ),
                 ids: Utils.GetParameterToMulti(boardID)
             );

@@ -23,7 +23,7 @@ namespace MondayApi.Assets {
                         )
                     ),
                     ids: Utils.GetParameterToMulti(columnID),
-                    types: new GraphQlQueryParameter<IEnumerable<ColumnType>>(null, nameof(ColumnType), new[] { ColumnType.File })
+                    types: Utils.GetParameterWithNameToMulti(ColumnType.File)
                 ),
                 ids: Utils.GetParameterToMulti(itemID)
             );
