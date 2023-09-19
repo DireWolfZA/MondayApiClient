@@ -1,4 +1,5 @@
 using System.Threading.Tasks;
+using MondayApi.Assets;
 using MondayApi.Boards;
 using MondayApi.Columns;
 using MondayApi.Groups;
@@ -14,6 +15,7 @@ namespace MondayApi {
         Task<Query> RunQuery(QueryQueryBuilder queryBuilder);
         Task<Mutation> RunMutation(MutationQueryBuilder queryBuilder);
 
+        IAssetActions Assets { get; }
         IBoardActions Boards { get; }
         IColumnActions Columns { get; }
         IGroupActions Groups { get; }

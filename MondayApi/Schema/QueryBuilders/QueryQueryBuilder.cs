@@ -28,7 +28,7 @@ namespace MondayApi.Schema {
         protected override string TypeName => "Query";
         public override IReadOnlyList<GraphQlFieldMetadata> AllFields => AllFieldMetadata;
 
-        public QueryQueryBuilder WithAssets(AssetQueryBuilder assetQueryBuilder, QueryBuilderParameter<IEnumerable<Guid>> ids, string alias = null, IncludeDirective include = null, SkipDirective skip = null) {
+        public QueryQueryBuilder WithAssets(AssetQueryBuilder assetQueryBuilder, QueryBuilderParameter<IEnumerable<string>> ids, string alias = null, IncludeDirective include = null, SkipDirective skip = null) {
             var args = new List<QueryBuilderArgumentInfo> {
                 new QueryBuilderArgumentInfo { ArgumentName = "ids", ArgumentValue = ids }
             };
