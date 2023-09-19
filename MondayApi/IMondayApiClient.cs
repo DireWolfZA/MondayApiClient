@@ -14,6 +14,7 @@ namespace MondayApi {
     public interface IMondayApiClient {
         Task<Query> RunQuery(QueryQueryBuilder queryBuilder);
         Task<Mutation> RunMutation(MutationQueryBuilder queryBuilder);
+        Task<Mutation> RunFileMutation(MutationQueryBuilder queryBuilder, System.IO.Stream file, string filename);
 
         IAssetActions Assets { get; }
         IBoardActions Boards { get; }
