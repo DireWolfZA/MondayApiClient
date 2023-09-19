@@ -11,14 +11,14 @@ namespace MondayApi.Updates {
             this.client = client;
         }
 
-        private UpdateQueryBuilder getUpdateQueryBuilder(bool? includeReplies) {
+        private UpdateQueryBuilder getUpdateQueryBuilder(bool includeReplies) {
             var updateQueryBuilder = new UpdateQueryBuilder().WithAllScalarFields();
-            if (includeReplies.HasValue && includeReplies.Value)
+            if (includeReplies)
                 updateQueryBuilder = updateQueryBuilder.WithReplies(new ReplyQueryBuilder().WithAllScalarFields());
             return updateQueryBuilder;
         }
 
-        public async Task<IEnumerable<Update>> GetAsync(int pageNumber, int numPerPage, bool? includeReplies = false) {
+        public async Task<IEnumerable<Update>> GetAsync(int pageNumber, int numPerPage, bool includeReplies = false) {
             var query = new QueryQueryBuilder().WithUpdates(
                 getUpdateQueryBuilder(includeReplies),
                 limit: Utils.GetParameter<int?>(numPerPage),
@@ -28,7 +28,7 @@ namespace MondayApi.Updates {
             return response.Updates;
         }
 
-        public async Task<IEnumerable<Update>> GetByBoardAsync(int pageNumber, int numPerPage, string boardID, bool? includeReplies = false) {
+        public async Task<IEnumerable<Update>> GetByBoardAsync(int pageNumber, int numPerPage, string boardID, bool includeReplies = false) {
             var query = new QueryQueryBuilder().WithBoards(
                 new BoardQueryBuilder().WithUpdates(
                     getUpdateQueryBuilder(includeReplies),
@@ -41,7 +41,7 @@ namespace MondayApi.Updates {
             return response.Boards?.FirstOrDefault()?.Updates;
         }
 
-        public async Task<IEnumerable<Update>> GetByItemAsync(int pageNumber, int numPerPage, string itemID, bool? includeReplies = false) {
+        public async Task<IEnumerable<Update>> GetByItemAsync(int pageNumber, int numPerPage, string itemID, bool includeReplies = false) {
             var query = new QueryQueryBuilder().WithItems(
                 new ItemQueryBuilder().WithUpdates(
                     getUpdateQueryBuilder(includeReplies),

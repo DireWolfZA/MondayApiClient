@@ -11,16 +11,20 @@ namespace MondayApi.Items {
             this.client = client;
         }
 
-        public async Task<ItemsResponse> GetByBoardAsync(string cursor, int numPerPage, string boardID, bool withColumnValues = false, IEnumerable<string> columnIDs = null) {
+        private ItemQueryBuilder getItemQueryBuilder(bool withColumnValues, IEnumerable<string> columnIDs) {
             var itemQueryBuilder = new ItemQueryBuilder().WithAllScalarFields();
             if (withColumnValues)
                 itemQueryBuilder = itemQueryBuilder.WithColumnValues(
                     new ColumnValueQueryBuilder().WithAllScalarFields(),
                     Utils.GetParameterIfNotNull(columnIDs)
                 );
+            return itemQueryBuilder;
+        }
+
+        public async Task<ItemsResponse> GetByBoardAsync(string cursor, int numPerPage, string boardID, bool withColumnValues = false, IEnumerable<string> columnIDs = null) {
             var query = new QueryQueryBuilder().WithBoards(
                 new BoardQueryBuilder().WithItemsPage(
-                    new ItemsResponseQueryBuilder().WithCursor().WithItems(itemQueryBuilder),
+                    new ItemsResponseQueryBuilder().WithCursor().WithItems(getItemQueryBuilder(withColumnValues, columnIDs)),
                     limit: Utils.GetParameter(numPerPage),
                     cursor: Utils.GetParameter(cursor)
                 ),
@@ -31,16 +35,10 @@ namespace MondayApi.Items {
         }
 
         public async Task<ItemsResponse> GetByBoardGroupAsync(string cursor, int numPerPage, string boardID, string groupID, bool withColumnValues = false, IEnumerable<string> columnIDs = null) {
-            var itemQueryBuilder = new ItemQueryBuilder().WithAllScalarFields();
-            if (withColumnValues)
-                itemQueryBuilder = itemQueryBuilder.WithColumnValues(
-                    new ColumnValueQueryBuilder().WithAllScalarFields(),
-                    Utils.GetParameterIfNotNull(columnIDs)
-                );
             var query = new QueryQueryBuilder().WithBoards(
                 new BoardQueryBuilder().WithGroups(
                     new GroupQueryBuilder().WithItemsPage(
-                        new ItemsResponseQueryBuilder().WithCursor().WithItems(itemQueryBuilder),
+                        new ItemsResponseQueryBuilder().WithCursor().WithItems(getItemQueryBuilder(withColumnValues, columnIDs)),
                         limit: Utils.GetParameter(numPerPage),
                         cursor: Utils.GetParameter(cursor)
                     ),
@@ -53,14 +51,8 @@ namespace MondayApi.Items {
         }
 
         public async Task<Item> GetOneAsync(string id, bool withColumnValues = false, IEnumerable<string> columnIDs = null) {
-            var itemQueryBuilder = new ItemQueryBuilder().WithAllScalarFields();
-            if (withColumnValues)
-                itemQueryBuilder = itemQueryBuilder.WithColumnValues(
-                    new ColumnValueQueryBuilder().WithAllScalarFields(),
-                    Utils.GetParameterIfNotNull(columnIDs)
-                );
             var query = new QueryQueryBuilder().WithItems(
-                itemQueryBuilder,
+                getItemQueryBuilder(withColumnValues, columnIDs),
                 ids: Utils.GetParameterToMulti(id)
             );
             var response = await client.RunQuery(query);
@@ -80,9 +72,7 @@ namespace MondayApi.Items {
             Utils.RequireArgument(nameof(boardID), boardID);
 
             var mutation = new MutationQueryBuilder().WithCreateItem(
-                new ItemQueryBuilder().WithAllScalarFields().WithColumnValues(
-                    new ColumnValueQueryBuilder().WithAllScalarFields()
-                ),
+                getItemQueryBuilder(true, null),
                 itemName: itemName,
                 boardID: boardID,
                 groupID: groupID,
