@@ -11,6 +11,26 @@ namespace MondayApi.Assets {
             this.client = client;
         }
 
+        public async Task<IEnumerable<IEnumerable<FileValueItem>>> GetItemFilesAsync(string itemID, string columnID = null) {
+            var query = new QueryQueryBuilder().WithItems(
+                new ItemQueryBuilder().WithColumnValues(
+                    new ColumnValueQueryBuilder().WithAllScalarFields().WithFileValueFragment(
+                        new FileValueQueryBuilder().WithFiles(
+                            new FileValueItemQueryBuilder().WithAllScalarFields() // ExceptCreatedAt to work around bug in current version of API - returns values like `55686-09-26T02:33:47+00:00`
+                                .WithFileAssetValueFragment(new FileAssetValueQueryBuilder().WithAllScalarFields().ExceptCreatedAt().WithAsset(new AssetQueryBuilder().WithAllScalarFields()))
+                                .WithFileDocValueFragment(new FileDocValueQueryBuilder().WithAllScalarFields().ExceptCreatedAt().WithDoc(new DocumentQueryBuilder().WithAllScalarFields()))
+                                .WithFileLinkValueFragment(new FileLinkValueQueryBuilder().WithAllScalarFields().ExceptCreatedAt())
+                        )
+                    ),
+                    ids: Utils.GetParameterToMulti(columnID),
+                    types: new GraphQlQueryParameter<IEnumerable<ColumnType>>(null, nameof(ColumnType), new[] { ColumnType.File })
+                ),
+                ids: Utils.GetParameterToMulti(itemID)
+            );
+            var response = await client.RunQuery(query);
+            return response.Items?.FirstOrDefault()?.ColumnValues?.OfType<FileValue>()?.Select(fv => fv.Files);
+        }
+
         public async Task<IEnumerable<Asset>> GetByItemAsync(string itemID) {
             var query = new QueryQueryBuilder().WithItems(
                 new ItemQueryBuilder().WithAssets(
