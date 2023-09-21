@@ -37,15 +37,22 @@ namespace MondayApi {
                 return null;
             var dict = columnValues.ToDictionary<IColumnValue, string, object>(column => column.ID, column => {
                 column.ID = null;
-                if (column is TextValue)
-                    return column.Text ?? column.Value;
-                if (column is NumbersValue nv)
-                    return nv.Number ?? nv.Text ?? nv.Value;
-                if (column is PeopleValue pv)
-                    return new PeopleValueForUpdate() {
-                        PersonsAndTeams = pv.PersonsAndTeams.Select(pe => new PeopleEntityForUpdate() { ID = pe.ID, Kind = pe.Kind.ToString().ToLowerInvariant() }).ToList()
-                    };
-                return column;
+                switch (column) {
+                    case TextValue tv:
+                        return tv.Text ?? tv.Value;
+                    case NumbersValue nv:
+                        return nv.Number ?? nv.Text ?? nv.Value;
+                    case PeopleValue pv:
+                        return new PeopleValueForUpdate() {
+                            PersonsAndTeams = pv.PersonsAndTeams.Select(pe => new PeopleEntityForUpdate() { ID = pe.ID, Kind = pe.Kind.ToString().ToLowerInvariant() }).ToList()
+                        };
+                    case CheckboxValue cv:
+                        return cv.Checked.HasValue && cv.Checked.Value
+                            ? new CheckboxValueForUpdate() { Checked = "true" }
+                            : null;
+                    default:
+                        return column;
+                }
             });
             return Newtonsoft.Json.JsonConvert.SerializeObject(dict, settings);
         }

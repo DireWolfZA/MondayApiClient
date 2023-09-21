@@ -13,4 +13,8 @@ namespace MondayApi.Schema {
         public DateTimeOffset? UpdatedAt { get; set; }
         public object Value { get; set; }
     }
+
+    internal class CheckboxValueForUpdate {
+        public string Checked { get; set; } // see https://developer.monday.com/api-reference/docs/checkbox#json
+    }
 }
