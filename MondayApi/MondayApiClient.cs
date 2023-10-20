@@ -43,7 +43,7 @@ namespace MondayApi {
             if (response.Errors != null)
                 throw MondayException.FromErrors(response.Errors);
             if (response.Data == null)
-                throw new MondayException(queryResponse);
+                throw new AggregateException(new[] { new MondayException(queryResponse) });
 
 #if DEBUG
             if (Environment.GetEnvironmentVariable(EnvironmentDebugShowResponse) != null)
@@ -68,7 +68,7 @@ namespace MondayApi {
             if (response.Errors != null)
                 throw MondayException.FromErrors(response.Errors);
             if (response.Data == null)
-                throw new MondayException(queryResponse);
+                throw new AggregateException(new[] { new MondayException(queryResponse) });
 
 #if DEBUG
             if (Environment.GetEnvironmentVariable(EnvironmentDebugShowResponse) != null)
@@ -93,7 +93,7 @@ namespace MondayApi {
             if (response.Errors != null)
                 throw MondayException.FromErrors(response.Errors);
             if (response.Data == null)
-                throw new MondayException(queryResponse);
+                throw new AggregateException(new[] { new MondayException(queryResponse) });
 
 #if DEBUG
             if (Environment.GetEnvironmentVariable(EnvironmentDebugShowResponse) != null)
