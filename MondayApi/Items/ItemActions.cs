@@ -15,7 +15,13 @@ namespace MondayApi.Items {
             var itemQueryBuilder = new ItemQueryBuilder().WithAllScalarFields();
             if (withColumnValues)
                 itemQueryBuilder = itemQueryBuilder.WithColumnValues(
-                    new ColumnValueQueryBuilder().WithAllScalarFields(),
+                    new ColumnValueQueryBuilder()
+                        .WithAllScalarFields()
+                        .WithPeopleValueFragment(new PeopleValueQueryBuilder().WithPersonsAndTeams(new PeopleEntityQueryBuilder().WithAllScalarFields()))
+                        .WithBoardRelationValueFragment(new BoardRelationValueQueryBuilder().WithLinkedItemIDs())
+                        .WithStatusValueFragment(new StatusValueQueryBuilder().WithIndex())
+                        .WithNumbersValueFragment(new NumbersValueQueryBuilder().WithNumber())
+                    ,
                     Utils.GetParameterIfNotNull(columnIDs)
                 );
             return itemQueryBuilder;
