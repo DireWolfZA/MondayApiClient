@@ -10,18 +10,32 @@ namespace MondayApi {
         public MondayException(GraphQLError error) : base(error.Message) {
             ErrorData = error;
         }
+
+        public MondayApiError MondayApiError { get; }
+        public MondayException(MondayApiError mondayApiError) : base(mondayApiError.ErrorMessage) {
+            MondayApiError = mondayApiError;
+        }
+
         public MondayException(string error) : base(error) { }
 
         public override string ToString() {
-            if (ErrorData != null) {
+            if (ErrorData != null || MondayApiError != null) {
                 var sb = new StringBuilder();
                 string[] str = base.ToString().Split(new[] { Environment.NewLine }, 2, StringSplitOptions.None);
                 sb.AppendLine(str[0]);
 
                 var lineData = new List<string>();
 
-                if (ErrorData.Path?.Count > 0)
+                if (ErrorData?.Path?.Count > 0)
                     lineData.Add($"Path: {string.Join(".", ErrorData.Path.Select(p => p.ToString()))}");
+                if (MondayApiError?.ErrorCode != null)
+                    lineData.Add($"Error Code: {MondayApiError.ErrorCode}");
+                if (MondayApiError?.StatusCode != null)
+                    lineData.Add($"Status Code: {MondayApiError.StatusCode}");
+                if (MondayApiError?.ErrorMessage != null)
+                    lineData.Add($"Error Message: {MondayApiError.ErrorMessage}");
+                if (MondayApiError?.Errors != null && MondayApiError.Errors.Length > 1)
+                    lineData.Add($"Errors: {string.Join("; ", MondayApiError.Errors.Skip(1))}");
 
                 if (lineData.Count > 0)
                     sb.AppendLine(string.Join(", ", lineData));
