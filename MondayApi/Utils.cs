@@ -63,5 +63,15 @@ namespace MondayApi {
             columnValue.ID = null;
             return Newtonsoft.Json.JsonConvert.SerializeObject(columnValue, settings);
         }
+
+        internal static bool TryDeserializeMondayApiError(string response, out MondayApiError mondayApiError) {
+            try {
+                mondayApiError = Newtonsoft.Json.JsonConvert.DeserializeObject<MondayApiError>(response, settings);
+                return true;
+            } catch (Newtonsoft.Json.JsonReaderException) {
+                mondayApiError = null;
+                return false;
+            }
+        }
     }
 }

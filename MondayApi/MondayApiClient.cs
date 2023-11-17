@@ -39,11 +39,20 @@ namespace MondayApi {
             if (query == null)
                 query = queryBuilder.Build();
 
-            var response = await client.SendQueryAsync<Query>(new GraphQL.GraphQLRequest(query));
+            GraphQL.GraphQLResponse<Query> response;
+            try {
+                response = await client.SendQueryAsync<Query>(new GraphQL.GraphQLRequest(query));
+            } catch (Newtonsoft.Json.JsonSerializationException) {
+                // attempt to convert to MondayApiError. If it fails, throw original JsonSerializationException
+                if (Utils.TryDeserializeMondayApiError(queryResponse, out var mondayApiError))
+                    throw new AggregateException(new MondayException(mondayApiError));
+                throw;
+            }
+
             if (response.Errors != null)
                 throw MondayException.FromErrors(response.Errors);
             if (response.Data == null)
-                throw new AggregateException(new[] { new MondayException(queryResponse) });
+                throw new AggregateException(new MondayException(queryResponse));
 
 #if DEBUG
             if (Environment.GetEnvironmentVariable(EnvironmentDebugShowResponse) != null)
@@ -64,11 +73,19 @@ namespace MondayApi {
             if (query == null)
                 query = queryBuilder.Build();
 
-            var response = await client.SendMutationAsync<Mutation>(new GraphQL.GraphQLRequest(query));
+            GraphQL.GraphQLResponse<Mutation> response;
+            try {
+                response = await client.SendMutationAsync<Mutation>(new GraphQL.GraphQLRequest(query));
+            } catch (Newtonsoft.Json.JsonSerializationException) {
+                if (Utils.TryDeserializeMondayApiError(queryResponse, out var mondayApiError))
+                    throw new AggregateException(new MondayException(mondayApiError));
+                throw;
+            }
+
             if (response.Errors != null)
                 throw MondayException.FromErrors(response.Errors);
             if (response.Data == null)
-                throw new AggregateException(new[] { new MondayException(queryResponse) });
+                throw new AggregateException(new MondayException(queryResponse));
 
 #if DEBUG
             if (Environment.GetEnvironmentVariable(EnvironmentDebugShowResponse) != null)
@@ -89,11 +106,19 @@ namespace MondayApi {
             if (query == null)
                 query = queryBuilder.Build();
 
-            var response = await client.SendMutationAsync<Mutation>(new MondayFileUploadRequest(query, file, filename));
+            GraphQL.GraphQLResponse<Mutation> response;
+            try {
+                response = await client.SendMutationAsync<Mutation>(new MondayFileUploadRequest(query, file, filename));
+            } catch (Newtonsoft.Json.JsonSerializationException) {
+                if (Utils.TryDeserializeMondayApiError(queryResponse, out var mondayApiError))
+                    throw new AggregateException(new MondayException(mondayApiError));
+                throw;
+            }
+
             if (response.Errors != null)
                 throw MondayException.FromErrors(response.Errors);
             if (response.Data == null)
-                throw new AggregateException(new[] { new MondayException(queryResponse) });
+                throw new AggregateException(new MondayException(queryResponse));
 
 #if DEBUG
             if (Environment.GetEnvironmentVariable(EnvironmentDebugShowResponse) != null)
