@@ -10,4 +10,9 @@ namespace MondayApi.Schema {
         public object Value { get; set; }
         public ICollection<DropdownValueOption> Values { get; set; }
     }
+
+    [GraphQlObjectType("DropdownValue__unused")]
+    public class DropdownValueForUpdate : DropdownValue { // see https://developer.monday.com/api-reference/docs/dropdown#json
+        public ICollection<string> Labels { get; set; }
+    }
 }
