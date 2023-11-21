@@ -22,6 +22,7 @@ namespace MondayApi.Items {
                         .WithBoardRelationValueFragment(new BoardRelationValueQueryBuilder().WithLinkedItemIDs())
                         .WithStatusValueFragment(new StatusValueQueryBuilder().WithIndex())
                         .WithNumbersValueFragment(new NumbersValueQueryBuilder().WithNumber())
+                        .WithCheckboxValueFragment(new CheckboxValueQueryBuilder().WithChecked())
                     ,
                     Utils.GetParameterIfNotNull(columnIDs)
                 );

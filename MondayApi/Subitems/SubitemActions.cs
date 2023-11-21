@@ -11,15 +11,26 @@ namespace MondayApi.Subitems {
             this.client = client;
         }
 
-        public async Task<IEnumerable<Item>> GetAsync(string parentItemID, bool withColumnValues = false, IEnumerable<string> columnIDs = null) {
-            var subItemQueryBuilder = new ItemQueryBuilder().WithAllScalarFields();
+        private ItemQueryBuilder getSubitemQueryBuilder(bool withColumnValues, IEnumerable<string> columnIDs) {
+            var itemQueryBuilder = new ItemQueryBuilder().WithAllScalarFields();
             if (withColumnValues)
-                subItemQueryBuilder = subItemQueryBuilder.WithColumnValues(
-                    new ColumnValueQueryBuilder().WithAllScalarFields(),
+                itemQueryBuilder = itemQueryBuilder.WithColumnValues(
+                    new ColumnValueQueryBuilder()
+                        .WithAllScalarFields()
+                        .WithPeopleValueFragment(new PeopleValueQueryBuilder().WithPersonsAndTeams(new PeopleEntityQueryBuilder().WithAllScalarFields()))
+                        .WithBoardRelationValueFragment(new BoardRelationValueQueryBuilder().WithLinkedItemIDs())
+                        .WithStatusValueFragment(new StatusValueQueryBuilder().WithIndex())
+                        .WithNumbersValueFragment(new NumbersValueQueryBuilder().WithNumber())
+                        .WithCheckboxValueFragment(new CheckboxValueQueryBuilder().WithChecked())
+                    ,
                     Utils.GetParameterIfNotNull(columnIDs)
                 );
+            return itemQueryBuilder;
+        }
+
+        public async Task<IEnumerable<Item>> GetAsync(string parentItemID, bool withColumnValues = false, IEnumerable<string> columnIDs = null) {
             var query = new QueryQueryBuilder().WithItems(
-                new ItemQueryBuilder().WithSubitems(subItemQueryBuilder),
+                new ItemQueryBuilder().WithSubitems(getSubitemQueryBuilder(withColumnValues, columnIDs)),
                 ids: Utils.GetParameterToMulti(parentItemID)
             );
             var response = await client.RunQuery(query);
@@ -31,9 +42,7 @@ namespace MondayApi.Subitems {
             Utils.RequireArgument(nameof(itemName), itemName);
 
             var mutation = new MutationQueryBuilder().WithCreateSubitem(
-                new ItemQueryBuilder().WithAllScalarFields().WithColumnValues(
-                    new ColumnValueQueryBuilder().WithAllScalarFields()
-                ),
+                getSubitemQueryBuilder(true, null),
                 parentItemID: parentItemID,
                 itemName: itemName,
                 columnValues: Utils.SerializeColumnValues(columnValues),
