@@ -23,6 +23,7 @@ namespace MondayApi.Items {
                         .WithStatusValueFragment(new StatusValueQueryBuilder().WithIndex())
                         .WithNumbersValueFragment(new NumbersValueQueryBuilder().WithNumber())
                         .WithCheckboxValueFragment(new CheckboxValueQueryBuilder().WithChecked())
+                        .WithPhoneValueFragment(new PhoneValueQueryBuilder().WithCountryShortName())
                     ,
                     Utils.GetParameterIfNotNull(columnIDs)
                 );
