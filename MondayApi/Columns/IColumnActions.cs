@@ -9,6 +9,6 @@ namespace MondayApi.Columns {
         Task<string> GetSubitemsBoardIDAsync(string boardID);
         Task<Item> ChangeValueAsync(string boardID, string itemID, IColumnValue value, bool? createLabelsIfMissing = null);
         Task<Item> ChangeValueSimpleAsync(string boardID, string columnID, string itemID, string value, bool? createLabelsIfMissing = null);
-        Task<Item> ChangeMultipleValuesAsync(string boardID, string itemID, List<IColumnValue> values, bool? createLabelsIfMissing = null);
+        Task<Item> ChangeMultipleValuesAsync(string boardID, string itemID, IEnumerable<IColumnValue> values, bool? createLabelsIfMissing = null);
     }
 }

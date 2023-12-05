@@ -32,7 +32,7 @@ namespace MondayApi {
             NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore
         };
 
-        public static string SerializeColumnValues(List<IColumnValue> columnValues) {
+        public static string SerializeColumnValues(IEnumerable<IColumnValue> columnValues) {
             if (columnValues == null)
                 return null;
             var dict = columnValues.ToDictionary<IColumnValue, string, object>(column => column.ID, column => {

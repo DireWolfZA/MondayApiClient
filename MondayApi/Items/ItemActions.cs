@@ -76,7 +76,7 @@ namespace MondayApi.Items {
             return string.Concat("https://", response.Account.Slug, ".monday.com", response.Items?.FirstOrDefault()?.RelativeLink);
         }
 
-        public async Task<Item> CreateAsync(string itemName, string boardID, string groupID = null, List<IColumnValue> columnValues = null, bool? createLabelsIfMissing = null) {
+        public async Task<Item> CreateAsync(string itemName, string boardID, string groupID = null, IEnumerable<IColumnValue> columnValues = null, bool? createLabelsIfMissing = null) {
             Utils.RequireArgument(nameof(itemName), itemName);
             Utils.RequireArgument(nameof(boardID), boardID);
 

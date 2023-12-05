@@ -86,7 +86,7 @@ namespace MondayApi.Columns {
             return response.ChangeSimpleColumnValue;
         }
 
-        public async Task<Item> ChangeMultipleValuesAsync(string boardID, string itemID, List<IColumnValue> values, bool? createLabelsIfMissing = null) {
+        public async Task<Item> ChangeMultipleValuesAsync(string boardID, string itemID, IEnumerable<IColumnValue> values, bool? createLabelsIfMissing = null) {
             var mutation = new MutationQueryBuilder().WithChangeMultipleColumnValues(
                 new ItemQueryBuilder().WithAllScalarFields().WithColumnValues(
                     new ColumnValueQueryBuilder().WithAllScalarFields()
