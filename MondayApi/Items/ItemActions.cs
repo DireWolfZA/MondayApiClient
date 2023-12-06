@@ -120,6 +120,20 @@ namespace MondayApi.Items {
             return response.MoveItemToBoard;
         }
 
+        public async Task<Item> DuplicateAsync(string itemID, string boardID, bool? withUpdates = false) {
+            Utils.RequireArgument(nameof(itemID), itemID);
+            Utils.RequireArgument(nameof(boardID), boardID);
+
+            var mutation = new MutationQueryBuilder().WithDuplicateItem(new ItemQueryBuilder().WithAllScalarFields(),
+                boardID: boardID,
+                withUpdates: withUpdates,
+                itemID: itemID
+            );
+
+            var response = await client.RunMutation(mutation);
+            return response.DuplicateItem;
+        }
+
         public async Task<Item> DeleteAsync(string id) {
             var mutation = new MutationQueryBuilder().WithDeleteItem(new ItemQueryBuilder().WithAllScalarFields(), id);
 
