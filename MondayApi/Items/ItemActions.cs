@@ -94,10 +94,30 @@ namespace MondayApi.Items {
         }
 
         public async Task<Item> MoveToGroupAsync(string itemID, string groupID) {
+            Utils.RequireArgument(nameof(itemID), itemID);
+            Utils.RequireArgument(nameof(groupID), groupID);
+
             var mutation = new MutationQueryBuilder().WithMoveItemToGroup(new ItemQueryBuilder().WithAllScalarFields(), groupID: groupID, itemID: itemID);
 
             var response = await client.RunMutation(mutation);
             return response.MoveItemToGroup;
+        }
+
+        public async Task<Item> MoveToBoardAsync(string itemID, string boardID, string groupID, IEnumerable<ColumnMappingInput> columnsMapping = null, IEnumerable<ColumnMappingInput> subitemsColumnsMapping = null) {
+            Utils.RequireArgument(nameof(itemID), itemID);
+            Utils.RequireArgument(nameof(boardID), boardID);
+            Utils.RequireArgument(nameof(groupID), groupID);
+
+            var mutation = new MutationQueryBuilder().WithMoveItemToBoard(new ItemQueryBuilder().WithAllScalarFields(),
+                boardID: boardID,
+                groupID: groupID,
+                itemID: itemID,
+                columnsMapping: Utils.GetParameterIfNotNull(columnsMapping),
+                subitemsColumnsMapping: Utils.GetParameterIfNotNull(subitemsColumnsMapping)
+            );
+
+            var response = await client.RunMutation(mutation);
+            return response.MoveItemToBoard;
         }
 
         public async Task<Item> DeleteAsync(string id) {
