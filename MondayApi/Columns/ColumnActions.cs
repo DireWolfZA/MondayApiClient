@@ -20,6 +20,15 @@ namespace MondayApi.Columns {
             return response.Boards?.FirstOrDefault()?.Columns;
         }
 
+        static readonly ColumnType?[] bannedMoveTypes = new ColumnType?[] { ColumnType.Name, ColumnType.Subtasks, ColumnType.Formula };
+        public async Task<ICollection<ColumnMappingInput>> FillColumnMapping(string boardID, ICollection<ColumnMappingInput> columnMapping) {
+            var columns = await GetAsync(boardID);
+
+            foreach (var column in columns.Where(c => !bannedMoveTypes.Contains(c.Type) && !columnMapping.Any(cm => cm.Source == c.ID)))
+                columnMapping.Add(new ColumnMappingInput() { Source = column.ID, Target = null });
+            return columnMapping;
+        }
+
         public async Task<Column> GetOneAsync(string boardID, string columnID) {
             var query = new QueryQueryBuilder().WithBoards(
                 new BoardQueryBuilder().WithColumns(
