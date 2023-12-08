@@ -12,8 +12,13 @@ using MondayApi.Workspaces;
 
 namespace MondayApi {
     public interface IMondayApiClient {
+        Task<T> RunQuery<T>(QueryQueryBuilder queryBuilder);
         Task<Query> RunQuery(QueryQueryBuilder queryBuilder);
+
+        Task<T> RunMutation<T>(MutationQueryBuilder queryBuilder);
         Task<Mutation> RunMutation(MutationQueryBuilder queryBuilder);
+
+        Task<T> RunFileMutation<T>(MutationQueryBuilder queryBuilder, System.IO.Stream file, string filename);
         Task<Mutation> RunFileMutation(MutationQueryBuilder queryBuilder, System.IO.Stream file, string filename);
 
         IAssetActions Assets { get; }
