@@ -13,6 +13,9 @@ namespace MondayApi.Items {
         Task<string> GetLinkAsync(string id);
 
         Task<Item> CreateAsync(string itemName, string boardID, string groupID = null, IEnumerable<IColumnValue> columnValues = null, bool? createLabelsIfMissing = null);
+        /// <summary>Allows creating multiple items with one request</summary>
+        /// <param name="items">Items to be created. Properties used are <see cref="Item.Name"/>, <see cref="Item"/>.<see cref="Board.ID"/>, <see cref="Item"/>.<see cref="Group.ID"/> and <see cref="Item.ColumnValues"/></param>
+        Task<IEnumerable<Item>> CreateMultipleAsync(IEnumerable<Item> items, bool? createLabelsIfMissing = null);
         Task<Item> MoveToGroupAsync(string itemID, string groupID);
         Task<Item> MoveToBoardAsync(string itemID, string boardID, string groupID, IEnumerable<ColumnMappingInput> columnsMapping = null, IEnumerable<ColumnMappingInput> subitemsColumnsMapping = null);
         Task<Item> DuplicateAsync(string itemID, string boardID, bool? withUpdates = false);

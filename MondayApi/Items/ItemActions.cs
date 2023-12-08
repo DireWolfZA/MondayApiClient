@@ -93,6 +93,31 @@ namespace MondayApi.Items {
             return response.CreateItem;
         }
 
+        public async Task<IEnumerable<Item>> CreateMultipleAsync(IEnumerable<Item> items, bool? createLabelsIfMissing = null) {
+            var mutation = new MutationQueryBuilder();
+
+            int createIndex = 0;
+            foreach (var item in items) {
+                Utils.RequireArgument($"{nameof(items)}.{nameof(item.Name)}", item.Name);
+                Utils.RequireArgument($"{nameof(items)}.{nameof(item.Board)}.{nameof(item.Board.ID)}", item.Board.ID);
+
+                mutation = mutation.WithCreateItem(
+                    getItemQueryBuilder(true, null),
+                    itemName: item.Name,
+                    boardID: item.Board.ID,
+                    groupID: item.Group?.ID,
+                    columnValues: Utils.SerializeColumnValues(item.ColumnValues),
+                    createLabelsIfMissing: createLabelsIfMissing,
+
+                    alias: $"createItem{createIndex}"
+                );
+                createIndex++;
+            }
+
+            var response = await client.RunMutation<Newtonsoft.Json.Linq.JObject>(mutation);
+            return response.AsEnumerable<KeyValuePair<string, Newtonsoft.Json.Linq.JToken>>().Select(i => i.Value.ToObject<Item>());
+        }
+
         public async Task<Item> MoveToGroupAsync(string itemID, string groupID) {
             Utils.RequireArgument(nameof(itemID), itemID);
             Utils.RequireArgument(nameof(groupID), groupID);
