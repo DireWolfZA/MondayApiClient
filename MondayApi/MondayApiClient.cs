@@ -20,6 +20,8 @@ namespace MondayApi {
         public const string EnvironmentDebugShowResponse = "DEBUG_SHOWRESPONSE";
 
         public MondayApiClient(string token) {
+            Utils.RequireArgument(nameof(token), string.IsNullOrWhiteSpace(token) ? null : token);
+
             client = new GraphQLHttpClient(baseURL, new DebugSerializer(captureResponse: response => queryResponse = response));
 
             client.HttpClient.DefaultRequestHeaders.Add("Authorization", token);
