@@ -11,11 +11,11 @@ namespace MondayApi.Users {
             this.client = client;
         }
 
-        public async Task<IEnumerable<User>> GetAsync(int pageNumber, int numPerPage) {
+        public async Task<IEnumerable<User>> GetAsync(int? pageNumber = null, int? numPerPage = null) {
             var query = new QueryQueryBuilder().WithUsers(
                 new UserQueryBuilder().WithAllScalarFields(),
-                limit: Utils.GetParameter<int?>(numPerPage),
-                page: Utils.GetParameter<int?>(pageNumber)
+                limit: numPerPage,
+                page: pageNumber
             );
             var response = await client.RunQuery(query);
             return response.Users;
