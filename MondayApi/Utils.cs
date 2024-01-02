@@ -32,37 +32,34 @@ namespace MondayApi {
             NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore
         };
 
+        private static object convertColumn(IColumnValue column) {
+            column.ID = null;
+            switch (column) {
+                case TextValue tv:
+                    return tv.Text ?? tv.Value;
+                case NumbersValue nv:
+                    return nv.Number ?? nv.Text ?? nv.Value;
+                case PeopleValue pv:
+                    return new PeopleValueForUpdate() {
+                        PersonsAndTeams = pv.PersonsAndTeams.Select(pe => new PeopleEntityForUpdate() { ID = pe.ID, Kind = pe.Kind.ToString().ToLowerInvariant() }).ToList()
+                    };
+                case CheckboxValue cv:
+                    return cv.Checked.HasValue && cv.Checked.Value
+                        ? new CheckboxValueForUpdate() { Checked = "true" }
+                        : null;
+                default:
+                    return column;
+            }
+        }
+
         public static string SerializeColumnValues(IEnumerable<IColumnValue> columnValues) {
             if (columnValues == null)
                 return null;
-            var dict = columnValues.ToDictionary<IColumnValue, string, object>(column => column.ID, column => {
-                column.ID = null;
-                switch (column) {
-                    case TextValue tv:
-                        return tv.Text ?? tv.Value;
-                    case NumbersValue nv:
-                        return nv.Number ?? nv.Text ?? nv.Value;
-                    case PeopleValue pv:
-                        return new PeopleValueForUpdate() {
-                            PersonsAndTeams = pv.PersonsAndTeams.Select(pe => new PeopleEntityForUpdate() { ID = pe.ID, Kind = pe.Kind.ToString().ToLowerInvariant() }).ToList()
-                        };
-                    case CheckboxValue cv:
-                        return cv.Checked.HasValue && cv.Checked.Value
-                            ? new CheckboxValueForUpdate() { Checked = "true" }
-                            : null;
-                    default:
-                        return column;
-                }
-            });
+            var dict = columnValues.ToDictionary<IColumnValue, string, object>(column => column.ID, convertColumn);
             return Newtonsoft.Json.JsonConvert.SerializeObject(dict, settings);
         }
-
-        public static string SerializeColumnValue(IColumnValue columnValue) {
-            if (columnValue == null)
-                return null;
-            columnValue.ID = null;
-            return Newtonsoft.Json.JsonConvert.SerializeObject(columnValue, settings);
-        }
+        public static string SerializeColumnValue(IColumnValue columnValue) =>
+            Newtonsoft.Json.JsonConvert.SerializeObject(convertColumn(columnValue), settings);
 
         internal static bool TryDeserializeMondayApiError(string response, out MondayApiError mondayApiError) {
             try {
