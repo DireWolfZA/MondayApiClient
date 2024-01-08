@@ -98,7 +98,7 @@ namespace MondayApi.Schema {
 
             return WithObjectField("items", alias, itemQueryBuilder, new GraphQlDirective[] { include, skip }, args);
         }
-        public QueryQueryBuilder WithItemsPageByColumnValues(ItemsResponseQueryBuilder itemsResponseQueryBuilder, QueryBuilderParameter<int> limit, QueryBuilderParameter<Guid> boardID, QueryBuilderParameter<string> cursor = null, QueryBuilderParameter<IEnumerable<ItemsPageByColumnValuesQuery>> columns = null, string alias = null, IncludeDirective include = null, SkipDirective skip = null) {
+        public QueryQueryBuilder WithItemsPageByColumnValues(ItemsResponseQueryBuilder itemsResponseQueryBuilder, QueryBuilderParameter<int> limit, QueryBuilderParameter<string> boardID, QueryBuilderParameter<string> cursor = null, QueryBuilderParameter<IEnumerable<ItemsPageByColumnValuesQuery>> columns = null, string alias = null, IncludeDirective include = null, SkipDirective skip = null) {
             var args = new List<QueryBuilderArgumentInfo> {
                 new QueryBuilderArgumentInfo { ArgumentName = "limit", ArgumentValue = limit },
                 new QueryBuilderArgumentInfo { ArgumentName = "board_id", ArgumentValue = boardID }

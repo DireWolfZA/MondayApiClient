@@ -34,8 +34,8 @@ namespace MondayApi.Items {
             var query = new QueryQueryBuilder().WithBoards(
                 new BoardQueryBuilder().WithItemsPage(
                     new ItemsResponseQueryBuilder().WithCursor().WithItems(getItemQueryBuilder(withColumnValues, columnIDs)),
-                    limit: Utils.GetParameter(numPerPage),
-                    cursor: Utils.GetParameter(cursor)
+                    limit: numPerPage,
+                    cursor: cursor
                 ),
                 ids: Utils.GetParameterToMulti(boardID)
             );
@@ -43,13 +43,26 @@ namespace MondayApi.Items {
             return response.Boards?.FirstOrDefault()?.ItemsPage;
         }
 
+        //https://developer.monday.com/api-reference/docs/items-page-by-column-values
+        public async Task<ItemsResponse> GetByBoardAsync(string cursor, int numPerPage, string boardID, bool withColumnValues = false, IEnumerable<string> columnIDs = null, IEnumerable<ItemsPageByColumnValuesQuery> columnFilters = null) {
+            var query = new QueryQueryBuilder().WithItemsPageByColumnValues(
+                new ItemsResponseQueryBuilder().WithCursor().WithItems(getItemQueryBuilder(withColumnValues, columnIDs)),
+                limit: numPerPage,
+                boardID: boardID,
+                cursor: cursor,
+                columns: Utils.GetParameterIfNotNull(columnFilters)
+            );
+            var response = await client.RunQuery(query);
+            return response.ItemsPageByColumnValues;
+        }
+
         public async Task<ItemsResponse> GetByBoardGroupAsync(string cursor, int numPerPage, string boardID, string groupID, bool withColumnValues = false, IEnumerable<string> columnIDs = null) {
             var query = new QueryQueryBuilder().WithBoards(
                 new BoardQueryBuilder().WithGroups(
                     new GroupQueryBuilder().WithItemsPage(
                         new ItemsResponseQueryBuilder().WithCursor().WithItems(getItemQueryBuilder(withColumnValues, columnIDs)),
-                        limit: Utils.GetParameter(numPerPage),
-                        cursor: Utils.GetParameter(cursor)
+                        limit: numPerPage,
+                        cursor: cursor
                     ),
                     ids: Utils.GetParameterToMulti(groupID)
                 ),
