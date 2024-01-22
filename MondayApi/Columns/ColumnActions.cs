@@ -108,5 +108,30 @@ namespace MondayApi.Columns {
             var response = await client.RunMutation(mutation);
             return response.ChangeMultipleColumnValues;
         }
+
+        public async Task<IEnumerable<Item>> ChangeMultipleItemsAsync(IEnumerable<ColumnMultipleUpdateValue> values, bool? createLabelsIfMissing = null) {
+            var mutation = new MutationQueryBuilder();
+
+            int createIndex = 0;
+            foreach (var value in values) {
+                mutation = mutation.WithChangeColumnValue(
+                    new ItemQueryBuilder().WithAllScalarFields().WithColumnValues(
+                        new ColumnValueQueryBuilder().WithAllScalarFields(),
+                        ids: Utils.GetParameterToMulti(value.Value.ID)
+                    ),
+                    columnID: value.Value.ID,
+                    boardID: value.BoardID,
+                    value: Utils.SerializeColumnValue(value.Value),
+                    itemID: value.ItemID,
+                    createLabelsIfMissing: createLabelsIfMissing,
+
+                    alias: $"changeColumnValue{createIndex}"
+                );
+                createIndex++;
+            }
+
+            var response = await client.RunMutation<Newtonsoft.Json.Linq.JObject>(mutation);
+            return response.AsEnumerable<KeyValuePair<string, Newtonsoft.Json.Linq.JToken>>().Select(i => i.Value.ToObject<Item>());
+        }
     }
 }
