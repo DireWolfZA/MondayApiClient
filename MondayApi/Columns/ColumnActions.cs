@@ -63,6 +63,7 @@ namespace MondayApi.Columns {
             }
         }
 
+
         public async Task<Item> ChangeValueAsync(string boardID, string itemID, IColumnValue value, bool? createLabelsIfMissing = null) {
             var mutation = new MutationQueryBuilder().WithChangeColumnValue(
                 new ItemQueryBuilder().WithAllScalarFields().WithColumnValues(
@@ -132,6 +133,22 @@ namespace MondayApi.Columns {
 
             var response = await client.RunMutation<Newtonsoft.Json.Linq.JObject>(mutation);
             return response.AsEnumerable<KeyValuePair<string, Newtonsoft.Json.Linq.JToken>>().Select(i => i.Value.ToObject<Item>());
+        }
+
+
+        public async Task<Column> CreateAsync(string boardID, Column column, string afterColumnID = null, string defaults = null) {
+            var mutation = new MutationQueryBuilder().WithCreateColumn(
+                new ColumnQueryBuilder().WithAllScalarFields(),
+                boardID: boardID,
+                title: column.Title,
+                columnType: column.Type,
+                description: column.Description,
+                defaults: defaults,
+                id: column.ID,
+                afterColumnID: afterColumnID
+            );
+            var response = await client.RunMutation(mutation);
+            return response.CreateColumn;
         }
     }
 }
