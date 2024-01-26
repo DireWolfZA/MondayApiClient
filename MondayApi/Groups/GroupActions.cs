@@ -32,15 +32,14 @@ namespace MondayApi.Groups {
             return response.Boards?.FirstOrDefault()?.Groups?.FirstOrDefault();
         }
 
-        public async Task<Group> CreateAsync(string boardID, Group group, string relativeTo = null, PositionRelative? positionRelative = null) {
+        public async Task<Group> CreateAsync(string boardID, string title, string relativeTo = null, PositionRelative? positionRelative = null) {
             Utils.RequireArgument(nameof(boardID), boardID);
-            Utils.RequireArgument(nameof(group.Title), group.Title);
+            Utils.RequireArgument(nameof(title), title);
 
             var mutation = new MutationQueryBuilder().WithCreateGroup(
                 new GroupQueryBuilder().WithAllScalarFields(),
                 boardID: boardID,
-                groupName: group.Title,
-                position: group.Position,
+                groupName: title,
                 relativeTo: relativeTo,
                 positionRelativeMethod: positionRelative
             );
