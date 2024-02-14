@@ -127,7 +127,7 @@ namespace MondayApi.Items {
                 createIndex++;
             }
 
-            var response = await client.RunMutation<Newtonsoft.Json.Linq.JObject>(mutation);
+            var response = await client.Run<Newtonsoft.Json.Linq.JObject>(mutation);
             return response.AsEnumerable<KeyValuePair<string, Newtonsoft.Json.Linq.JToken>>().Select(i => i.Value.ToObject<Item>());
         }
 

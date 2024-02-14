@@ -14,10 +14,13 @@ using MondayApi.Workspaces;
 
 namespace MondayApi {
     public class MondayApiClient : IMondayApiClient {
-        private readonly string baseURL = "https://api.monday.com/v2";
-        private readonly GraphQLHttpClient client;
         public const string EnvironmentDebugShowQuery = "DEBUG_SHOWQUERY";
         public const string EnvironmentDebugShowResponse = "DEBUG_SHOWRESPONSE";
+
+        private readonly string baseURL = "https://api.monday.com/v2";
+        private readonly GraphQLHttpClient client;
+
+        private string queryResponse;
 
         public MondayApiClient(string token) {
             Utils.RequireArgument(nameof(token), string.IsNullOrWhiteSpace(token) ? null : token);
@@ -29,19 +32,21 @@ namespace MondayApi {
             client.HttpClient.DefaultRequestHeaders.Add("API-Version", "2023-10");
         }
 
-        private string queryResponse;
+        public Task<Query> RunQuery(QueryQueryBuilder queryBuilder) => Run<Query>(queryBuilder);
+        public Task<Mutation> RunMutation(MutationQueryBuilder queryBuilder) => Run<Mutation>(queryBuilder);
+        public Task<Mutation> RunFileMutation(MutationQueryBuilder queryBuilder, System.IO.Stream file, string filename) => RunFileMutation<Mutation>(queryBuilder, file, filename);
 
-        public Task<Query> RunQuery(QueryQueryBuilder queryBuilder) => RunQuery<Query>(queryBuilder);
-        public async Task<T> RunQuery<T>(QueryQueryBuilder queryBuilder) {
+
+        public async Task<T> Run<T>(GraphQlQueryBuilder queryOrMutationBuilder) {
             string query = null;
 #if DEBUG
             if (Environment.GetEnvironmentVariable(EnvironmentDebugShowQuery) != null) {
-                query = queryBuilder.Build(Formatting.Indented);
+                query = queryOrMutationBuilder.Build(Formatting.Indented);
                 Console.WriteLine(query);
             }
 #endif
             if (query == null)
-                query = queryBuilder.Build();
+                query = queryOrMutationBuilder.Build();
 
             GraphQL.GraphQLResponse<T> response;
             try {
@@ -66,42 +71,7 @@ namespace MondayApi {
             return response.Data;
         }
 
-        public Task<Mutation> RunMutation(MutationQueryBuilder queryBuilder) => RunMutation<Mutation>(queryBuilder);
-        public async Task<T> RunMutation<T>(MutationQueryBuilder queryBuilder) {
-            string query = null;
-#if DEBUG
-            if (Environment.GetEnvironmentVariable(EnvironmentDebugShowQuery) != null) {
-                query = queryBuilder.Build(Formatting.Indented);
-                Console.WriteLine(query);
-            }
-#endif
-            if (query == null)
-                query = queryBuilder.Build();
-
-            GraphQL.GraphQLResponse<T> response;
-            try {
-                response = await client.SendMutationAsync<T>(new GraphQL.GraphQLRequest(query));
-            } catch (Newtonsoft.Json.JsonSerializationException) {
-                if (Utils.TryDeserializeMondayApiError(queryResponse, out var mondayApiError))
-                    throw new AggregateException(new MondayException(mondayApiError));
-                throw;
-            }
-
-            if (response.Errors != null)
-                throw MondayException.FromErrors(response.Errors);
-            if (response.Data == null)
-                throw new AggregateException(new MondayException(queryResponse));
-
-#if DEBUG
-            if (Environment.GetEnvironmentVariable(EnvironmentDebugShowResponse) != null)
-                Console.WriteLine(queryResponse);
-#endif
-
-            return response.Data;
-        }
-
-        public Task<Mutation> RunFileMutation(MutationQueryBuilder queryBuilder, System.IO.Stream file, string filename) => RunFileMutation<Mutation>(queryBuilder, file, filename);
-        public async Task<T> RunFileMutation<T>(MutationQueryBuilder queryBuilder, System.IO.Stream file, string filename) {
+        public async Task<T> RunFileMutation<T>(GraphQlQueryBuilder queryBuilder, System.IO.Stream file, string filename) {
             string query = null;
 #if DEBUG
             if (Environment.GetEnvironmentVariable(EnvironmentDebugShowQuery) != null) {
