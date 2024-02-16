@@ -3,7 +3,7 @@ using Newtonsoft.Json;
 
 namespace MondayApi.Schema {
     [GraphQlObjectType("CheckboxValue")]
-    public class CheckboxValue : IColumnValue {
+    public class CheckboxValue : IMirroredValue, IColumnValue {
         public bool? Checked { get; set; }
         public Column Column { get; set; }
         public string ID { get; set; }

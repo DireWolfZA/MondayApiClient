@@ -10,7 +10,8 @@ namespace MondayApi.Schema {
             new GraphQlFieldMetadata { Name = "updated_at" },
             new GraphQlFieldMetadata { Name = "value", IsComplex = true },
             new GraphQlFieldMetadata { Name = "vote_count" },
-            new GraphQlFieldMetadata { Name = "voter_ids", IsComplex = true }
+            new GraphQlFieldMetadata { Name = "voter_ids", IsComplex = true },
+            new GraphQlFieldMetadata { Name = "voters", IsComplex = true, QueryBuilderType = typeof(UserQueryBuilder) }
         };
 
         protected override string TypeName => "VoteValue";
@@ -48,5 +49,9 @@ namespace MondayApi.Schema {
             WithScalarField("voter_ids", alias, new GraphQlDirective[] { include, skip });
         public VoteValueQueryBuilder ExceptVoterIDs() =>
             ExceptField("voter_ids");
+        public VoteValueQueryBuilder WithVoters(UserQueryBuilder userQueryBuilder, string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
+            WithObjectField("voters", alias, userQueryBuilder, new GraphQlDirective[] { include, skip });
+        public VoteValueQueryBuilder ExceptVoters() =>
+            ExceptField("voters");
     }
 }

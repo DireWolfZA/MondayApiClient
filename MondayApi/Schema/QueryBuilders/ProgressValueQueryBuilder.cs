@@ -12,6 +12,7 @@ namespace MondayApi.Schema {
 
         protected override string TypeName => "ProgressValue";
         public override IReadOnlyList<GraphQlFieldMetadata> AllFields => AllFieldMetadata;
+
         public ProgressValueQueryBuilder WithColumn(ColumnQueryBuilder columnQueryBuilder, string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
             WithObjectField("column", alias, columnQueryBuilder, new GraphQlDirective[] { include, skip });
         public ProgressValueQueryBuilder ExceptColumn() =>

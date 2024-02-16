@@ -4,7 +4,7 @@ using Newtonsoft.Json;
 
 namespace MondayApi.Schema {
     [GraphQlObjectType("VoteValue")]
-    public class VoteValue : IColumnValue {
+    public class VoteValue : IMirroredValue, IColumnValue {
         public Column Column { get; set; }
         public string ID { get; set; }
         public string Text { get; set; }
@@ -16,5 +16,6 @@ namespace MondayApi.Schema {
         public int? VoteCount { get; set; }
         [JsonProperty("voter_ids")]
         public ICollection<string> VoterIDs { get; set; }
+        public ICollection<User> Voters { get; set; }
     }
 }

@@ -3,8 +3,10 @@ using Newtonsoft.Json;
 
 namespace MondayApi.Schema {
     [GraphQlObjectType("MirrorValue")]
-    public class MirrorValue : IColumnValue {
+    public class MirrorValue : IMirroredValue, IColumnValue {
         public Column Column { get; set; }
+        [JsonProperty("display_value")]
+        public string DisplayValue { get; set; }
         public string ID { get; set; }
         [JsonProperty("mirrored_items")]
         public ICollection<MirroredItem> MirroredItems { get; set; }

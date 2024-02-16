@@ -6,6 +6,7 @@ namespace MondayApi.Schema {
             new GraphQlFieldMetadata { Name = "column", IsComplex = true, QueryBuilderType = typeof(ColumnQueryBuilder) },
             new GraphQlFieldMetadata { Name = "id" },
             new GraphQlFieldMetadata { Name = "tag_ids", IsComplex = true },
+            new GraphQlFieldMetadata { Name = "tags", IsComplex = true, QueryBuilderType = typeof(TagQueryBuilder) },
             new GraphQlFieldMetadata { Name = "text" },
             new GraphQlFieldMetadata { Name = "type" },
             new GraphQlFieldMetadata { Name = "value", IsComplex = true }
@@ -26,6 +27,10 @@ namespace MondayApi.Schema {
             WithScalarField("tag_ids", alias, new GraphQlDirective[] { include, skip });
         public TagsValueQueryBuilder ExceptTagIDs() =>
             ExceptField("tag_ids");
+        public TagsValueQueryBuilder WithTags(TagQueryBuilder tagQueryBuilder, string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
+            WithObjectField("tags", alias, tagQueryBuilder, new GraphQlDirective[] { include, skip });
+        public TagsValueQueryBuilder ExceptTags() =>
+            ExceptField("tags");
         public TagsValueQueryBuilder WithText(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
             WithScalarField("text", alias, new GraphQlDirective[] { include, skip });
         public TagsValueQueryBuilder ExceptText() =>

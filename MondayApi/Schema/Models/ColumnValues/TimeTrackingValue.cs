@@ -4,7 +4,7 @@ using Newtonsoft.Json;
 
 namespace MondayApi.Schema {
     [GraphQlObjectType("TimeTrackingValue")]
-    public class TimeTrackingValue : IColumnValue {
+    public class TimeTrackingValue : IMirroredValue, IColumnValue {
         public Column Column { get; set; }
         public int? Duration { get; set; }
         public ICollection<TimeTrackingHistoryItem> History { get; set; }

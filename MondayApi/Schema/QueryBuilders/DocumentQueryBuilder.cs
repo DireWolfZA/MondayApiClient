@@ -61,17 +61,17 @@ namespace MondayApi.Schema {
             WithScalarField("object_id", alias, new GraphQlDirective[] { include, skip });
         public DocumentQueryBuilder ExceptObjectID() =>
             ExceptField("object_id");
-        public DocumentQueryBuilder WithRelativeUrl(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
+        public DocumentQueryBuilder WithRelativeURL(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
             WithScalarField("relative_url", alias, new GraphQlDirective[] { include, skip });
-        public DocumentQueryBuilder ExceptRelativeUrl() =>
+        public DocumentQueryBuilder ExceptRelativeURL() =>
             ExceptField("relative_url");
         public DocumentQueryBuilder WithSettings(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
             WithScalarField("settings", alias, new GraphQlDirective[] { include, skip });
         public DocumentQueryBuilder ExceptSettings() =>
             ExceptField("settings");
-        public DocumentQueryBuilder WithUrl(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
+        public DocumentQueryBuilder WithURL(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
             WithScalarField("url", alias, new GraphQlDirective[] { include, skip });
-        public DocumentQueryBuilder ExceptUrl() =>
+        public DocumentQueryBuilder ExceptURL() =>
             ExceptField("url");
         public DocumentQueryBuilder WithWorkspace(WorkspaceQueryBuilder workspaceQueryBuilder, string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
             WithObjectField("workspace", alias, workspaceQueryBuilder, new GraphQlDirective[] { include, skip });

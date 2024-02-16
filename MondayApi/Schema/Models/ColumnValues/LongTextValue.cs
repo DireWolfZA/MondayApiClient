@@ -3,7 +3,7 @@ using Newtonsoft.Json;
 
 namespace MondayApi.Schema {
     [GraphQlObjectType("LongTextValue")]
-    public class LongTextValue : IColumnValue {
+    public class LongTextValue : IMirroredValue, IColumnValue {
         public Column Column { get; set; }
         public string ID { get; set; }
         public string Text { get; set; }

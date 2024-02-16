@@ -42,17 +42,17 @@ namespace MondayApi.Schema {
             WithScalarField("original_geometry", alias, new GraphQlDirective[] { include, skip });
         public AssetQueryBuilder ExceptOriginalGeometry() =>
             ExceptField("original_geometry");
-        public AssetQueryBuilder WithPublicUrl(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
+        public AssetQueryBuilder WithPublicURL(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
             WithScalarField("public_url", alias, new GraphQlDirective[] { include, skip });
-        public AssetQueryBuilder ExceptPublicUrl() =>
+        public AssetQueryBuilder ExceptPublicURL() =>
             ExceptField("public_url");
         public AssetQueryBuilder WithUploadedBy(UserQueryBuilder userQueryBuilder, string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
             WithObjectField("uploaded_by", alias, userQueryBuilder, new GraphQlDirective[] { include, skip });
         public AssetQueryBuilder ExceptUploadedBy() =>
             ExceptField("uploaded_by");
-        public AssetQueryBuilder WithUrl(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
+        public AssetQueryBuilder WithURL(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
             WithScalarField("url", alias, new GraphQlDirective[] { include, skip });
-        public AssetQueryBuilder ExceptUrl() =>
+        public AssetQueryBuilder ExceptURL() =>
             ExceptField("url");
         public AssetQueryBuilder WithUrlThumbnail(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
             WithScalarField("url_thumbnail", alias, new GraphQlDirective[] { include, skip });

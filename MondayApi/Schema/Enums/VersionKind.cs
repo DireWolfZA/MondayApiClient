@@ -4,11 +4,13 @@ namespace MondayApi.Schema {
     public enum VersionKind {
         [EnumMember(Value = "deprecated")]
         Deprecated,
-        [EnumMember(Value = "stable")]
-        Stable,
-        [EnumMember(Value = "preview")]
-        Preview,
         [EnumMember(Value = "dev")]
-        Dev
+        Dev,
+        [EnumMember(Value = "maintenance")]
+        Maintenance,
+        [EnumMember(Value = "current")]
+        Current,
+        [EnumMember(Value = "release_candidate")]
+        ReleaseCandidate
     }
 }

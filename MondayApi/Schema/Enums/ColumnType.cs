@@ -30,6 +30,8 @@ namespace MondayApi.Schema {
         File,
         [EnumMember(Value = "formula")]
         Formula,
+        [EnumMember(Value = "group")]
+        Group,
         [EnumMember(Value = "hour")]
         Hour,
         [EnumMember(Value = "integration")]
@@ -54,6 +56,8 @@ namespace MondayApi.Schema {
         Numbers,
         [EnumMember(Value = "people")]
         People,
+        [EnumMember(Value = "person")]
+        Person,
         [EnumMember(Value = "phone")]
         Phone,
         [EnumMember(Value = "progress")]

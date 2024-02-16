@@ -36,9 +36,9 @@ namespace MondayApi.Schema {
             WithScalarField("updated_at", alias, new GraphQlDirective[] { include, skip });
         public LinkValueQueryBuilder ExceptUpdatedAt() =>
             ExceptField("updated_at");
-        public LinkValueQueryBuilder WithUrl(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
+        public LinkValueQueryBuilder WithURL(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
             WithScalarField("url", alias, new GraphQlDirective[] { include, skip });
-        public LinkValueQueryBuilder ExceptUrl() =>
+        public LinkValueQueryBuilder ExceptURL() =>
             ExceptField("url");
         public LinkValueQueryBuilder WithUrlText(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
             WithScalarField("url_text", alias, new GraphQlDirective[] { include, skip });

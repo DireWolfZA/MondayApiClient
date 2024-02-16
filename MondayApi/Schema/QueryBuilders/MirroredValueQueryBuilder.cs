@@ -38,6 +38,8 @@ namespace MondayApi.Schema {
             WithFragment(formulaValueQueryBuilder, new GraphQlDirective[] { include, skip });
         public MirroredValueQueryBuilder WithGroupFragment(GroupQueryBuilder groupQueryBuilder, IncludeDirective include = null, SkipDirective skip = null) =>
             WithFragment(groupQueryBuilder, new GraphQlDirective[] { include, skip });
+        public MirroredValueQueryBuilder WithGroupValueFragment(GroupValueQueryBuilder groupValueQueryBuilder, IncludeDirective include = null, SkipDirective skip = null) =>
+            WithFragment(groupValueQueryBuilder, new GraphQlDirective[] { include, skip });
         public MirroredValueQueryBuilder WithHourValueFragment(HourValueQueryBuilder hourValueQueryBuilder, IncludeDirective include = null, SkipDirective skip = null) =>
             WithFragment(hourValueQueryBuilder, new GraphQlDirective[] { include, skip });
         public MirroredValueQueryBuilder WithIntegrationValueFragment(IntegrationValueQueryBuilder integrationValueQueryBuilder, IncludeDirective include = null, SkipDirective skip = null) =>
@@ -58,6 +60,8 @@ namespace MondayApi.Schema {
             WithFragment(numbersValueQueryBuilder, new GraphQlDirective[] { include, skip });
         public MirroredValueQueryBuilder WithPeopleValueFragment(PeopleValueQueryBuilder peopleValueQueryBuilder, IncludeDirective include = null, SkipDirective skip = null) =>
             WithFragment(peopleValueQueryBuilder, new GraphQlDirective[] { include, skip });
+        public MirroredValueQueryBuilder WithPersonValueFragment(PersonValueQueryBuilder personValueQueryBuilder, IncludeDirective include = null, SkipDirective skip = null) =>
+            WithFragment(personValueQueryBuilder, new GraphQlDirective[] { include, skip });
         public MirroredValueQueryBuilder WithPhoneValueFragment(PhoneValueQueryBuilder phoneValueQueryBuilder, IncludeDirective include = null, SkipDirective skip = null) =>
             WithFragment(phoneValueQueryBuilder, new GraphQlDirective[] { include, skip });
         public MirroredValueQueryBuilder WithProgressValueFragment(ProgressValueQueryBuilder progressValueQueryBuilder, IncludeDirective include = null, SkipDirective skip = null) =>

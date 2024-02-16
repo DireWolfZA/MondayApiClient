@@ -1,6 +1,6 @@
 namespace MondayApi.Schema {
     [GraphQlObjectType("SubtasksValue")]
-    public class SubtasksValue : IColumnValue {
+    public class SubtasksValue : IMirroredValue, IColumnValue {
         public Column Column { get; set; }
         public string ID { get; set; }
         public string Text { get; set; }

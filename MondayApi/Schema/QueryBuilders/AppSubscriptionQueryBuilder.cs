@@ -7,6 +7,7 @@ namespace MondayApi.Schema {
             new GraphQlFieldMetadata { Name = "days_left" },
             new GraphQlFieldMetadata { Name = "is_trial" },
             new GraphQlFieldMetadata { Name = "plan_id" },
+            new GraphQlFieldMetadata { Name = "pricing_version" },
             new GraphQlFieldMetadata { Name = "renewal_date", IsComplex = true }
         };
 
@@ -29,6 +30,10 @@ namespace MondayApi.Schema {
             WithScalarField("plan_id", alias, new GraphQlDirective[] { include, skip });
         public AppSubscriptionQueryBuilder ExceptPlanID() =>
             ExceptField("plan_id");
+        public AppSubscriptionQueryBuilder WithPricingVersion(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
+            WithScalarField("pricing_version", alias, new GraphQlDirective[] { include, skip });
+        public AppSubscriptionQueryBuilder ExceptPricingVersion() =>
+            ExceptField("pricing_version");
         public AppSubscriptionQueryBuilder WithRenewalDate(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
             WithScalarField("renewal_date", alias, new GraphQlDirective[] { include, skip });
         public AppSubscriptionQueryBuilder ExceptRenewalDate() =>

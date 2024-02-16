@@ -28,9 +28,9 @@ namespace MondayApi.Schema {
             WithScalarField("id", alias, new GraphQlDirective[] { include, skip });
         public IntegrationValueQueryBuilder ExceptID() =>
             ExceptField("id");
-        public IntegrationValueQueryBuilder WithIssueApiUrl(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
+        public IntegrationValueQueryBuilder WithIssueApiURL(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
             WithScalarField("issue_api_url", alias, new GraphQlDirective[] { include, skip });
-        public IntegrationValueQueryBuilder ExceptIssueApiUrl() =>
+        public IntegrationValueQueryBuilder ExceptIssueApiURL() =>
             ExceptField("issue_api_url");
         public IntegrationValueQueryBuilder WithIssueID(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
             WithScalarField("issue_id", alias, new GraphQlDirective[] { include, skip });

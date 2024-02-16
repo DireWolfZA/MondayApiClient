@@ -1,6 +1,6 @@
 namespace MondayApi.Schema {
     [GraphQlObjectType("DocValue")]
-    public class DocValue : IColumnValue {
+    public class DocValue : IMirroredValue, IColumnValue {
         public Column Column { get; set; }
         public FileDocValue File { get; set; }
         public string ID { get; set; }

@@ -16,14 +16,14 @@ namespace MondayApi.Schema {
         public override IReadOnlyList<GraphQlFieldMetadata> AllFields => AllFieldMetadata;
 
         public GroupQueryBuilder WithItemsPage(ItemsResponseQueryBuilder itemsResponseQueryBuilder, QueryBuilderParameter<int> limit, QueryBuilderParameter<ItemsQuery> queryParams = null, QueryBuilderParameter<string> cursor = null, string alias = null, IncludeDirective include = null, SkipDirective skip = null) {
-            var args = new List<QueryBuilderArgumentInfo>();
+            var args = new List<QueryBuilderArgumentInfo> {
+                new QueryBuilderArgumentInfo { ArgumentName = "limit", ArgumentValue = limit }
+            };
             if (queryParams != null)
                 args.Add(new QueryBuilderArgumentInfo { ArgumentName = "query_params", ArgumentValue = queryParams });
-
             if (cursor != null)
                 args.Add(new QueryBuilderArgumentInfo { ArgumentName = "cursor", ArgumentValue = cursor });
 
-            args.Add(new QueryBuilderArgumentInfo { ArgumentName = "limit", ArgumentValue = limit });
             return WithObjectField("items_page", alias, itemsResponseQueryBuilder, new GraphQlDirective[] { include, skip }, args);
         }
 

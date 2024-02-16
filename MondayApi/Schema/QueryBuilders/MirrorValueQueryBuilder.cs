@@ -4,6 +4,7 @@ namespace MondayApi.Schema {
     public class MirrorValueQueryBuilder : GraphQlQueryBuilder<MirrorValueQueryBuilder> {
         private static readonly GraphQlFieldMetadata[] AllFieldMetadata = new[] {
             new GraphQlFieldMetadata { Name = "column", IsComplex = true, QueryBuilderType = typeof(ColumnQueryBuilder) },
+            new GraphQlFieldMetadata { Name = "display_value" },
             new GraphQlFieldMetadata { Name = "id" },
             new GraphQlFieldMetadata { Name = "mirrored_items", IsComplex = true, QueryBuilderType = typeof(MirroredItemQueryBuilder) },
             new GraphQlFieldMetadata { Name = "text" },
@@ -18,6 +19,10 @@ namespace MondayApi.Schema {
             WithObjectField("column", alias, columnQueryBuilder, new GraphQlDirective[] { include, skip });
         public MirrorValueQueryBuilder ExceptColumn() =>
             ExceptField("column");
+        public MirrorValueQueryBuilder WithDisplayValue(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
+            WithScalarField("display_value", alias, new GraphQlDirective[] { include, skip });
+        public MirrorValueQueryBuilder ExceptDisplayValue() =>
+            ExceptField("display_value");
         public MirrorValueQueryBuilder WithID(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
             WithScalarField("id", alias, new GraphQlDirective[] { include, skip });
         public MirrorValueQueryBuilder ExceptID() =>

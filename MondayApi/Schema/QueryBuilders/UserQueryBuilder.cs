@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 
 namespace MondayApi.Schema {
@@ -40,7 +39,7 @@ namespace MondayApi.Schema {
         protected override string TypeName => "User";
         public override IReadOnlyList<GraphQlFieldMetadata> AllFields => AllFieldMetadata;
 
-        public UserQueryBuilder WithTeams(TeamQueryBuilder teamQueryBuilder, QueryBuilderParameter<IEnumerable<Guid>> ids = null, string alias = null, IncludeDirective include = null, SkipDirective skip = null) {
+        public UserQueryBuilder WithTeams(TeamQueryBuilder teamQueryBuilder, QueryBuilderParameter<IEnumerable<string>> ids = null, string alias = null, IncludeDirective include = null, SkipDirective skip = null) {
             var args = new List<QueryBuilderArgumentInfo>();
             if (ids != null)
                 args.Add(new QueryBuilderArgumentInfo { ArgumentName = "ids", ArgumentValue = ids });
@@ -162,9 +161,9 @@ namespace MondayApi.Schema {
             WithScalarField("title", alias, new GraphQlDirective[] { include, skip });
         public UserQueryBuilder ExceptTitle() =>
             ExceptField("title");
-        public UserQueryBuilder WithUrl(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
+        public UserQueryBuilder WithURL(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
             WithScalarField("url", alias, new GraphQlDirective[] { include, skip });
-        public UserQueryBuilder ExceptUrl() =>
+        public UserQueryBuilder ExceptURL() =>
             ExceptField("url");
         public UserQueryBuilder WithUtcHoursDiff(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
             WithScalarField("utc_hours_diff", alias, new GraphQlDirective[] { include, skip });

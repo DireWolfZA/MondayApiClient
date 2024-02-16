@@ -1,6 +1,6 @@
 namespace MondayApi.Schema {
     [GraphQlObjectType("ProgressValue")]
-    public class ProgressValue : IColumnValue {
+    public class ProgressValue : IMirroredValue, IColumnValue {
         public Column Column { get; set; }
         public string ID { get; set; }
         public string Text { get; set; }

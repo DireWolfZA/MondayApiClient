@@ -11,7 +11,7 @@ namespace MondayApi.Schema {
             new GraphQlFieldMetadata { Name = "value", IsComplex = true }
         };
 
-        protected override string TypeName => "ItemIDValue";
+        protected override string TypeName => "ItemIdValue";
         public override IReadOnlyList<GraphQlFieldMetadata> AllFields => AllFieldMetadata;
 
         public ItemIDValueQueryBuilder WithColumn(ColumnQueryBuilder columnQueryBuilder, string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>

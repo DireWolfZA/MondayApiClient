@@ -30,5 +30,6 @@ namespace MondayApi.Schema {
         [JsonProperty("updated_at")]
         public DateTimeOffset? UpdatedAt { get; set; }
         public ICollection<Update> Updates { get; set; }
+        public string URL { get; set; }
     }
 }

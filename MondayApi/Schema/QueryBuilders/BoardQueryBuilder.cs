@@ -23,10 +23,12 @@ namespace MondayApi.Schema {
             new GraphQlFieldMetadata { Name = "subscribers", IsComplex = true, QueryBuilderType = typeof(UserQueryBuilder) },
             new GraphQlFieldMetadata { Name = "tags", IsComplex = true, QueryBuilderType = typeof(TagQueryBuilder) },
             new GraphQlFieldMetadata { Name = "team_owners", IsComplex = true, QueryBuilderType = typeof(TeamQueryBuilder) },
+            new GraphQlFieldMetadata { Name = "team_subscribers", IsComplex = true, QueryBuilderType = typeof(TeamQueryBuilder) },
             new GraphQlFieldMetadata { Name = "top_group", IsComplex = true, QueryBuilderType = typeof(GroupQueryBuilder) },
             new GraphQlFieldMetadata { Name = "type" },
             new GraphQlFieldMetadata { Name = "updated_at" },
             new GraphQlFieldMetadata { Name = "updates", IsComplex = true, QueryBuilderType = typeof(UpdateQueryBuilder) },
+            new GraphQlFieldMetadata { Name = "url" },
             new GraphQlFieldMetadata { Name = "views", IsComplex = true, QueryBuilderType = typeof(BoardViewQueryBuilder) },
             new GraphQlFieldMetadata { Name = "workspace", IsComplex = true, QueryBuilderType = typeof(WorkspaceQueryBuilder) },
             new GraphQlFieldMetadata { Name = "workspace_id" }
@@ -35,7 +37,7 @@ namespace MondayApi.Schema {
         protected override string TypeName => "Board";
         public override IReadOnlyList<GraphQlFieldMetadata> AllFields => AllFieldMetadata;
 
-        public BoardQueryBuilder WithActivityLogs(ActivityLogTypeQueryBuilder activityLogTypeQueryBuilder, QueryBuilderParameter<int?> limit = null, QueryBuilderParameter<int?> page = null, QueryBuilderParameter<IEnumerable<Guid>> userIDs = null, QueryBuilderParameter<IEnumerable<string>> columnIDs = null, QueryBuilderParameter<IEnumerable<string>> groupIDs = null, QueryBuilderParameter<IEnumerable<Guid>> itemIDs = null, QueryBuilderParameter<DateTimeOffset?> from = null, QueryBuilderParameter<DateTimeOffset?> to = null, string alias = null, IncludeDirective include = null, SkipDirective skip = null) {
+        public BoardQueryBuilder WithActivityLogs(ActivityLogTypeQueryBuilder activityLogTypeQueryBuilder, QueryBuilderParameter<int?> limit = null, QueryBuilderParameter<int?> page = null, QueryBuilderParameter<IEnumerable<string>> userIDs = null, QueryBuilderParameter<IEnumerable<string>> columnIDs = null, QueryBuilderParameter<IEnumerable<string>> groupIDs = null, QueryBuilderParameter<IEnumerable<string>> itemIDs = null, QueryBuilderParameter<DateTimeOffset?> from = null, QueryBuilderParameter<DateTimeOffset?> to = null, string alias = null, IncludeDirective include = null, SkipDirective skip = null) {
             var args = new List<QueryBuilderArgumentInfo>();
             if (limit != null)
                 args.Add(new QueryBuilderArgumentInfo { ArgumentName = "limit", ArgumentValue = limit });
@@ -56,7 +58,7 @@ namespace MondayApi.Schema {
 
             return WithObjectField("activity_logs", alias, activityLogTypeQueryBuilder, new GraphQlDirective[] { include, skip }, args);
         }
-        public BoardQueryBuilder WithColumns(ColumnQueryBuilder columnQueryBuilder, QueryBuilderParameter<IEnumerable<string>> ids = null, QueryBuilderParameter<IEnumerable<ColumnType>> types = null, string alias = null, IncludeDirective include = null, SkipDirective skip = null) {
+        public BoardQueryBuilder WithColumns(ColumnQueryBuilder columnQueryBuilder, QueryBuilderParameter<IEnumerable<string>> ids = null, QueryBuilderParameter<IEnumerable<ColumnType?>> types = null, string alias = null, IncludeDirective include = null, SkipDirective skip = null) {
             var args = new List<QueryBuilderArgumentInfo>();
             if (ids != null)
                 args.Add(new QueryBuilderArgumentInfo { ArgumentName = "ids", ArgumentValue = ids });
@@ -73,13 +75,14 @@ namespace MondayApi.Schema {
             return WithObjectField("groups", alias, groupQueryBuilder, new GraphQlDirective[] { include, skip }, args);
         }
         public BoardQueryBuilder WithItemsPage(ItemsResponseQueryBuilder itemsResponseQueryBuilder, QueryBuilderParameter<int> limit, QueryBuilderParameter<ItemsQuery> queryParams = null, QueryBuilderParameter<string> cursor = null, string alias = null, IncludeDirective include = null, SkipDirective skip = null) {
-            var args = new List<QueryBuilderArgumentInfo>();
+            var args = new List<QueryBuilderArgumentInfo> {
+                new QueryBuilderArgumentInfo { ArgumentName = "limit", ArgumentValue = limit }
+            };
             if (queryParams != null)
                 args.Add(new QueryBuilderArgumentInfo { ArgumentName = "query_params", ArgumentValue = queryParams });
             if (cursor != null)
                 args.Add(new QueryBuilderArgumentInfo { ArgumentName = "cursor", ArgumentValue = cursor });
 
-            args.Add(new QueryBuilderArgumentInfo { ArgumentName = "limit", ArgumentValue = limit });
             return WithObjectField("items_page", alias, itemsResponseQueryBuilder, new GraphQlDirective[] { include, skip }, args);
         }
         public BoardQueryBuilder WithTeamOwners(TeamQueryBuilder teamQueryBuilder, QueryBuilderParameter<int?> limit = null, QueryBuilderParameter<int?> page = null, string alias = null, IncludeDirective include = null, SkipDirective skip = null) {
@@ -91,16 +94,27 @@ namespace MondayApi.Schema {
 
             return WithObjectField("team_owners", alias, teamQueryBuilder, new GraphQlDirective[] { include, skip }, args);
         }
-        public BoardQueryBuilder WithUpdates(UpdateQueryBuilder updateQueryBuilder, QueryBuilderParameter<int?> limit = null, QueryBuilderParameter<int?> page = null, string alias = null, IncludeDirective include = null, SkipDirective skip = null) {
+        public BoardQueryBuilder WithTeamSubscribers(TeamQueryBuilder teamQueryBuilder, QueryBuilderParameter<int?> limit = null, QueryBuilderParameter<int?> page = null, string alias = null, IncludeDirective include = null, SkipDirective skip = null) {
             var args = new List<QueryBuilderArgumentInfo>();
             if (limit != null)
                 args.Add(new QueryBuilderArgumentInfo { ArgumentName = "limit", ArgumentValue = limit });
             if (page != null)
                 args.Add(new QueryBuilderArgumentInfo { ArgumentName = "page", ArgumentValue = page });
 
+            return WithObjectField("team_subscribers", alias, teamQueryBuilder, new GraphQlDirective[] { include, skip }, args);
+        }
+        public BoardQueryBuilder WithUpdates(UpdateQueryBuilder updateQueryBuilder, QueryBuilderParameter<int?> limit = null, QueryBuilderParameter<int?> page = null, QueryBuilderParameter<IEnumerable<string>> ids = null, string alias = null, IncludeDirective include = null, SkipDirective skip = null) {
+            var args = new List<QueryBuilderArgumentInfo>();
+            if (limit != null)
+                args.Add(new QueryBuilderArgumentInfo { ArgumentName = "limit", ArgumentValue = limit });
+            if (page != null)
+                args.Add(new QueryBuilderArgumentInfo { ArgumentName = "page", ArgumentValue = page });
+            if (ids != null)
+                args.Add(new QueryBuilderArgumentInfo { ArgumentName = "ids", ArgumentValue = ids });
+
             return WithObjectField("updates", alias, updateQueryBuilder, new GraphQlDirective[] { include, skip }, args);
         }
-        public BoardQueryBuilder WithViews(BoardViewQueryBuilder boardViewQueryBuilder, QueryBuilderParameter<IEnumerable<Guid>> ids = null, QueryBuilderParameter<string> type = null, string alias = null, IncludeDirective include = null, SkipDirective skip = null) {
+        public BoardQueryBuilder WithViews(BoardViewQueryBuilder boardViewQueryBuilder, QueryBuilderParameter<IEnumerable<string>> ids = null, QueryBuilderParameter<string> type = null, string alias = null, IncludeDirective include = null, SkipDirective skip = null) {
             var args = new List<QueryBuilderArgumentInfo>();
             if (ids != null)
                 args.Add(new QueryBuilderArgumentInfo { ArgumentName = "ids", ArgumentValue = ids });
@@ -176,6 +190,8 @@ namespace MondayApi.Schema {
             ExceptField("tags");
         public BoardQueryBuilder ExceptTeamOwners() =>
             ExceptField("team_owners");
+        public BoardQueryBuilder ExceptTeamSubscribers() =>
+            ExceptField("team_subscribers");
         public BoardQueryBuilder WithTopGroup(GroupQueryBuilder groupQueryBuilder, string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
             WithObjectField("top_group", alias, groupQueryBuilder, new GraphQlDirective[] { include, skip });
         public BoardQueryBuilder ExceptTopGroup() =>
@@ -190,6 +206,10 @@ namespace MondayApi.Schema {
             ExceptField("updated_at");
         public BoardQueryBuilder ExceptUpdates() =>
             ExceptField("updates");
+        public BoardQueryBuilder WithURL(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
+            WithScalarField("url", alias, new GraphQlDirective[] { include, skip });
+        public BoardQueryBuilder ExceptURL() =>
+            ExceptField("url");
         public BoardQueryBuilder ExceptViews() =>
             ExceptField("views");
         public BoardQueryBuilder WithWorkspace(WorkspaceQueryBuilder workspaceQueryBuilder, string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>

@@ -1,6 +1,6 @@
 namespace MondayApi.Schema {
     [GraphQlObjectType("TextValue")]
-    public class TextValue : IColumnValue {
+    public class TextValue : IMirroredValue, IColumnValue {
         public Column Column { get; set; }
         public string ID { get; set; }
         public string Text { get; set; }

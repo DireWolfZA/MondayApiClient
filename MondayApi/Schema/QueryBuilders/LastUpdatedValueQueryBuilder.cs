@@ -8,6 +8,8 @@ namespace MondayApi.Schema {
             new GraphQlFieldMetadata { Name = "text" },
             new GraphQlFieldMetadata { Name = "type" },
             new GraphQlFieldMetadata { Name = "updated_at" },
+            new GraphQlFieldMetadata { Name = "updater", IsComplex = true, QueryBuilderType = typeof(UserQueryBuilder) },
+            new GraphQlFieldMetadata { Name = "updater_id" },
             new GraphQlFieldMetadata { Name = "value", IsComplex = true }
         };
 
@@ -34,6 +36,14 @@ namespace MondayApi.Schema {
             WithScalarField("updated_at", alias, new GraphQlDirective[] { include, skip });
         public LastUpdatedValueQueryBuilder ExceptUpdatedAt() =>
             ExceptField("updated_at");
+        public LastUpdatedValueQueryBuilder WithUpdater(UserQueryBuilder userQueryBuilder, string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
+            WithObjectField("updater", alias, userQueryBuilder, new GraphQlDirective[] { include, skip });
+        public LastUpdatedValueQueryBuilder ExceptUpdater() =>
+            ExceptField("updater");
+        public LastUpdatedValueQueryBuilder WithUpdaterID(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
+            WithScalarField("updater_id", alias, new GraphQlDirective[] { include, skip });
+        public LastUpdatedValueQueryBuilder ExceptUpdaterID() =>
+            ExceptField("updater_id");
         public LastUpdatedValueQueryBuilder WithValue(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
             WithScalarField("value", alias, new GraphQlDirective[] { include, skip });
         public LastUpdatedValueQueryBuilder ExceptValue() =>

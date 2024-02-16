@@ -39,9 +39,9 @@ namespace MondayApi.Schema {
             WithScalarField("name", alias, new GraphQlDirective[] { include, skip });
         public FileLinkValueQueryBuilder ExceptName() =>
             ExceptField("name");
-        public FileLinkValueQueryBuilder WithUrl(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
+        public FileLinkValueQueryBuilder WithURL(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
             WithScalarField("url", alias, new GraphQlDirective[] { include, skip });
-        public FileLinkValueQueryBuilder ExceptUrl() =>
+        public FileLinkValueQueryBuilder ExceptURL() =>
             ExceptField("url");
     }
 }

@@ -3,7 +3,7 @@ using Newtonsoft.Json;
 
 namespace MondayApi.Schema {
     [GraphQlObjectType("LocationValue")]
-    public class LocationValue : IColumnValue {
+    public class LocationValue : IMirroredValue, IColumnValue {
         public string Address { get; set; }
         public string City { get; set; }
         [JsonProperty("city_short")]

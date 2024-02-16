@@ -4,6 +4,7 @@ namespace MondayApi.Schema {
     public class DependencyValueQueryBuilder : GraphQlQueryBuilder<DependencyValueQueryBuilder> {
         private static readonly GraphQlFieldMetadata[] AllFieldMetadata = new[] {
             new GraphQlFieldMetadata { Name = "column", IsComplex = true, QueryBuilderType = typeof(ColumnQueryBuilder) },
+            new GraphQlFieldMetadata { Name = "display_value" },
             new GraphQlFieldMetadata { Name = "id" },
             new GraphQlFieldMetadata { Name = "linked_item_ids" },
             new GraphQlFieldMetadata { Name = "linked_items", IsComplex = true, QueryBuilderType = typeof(ItemQueryBuilder) },
@@ -20,6 +21,10 @@ namespace MondayApi.Schema {
             WithObjectField("column", alias, columnQueryBuilder, new GraphQlDirective[] { include, skip });
         public DependencyValueQueryBuilder ExceptColumn() =>
             ExceptField("column");
+        public DependencyValueQueryBuilder WithDisplayValue(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
+            WithScalarField("display_value", alias, new GraphQlDirective[] { include, skip });
+        public DependencyValueQueryBuilder ExceptDisplayValue() =>
+            ExceptField("display_value");
         public DependencyValueQueryBuilder WithID(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
             WithScalarField("id", alias, new GraphQlDirective[] { include, skip });
         public DependencyValueQueryBuilder ExceptID() =>

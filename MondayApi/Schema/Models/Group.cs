@@ -1,8 +1,7 @@
-using System;
 using Newtonsoft.Json;
 
 namespace MondayApi.Schema {
-    public class Group {
+    public class Group : IMirroredValue {
         public bool? Archived { get; set; }
         public string Color { get; set; }
         public bool? Deleted { get; set; }

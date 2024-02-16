@@ -14,7 +14,6 @@ namespace MondayApi.Schema {
         public const string Json = "JSON";
         public const string String = "String";
 
-        public const string AccountProductKind = "AccountProductKind";
         public const string AssetsSource = "AssetsSource";
         public const string BoardAttributes = "BoardAttributes";
         public const string BoardKind = "BoardKind";
@@ -35,6 +34,7 @@ namespace MondayApi.Schema {
         public const string ItemsQueryRuleOperator = "ItemsQueryRuleOperator";
         public const string Kind = "Kind";
         public const string NotificationTargetType = "NotificationTargetType";
+        public const string NumberValueUnitDirection = "NumberValueUnitDirection";
         public const string PositionRelative = "PositionRelative";
         public const string State = "State";
         public const string UserKind = "UserKind";
@@ -47,14 +47,22 @@ namespace MondayApi.Schema {
         public const string Account = "Account";
         public const string AccountProduct = "AccountProduct";
         public const string ActivityLogType = "ActivityLogType";
+        public const string AppInstall = "AppInstall";
+        public const string AppInstallAccount = "AppInstallAccount";
+        public const string AppInstallPermissions = "AppInstallPermissions";
+        public const string AppInstallUser = "AppInstallUser";
         public const string AppMonetizationStatus = "AppMonetizationStatus";
         public const string AppSubscription = "AppSubscription";
+        public const string AppSubscriptionOperationsCounter = "AppSubscriptionOperationsCounter";
+        public const string AppVersion = "AppVersion";
         public const string Asset = "Asset";
+        public const string BatchExtendTrialPeriod = "BatchExtendTrialPeriod";
         public const string Board = "Board";
         public const string BoardDuplication = "BoardDuplication";
         public const string BoardRelationValue = "BoardRelationValue";
         public const string BoardView = "BoardView";
         public const string ButtonValue = "ButtonValue";
+        public const string ChangeTeamMembershipsResult = "ChangeTeamMembershipsResult";
         public const string CheckboxValue = "CheckboxValue";
         public const string ColorPickerValue = "ColorPickerValue";
         public const string Column = "Column";
@@ -71,6 +79,7 @@ namespace MondayApi.Schema {
         public const string DropdownValue = "DropdownValue";
         public const string DropdownValueOption = "DropdownValueOption";
         public const string EmailValue = "EmailValue";
+        public const string ExtendTrialPeriod = "ExtendTrialPeriod";
         public const string FileAssetValue = "FileAssetValue";
         public const string FileDocValue = "FileDocValue";
         public const string FileLinkValue = "FileLinkValue";
@@ -78,6 +87,7 @@ namespace MondayApi.Schema {
         public const string Folder = "Folder";
         public const string FormulaValue = "FormulaValue";
         public const string Group = "Group";
+        public const string GroupValue = "GroupValue";
         public const string HourValue = "HourValue";
         public const string IntegrationValue = "IntegrationValue";
         public const string Item = "Item";
@@ -95,6 +105,7 @@ namespace MondayApi.Schema {
         public const string OutOfOffice = "OutOfOffice";
         public const string PeopleEntity = "PeopleEntity";
         public const string PeopleValue = "PeopleValue";
+        public const string PersonValue = "PersonValue";
         public const string PhoneValue = "PhoneValue";
         public const string Plan = "Plan";
         public const string ProgressValue = "ProgressValue";
@@ -132,6 +143,7 @@ namespace MondayApi.Schema {
         public const string ItemsQuery = "ItemsQuery";
         public const string ItemsQueryOrderBy = "ItemsQueryOrderBy";
         public const string ItemsQueryRule = "ItemsQueryRule";
+        public const string UpdateWorkspaceAttributesInput = "UpdateWorkspaceAttributesInput";
 
         public const string FileValueItem = "FileValueItem";
         public const string MirroredValue = "MirroredValue";
@@ -140,7 +152,6 @@ namespace MondayApi.Schema {
 
         public static readonly IReadOnlyDictionary<Type, string> ReverseMapping = new Dictionary<Type, string>() {
             { typeof(string), "String" },
-            { typeof(Guid), "ID" },
             { typeof(bool), "Boolean" },
             { typeof(DateTimeOffset), "String" },
             { typeof(int), "Int" },
@@ -152,7 +163,8 @@ namespace MondayApi.Schema {
             { typeof(ItemsPageByColumnValuesQuery), "ItemsPageByColumnValuesQuery" },
             { typeof(ItemsQuery), "ItemsQuery" },
             { typeof(ItemsQueryOrderBy), "ItemsQueryOrderBy" },
-            { typeof(ItemsQueryRule), "ItemsQueryRule" }
+            { typeof(ItemsQueryRule), "ItemsQueryRule" },
+            { typeof(UpdateWorkspaceAttributesInput), "UpdateWorkspaceAttributesInput" }
         };
     }
 }

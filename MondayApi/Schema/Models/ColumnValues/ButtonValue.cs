@@ -1,6 +1,6 @@
 namespace MondayApi.Schema {
     [GraphQlObjectType("ButtonValue")]
-    public class ButtonValue : IColumnValue {
+    public class ButtonValue : IMirroredValue, IColumnValue {
         public string Color { get; set; }
         public Column Column { get; set; }
         public string ID { get; set; }

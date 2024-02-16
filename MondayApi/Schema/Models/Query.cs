@@ -4,6 +4,8 @@ using Newtonsoft.Json;
 namespace MondayApi.Schema {
     public class Query {
         public Account Account { get; set; }
+        [JsonProperty("app_installs")]
+        public ICollection<AppInstall> AppInstalls { get; set; }
         [JsonProperty("app_subscription")]
         public ICollection<AppSubscription> AppSubscription { get; set; }
         [JsonProperty("apps_monetization_status")]
@@ -13,10 +15,14 @@ namespace MondayApi.Schema {
         public Complexity Complexity { get; set; }
         public ICollection<Document> Docs { get; set; }
         public ICollection<Folder> Folders { get; set; }
+        [JsonProperty("increase_app_subscription_operations")]
+        public AppSubscriptionOperationsCounter IncreaseAppSubscriptionOperations { get; set; }
         public ICollection<Item> Items { get; set; }
         [JsonProperty("items_page_by_column_values")]
         public ItemsResponse ItemsPageByColumnValues { get; set; }
         public User Me { get; set; }
+        [JsonProperty("next_items_page")]
+        public ItemsResponse NextItemsPage { get; set; }
         public ICollection<Tag> Tags { get; set; }
         public ICollection<Team> Teams { get; set; }
         public ICollection<Update> Updates { get; set; }

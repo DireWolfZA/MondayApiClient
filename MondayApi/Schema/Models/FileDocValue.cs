@@ -2,7 +2,7 @@ using System;
 using Newtonsoft.Json;
 
 namespace MondayApi.Schema {
-    public class FileDocValue {
+    public class FileDocValue : IFileValueItem {
         [JsonProperty("created_at")]
         public DateTimeOffset? CreatedAt { get; set; }
         public User Creator { get; set; }

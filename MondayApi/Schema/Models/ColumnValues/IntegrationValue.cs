@@ -2,7 +2,7 @@ using Newtonsoft.Json;
 
 namespace MondayApi.Schema {
     [GraphQlObjectType("IntegrationValue")]
-    public class IntegrationValue : IColumnValue {
+    public class IntegrationValue : IMirroredValue, IColumnValue {
         public Column Column { get; set; }
         [JsonProperty("entity_id")]
         public string EntityID { get; set; }

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Newtonsoft.Json;
 
 namespace MondayApi.Schema {
-    public class Board {
+    public class Board : IMirroredValue {
         [JsonProperty("activity_logs")]
         public ICollection<ActivityLogType> ActivityLogs { get; set; }
         [JsonProperty("board_folder_id")]
@@ -30,12 +30,15 @@ namespace MondayApi.Schema {
         public ICollection<Tag> Tags { get; set; }
         [JsonProperty("team_owners")]
         public ICollection<Team> TeamOwners { get; set; }
+        [JsonProperty("team_subscribers")]
+        public ICollection<Team> TeamSubscribers { get; set; }
         [JsonProperty("top_group")]
         public Group TopGroup { get; set; }
         public BoardObjectType? Type { get; set; }
         [JsonProperty("updated_at")]
         public DateTimeOffset? UpdatedAt { get; set; }
         public ICollection<Update> Updates { get; set; }
+        public string URL { get; set; }
         public ICollection<BoardView> Views { get; set; }
         public Workspace Workspace { get; set; }
         [JsonProperty("workspace_id")]

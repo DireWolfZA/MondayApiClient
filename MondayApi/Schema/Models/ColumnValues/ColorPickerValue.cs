@@ -3,7 +3,7 @@ using Newtonsoft.Json;
 
 namespace MondayApi.Schema {
     [GraphQlObjectType("ColorPickerValue")]
-    public class ColorPickerValue : IColumnValue {
+    public class ColorPickerValue : IMirroredValue, IColumnValue {
         public string Color { get; set; }
         public Column Column { get; set; }
         public string ID { get; set; }

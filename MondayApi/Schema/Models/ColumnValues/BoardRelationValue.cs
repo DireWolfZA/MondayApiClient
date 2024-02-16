@@ -4,8 +4,10 @@ using Newtonsoft.Json;
 
 namespace MondayApi.Schema {
     [GraphQlObjectType("BoardRelationValue")]
-    public class BoardRelationValue : IColumnValue {
+    public class BoardRelationValue : IMirroredValue, IColumnValue {
         public Column Column { get; set; }
+        [JsonProperty("display_value")]
+        public string DisplayValue { get; set; }
         public string ID { get; set; }
         [JsonProperty("linked_item_ids")]
         public ICollection<string> LinkedItemIDs { get; set; }

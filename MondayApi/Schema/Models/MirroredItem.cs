@@ -1,4 +1,3 @@
-using System;
 using Newtonsoft.Json;
 
 namespace MondayApi.Schema {
@@ -10,6 +9,7 @@ namespace MondayApi.Schema {
         [JsonProperty("linked_item")]
         public Item LinkedItem { get; set; }
         [JsonProperty("mirrored_value")]
-        public MirroredValue MirroredValue { get; set; }
+        [JsonConverter(typeof(GraphQlInterfaceJsonConverter))]
+        public IMirroredValue MirroredValue { get; set; }
     }
 }

@@ -4,8 +4,10 @@ namespace MondayApi.Schema {
     public class NumbersValueQueryBuilder : GraphQlQueryBuilder<NumbersValueQueryBuilder> {
         private static readonly GraphQlFieldMetadata[] AllFieldMetadata = new[] {
             new GraphQlFieldMetadata { Name = "column", IsComplex = true, QueryBuilderType = typeof(ColumnQueryBuilder) },
+            new GraphQlFieldMetadata { Name = "direction" },
             new GraphQlFieldMetadata { Name = "id" },
             new GraphQlFieldMetadata { Name = "number" },
+            new GraphQlFieldMetadata { Name = "symbol" },
             new GraphQlFieldMetadata { Name = "text" },
             new GraphQlFieldMetadata { Name = "type" },
             new GraphQlFieldMetadata { Name = "value", IsComplex = true }
@@ -18,6 +20,10 @@ namespace MondayApi.Schema {
             WithObjectField("column", alias, columnQueryBuilder, new GraphQlDirective[] { include, skip });
         public NumbersValueQueryBuilder ExceptColumn() =>
             ExceptField("column");
+        public NumbersValueQueryBuilder WithDirection(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
+            WithScalarField("direction", alias, new GraphQlDirective[] { include, skip });
+        public NumbersValueQueryBuilder ExceptDirection() =>
+            ExceptField("direction");
         public NumbersValueQueryBuilder WithID(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
             WithScalarField("id", alias, new GraphQlDirective[] { include, skip });
         public NumbersValueQueryBuilder ExceptID() =>
@@ -26,6 +32,10 @@ namespace MondayApi.Schema {
             WithScalarField("number", alias, new GraphQlDirective[] { include, skip });
         public NumbersValueQueryBuilder ExceptNumber() =>
             ExceptField("number");
+        public NumbersValueQueryBuilder WithSymbol(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
+            WithScalarField("symbol", alias, new GraphQlDirective[] { include, skip });
+        public NumbersValueQueryBuilder ExceptSymbol() =>
+            ExceptField("symbol");
         public NumbersValueQueryBuilder WithText(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
             WithScalarField("text", alias, new GraphQlDirective[] { include, skip });
         public NumbersValueQueryBuilder ExceptText() =>

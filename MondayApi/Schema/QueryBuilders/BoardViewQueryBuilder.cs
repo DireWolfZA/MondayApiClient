@@ -6,6 +6,7 @@ namespace MondayApi.Schema {
             new GraphQlFieldMetadata { Name = "id" },
             new GraphQlFieldMetadata { Name = "name" },
             new GraphQlFieldMetadata { Name = "settings_str" },
+            new GraphQlFieldMetadata { Name = "source_view_id" },
             new GraphQlFieldMetadata { Name = "type" },
             new GraphQlFieldMetadata { Name = "view_specific_data_str" }
         };
@@ -25,6 +26,10 @@ namespace MondayApi.Schema {
             WithScalarField("settings_str", alias, new GraphQlDirective[] { include, skip });
         public BoardViewQueryBuilder ExceptSettingsStr() =>
             ExceptField("settings_str");
+        public BoardViewQueryBuilder WithSourceViewID(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
+            WithScalarField("source_view_id", alias, new GraphQlDirective[] { include, skip });
+        public BoardViewQueryBuilder ExceptSourceViewID() =>
+            ExceptField("source_view_id");
         public BoardViewQueryBuilder WithType(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
             WithScalarField("type", alias, new GraphQlDirective[] { include, skip });
         public BoardViewQueryBuilder ExceptType() =>

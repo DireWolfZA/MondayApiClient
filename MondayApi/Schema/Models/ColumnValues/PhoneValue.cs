@@ -3,7 +3,7 @@ using Newtonsoft.Json;
 
 namespace MondayApi.Schema {
     [GraphQlObjectType("PhoneValue")]
-    public class PhoneValue : IColumnValue {
+    public class PhoneValue : IMirroredValue, IColumnValue {
         public Column Column { get; set; }
         [JsonProperty("country_short_name")]
         public string CountryShortName { get; set; }

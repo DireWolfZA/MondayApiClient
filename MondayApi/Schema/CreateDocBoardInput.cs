@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using Newtonsoft.Json;
 
@@ -8,9 +7,9 @@ namespace MondayApi.Schema {
         private InputPropertyInfo _columnID;
 
         [JsonProperty("item_id")]
-        [JsonConverter(typeof(QueryBuilderParameterConverter<Guid?>))]
-        public QueryBuilderParameter<Guid?> ItemID {
-            get => (QueryBuilderParameter<Guid?>)_itemID.Value;
+        [JsonConverter(typeof(QueryBuilderParameterConverter<string>))]
+        public QueryBuilderParameter<string> ItemID {
+            get => (QueryBuilderParameter<string>)_itemID.Value;
             set => _itemID = new InputPropertyInfo { Name = "item_id", Value = value };
         }
 

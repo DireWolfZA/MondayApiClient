@@ -21,8 +21,8 @@ namespace MondayApi {
 
         public static GraphQlQueryParameter<IEnumerable<T>> GetParameterToMulti<T>(T value, bool isNullable = true) =>
             new GraphQlQueryParameter<IEnumerable<T>>(null, defaultValue: new T[] { value }, isNullable);
-        public static GraphQlQueryParameter<IEnumerable<T>> GetParameterWithNameToMulti<T>(T value) where T : struct, Enum =>
-            new GraphQlQueryParameter<IEnumerable<T>>(null, typeof(T).Name, new T[] { value });
+        public static GraphQlQueryParameter<IEnumerable<T?>> GetParameterWithNameToMulti<T>(T value) where T : struct, Enum =>
+            new GraphQlQueryParameter<IEnumerable<T?>>(null, typeof(T).Name, new T?[] { value });
 
 
         private static readonly Newtonsoft.Json.JsonSerializerSettings settings = new Newtonsoft.Json.JsonSerializerSettings() {

@@ -3,7 +3,7 @@ using Newtonsoft.Json;
 
 namespace MondayApi.Schema {
     [GraphQlObjectType("HourValue")]
-    public class HourValue : IColumnValue {
+    public class HourValue : IMirroredValue, IColumnValue {
         public Column Column { get; set; }
         public int? Hour { get; set; }
         public string ID { get; set; }

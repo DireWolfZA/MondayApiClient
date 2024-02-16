@@ -4,6 +4,7 @@ namespace MondayApi.Schema {
     public class BoardRelationValueQueryBuilder : GraphQlQueryBuilder<BoardRelationValueQueryBuilder> {
         private static readonly GraphQlFieldMetadata[] AllFieldMetadata = new[] {
             new GraphQlFieldMetadata { Name = "column", IsComplex = true, QueryBuilderType = typeof(ColumnQueryBuilder) },
+            new GraphQlFieldMetadata { Name = "display_value" },
             new GraphQlFieldMetadata { Name = "id" },
             new GraphQlFieldMetadata { Name = "linked_item_ids", IsComplex = true },
             new GraphQlFieldMetadata { Name = "linked_items", IsComplex = true, QueryBuilderType = typeof(ItemQueryBuilder) },
@@ -20,6 +21,10 @@ namespace MondayApi.Schema {
             WithObjectField("column", alias, columnQueryBuilder, new GraphQlDirective[] { include, skip });
         public BoardRelationValueQueryBuilder ExceptColumn() =>
             ExceptField("column");
+        public BoardRelationValueQueryBuilder WithDisplayValue(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
+            WithScalarField("display_value", alias, new GraphQlDirective[] { include, skip });
+        public BoardRelationValueQueryBuilder ExceptDisplayValue() =>
+            ExceptField("display_value");
         public BoardRelationValueQueryBuilder WithID(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
             WithScalarField("id", alias, new GraphQlDirective[] { include, skip });
         public BoardRelationValueQueryBuilder ExceptID() =>

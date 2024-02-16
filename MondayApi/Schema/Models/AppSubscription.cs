@@ -10,6 +10,8 @@ namespace MondayApi.Schema {
         public bool? IsTrial { get; set; }
         [JsonProperty("plan_id")]
         public string PlanID { get; set; }
+        [JsonProperty("pricing_version")]
+        public int? PricingVersion { get; set; }
         [JsonProperty("renewal_date")]
         public object RenewalDate { get; set; }
     }

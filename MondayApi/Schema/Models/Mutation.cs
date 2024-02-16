@@ -13,6 +13,8 @@ namespace MondayApi.Schema {
         public ICollection<Team> AddTeamsToWorkspace { get; set; }
         [JsonProperty("add_users_to_board")]
         public ICollection<User> AddUsersToBoard { get; set; }
+        [JsonProperty("add_users_to_team")]
+        public ChangeTeamMembershipsResult AddUsersToTeam { get; set; }
         [JsonProperty("add_users_to_workspace")]
         public ICollection<User> AddUsersToWorkspace { get; set; }
         [JsonProperty("archive_board")]
@@ -21,6 +23,8 @@ namespace MondayApi.Schema {
         public Group ArchiveGroup { get; set; }
         [JsonProperty("archive_item")]
         public Item ArchiveItem { get; set; }
+        [JsonProperty("batch_extend_trial_period")]
+        public BatchExtendTrialPeriod BatchExtendTrialPeriod { get; set; }
         [JsonProperty("change_column_metadata")]
         public Column ChangeColumnMetadata { get; set; }
         [JsonProperty("change_column_title")]
@@ -74,6 +78,8 @@ namespace MondayApi.Schema {
         public Item DeleteItem { get; set; }
         [JsonProperty("delete_subscribers_from_board")]
         public ICollection<User> DeleteSubscribersFromBoard { get; set; }
+        [JsonProperty("delete_teams_from_board")]
+        public ICollection<Team> DeleteTeamsFromBoard { get; set; }
         [JsonProperty("delete_teams_from_workspace")]
         public ICollection<Team> DeleteTeamsFromWorkspace { get; set; }
         [JsonProperty("delete_update")]
@@ -90,6 +96,8 @@ namespace MondayApi.Schema {
         public Group DuplicateGroup { get; set; }
         [JsonProperty("duplicate_item")]
         public Item DuplicateItem { get; set; }
+        [JsonProperty("increase_app_subscription_operations")]
+        public AppSubscriptionOperationsCounter IncreaseAppSubscriptionOperations { get; set; }
         [JsonProperty("like_update")]
         public Update LikeUpdate { get; set; }
         [JsonProperty("move_item_to_board")]
@@ -98,6 +106,8 @@ namespace MondayApi.Schema {
         public Item MoveItemToGroup { get; set; }
         [JsonProperty("remove_mock_app_subscription")]
         public AppSubscription RemoveMockAppSubscription { get; set; }
+        [JsonProperty("remove_users_from_team")]
+        public ChangeTeamMembershipsResult RemoveUsersFromTeam { get; set; }
         [JsonProperty("set_mock_app_subscription")]
         public AppSubscription SetMockAppSubscription { get; set; }
         [JsonProperty("update_board")]
@@ -108,5 +118,7 @@ namespace MondayApi.Schema {
         public Folder UpdateFolder { get; set; }
         [JsonProperty("update_group")]
         public Group UpdateGroup { get; set; }
+        [JsonProperty("update_workspace")]
+        public Workspace UpdateWorkspace { get; set; }
     }
 }

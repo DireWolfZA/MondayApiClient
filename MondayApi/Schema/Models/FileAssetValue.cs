@@ -2,7 +2,7 @@ using System;
 using Newtonsoft.Json;
 
 namespace MondayApi.Schema {
-    public class FileAssetValue {
+    public class FileAssetValue : IFileValueItem {
         public Asset Asset { get; set; }
         [JsonProperty("asset_id")]
         public string AssetID { get; set; }

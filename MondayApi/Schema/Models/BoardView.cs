@@ -6,6 +6,8 @@ namespace MondayApi.Schema {
         public string Name { get; set; }
         [JsonProperty("settings_str")]
         public string SettingsStr { get; set; }
+        [JsonProperty("source_view_id")]
+        public string SourceViewID { get; set; }
         public string Type { get; set; }
         [JsonProperty("view_specific_data_str")]
         public string ViewSpecificDataStr { get; set; }

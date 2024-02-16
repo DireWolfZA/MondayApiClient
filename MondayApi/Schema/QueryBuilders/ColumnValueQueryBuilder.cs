@@ -60,6 +60,8 @@ namespace MondayApi.Schema {
             WithFragment(fileValueQueryBuilder, new GraphQlDirective[] { include, skip });
         public ColumnValueQueryBuilder WithFormulaValueFragment(FormulaValueQueryBuilder formulaValueQueryBuilder, IncludeDirective include = null, SkipDirective skip = null) =>
             WithFragment(formulaValueQueryBuilder, new GraphQlDirective[] { include, skip });
+        public ColumnValueQueryBuilder WithGroupValueFragment(GroupValueQueryBuilder groupValueQueryBuilder, IncludeDirective include = null, SkipDirective skip = null) =>
+            WithFragment(groupValueQueryBuilder, new GraphQlDirective[] { include, skip });
         public ColumnValueQueryBuilder WithHourValueFragment(HourValueQueryBuilder hourValueQueryBuilder, IncludeDirective include = null, SkipDirective skip = null) =>
             WithFragment(hourValueQueryBuilder, new GraphQlDirective[] { include, skip });
         public ColumnValueQueryBuilder WithIntegrationValueFragment(IntegrationValueQueryBuilder integrationValueQueryBuilder, IncludeDirective include = null, SkipDirective skip = null) =>
@@ -80,6 +82,8 @@ namespace MondayApi.Schema {
             WithFragment(numbersValueQueryBuilder, new GraphQlDirective[] { include, skip });
         public ColumnValueQueryBuilder WithPeopleValueFragment(PeopleValueQueryBuilder peopleValueQueryBuilder, IncludeDirective include = null, SkipDirective skip = null) =>
             WithFragment(peopleValueQueryBuilder, new GraphQlDirective[] { include, skip });
+        public ColumnValueQueryBuilder WithPersonValueFragment(PersonValueQueryBuilder personValueQueryBuilder, IncludeDirective include = null, SkipDirective skip = null) =>
+            WithFragment(personValueQueryBuilder, new GraphQlDirective[] { include, skip });
         public ColumnValueQueryBuilder WithPhoneValueFragment(PhoneValueQueryBuilder phoneValueQueryBuilder, IncludeDirective include = null, SkipDirective skip = null) =>
             WithFragment(phoneValueQueryBuilder, new GraphQlDirective[] { include, skip });
         public ColumnValueQueryBuilder WithProgressValueFragment(ProgressValueQueryBuilder progressValueQueryBuilder, IncludeDirective include = null, SkipDirective skip = null) =>
