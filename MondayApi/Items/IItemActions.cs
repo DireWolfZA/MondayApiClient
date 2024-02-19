@@ -12,7 +12,6 @@ namespace MondayApi.Items {
             bool withColumnValues = false, IEnumerable<string> columnIDs = null);
         Task<Item> GetOneAsync(string id,
             bool withColumnValues = false, IEnumerable<string> columnIDs = null);
-        Task<string> GetLinkAsync(string id);
 
         Task<Item> CreateAsync(string itemName, string boardID, string groupID = null, IEnumerable<IColumnValue> columnValues = null, bool? createLabelsIfMissing = null);
         /// <summary>Allows creating multiple items with one request</summary>

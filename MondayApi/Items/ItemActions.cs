@@ -81,14 +81,6 @@ namespace MondayApi.Items {
             return response.Items?.FirstOrDefault();
         }
 
-        public async Task<string> GetLinkAsync(string id) {
-            var query = new QueryQueryBuilder()
-                .WithItems(new ItemQueryBuilder().WithRelativeLink(), ids: Utils.GetParameterToMulti(id))
-                .WithAccount(new AccountQueryBuilder().WithSlug());
-            var response = await client.RunQuery(query);
-            return $"https://{response.Account.Slug}.monday.com{response.Items?.FirstOrDefault()?.RelativeLink}";
-        }
-
         public async Task<Item> CreateAsync(string itemName, string boardID, string groupID = null, IEnumerable<IColumnValue> columnValues = null, bool? createLabelsIfMissing = null) {
             Utils.RequireArgument(nameof(itemName), itemName);
             Utils.RequireArgument(nameof(boardID), boardID);

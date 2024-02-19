@@ -32,7 +32,7 @@ namespace MondayApi.Groups {
             return response.Boards?.FirstOrDefault()?.Groups?.FirstOrDefault();
         }
 
-        public async Task<Group> CreateAsync(string boardID, string title, string relativeTo = null, PositionRelative? positionRelative = null) {
+        public async Task<Group> CreateAsync(string boardID, string title, string color = null, string relativeTo = null, PositionRelative? positionRelative = null) {
             Utils.RequireArgument(nameof(boardID), boardID);
             Utils.RequireArgument(nameof(title), title);
 
@@ -40,6 +40,7 @@ namespace MondayApi.Groups {
                 new GroupQueryBuilder().WithAllScalarFields(),
                 boardID: boardID,
                 groupName: title,
+                groupColor: color,
                 relativeTo: relativeTo,
                 positionRelativeMethod: positionRelative
             );
