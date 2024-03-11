@@ -24,6 +24,7 @@ namespace MondayApi.Items {
                         .WithNumbersValueFragment(new NumbersValueQueryBuilder().WithNumber())
                         .WithCheckboxValueFragment(new CheckboxValueQueryBuilder().WithChecked())
                         .WithPhoneValueFragment(new PhoneValueQueryBuilder().WithCountryShortName())
+                        .WithEmailValueFragment(new EmailValueQueryBuilder().WithEmail())
                     ,
                     Utils.GetParameterIfNotNull(columnIDs)
                 );
