@@ -56,6 +56,12 @@ namespace MondayApi {
                 if (Utils.TryDeserializeMondayApiError(queryResponse, out var mondayApiError))
                     throw new AggregateException(new MondayException(mondayApiError));
                 throw;
+#if DEBUG
+            } catch (Newtonsoft.Json.JsonReaderException) {
+                if (Environment.GetEnvironmentVariable(EnvironmentDebugShowResponse) != null)
+                    Console.WriteLine(queryResponse);
+                throw;
+#endif
             }
 
             if (response.Errors != null)
@@ -89,6 +95,12 @@ namespace MondayApi {
                 if (Utils.TryDeserializeMondayApiError(queryResponse, out var mondayApiError))
                     throw new AggregateException(new MondayException(mondayApiError));
                 throw;
+#if DEBUG
+            } catch (Newtonsoft.Json.JsonReaderException) {
+                if (Environment.GetEnvironmentVariable(EnvironmentDebugShowResponse) != null)
+                    Console.WriteLine(queryResponse);
+                throw;
+#endif
             }
 
             if (response.Errors != null)
