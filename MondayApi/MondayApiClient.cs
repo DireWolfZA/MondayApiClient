@@ -1,6 +1,7 @@
 using System;
 using System.Threading.Tasks;
 using GraphQL.Client.Http;
+using MondayApi.ActivityLogs;
 using MondayApi.Assets;
 using MondayApi.Boards;
 using MondayApi.Columns;
@@ -116,6 +117,7 @@ namespace MondayApi {
             return response.Data;
         }
 
+        public IActivityLogActions ActivityLogs => new ActivityLogActions(this);
         public IAssetActions Assets => new AssetActions(this);
         public IBoardActions Boards => new BoardActions(this);
         public IColumnActions Columns => new ColumnActions(this);

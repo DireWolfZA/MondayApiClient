@@ -6,6 +6,7 @@ namespace MondayApi.Schema {
         [JsonProperty("account_id")]
         public string AccountID { get; set; }
         [JsonProperty("created_at")]
+        [JsonConverter(typeof(UnixDateTimeConverter), UnixDateTimeConverter.ETimeType.SeventeenDigitValue)]
         public DateTimeOffset? CreatedAt { get; set; }
         public string Data { get; set; }
         public string Entity { get; set; }
