@@ -12,7 +12,11 @@ namespace MondayApi {
         }
 
         public MondayApiError MondayApiError { get; }
-        public MondayException(MondayApiError mondayApiError) : base(mondayApiError.ErrorMessage) {
+        public MondayException(MondayApiError mondayApiError) : base(
+            mondayApiError.ErrorMessage ??
+            mondayApiError.Errors?.FirstOrDefault() ??
+            $"{mondayApiError.StatusCode}: {mondayApiError.ErrorCode}"
+        ) {
             MondayApiError = mondayApiError;
         }
 
