@@ -24,7 +24,7 @@ namespace MondayApi.Users {
         public async Task<User> GetOneAsync(string id) {
             var query = new QueryQueryBuilder().WithUsers(
                 new UserQueryBuilder().WithAllScalarFields(),
-                ids: Utils.GetParameterToMulti(id)
+                ids: new string[] { id }
             );
             var response = await client.RunQuery(query);
             return response.Users?.FirstOrDefault();

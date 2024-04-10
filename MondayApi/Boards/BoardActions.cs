@@ -14,8 +14,8 @@ namespace MondayApi.Boards {
         public async Task<IEnumerable<Board>> GetAsync(int pageNumber, int numPerPage) {
             var query = new QueryQueryBuilder().WithBoards(
                 new BoardQueryBuilder().WithAllScalarFields(),
-                limit: Utils.GetParameter<int?>(numPerPage),
-                page: Utils.GetParameter<int?>(pageNumber)
+                limit: numPerPage,
+                page: pageNumber
             );
             var response = await client.RunQuery(query);
             return response.Boards;
@@ -24,15 +24,15 @@ namespace MondayApi.Boards {
         public async Task<Board> GetOneAsync(string id) {
             var query = new QueryQueryBuilder().WithBoards(
                 new BoardQueryBuilder().WithAllScalarFields(),
-                ids: Utils.GetParameterToMulti(id)
+                ids: new string[] { id }
             );
             var response = await client.RunQuery(query);
             return response.Boards?.FirstOrDefault();
         }
 
         public async Task<Board> CreateAsync(Board board, string templateID = null, bool? empty = null) {
-            Utils.RequireArgument(nameof(board.Name), board.Name);
-            Utils.RequireArgument(nameof(board.BoardKind), board.BoardKind);
+            Utils.Utils.RequireArgument(nameof(board.Name), board.Name);
+            Utils.Utils.RequireArgument(nameof(board.BoardKind), board.BoardKind);
 
             var mutation = new MutationQueryBuilder().WithCreateBoard(
                 new BoardQueryBuilder().WithAllScalarFields(),

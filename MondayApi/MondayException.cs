@@ -11,8 +11,8 @@ namespace MondayApi {
             ErrorData = error;
         }
 
-        public MondayApiError MondayApiError { get; }
-        public MondayException(MondayApiError mondayApiError) : base(
+        public Utils.MondayApiError MondayApiError { get; }
+        public MondayException(Utils.MondayApiError mondayApiError) : base(
             mondayApiError.ErrorMessage ??
             mondayApiError.Errors?.FirstOrDefault() ??
             $"{mondayApiError.StatusCode}: {mondayApiError.ErrorCode}"

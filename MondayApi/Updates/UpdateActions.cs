@@ -21,8 +21,8 @@ namespace MondayApi.Updates {
         public async Task<IEnumerable<Update>> GetAsync(int pageNumber, int numPerPage, bool includeReplies = false) {
             var query = new QueryQueryBuilder().WithUpdates(
                 getUpdateQueryBuilder(includeReplies),
-                limit: Utils.GetParameter<int?>(numPerPage),
-                page: Utils.GetParameter<int?>(pageNumber)
+                limit: numPerPage,
+                page: pageNumber
             );
             var response = await client.RunQuery(query);
             return response.Updates;
@@ -32,10 +32,10 @@ namespace MondayApi.Updates {
             var query = new QueryQueryBuilder().WithBoards(
                 new BoardQueryBuilder().WithUpdates(
                     getUpdateQueryBuilder(includeReplies),
-                    limit: Utils.GetParameter<int?>(numPerPage),
-                    page: Utils.GetParameter<int?>(pageNumber)
+                    limit: numPerPage,
+                    page: pageNumber
                 ),
-                ids: Utils.GetParameterToMulti(boardID)
+                ids: new string[] { boardID }
             );
             var response = await client.RunQuery(query);
             return response.Boards?.FirstOrDefault()?.Updates;
@@ -45,18 +45,18 @@ namespace MondayApi.Updates {
             var query = new QueryQueryBuilder().WithItems(
                 new ItemQueryBuilder().WithUpdates(
                     getUpdateQueryBuilder(includeReplies),
-                    limit: Utils.GetParameter<int?>(numPerPage),
-                    page: Utils.GetParameter<int?>(pageNumber)
+                    limit: numPerPage,
+                    page: pageNumber
                 ),
-                ids: Utils.GetParameterToMulti(itemID)
+                ids: new string[] { itemID }
             );
             var response = await client.RunQuery(query);
             return response.Items?.FirstOrDefault()?.Updates;
         }
 
         public async Task<Update> CreateAsync(string itemID, string body, string parentUpdateID = null) {
-            Utils.RequireArgument(nameof(itemID), itemID);
-            Utils.RequireArgument(nameof(body), body);
+            Utils.Utils.RequireArgument(nameof(itemID), itemID);
+            Utils.Utils.RequireArgument(nameof(body), body);
 
             var mutation = new MutationQueryBuilder().WithCreateUpdate(
                 getUpdateQueryBuilder(true),

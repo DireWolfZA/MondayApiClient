@@ -14,8 +14,8 @@ namespace MondayApi.Workspaces {
         public async Task<IEnumerable<Workspace>> GetAsync(int pageNumber, int numPerPage) {
             var query = new QueryQueryBuilder().WithWorkspaces(
                 new WorkspaceQueryBuilder().WithAllScalarFields(),
-                limit: Utils.GetParameter<int?>(numPerPage),
-                page: Utils.GetParameter<int?>(pageNumber)
+                limit: numPerPage,
+                page: pageNumber
             );
             var response = await client.RunQuery(query);
             return response.Workspaces;
@@ -24,15 +24,15 @@ namespace MondayApi.Workspaces {
         public async Task<Workspace> GetOneAsync(string id) {
             var query = new QueryQueryBuilder().WithWorkspaces(
                 new WorkspaceQueryBuilder().WithAllScalarFields(),
-                ids: Utils.GetParameterToMulti(id)
+                ids: new string[] { id }
             );
             var response = await client.RunQuery(query);
             return response.Workspaces?.FirstOrDefault();
         }
 
         public async Task<Workspace> CreateAsync(Workspace workspace) {
-            Utils.RequireArgument(nameof(workspace.Name), workspace.Name);
-            Utils.RequireArgument(nameof(workspace.Kind), workspace.Kind);
+            Utils.Utils.RequireArgument(nameof(workspace.Name), workspace.Name);
+            Utils.Utils.RequireArgument(nameof(workspace.Kind), workspace.Kind);
 
             var mutation = new MutationQueryBuilder().WithCreateWorkspace(
                 new WorkspaceQueryBuilder().WithAllScalarFields(),

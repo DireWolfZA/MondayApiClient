@@ -28,7 +28,7 @@ namespace MondayApi.ActivityLogs {
                     from: (DateTimeOffset?)from,
                     to: (DateTimeOffset?)to
                 ),
-                ids: Utils.GetParameterToMulti(boardID)
+                ids: new string[] { boardID }
             );
 
             var response = await client.RunQuery(query);

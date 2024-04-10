@@ -14,7 +14,7 @@ namespace MondayApi.Columns {
         public async Task<IEnumerable<Column>> GetAsync(string boardID) {
             var query = new QueryQueryBuilder().WithBoards(
                 new BoardQueryBuilder().WithColumns(new ColumnQueryBuilder().WithAllScalarFields()),
-                ids: Utils.GetParameterToMulti(boardID)
+                ids: new string[] { boardID }
             );
             var response = await client.RunQuery(query);
             return response.Boards?.FirstOrDefault()?.Columns;
@@ -33,9 +33,9 @@ namespace MondayApi.Columns {
             var query = new QueryQueryBuilder().WithBoards(
                 new BoardQueryBuilder().WithColumns(
                     new ColumnQueryBuilder().WithAllScalarFields(),
-                    ids: Utils.GetParameterToMulti(columnID)
+                    ids: new string[] { columnID }
                 ),
-                ids: Utils.GetParameterToMulti(boardID)
+                ids: new string[] { boardID }
             );
             var response = await client.RunQuery(query);
             return response.Boards?.FirstOrDefault()?.Columns?.FirstOrDefault();
@@ -45,13 +45,13 @@ namespace MondayApi.Columns {
             var query = new QueryQueryBuilder().WithBoards(
                 new BoardQueryBuilder().WithColumns(
                     new ColumnQueryBuilder().WithSettingsStr(),
-                    types: Utils.GetParameterWithNameToMulti(ColumnType.Subtasks)
+                    types: new ColumnType?[] { ColumnType.Subtasks }
                 ),
-                ids: Utils.GetParameterToMulti(boardID)
+                ids: new string[] { boardID }
             );
             var response = await client.RunQuery(query);
 
-            var columnSettingsStr = response.Boards?.FirstOrDefault()?.Columns?.FirstOrDefault()?.SettingsStr;
+            string columnSettingsStr = response.Boards?.FirstOrDefault()?.Columns?.FirstOrDefault()?.SettingsStr;
             if (columnSettingsStr == null)
                 return null;
 
@@ -68,11 +68,11 @@ namespace MondayApi.Columns {
             var mutation = new MutationQueryBuilder().WithChangeColumnValue(
                 new ItemQueryBuilder().WithAllScalarFields().WithColumnValues(
                     new ColumnValueQueryBuilder().WithAllScalarFields(),
-                    ids: Utils.GetParameterToMulti(value.ID)
+                    ids: new string[] { value.ID }
                 ),
                 columnID: value.ID,
                 boardID: boardID,
-                value: Utils.SerializeColumnValue(value),
+                value: Utils.Utils.SerializeColumnValue(value),
                 itemID: itemID,
                 createLabelsIfMissing: createLabelsIfMissing
             );
@@ -84,7 +84,7 @@ namespace MondayApi.Columns {
             var mutation = new MutationQueryBuilder().WithChangeSimpleColumnValue(
                 new ItemQueryBuilder().WithAllScalarFields().WithColumnValues(
                     new ColumnValueQueryBuilder().WithAllScalarFields(),
-                    ids: Utils.GetParameterToMulti(columnID)
+                    ids: new string[] { columnID }
                 ),
                 columnID: columnID,
                 boardID: boardID,
@@ -102,7 +102,7 @@ namespace MondayApi.Columns {
                     new ColumnValueQueryBuilder().WithAllScalarFields()
                 ),
                 boardID: boardID,
-                columnValues: Utils.SerializeColumnValues(values),
+                columnValues: Utils.Utils.SerializeColumnValues(values),
                 itemID: itemID,
                 createLabelsIfMissing: createLabelsIfMissing
             );
@@ -118,11 +118,11 @@ namespace MondayApi.Columns {
                 mutation = mutation.WithChangeColumnValue(
                     new ItemQueryBuilder().WithAllScalarFields().WithColumnValues(
                         new ColumnValueQueryBuilder().WithAllScalarFields(),
-                        ids: Utils.GetParameterToMulti(value.Value.ID)
+                        ids: new string[] { value.Value.ID }
                     ),
                     columnID: value.Value.ID,
                     boardID: value.BoardID,
-                    value: Utils.SerializeColumnValue(value.Value),
+                    value: Utils.Utils.SerializeColumnValue(value.Value),
                     itemID: value.ItemID,
                     createLabelsIfMissing: createLabelsIfMissing,
 

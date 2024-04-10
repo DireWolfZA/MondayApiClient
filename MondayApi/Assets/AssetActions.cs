@@ -22,10 +22,10 @@ namespace MondayApi.Assets {
                                 .WithFileLinkValueFragment(new FileLinkValueQueryBuilder().WithAllScalarFields().ExceptCreatedAt())
                         )
                     ),
-                    ids: Utils.GetParameterToMulti(columnID),
-                    types: Utils.GetParameterWithNameToMulti(ColumnType.File)
+                    ids: new string[] { columnID },
+                    types: new ColumnType?[] { ColumnType.File }
                 ),
-                ids: Utils.GetParameterToMulti(itemID)
+                ids: new string[] { itemID }
             );
             var response = await client.RunQuery(query);
             return response.Items?.FirstOrDefault()?.ColumnValues?.OfType<FileValue>()?.Select(fv => fv.Files);
@@ -36,7 +36,7 @@ namespace MondayApi.Assets {
                 new ItemQueryBuilder().WithAssets(
                     new AssetQueryBuilder().WithAllScalarFields()
                 ),
-                ids: Utils.GetParameterToMulti(itemID)
+                ids: new string[] { itemID }
             );
             var response = await client.RunQuery(query);
             return response.Items?.FirstOrDefault()?.Assets;
@@ -49,7 +49,7 @@ namespace MondayApi.Assets {
                         new AssetQueryBuilder().WithAllScalarFields()
                     )
                 ),
-                ids: Utils.GetParameterToMulti(itemID)
+                ids: new string[] { itemID }
             );
             var response = await client.RunQuery(query);
             return response.Items?.FirstOrDefault()?.Updates;
@@ -58,7 +58,7 @@ namespace MondayApi.Assets {
         public async Task<Asset> GetOneAsync(string id) {
             var query = new QueryQueryBuilder().WithAssets(
                 new AssetQueryBuilder().WithAllScalarFields(),
-                ids: Utils.GetParameterToMulti(id)
+                ids: new string[] { id }
             );
             var response = await client.RunQuery(query);
             return response.Assets?.FirstOrDefault();

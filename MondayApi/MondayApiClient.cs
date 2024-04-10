@@ -24,9 +24,9 @@ namespace MondayApi {
         private string queryResponse;
 
         public MondayApiClient(string token) {
-            Utils.RequireArgument(nameof(token), string.IsNullOrWhiteSpace(token) ? null : token);
+            Utils.Utils.RequireArgument(nameof(token), string.IsNullOrWhiteSpace(token) ? null : token);
 
-            client = new GraphQLHttpClient(baseURL, new DebugSerializer(captureResponse: response => queryResponse = response));
+            client = new GraphQLHttpClient(baseURL, new Utils.DebugSerializer(captureResponse: response => queryResponse = response));
 
             client.HttpClient.DefaultRequestHeaders.Add("Authorization", token);
             client.HttpClient.DefaultRequestHeaders.Add("Accept", "application/json");
@@ -54,7 +54,7 @@ namespace MondayApi {
                 response = await client.SendQueryAsync<T>(new GraphQL.GraphQLRequest(query));
             } catch (Newtonsoft.Json.JsonSerializationException) {
                 // attempt to convert to MondayApiError. If it fails, throw original JsonSerializationException
-                if (Utils.TryDeserializeMondayApiError(queryResponse, out var mondayApiError))
+                if (Utils.Utils.TryDeserializeMondayApiError(queryResponse, out var mondayApiError))
                     throw new AggregateException(new MondayException(mondayApiError));
                 throw;
 #if DEBUG
@@ -91,9 +91,9 @@ namespace MondayApi {
 
             GraphQL.GraphQLResponse<T> response;
             try {
-                response = await client.SendMutationAsync<T>(new MondayFileUploadRequest(query, file, filename));
+                response = await client.SendMutationAsync<T>(new Utils.MondayFileUploadRequest(query, file, filename));
             } catch (Newtonsoft.Json.JsonSerializationException) {
-                if (Utils.TryDeserializeMondayApiError(queryResponse, out var mondayApiError))
+                if (Utils.Utils.TryDeserializeMondayApiError(queryResponse, out var mondayApiError))
                     throw new AggregateException(new MondayException(mondayApiError));
                 throw;
 #if DEBUG

@@ -1,4 +1,4 @@
-namespace MondayApi {
+namespace MondayApi.Utils {
     public class MondayApiError {
         public string ErrorCode { get; set; }
         public int? StatusCode { get; set; }

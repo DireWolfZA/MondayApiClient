@@ -14,7 +14,7 @@ namespace MondayApi.Groups {
         public async Task<IEnumerable<Group>> GetAsync(string boardID) {
             var query = new QueryQueryBuilder().WithBoards(
                 new BoardQueryBuilder().WithGroups(new GroupQueryBuilder().WithAllScalarFields()),
-                ids: Utils.GetParameterToMulti(boardID)
+                ids: new string[] { boardID }
             );
             var response = await client.RunQuery(query);
             return response.Boards?.FirstOrDefault()?.Groups;
@@ -24,17 +24,17 @@ namespace MondayApi.Groups {
             var query = new QueryQueryBuilder().WithBoards(
                 new BoardQueryBuilder().WithGroups(
                     new GroupQueryBuilder().WithAllScalarFields(),
-                    ids: Utils.GetParameterToMulti(groupID)
+                    ids: new string[] { groupID }
                 ),
-                ids: Utils.GetParameterToMulti(boardID)
+                ids: new string[] { boardID }
             );
             var response = await client.RunQuery(query);
             return response.Boards?.FirstOrDefault()?.Groups?.FirstOrDefault();
         }
 
         public async Task<Group> CreateAsync(string boardID, string title, string color = null, string relativeTo = null, PositionRelative? positionRelative = null) {
-            Utils.RequireArgument(nameof(boardID), boardID);
-            Utils.RequireArgument(nameof(title), title);
+            Utils.Utils.RequireArgument(nameof(boardID), boardID);
+            Utils.Utils.RequireArgument(nameof(title), title);
 
             var mutation = new MutationQueryBuilder().WithCreateGroup(
                 new GroupQueryBuilder().WithAllScalarFields(),

@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using MondayApi.Schema;
 
-namespace MondayApi {
-    internal class Utils {
+namespace MondayApi.Utils {
+    public class Utils {
         // Copied from old version of RestSharp.Validation
         /// <summary>Require a parameter to not be null</summary>
         /// <param name="argumentName">Name of the parameter</param>

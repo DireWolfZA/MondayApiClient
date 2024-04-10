@@ -23,7 +23,7 @@ namespace MondayApi.Subitems {
                         .WithNumbersValueFragment(new NumbersValueQueryBuilder().WithNumber())
                         .WithCheckboxValueFragment(new CheckboxValueQueryBuilder().WithChecked())
                     ,
-                    Utils.GetParameterIfNotNull(columnIDs)
+                    ids: Utils.Utils.GetParameterIfNotNull(columnIDs)
                 );
             return itemQueryBuilder;
         }
@@ -31,21 +31,21 @@ namespace MondayApi.Subitems {
         public async Task<IEnumerable<Item>> GetAsync(string parentItemID, bool withColumnValues = false, IEnumerable<string> columnIDs = null) {
             var query = new QueryQueryBuilder().WithItems(
                 new ItemQueryBuilder().WithSubitems(getSubitemQueryBuilder(withColumnValues, columnIDs)),
-                ids: Utils.GetParameterToMulti(parentItemID)
+                ids: new string[] { parentItemID }
             );
             var response = await client.RunQuery(query);
             return response.Items?.FirstOrDefault().Subitems;
         }
 
         public async Task<Item> CreateSubitem(string itemName, string parentItemID, IEnumerable<IColumnValue> columnValues = null, bool? createLabelsIfMissing = null) {
-            Utils.RequireArgument(nameof(parentItemID), parentItemID);
-            Utils.RequireArgument(nameof(itemName), itemName);
+            Utils.Utils.RequireArgument(nameof(parentItemID), parentItemID);
+            Utils.Utils.RequireArgument(nameof(itemName), itemName);
 
             var mutation = new MutationQueryBuilder().WithCreateSubitem(
                 getSubitemQueryBuilder(true, null),
                 parentItemID: parentItemID,
                 itemName: itemName,
-                columnValues: Utils.SerializeColumnValues(columnValues),
+                columnValues: Utils.Utils.SerializeColumnValues(columnValues),
                 createLabelsIfMissing: createLabelsIfMissing
             );
 
