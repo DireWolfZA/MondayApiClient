@@ -2,6 +2,7 @@ using System;
 using Newtonsoft.Json;
 
 namespace MondayApi.Schema {
+    [GraphQlObjectType("FileAssetValue")]
     public class FileAssetValue : IFileValueItem {
         public Asset Asset { get; set; }
         [JsonProperty("asset_id")]

@@ -134,6 +134,15 @@ namespace MondayApi.Items {
             return response.MoveItemToGroup;
         }
 
+        /// <param name="columnsMapping">
+        /// To fill item mapping you must use
+        /// <see cref="Columns.IColumnActions.FillColumnMapping"/> before calling this method.
+        /// </param>
+        /// <param name="subitemsColumnsMapping">
+        /// To fill item mapping you must use
+        /// <see cref="Columns.IColumnActions.FillColumnMapping"/> with the Subitem Board ID from
+        /// <see cref="Columns.IColumnActions.GetSubitemsBoardIDAsync"/> before calling this method.
+        /// </param>
         public async Task<Item> MoveToBoardAsync(string itemID, string boardID, string groupID, IEnumerable<ColumnMappingInput> columnsMapping = null, IEnumerable<ColumnMappingInput> subitemsColumnsMapping = null) {
             Utils.Utils.RequireArgument(nameof(itemID), itemID);
             Utils.Utils.RequireArgument(nameof(boardID), boardID);
