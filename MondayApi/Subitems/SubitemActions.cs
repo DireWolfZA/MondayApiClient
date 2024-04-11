@@ -23,7 +23,7 @@ namespace MondayApi.Subitems {
                         .WithNumbersValueFragment(new NumbersValueQueryBuilder().WithNumber())
                         .WithCheckboxValueFragment(new CheckboxValueQueryBuilder().WithChecked())
                     ,
-                    ids: Utils.Utils.GetParameterIfNotNull(columnIDs)
+                    ids: Utils.Utils.GetParameter(columnIDs)
                 );
             return itemQueryBuilder;
         }

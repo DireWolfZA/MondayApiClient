@@ -26,7 +26,7 @@ namespace MondayApi.Items {
                         .WithPhoneValueFragment(new PhoneValueQueryBuilder().WithCountryShortName())
                         .WithEmailValueFragment(new EmailValueQueryBuilder().WithEmail())
                     ,
-                    ids: Utils.Utils.GetParameterIfNotNull(columnIDs)
+                    ids: Utils.Utils.GetParameter(columnIDs)
                 );
             return itemQueryBuilder;
         }
@@ -51,7 +51,7 @@ namespace MondayApi.Items {
                 limit: numPerPage,
                 boardID: boardID,
                 cursor: cursor,
-                columns: Utils.Utils.GetParameterIfNotNull(columnFilters)
+                columns: Utils.Utils.GetParameter(columnFilters)
             );
             var response = await client.RunQuery(query);
             return response.ItemsPageByColumnValues;
@@ -152,8 +152,8 @@ namespace MondayApi.Items {
                 boardID: boardID,
                 groupID: groupID,
                 itemID: itemID,
-                columnsMapping: Utils.Utils.GetParameterIfNotNull(columnsMapping),
-                subitemsColumnsMapping: Utils.Utils.GetParameterIfNotNull(subitemsColumnsMapping)
+                columnsMapping: Utils.Utils.GetParameter(columnsMapping),
+                subitemsColumnsMapping: Utils.Utils.GetParameter(subitemsColumnsMapping)
             );
 
             var response = await client.RunMutation(mutation);
