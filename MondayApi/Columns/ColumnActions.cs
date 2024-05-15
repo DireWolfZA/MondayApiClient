@@ -136,6 +136,7 @@ namespace MondayApi.Columns {
         }
 
 
+        /// <inheritdoc />
         public async Task<Column> CreateAsync(string boardID, Column column, string afterColumnID = null, string defaults = null) {
             var mutation = new MutationQueryBuilder().WithCreateColumn(
                 new ColumnQueryBuilder().WithAllScalarFields(),

@@ -18,6 +18,15 @@ namespace MondayApi.Items {
         /// <param name="items">Items to be created. Properties used are <see cref="Item.Name"/>, <see cref="Item"/>.<see cref="Board.ID"/>, <see cref="Item"/>.<see cref="Group.ID"/> and <see cref="Item.ColumnValues"/></param>
         Task<IEnumerable<Item>> CreateMultipleAsync(IEnumerable<Item> items, bool? createLabelsIfMissing = null);
         Task<Item> MoveToGroupAsync(string itemID, string groupID);
+        /// <param name="columnsMapping">
+        /// To fill item mapping you must use
+        /// <see cref="Columns.IColumnActions.FillColumnMapping"/> before calling this method.
+        /// </param>
+        /// <param name="subitemsColumnsMapping">
+        /// To fill item mapping you must use
+        /// <see cref="Columns.IColumnActions.FillColumnMapping"/> with the Subitem Board ID from
+        /// <see cref="Columns.IColumnActions.GetSubitemsBoardIDAsync"/> before calling this method.
+        /// </param>
         Task<Item> MoveToBoardAsync(string itemID, string boardID, string groupID, IEnumerable<ColumnMappingInput> columnsMapping = null, IEnumerable<ColumnMappingInput> subitemsColumnsMapping = null);
         Task<Item> DuplicateAsync(string itemID, string boardID, bool? withUpdates = false);
         Task<Item> DeleteAsync(string id);

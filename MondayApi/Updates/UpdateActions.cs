@@ -68,6 +68,7 @@ namespace MondayApi.Updates {
             return response.CreateUpdate;
         }
 
+        /// <inheritdoc />
         public async Task<Update> LikeAsync(string updateID) {
             var mutation = new MutationQueryBuilder().WithLikeUpdate(
                 new UpdateQueryBuilder().WithID().WithCreatorID().WithCreatedAt().WithUpdatedAt(),
