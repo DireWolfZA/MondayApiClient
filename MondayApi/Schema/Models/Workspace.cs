@@ -10,6 +10,8 @@ namespace MondayApi.Schema {
         public DateTimeOffset? CreatedAt { get; set; }
         public string Description { get; set; }
         public string ID { get; set; }
+        [JsonProperty("is_default_workspace")]
+        public bool? IsDefaultWorkspace { get; set; }
         public WorkspaceKind? Kind { get; set; }
         public string Name { get; set; }
         [JsonProperty("owners_subscribers")]

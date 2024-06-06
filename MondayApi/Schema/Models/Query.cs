@@ -8,6 +8,8 @@ namespace MondayApi.Schema {
         public ICollection<AppInstall> AppInstalls { get; set; }
         [JsonProperty("app_subscription")]
         public ICollection<AppSubscription> AppSubscription { get; set; }
+        [JsonProperty("app_subscription_operations")]
+        public AppSubscriptionOperationsCounter AppSubscriptionOperations { get; set; }
         [JsonProperty("apps_monetization_status")]
         public AppMonetizationStatus AppsMonetizationStatus { get; set; }
         public ICollection<Asset> Assets { get; set; }
@@ -15,8 +17,6 @@ namespace MondayApi.Schema {
         public Complexity Complexity { get; set; }
         public ICollection<Document> Docs { get; set; }
         public ICollection<Folder> Folders { get; set; }
-        [JsonProperty("increase_app_subscription_operations")]
-        public AppSubscriptionOperationsCounter IncreaseAppSubscriptionOperations { get; set; }
         public ICollection<Item> Items { get; set; }
         [JsonProperty("items_page_by_column_values")]
         public ItemsResponse ItemsPageByColumnValues { get; set; }

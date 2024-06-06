@@ -7,6 +7,7 @@ namespace MondayApi.Schema {
             new GraphQlFieldMetadata { Name = "created_at" },
             new GraphQlFieldMetadata { Name = "description" },
             new GraphQlFieldMetadata { Name = "id" },
+            new GraphQlFieldMetadata { Name = "is_default_workspace" },
             new GraphQlFieldMetadata { Name = "kind" },
             new GraphQlFieldMetadata { Name = "name" },
             new GraphQlFieldMetadata { Name = "owners_subscribers", IsComplex = true, QueryBuilderType = typeof(UserQueryBuilder) },
@@ -73,6 +74,10 @@ namespace MondayApi.Schema {
             WithScalarField("id", alias, new GraphQlDirective[] { include, skip });
         public WorkspaceQueryBuilder ExceptID() =>
             ExceptField("id");
+        public WorkspaceQueryBuilder WithIsDefaultWorkspace(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
+            WithScalarField("is_default_workspace", alias, new GraphQlDirective[] { include, skip });
+        public WorkspaceQueryBuilder ExceptIsDefaultWorkspace() =>
+            ExceptField("is_default_workspace");
         public WorkspaceQueryBuilder WithKind(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
             WithScalarField("kind", alias, new GraphQlDirective[] { include, skip });
         public WorkspaceQueryBuilder ExceptKind() =>

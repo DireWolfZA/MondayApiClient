@@ -120,5 +120,7 @@ namespace MondayApi.Schema {
         public Group UpdateGroup { get; set; }
         [JsonProperty("update_workspace")]
         public Workspace UpdateWorkspace { get; set; }
+        [JsonProperty("use_template")]
+        public Template UseTemplate { get; set; }
     }
 }

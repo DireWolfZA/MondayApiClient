@@ -6,6 +6,8 @@ namespace MondayApi.Schema {
         Deprecated,
         [EnumMember(Value = "dev")]
         Dev,
+        [EnumMember(Value = "previous_maintenance")]
+        PreviousMaintenance,
         [EnumMember(Value = "maintenance")]
         Maintenance,
         [EnumMember(Value = "current")]

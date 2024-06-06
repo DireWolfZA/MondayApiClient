@@ -28,6 +28,8 @@ namespace MondayApi.Schema {
         public const string FileLinkValueKind = "FileLinkValueKind";
         public const string FirstDayOfTheWeek = "FirstDayOfTheWeek";
         public const string FolderColor = "FolderColor";
+        public const string FolderCustomIcon = "FolderCustomIcon";
+        public const string FolderFontWeight = "FolderFontWeight";
         public const string GroupAttributes = "GroupAttributes";
         public const string ItemsOrderByDirection = "ItemsOrderByDirection";
         public const string ItemsQueryOperator = "ItemsQueryOperator";
@@ -119,6 +121,7 @@ namespace MondayApi.Schema {
         public const string TagsValue = "TagsValue";
         public const string Team = "Team";
         public const string TeamValue = "TeamValue";
+        public const string Template = "Template";
         public const string TextValue = "TextValue";
         public const string TimelineValue = "TimelineValue";
         public const string TimeTrackingHistoryItem = "TimeTrackingHistoryItem";
@@ -141,6 +144,7 @@ namespace MondayApi.Schema {
         public const string CreateDocWorkspaceInput = "CreateDocWorkspaceInput";
         public const string ItemsPageByColumnValuesQuery = "ItemsPageByColumnValuesQuery";
         public const string ItemsQuery = "ItemsQuery";
+        public const string ItemsQueryGroup = "ItemsQueryGroup";
         public const string ItemsQueryOrderBy = "ItemsQueryOrderBy";
         public const string ItemsQueryRule = "ItemsQueryRule";
         public const string UpdateWorkspaceAttributesInput = "UpdateWorkspaceAttributesInput";
@@ -162,6 +166,7 @@ namespace MondayApi.Schema {
             { typeof(CreateDocWorkspaceInput), "CreateDocWorkspaceInput" },
             { typeof(ItemsPageByColumnValuesQuery), "ItemsPageByColumnValuesQuery" },
             { typeof(ItemsQuery), "ItemsQuery" },
+            { typeof(ItemsQueryGroup), "ItemsQueryGroup" },
             { typeof(ItemsQueryOrderBy), "ItemsQueryOrderBy" },
             { typeof(ItemsQueryRule), "ItemsQueryRule" },
             { typeof(UpdateWorkspaceAttributesInput), "UpdateWorkspaceAttributesInput" }

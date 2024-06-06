@@ -22,7 +22,7 @@ namespace MondayApi.Schema {
 
     [GraphQlObjectType("BoardRelationValue__unused")]
     public class BoardRelationValueForUpdate : BoardRelationValue {
-        [JsonProperty("item_ids")] // `long` to workaround bug in current 2023-10 version of API: https://developer.monday.com/api-reference/docs/connect#json - requires non-quoted IDs
-        public ICollection<long> ItemIDs { get; set; }
+        [JsonProperty("item_ids")]
+        public ICollection<string> ItemIDs { get; set; }
     }
 }

@@ -4,7 +4,7 @@ using Newtonsoft.Json;
 namespace MondayApi.Schema {
     public class AppInstall {
         [JsonProperty("app_id")]
-        public int? AppID { get; set; }
+        public string AppID { get; set; }
         [JsonProperty("app_install_account")]
         public AppInstallAccount AppInstallAccount { get; set; }
         [JsonProperty("app_install_user")]

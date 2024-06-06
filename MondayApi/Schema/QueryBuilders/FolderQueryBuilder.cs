@@ -6,6 +6,8 @@ namespace MondayApi.Schema {
             new GraphQlFieldMetadata { Name = "children", IsComplex = true, QueryBuilderType = typeof(BoardQueryBuilder) },
             new GraphQlFieldMetadata { Name = "color" },
             new GraphQlFieldMetadata { Name = "created_at" },
+            new GraphQlFieldMetadata { Name = "custom_icon" },
+            new GraphQlFieldMetadata { Name = "font_weight" },
             new GraphQlFieldMetadata { Name = "id" },
             new GraphQlFieldMetadata { Name = "name" },
             new GraphQlFieldMetadata { Name = "owner_id" },
@@ -29,6 +31,14 @@ namespace MondayApi.Schema {
             WithScalarField("created_at", alias, new GraphQlDirective[] { include, skip });
         public FolderQueryBuilder ExceptCreatedAt() =>
             ExceptField("created_at");
+        public FolderQueryBuilder WithCustomIcon(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
+            WithScalarField("custom_icon", alias, new GraphQlDirective[] { include, skip });
+        public FolderQueryBuilder ExceptCustomIcon() =>
+            ExceptField("custom_icon");
+        public FolderQueryBuilder WithFontWeight(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
+            WithScalarField("font_weight", alias, new GraphQlDirective[] { include, skip });
+        public FolderQueryBuilder ExceptFontWeight() =>
+            ExceptField("font_weight");
         public FolderQueryBuilder WithID(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
             WithScalarField("id", alias, new GraphQlDirective[] { include, skip });
         public FolderQueryBuilder ExceptID() =>
