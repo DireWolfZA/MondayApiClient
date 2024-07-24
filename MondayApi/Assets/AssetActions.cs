@@ -11,7 +11,7 @@ namespace MondayApi.Assets {
             this.client = client;
         }
 
-        public async Task<IEnumerable<IEnumerable<IFileValueItem>>> GetItemFilesAsync(string itemID, string columnID = null) {
+        public async Task<IEnumerable<IEnumerable<IFileValueItem>>> GetItemFilesAsync(string itemID, string[] columnIDs = null) {
             var query = new QueryQueryBuilder().WithItems(
                 new ItemQueryBuilder().WithColumnValues(
                     new ColumnValueQueryBuilder().WithAllScalarFields().WithFileValueFragment(
@@ -22,7 +22,7 @@ namespace MondayApi.Assets {
                                 .WithFileLinkValueFragment(new FileLinkValueQueryBuilder().WithAllScalarFields().ExceptCreatedAt())
                         )
                     ),
-                    ids: new string[] { columnID },
+                    ids: columnIDs,
                     types: new ColumnType?[] { ColumnType.File }
                 ),
                 ids: new string[] { itemID }
