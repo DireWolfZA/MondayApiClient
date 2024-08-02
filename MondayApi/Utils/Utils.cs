@@ -36,6 +36,8 @@ namespace MondayApi.Utils {
                         PersonsAndTeams = pv.PersonsAndTeams?.Select(pe => new PeopleEntityForUpdate() { ID = pe.ID, Kind = pe.Kind.ToString().ToLowerInvariant() }).ToList(),
                     };
                 case BoardRelationValue bv:
+                    if (bv is BoardRelationValueForUpdate)
+                        return column;
                     return new BoardRelationValueForUpdate() {
                         ItemIDs = bv.LinkedItemIDs,
                     };
