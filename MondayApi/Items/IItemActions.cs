@@ -5,9 +5,11 @@ using MondayApi.Schema;
 namespace MondayApi.Items {
     public interface IItemActions {
         Task<ItemsResponse> GetByBoardAsync(string cursor, int numPerPage, string boardID,
-            bool withColumnValues = false, IEnumerable<string> columnIDs = null);
-        Task<ItemsResponse> GetByBoardAsync(string cursor, int numPerPage, string boardID,
+            bool withColumnValues = false, IEnumerable<string> columnIDs = null, ItemsQuery queryParams = null);
+        Task<ItemsResponse> GetByBoardColumnValuesAsync(string cursor, int numPerPage, string boardID,
             bool withColumnValues = false, IEnumerable<string> columnIDs = null, IEnumerable<ItemsPageByColumnValuesQuery> columnFilters = null);
+        Task<ItemsResponse> GetByBoardNextPage(string cursor, int numPerPage,
+            bool withColumnValues = false, IEnumerable<string> columnIDs = null);
         Task<ItemsResponse> GetByBoardGroupAsync(string cursor, int numPerPage, string boardID, string groupID,
             bool withColumnValues = false, IEnumerable<string> columnIDs = null);
         Task<Item> GetOneAsync(string id,

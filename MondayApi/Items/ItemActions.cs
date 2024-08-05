@@ -31,11 +31,12 @@ namespace MondayApi.Items {
             return itemQueryBuilder;
         }
 
-        public async Task<ItemsResponse> GetByBoardAsync(string cursor, int numPerPage, string boardID, bool withColumnValues = false, IEnumerable<string> columnIDs = null) {
+        public async Task<ItemsResponse> GetByBoardAsync(string cursor, int numPerPage, string boardID, bool withColumnValues = false, IEnumerable<string> columnIDs = null, ItemsQuery queryParams = null) {
             var query = new QueryQueryBuilder().WithBoards(
                 new BoardQueryBuilder().WithItemsPage(
                     new ItemsResponseQueryBuilder().WithCursor().WithItems(getItemQueryBuilder(withColumnValues, columnIDs)),
                     limit: numPerPage,
+                    queryParams: queryParams,
                     cursor: cursor
                 ),
                 ids: new string[] { boardID }
@@ -45,7 +46,7 @@ namespace MondayApi.Items {
         }
 
         //https://developer.monday.com/api-reference/docs/items-page-by-column-values
-        public async Task<ItemsResponse> GetByBoardAsync(string cursor, int numPerPage, string boardID, bool withColumnValues = false, IEnumerable<string> columnIDs = null, IEnumerable<ItemsPageByColumnValuesQuery> columnFilters = null) {
+        public async Task<ItemsResponse> GetByBoardColumnValuesAsync(string cursor, int numPerPage, string boardID, bool withColumnValues = false, IEnumerable<string> columnIDs = null, IEnumerable<ItemsPageByColumnValuesQuery> columnFilters = null) {
             var query = new QueryQueryBuilder().WithItemsPageByColumnValues(
                 new ItemsResponseQueryBuilder().WithCursor().WithItems(getItemQueryBuilder(withColumnValues, columnIDs)),
                 limit: numPerPage,
@@ -55,6 +56,18 @@ namespace MondayApi.Items {
             );
             var response = await client.RunQuery(query);
             return response.ItemsPageByColumnValues;
+        }
+
+
+        public async Task<ItemsResponse> GetByBoardNextPage(string cursor, int numPerPage, bool withColumnValues = false, IEnumerable<string> columnIDs = null) {
+            Utils.Utils.RequireArgument(nameof(cursor), cursor);
+            var query = new QueryQueryBuilder().WithNextItemsPage(
+                new ItemsResponseQueryBuilder().WithCursor().WithItems(getItemQueryBuilder(withColumnValues, columnIDs)),
+                cursor: cursor,
+                limit: numPerPage
+            );
+            var response = await client.RunQuery(query);
+            return response.NextItemsPage;
         }
 
         public async Task<ItemsResponse> GetByBoardGroupAsync(string cursor, int numPerPage, string boardID, string groupID, bool withColumnValues = false, IEnumerable<string> columnIDs = null) {
