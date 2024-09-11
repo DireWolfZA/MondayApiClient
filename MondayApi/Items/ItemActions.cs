@@ -12,7 +12,7 @@ namespace MondayApi.Items {
         }
 
         private ItemQueryBuilder getItemQueryBuilder(bool withColumnValues, IEnumerable<string> columnIDs) {
-            var itemQueryBuilder = new ItemQueryBuilder().WithAllScalarFields();
+            var itemQueryBuilder = new ItemQueryBuilder().WithAllScalarFields().WithGroup(new GroupQueryBuilder().WithID());
             if (withColumnValues)
                 itemQueryBuilder = itemQueryBuilder.WithColumnValues(
                     new ColumnValueQueryBuilder()
