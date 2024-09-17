@@ -96,7 +96,10 @@ namespace MondayApi.Items {
             return response.Items?.FirstOrDefault();
         }
 
-        public async Task<Item> CreateAsync(string itemName, string boardID, string groupID = null, IEnumerable<IColumnValue> columnValues = null, bool? createLabelsIfMissing = null) {
+        /// <inheritdoc />
+        public async Task<Item> CreateAsync(string itemName, string boardID, string groupID = null, IEnumerable<IColumnValue> columnValues = null,
+            bool? createLabelsIfMissing = null, string relativeTo = null, PositionRelative? positionRelative = null
+        ) {
             Utils.Utils.RequireArgument(nameof(itemName), itemName);
             Utils.Utils.RequireArgument(nameof(boardID), boardID);
 
@@ -106,7 +109,9 @@ namespace MondayApi.Items {
                 boardID: boardID,
                 groupID: groupID,
                 columnValues: Utils.Utils.SerializeColumnValues(columnValues),
-                createLabelsIfMissing: createLabelsIfMissing
+                createLabelsIfMissing: createLabelsIfMissing,
+                relativeTo: relativeTo,
+                positionRelativeMethod: positionRelative
             );
 
             var response = await client.RunMutation(mutation);
