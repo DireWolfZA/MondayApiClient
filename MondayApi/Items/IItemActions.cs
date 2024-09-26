@@ -39,5 +39,6 @@ namespace MondayApi.Items {
         Task<Item> MoveToBoardAsync(string itemID, string boardID, string groupID, IEnumerable<ColumnMappingInput> columnsMapping = null, IEnumerable<ColumnMappingInput> subitemsColumnsMapping = null);
         Task<Item> DuplicateAsync(string itemID, string boardID, bool? withUpdates = false);
         Task<Item> DeleteAsync(string id);
+        Task<IEnumerable<Item>> DeleteMultipleAsync(IEnumerable<string> ids);
     }
 }

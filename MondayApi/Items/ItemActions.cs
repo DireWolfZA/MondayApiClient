@@ -120,6 +120,7 @@ namespace MondayApi.Items {
 
         /// <inheritdoc />
         public async Task<IEnumerable<Item>> CreateMultipleAsync(IEnumerable<Item> items, bool? createLabelsIfMissing = null) {
+            Utils.Utils.RequireArgument(nameof(items), items);
             var mutation = new MutationQueryBuilder();
 
             int createIndex = 0;
@@ -191,6 +192,26 @@ namespace MondayApi.Items {
 
             var response = await client.RunMutation(mutation);
             return response.DeleteItem;
+        }
+
+        public async Task<IEnumerable<Item>> DeleteMultipleAsync(IEnumerable<string> ids) {
+            Utils.Utils.RequireArgument($"{nameof(ids)}", ids);
+            var mutation = new MutationQueryBuilder();
+
+            int deleteIndex = 0;
+            foreach (string id in ids) {
+                Utils.Utils.RequireArgument($"{nameof(ids)}.Item", id);
+
+                mutation = mutation.WithDeleteItem(
+                    new ItemQueryBuilder().WithAllScalarFields(),
+                    id,
+                    alias: $"deleteItem{deleteIndex}"
+                );
+                deleteIndex++;
+            }
+
+            var response = await client.Run<Newtonsoft.Json.Linq.JObject>(mutation);
+            return response.AsEnumerable<KeyValuePair<string, Newtonsoft.Json.Linq.JToken>>().Select(i => i.Value.ToObject<Item>());
         }
     }
 }
