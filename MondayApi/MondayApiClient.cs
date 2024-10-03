@@ -67,8 +67,11 @@ namespace MondayApi {
 
             if (response.Errors != null)
                 throw MondayException.FromErrors(response.Errors);
-            if (response.Data == null)
+            if (response.Data == null) {
+                if (Utils.Utils.TryDeserializeMondayApiError(queryResponse, out var mondayApiError))
+                    throw new AggregateException(new MondayException(mondayApiError));
                 throw new AggregateException(new MondayException(queryResponse));
+            }
 
 #if DEBUG
             if (Environment.GetEnvironmentVariable(EnvironmentDebugShowResponse) != null)
@@ -106,8 +109,11 @@ namespace MondayApi {
 
             if (response.Errors != null)
                 throw MondayException.FromErrors(response.Errors);
-            if (response.Data == null)
+            if (response.Data == null) {
+                if (Utils.Utils.TryDeserializeMondayApiError(queryResponse, out var mondayApiError))
+                    throw new AggregateException(new MondayException(mondayApiError));
                 throw new AggregateException(new MondayException(queryResponse));
+            }
 
 #if DEBUG
             if (Environment.GetEnvironmentVariable(EnvironmentDebugShowResponse) != null)
