@@ -33,7 +33,7 @@ namespace MondayApi.Utils {
                     return nv.Number ?? nv.Text ?? nv.Value;
                 case PeopleValue pv:
                     return new PeopleValueForUpdate() {
-                        PersonsAndTeams = pv.PersonsAndTeams?.Select(pe => new PeopleEntityForUpdate() { ID = pe.ID, Kind = pe.Kind.ToString().ToLowerInvariant() }).ToList(),
+                        PersonsAndTeams = pv.PersonsAndTeams,
                     };
                 case BoardRelationValue bv:
                     if (bv is BoardRelationValueForUpdate)

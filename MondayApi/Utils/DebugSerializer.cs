@@ -13,16 +13,11 @@ namespace MondayApi.Utils {
         readonly NewtonsoftJsonSerializer implementation = new NewtonsoftJsonSerializer();
         readonly Action<string> captureResponse;
 
-        public DebugSerializer(Action<string> captureResponse) =>
-            this.captureResponse = captureResponse;
-        public byte[] SerializeToBytes(GraphQLWebSocketRequest request) =>
-            implementation.SerializeToBytes(request);
-        public Task<WebsocketMessageWrapper> DeserializeToWebsocketResponseWrapperAsync(Stream stream) =>
-            implementation.DeserializeToWebsocketResponseWrapperAsync(stream);
-        public GraphQLWebSocketResponse<TResponse> DeserializeToWebsocketResponse<TResponse>(byte[] bytes) =>
-            implementation.DeserializeToWebsocketResponse<TResponse>(bytes);
-        public string SerializeToString(GraphQLRequest request) =>
-            implementation.SerializeToString(request);
+        public DebugSerializer(Action<string> captureResponse) => this.captureResponse = captureResponse;
+        public byte[] SerializeToBytes(GraphQLWebSocketRequest request) => implementation.SerializeToBytes(request);
+        public Task<WebsocketMessageWrapper> DeserializeToWebsocketResponseWrapperAsync(Stream stream) => implementation.DeserializeToWebsocketResponseWrapperAsync(stream);
+        public GraphQLWebSocketResponse<TResponse> DeserializeToWebsocketResponse<TResponse>(byte[] bytes) => implementation.DeserializeToWebsocketResponse<TResponse>(bytes);
+        public string SerializeToString(GraphQLRequest request) => implementation.SerializeToString(request);
 
         public async Task<GraphQLResponse<TResponse>> DeserializeFromUtf8StreamAsync<TResponse>(Stream stream, CancellationToken cancellationToken) {
             using (var ms = new MemoryStream()) {

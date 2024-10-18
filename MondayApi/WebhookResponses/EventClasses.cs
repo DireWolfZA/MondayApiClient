@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 
+//https://developer.monday.com/api-reference/reference/webhooks#sample-payload-for-webhook-events
 namespace MondayApi.WebhookResponses {
     public class EventClassBase {
         public string App { get; set; }
