@@ -52,14 +52,24 @@ namespace MondayApi.Groups {
 
         /// <inheritdoc />
         public async Task<Group> UpdateAsync(string boardID, string groupID, GroupAttributes attribute, string newValue) {
-            var mutation = new MutationQueryBuilder().WithUpdateGroup(groupQueryBuilder: new GroupQueryBuilder().WithAllScalarFields(), boardID: boardID, groupID: groupID, groupAttribute: attribute, newValue: newValue);
+            var mutation = new MutationQueryBuilder().WithUpdateGroup(
+                new GroupQueryBuilder().WithAllScalarFields(),
+                boardID: boardID,
+                groupID: groupID,
+                groupAttribute: attribute,
+                newValue: newValue
+            );
 
             var response = await client.RunMutation(mutation);
             return response.UpdateGroup;
         }
 
         public async Task<Group> DeleteAsync(string boardID, string groupID) {
-            var mutation = new MutationQueryBuilder().WithDeleteGroup(new GroupQueryBuilder().WithAllScalarFields(), boardID, groupID);
+            var mutation = new MutationQueryBuilder().WithDeleteGroup(
+                new GroupQueryBuilder().WithAllScalarFields(),
+                boardID: boardID,
+                groupID: groupID
+            );
 
             var response = await client.RunMutation(mutation);
             return response.DeleteGroup;

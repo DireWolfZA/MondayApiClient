@@ -43,8 +43,8 @@ namespace MondayApi.Subitems {
 
             var mutation = new MutationQueryBuilder().WithCreateSubitem(
                 getSubitemQueryBuilder(true, null),
-                parentItemID: parentItemID,
                 itemName: itemName,
+                parentItemID: parentItemID,
                 columnValues: Utils.Utils.SerializeColumnValues(columnValues),
                 createLabelsIfMissing: createLabelsIfMissing
             );

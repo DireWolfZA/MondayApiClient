@@ -70,10 +70,10 @@ namespace MondayApi.Columns {
                     new ColumnValueQueryBuilder().WithAllScalarFields(),
                     ids: new string[] { value.ID }
                 ),
-                columnID: value.ID,
                 boardID: boardID,
-                value: Utils.Utils.SerializeColumnValue(value),
                 itemID: itemID,
+                columnID: value.ID,
+                value: Utils.Utils.SerializeColumnValue(value),
                 createLabelsIfMissing: createLabelsIfMissing
             );
             var response = await client.RunMutation(mutation);
@@ -86,8 +86,8 @@ namespace MondayApi.Columns {
                     new ColumnValueQueryBuilder().WithAllScalarFields(),
                     ids: new string[] { columnID }
                 ),
-                columnID: columnID,
                 boardID: boardID,
+                columnID: columnID,
                 itemID: itemID,
                 value: value,
                 createLabelsIfMissing: createLabelsIfMissing
@@ -102,8 +102,8 @@ namespace MondayApi.Columns {
                     new ColumnValueQueryBuilder().WithAllScalarFields()
                 ),
                 boardID: boardID,
-                columnValues: Utils.Utils.SerializeColumnValues(values),
                 itemID: itemID,
+                columnValues: Utils.Utils.SerializeColumnValues(values),
                 createLabelsIfMissing: createLabelsIfMissing
             );
             var response = await client.RunMutation(mutation);
@@ -120,10 +120,10 @@ namespace MondayApi.Columns {
                         new ColumnValueQueryBuilder().WithAllScalarFields(),
                         ids: new string[] { value.Value.ID }
                     ),
-                    columnID: value.Value.ID,
                     boardID: value.BoardID,
-                    value: Utils.Utils.SerializeColumnValue(value.Value),
                     itemID: value.ItemID,
+                    columnID: value.Value.ID,
+                    value: Utils.Utils.SerializeColumnValue(value.Value),
                     createLabelsIfMissing: createLabelsIfMissing,
 
                     alias: $"changeColumnValue{createIndex}"
@@ -143,10 +143,10 @@ namespace MondayApi.Columns {
                 boardID: boardID,
                 title: column.Title,
                 columnType: column.Type,
-                description: column.Description,
-                defaults: defaults,
                 id: column.ID,
-                afterColumnID: afterColumnID
+                description: column.Description,
+                afterColumnID: afterColumnID,
+                defaults: defaults
             );
             var response = await client.RunMutation(mutation);
             return response.CreateColumn;

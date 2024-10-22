@@ -19,8 +19,8 @@ namespace MondayApi.ActivityLogs {
             var query = new QueryQueryBuilder().WithBoards(
                 new BoardQueryBuilder().WithActivityLogs(
                     new ActivityLogTypeQueryBuilder().WithAllScalarFields(),
-                    limit: numPerPage,
                     page: pageNumber,
+                    limit: numPerPage,
                     userIDs: userIDs,
                     columnIDs: columnIDs,
                     groupIDs: groupIDs,

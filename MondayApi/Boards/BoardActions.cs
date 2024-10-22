@@ -14,8 +14,8 @@ namespace MondayApi.Boards {
         public async Task<IEnumerable<Board>> GetAsync(int pageNumber, int numPerPage) {
             var query = new QueryQueryBuilder().WithBoards(
                 new BoardQueryBuilder().WithAllScalarFields(),
-                limit: numPerPage,
-                page: pageNumber
+                page: pageNumber,
+                limit: numPerPage
             );
             var response = await client.RunQuery(query);
             return response.Boards;
@@ -54,14 +54,14 @@ namespace MondayApi.Boards {
         }
 
         public async Task<UpdateBoardResponse> UpdateAsync(string id, BoardAttributes attribute, string newValue) {
-            var mutation = new MutationQueryBuilder().WithUpdateBoard(boardID: id, boardAttribute: attribute, newValue: newValue);
+            var mutation = new MutationQueryBuilder().WithUpdateBoard(
+                boardID: id,
+                boardAttribute: attribute,
+                newValue: newValue
+            );
 
             var response = await client.RunMutation(mutation);
-            using (var sr = new System.IO.StringReader(response.UpdateBoard))
-            using (var reader = new Newtonsoft.Json.JsonTextReader(sr)) {
-                var serializer = Newtonsoft.Json.JsonSerializer.Create();
-                return serializer.Deserialize<UpdateBoardResponse>(reader);
-            }
+            return Newtonsoft.Json.JsonConvert.DeserializeObject<UpdateBoardResponse>(response.UpdateBoard);
         }
 
         public async Task<Board> DeleteAsync(string id) {

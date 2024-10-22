@@ -14,8 +14,8 @@ namespace MondayApi.Workspaces {
         public async Task<IEnumerable<Workspace>> GetAsync(int pageNumber, int numPerPage) {
             var query = new QueryQueryBuilder().WithWorkspaces(
                 new WorkspaceQueryBuilder().WithAllScalarFields(),
-                limit: numPerPage,
-                page: pageNumber
+                page: pageNumber,
+                limit: numPerPage
             );
             var response = await client.RunQuery(query);
             return response.Workspaces;

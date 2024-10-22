@@ -21,8 +21,8 @@ namespace MondayApi.Updates {
         public async Task<IEnumerable<Update>> GetAsync(int pageNumber, int numPerPage, bool includeReplies = false) {
             var query = new QueryQueryBuilder().WithUpdates(
                 getUpdateQueryBuilder(includeReplies),
-                limit: numPerPage,
-                page: pageNumber
+                page: pageNumber,
+                limit: numPerPage
             );
             var response = await client.RunQuery(query);
             return response.Updates;
@@ -32,8 +32,8 @@ namespace MondayApi.Updates {
             var query = new QueryQueryBuilder().WithBoards(
                 new BoardQueryBuilder().WithUpdates(
                     getUpdateQueryBuilder(includeReplies),
-                    limit: numPerPage,
-                    page: pageNumber
+                    page: pageNumber,
+                    limit: numPerPage
                 ),
                 ids: new string[] { boardID }
             );
@@ -45,8 +45,8 @@ namespace MondayApi.Updates {
             var query = new QueryQueryBuilder().WithItems(
                 new ItemQueryBuilder().WithUpdates(
                     getUpdateQueryBuilder(includeReplies),
-                    limit: numPerPage,
-                    page: pageNumber
+                    page: pageNumber,
+                    limit: numPerPage
                 ),
                 ids: new string[] { itemID }
             );
@@ -60,8 +60,8 @@ namespace MondayApi.Updates {
 
             var mutation = new MutationQueryBuilder().WithCreateUpdate(
                 getUpdateQueryBuilder(true),
-                body: body,
                 itemID: itemID,
+                body: body,
                 parentID: parentUpdateID
             );
             var response = await client.RunMutation(mutation);
