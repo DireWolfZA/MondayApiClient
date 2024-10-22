@@ -16,8 +16,8 @@ namespace MondayApi.Schema {
         public object Value { get; set; }
     }
 
-    internal class PeopleValueForUpdate {
-        [JsonProperty("personsAndTeams")] // see https://developer.monday.com/api-reference/docs/people#json
+    internal class PeopleValueForUpdate { // https://developer.monday.com/api-reference/reference/people#json
+        [JsonProperty("personsAndTeams")]
         public ICollection<PeopleEntity> PersonsAndTeams { get; set; }
     }
 }

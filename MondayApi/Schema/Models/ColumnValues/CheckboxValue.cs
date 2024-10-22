@@ -14,7 +14,7 @@ namespace MondayApi.Schema {
         public object Value { get; set; }
     }
 
-    internal class CheckboxValueForUpdate {
-        public string Checked { get; set; } // see https://developer.monday.com/api-reference/docs/checkbox#json
+    internal class CheckboxValueForUpdate { // https://developer.monday.com/api-reference/reference/checkbox#json
+        public string Checked { get; set; }
     }
 }

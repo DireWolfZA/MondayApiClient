@@ -16,9 +16,9 @@ namespace MondayApi.Schema {
         public object Value { get; set; }
     }
 
-    [GraphQlObjectType("PhoneValue__unused")]
-    public class PhoneValueForUpdate : PhoneValue {
-        [JsonProperty("countryShortName")] // see https://developer.monday.com/api-reference/docs/phone#json
-        public new string CountryShortName { get; set; }
+    internal class PhoneValueForUpdate { // https://developer.monday.com/api-reference/reference/phone#json
+        public string Phone { get; set; }
+        [JsonProperty("countryShortName")]
+        public string CountryShortName { get; set; }
     }
 }

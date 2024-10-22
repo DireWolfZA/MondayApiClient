@@ -20,8 +20,7 @@ namespace MondayApi.Schema {
         public object Value { get; set; }
     }
 
-    [GraphQlObjectType("BoardRelationValue__unused")]
-    public class BoardRelationValueForUpdate : BoardRelationValue {
+    internal class BoardRelationValueForUpdate { // https://developer.monday.com/api-reference/reference/connect#json
         [JsonProperty("item_ids")]
         public ICollection<string> ItemIDs { get; set; }
     }

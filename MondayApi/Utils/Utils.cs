@@ -36,10 +36,18 @@ namespace MondayApi.Utils {
                         PersonsAndTeams = pv.PersonsAndTeams,
                     };
                 case BoardRelationValue bv:
-                    if (bv is BoardRelationValueForUpdate)
-                        return column;
                     return new BoardRelationValueForUpdate() {
                         ItemIDs = bv.LinkedItemIDs,
+                    };
+                case PhoneValue pv:
+                    return new PhoneValueForUpdate() {
+                        Phone = pv.Phone,
+                        CountryShortName = pv.CountryShortName?.ToUpperInvariant(),
+                    };
+                case DropdownValue dv:
+                    return new DropdownValueForUpdate() {
+                        IDs = dv.Values.Select(v => v.ID).ToList(),
+                        Labels = dv.Values.Select(v => v.Label).ToList(),
                     };
                 case CheckboxValue cv:
                     return cv.Checked.HasValue && cv.Checked.Value
