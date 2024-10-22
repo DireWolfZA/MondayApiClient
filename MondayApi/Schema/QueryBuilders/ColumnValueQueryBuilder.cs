@@ -100,10 +100,10 @@ namespace MondayApi.Schema {
             WithFragment(teamValueQueryBuilder, new GraphQlDirective[] { include, skip });
         public ColumnValueQueryBuilder WithTextValueFragment(TextValueQueryBuilder textValueQueryBuilder, IncludeDirective include = null, SkipDirective skip = null) =>
             WithFragment(textValueQueryBuilder, new GraphQlDirective[] { include, skip });
-        public ColumnValueQueryBuilder WithTimeTrackingValueFragment(TimeTrackingValueQueryBuilder timeTrackingValueQueryBuilder, IncludeDirective include = null, SkipDirective skip = null) =>
-            WithFragment(timeTrackingValueQueryBuilder, new GraphQlDirective[] { include, skip });
         public ColumnValueQueryBuilder WithTimelineValueFragment(TimelineValueQueryBuilder timelineValueQueryBuilder, IncludeDirective include = null, SkipDirective skip = null) =>
             WithFragment(timelineValueQueryBuilder, new GraphQlDirective[] { include, skip });
+        public ColumnValueQueryBuilder WithTimeTrackingValueFragment(TimeTrackingValueQueryBuilder timeTrackingValueQueryBuilder, IncludeDirective include = null, SkipDirective skip = null) =>
+            WithFragment(timeTrackingValueQueryBuilder, new GraphQlDirective[] { include, skip });
         public ColumnValueQueryBuilder WithUnsupportedValueFragment(UnsupportedValueQueryBuilder unsupportedValueQueryBuilder, IncludeDirective include = null, SkipDirective skip = null) =>
             WithFragment(unsupportedValueQueryBuilder, new GraphQlDirective[] { include, skip });
         public ColumnValueQueryBuilder WithVoteValueFragment(VoteValueQueryBuilder voteValueQueryBuilder, IncludeDirective include = null, SkipDirective skip = null) =>

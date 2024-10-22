@@ -21,22 +21,22 @@ namespace MondayApi.Schema {
 
             return WithObjectField("owners", alias, userQueryBuilder, new GraphQlDirective[] { include, skip }, args);
         }
-        public TeamQueryBuilder WithUsers(UserQueryBuilder userQueryBuilder, QueryBuilderParameter<IEnumerable<string>> ids = null, QueryBuilderParameter<UserKind> kind = null, QueryBuilderParameter<bool?> newestFirst = null, QueryBuilderParameter<IEnumerable<string>> emails = null, QueryBuilderParameter<string> name = null, QueryBuilderParameter<bool?> nonActive = null, QueryBuilderParameter<int?> limit = null, QueryBuilderParameter<int?> page = null, string alias = null, IncludeDirective include = null, SkipDirective skip = null) {
+        public TeamQueryBuilder WithUsers(UserQueryBuilder userQueryBuilder, QueryBuilderParameter<IEnumerable<string>> emails = null, QueryBuilderParameter<IEnumerable<string>> ids = null, QueryBuilderParameter<UserKind> kind = null, QueryBuilderParameter<int?> limit = null, QueryBuilderParameter<string> name = null, QueryBuilderParameter<bool?> newestFirst = null, QueryBuilderParameter<bool?> nonActive = null, QueryBuilderParameter<int?> page = null, string alias = null, IncludeDirective include = null, SkipDirective skip = null) {
             var args = new List<QueryBuilderArgumentInfo>();
+            if (emails != null)
+                args.Add(new QueryBuilderArgumentInfo { ArgumentName = "emails", ArgumentValue = emails });
             if (ids != null)
                 args.Add(new QueryBuilderArgumentInfo { ArgumentName = "ids", ArgumentValue = ids });
             if (kind != null)
                 args.Add(new QueryBuilderArgumentInfo { ArgumentName = "kind", ArgumentValue = kind });
-            if (newestFirst != null)
-                args.Add(new QueryBuilderArgumentInfo { ArgumentName = "newest_first", ArgumentValue = newestFirst });
-            if (emails != null)
-                args.Add(new QueryBuilderArgumentInfo { ArgumentName = "emails", ArgumentValue = emails });
-            if (name != null)
-                args.Add(new QueryBuilderArgumentInfo { ArgumentName = "name", ArgumentValue = name });
-            if (nonActive != null)
-                args.Add(new QueryBuilderArgumentInfo { ArgumentName = "non_active", ArgumentValue = nonActive });
             if (limit != null)
                 args.Add(new QueryBuilderArgumentInfo { ArgumentName = "limit", ArgumentValue = limit });
+            if (name != null)
+                args.Add(new QueryBuilderArgumentInfo { ArgumentName = "name", ArgumentValue = name });
+            if (newestFirst != null)
+                args.Add(new QueryBuilderArgumentInfo { ArgumentName = "newest_first", ArgumentValue = newestFirst });
+            if (nonActive != null)
+                args.Add(new QueryBuilderArgumentInfo { ArgumentName = "non_active", ArgumentValue = nonActive });
             if (page != null)
                 args.Add(new QueryBuilderArgumentInfo { ArgumentName = "page", ArgumentValue = page });
 

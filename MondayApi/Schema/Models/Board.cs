@@ -5,6 +5,8 @@ using Newtonsoft.Json;
 namespace MondayApi.Schema {
     [GraphQlObjectType("Board")]
     public class Board : IMirroredValue {
+        public string ID { get; set; }
+        public ICollection<Update> Updates { get; set; }
         [JsonProperty("activity_logs")]
         public ICollection<ActivityLogType> ActivityLogs { get; set; }
         [JsonProperty("board_folder_id")]
@@ -17,7 +19,6 @@ namespace MondayApi.Schema {
         public User Creator { get; set; }
         public string Description { get; set; }
         public ICollection<Group> Groups { get; set; }
-        public string ID { get; set; }
         [JsonProperty("item_terminology")]
         public string ItemTerminology { get; set; }
         [JsonProperty("items_count")]
@@ -39,7 +40,6 @@ namespace MondayApi.Schema {
         public BoardObjectType? Type { get; set; }
         [JsonProperty("updated_at")]
         public DateTimeOffset? UpdatedAt { get; set; }
-        public ICollection<Update> Updates { get; set; }
         public string URL { get; set; }
         public ICollection<BoardView> Views { get; set; }
         public Workspace Workspace { get; set; }

@@ -3,14 +3,20 @@ using Newtonsoft.Json;
 
 namespace MondayApi.Schema {
     public class Mutation {
+        [JsonProperty("like_update")]
+        public Update LikeUpdate { get; set; }
         [JsonProperty("unlike_update")]
         public Update UnlikeUpdate { get; set; }
+        [JsonProperty("delete_update")]
+        public Update DeleteUpdate { get; set; }
         [JsonProperty("edit_update")]
         public Update EditUpdate { get; set; }
         [JsonProperty("pin_to_top")]
         public Update PinToTop { get; set; }
         [JsonProperty("unpin_from_top")]
         public Update UnpinFromTop { get; set; }
+        [JsonProperty("create_update")]
+        public Update CreateUpdate { get; set; }
         [JsonProperty("create_timeline_item")]
         public TimelineItem CreateTimelineItem { get; set; }
         [JsonProperty("delete_timeline_item")]
@@ -78,8 +84,6 @@ namespace MondayApi.Schema {
         public Tag CreateOrGetTag { get; set; }
         [JsonProperty("create_subitem")]
         public Item CreateSubitem { get; set; }
-        [JsonProperty("create_update")]
-        public Update CreateUpdate { get; set; }
         [JsonProperty("create_webhook")]
         public Webhook CreateWebhook { get; set; }
         [JsonProperty("create_workspace")]
@@ -102,8 +106,6 @@ namespace MondayApi.Schema {
         public ICollection<Team> DeleteTeamsFromBoard { get; set; }
         [JsonProperty("delete_teams_from_workspace")]
         public ICollection<Team> DeleteTeamsFromWorkspace { get; set; }
-        [JsonProperty("delete_update")]
-        public Update DeleteUpdate { get; set; }
         [JsonProperty("delete_users_from_workspace")]
         public ICollection<User> DeleteUsersFromWorkspace { get; set; }
         [JsonProperty("delete_webhook")]
@@ -118,8 +120,6 @@ namespace MondayApi.Schema {
         public Item DuplicateItem { get; set; }
         [JsonProperty("increase_app_subscription_operations")]
         public AppSubscriptionOperationsCounter IncreaseAppSubscriptionOperations { get; set; }
-        [JsonProperty("like_update")]
-        public Update LikeUpdate { get; set; }
         [JsonProperty("move_item_to_board")]
         public Item MoveItemToBoard { get; set; }
         [JsonProperty("move_item_to_group")]

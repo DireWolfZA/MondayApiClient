@@ -173,10 +173,10 @@ namespace MondayApi.Schema {
         public const string ColumnValue = "ColumnValue";
 
         public static readonly IReadOnlyDictionary<Type, string> ReverseMapping = new Dictionary<Type, string>() {
+            { typeof(int), "Int" },
             { typeof(string), "String" },
             { typeof(bool), "Boolean" },
             { typeof(DateTimeOffset), "String" },
-            { typeof(int), "Int" },
             { typeof(decimal), "Float" },
             { typeof(ColumnMappingInput), "ColumnMappingInput" },
             { typeof(CreateDocBoardInput), "CreateDocBoardInput" },

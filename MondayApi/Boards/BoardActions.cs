@@ -54,7 +54,7 @@ namespace MondayApi.Boards {
         }
 
         public async Task<UpdateBoardResponse> UpdateAsync(string id, BoardAttributes attribute, string newValue) {
-            var mutation = new MutationQueryBuilder().WithUpdateBoard(id, attribute, newValue);
+            var mutation = new MutationQueryBuilder().WithUpdateBoard(boardID: id, boardAttribute: attribute, newValue: newValue);
 
             var response = await client.RunMutation(mutation);
             using (var sr = new System.IO.StringReader(response.UpdateBoard))

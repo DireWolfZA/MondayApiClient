@@ -4,6 +4,8 @@ using Newtonsoft.Json;
 
 namespace MondayApi.Schema {
     public class Item {
+        public string ID { get; set; }
+        public ICollection<Update> Updates { get; set; }
         public ICollection<Asset> Assets { get; set; }
         public Board Board { get; set; }
         [JsonProperty("column_values")]
@@ -16,7 +18,6 @@ namespace MondayApi.Schema {
         public string CreatorID { get; set; }
         public string Email { get; set; }
         public Group Group { get; set; }
-        public string ID { get; set; }
         [JsonProperty("linked_items")]
         public ICollection<Item> LinkedItems { get; set; }
         public string Name { get; set; }
@@ -29,7 +30,6 @@ namespace MondayApi.Schema {
         public ICollection<User> Subscribers { get; set; }
         [JsonProperty("updated_at")]
         public DateTimeOffset? UpdatedAt { get; set; }
-        public ICollection<Update> Updates { get; set; }
         public string URL { get; set; }
     }
 }

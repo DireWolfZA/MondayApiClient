@@ -74,17 +74,17 @@ namespace MondayApi.Schema {
         Team,
         [EnumMember(Value = "text")]
         Text,
-        [EnumMember(Value = "timeline")]
-        Timeline,
         [EnumMember(Value = "time_tracking")]
         TimeTracking,
+        [EnumMember(Value = "timeline")]
+        Timeline,
+        [EnumMember(Value = "unsupported")]
+        Unsupported,
         [EnumMember(Value = "vote")]
         Vote,
         [EnumMember(Value = "week")]
         Week,
         [EnumMember(Value = "world_clock")]
-        WorldClock,
-        [EnumMember(Value = "unsupported")]
-        Unsupported
+        WorldClock
     }
 }

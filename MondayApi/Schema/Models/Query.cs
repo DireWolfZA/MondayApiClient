@@ -3,6 +3,7 @@ using Newtonsoft.Json;
 
 namespace MondayApi.Schema {
     public class Query {
+        public ICollection<Update> Updates { get; set; }
         [JsonProperty("custom_activity")]
         public ICollection<CustomActivity> CustomActivity { get; set; }
         [JsonProperty("timeline_item")]
@@ -33,7 +34,6 @@ namespace MondayApi.Schema {
         public ItemsResponse NextItemsPage { get; set; }
         public ICollection<Tag> Tags { get; set; }
         public ICollection<Team> Teams { get; set; }
-        public ICollection<Update> Updates { get; set; }
         public ICollection<User> Users { get; set; }
         public Version Version { get; set; }
         public ICollection<Version> Versions { get; set; }
