@@ -12,7 +12,7 @@ namespace MondayApi.ActivityLogs {
             this.client = client;
         }
 
-        public async Task<IEnumerable<ActivityLogType>> GetAsync(int pageNumber, int numPerPage, string boardID,
+        public async Task<IEnumerable<ActivityLogType>> Get(int pageNumber, int numPerPage, string boardID,
                 string[] userIDs = null, string[] columnIDs = null, string[] groupIDs = null,
                 string[] itemIDs = null, DateTime? from = null, DateTime? to = null) {
 

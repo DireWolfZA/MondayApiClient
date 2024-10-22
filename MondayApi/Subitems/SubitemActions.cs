@@ -28,7 +28,7 @@ namespace MondayApi.Subitems {
             return itemQueryBuilder;
         }
 
-        public async Task<IEnumerable<Item>> GetAsync(string parentItemID, bool withColumnValues = false, IEnumerable<string> columnIDs = null) {
+        public async Task<IEnumerable<Item>> Get(string parentItemID, bool withColumnValues = false, IEnumerable<string> columnIDs = null) {
             var query = new QueryQueryBuilder().WithItems(
                 new ItemQueryBuilder().WithSubitems(getSubitemQueryBuilder(withColumnValues, columnIDs)),
                 ids: new string[] { parentItemID }

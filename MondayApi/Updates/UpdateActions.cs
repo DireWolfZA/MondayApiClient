@@ -18,7 +18,7 @@ namespace MondayApi.Updates {
             return updateQueryBuilder;
         }
 
-        public async Task<IEnumerable<Update>> GetAsync(int pageNumber, int numPerPage, bool includeReplies = false) {
+        public async Task<IEnumerable<Update>> Get(int pageNumber, int numPerPage, bool includeReplies = false) {
             var query = new QueryQueryBuilder().WithUpdates(
                 getUpdateQueryBuilder(includeReplies),
                 page: pageNumber,
@@ -28,7 +28,7 @@ namespace MondayApi.Updates {
             return response.Updates;
         }
 
-        public async Task<IEnumerable<Update>> GetByBoardAsync(int pageNumber, int numPerPage, string boardID, bool includeReplies = false) {
+        public async Task<IEnumerable<Update>> GetByBoard(int pageNumber, int numPerPage, string boardID, bool includeReplies = false) {
             var query = new QueryQueryBuilder().WithBoards(
                 new BoardQueryBuilder().WithUpdates(
                     getUpdateQueryBuilder(includeReplies),
@@ -41,7 +41,7 @@ namespace MondayApi.Updates {
             return response.Boards?.FirstOrDefault()?.Updates;
         }
 
-        public async Task<IEnumerable<Update>> GetByItemAsync(int pageNumber, int numPerPage, string itemID, bool includeReplies = false) {
+        public async Task<IEnumerable<Update>> GetByItem(int pageNumber, int numPerPage, string itemID, bool includeReplies = false) {
             var query = new QueryQueryBuilder().WithItems(
                 new ItemQueryBuilder().WithUpdates(
                     getUpdateQueryBuilder(includeReplies),
@@ -54,7 +54,7 @@ namespace MondayApi.Updates {
             return response.Items?.FirstOrDefault()?.Updates;
         }
 
-        public async Task<Update> CreateAsync(string itemID, string body, string parentUpdateID = null) {
+        public async Task<Update> Create(string itemID, string body, string parentUpdateID = null) {
             Utils.Utils.RequireArgument(nameof(itemID), itemID);
             Utils.Utils.RequireArgument(nameof(body), body);
 
@@ -69,7 +69,7 @@ namespace MondayApi.Updates {
         }
 
         /// <inheritdoc />
-        public async Task<Update> LikeAsync(string updateID) {
+        public async Task<Update> Like(string updateID) {
             var mutation = new MutationQueryBuilder().WithLikeUpdate(
                 new UpdateQueryBuilder().WithID().WithCreatorID().WithCreatedAt().WithUpdatedAt(),
                 updateID: updateID
@@ -78,7 +78,7 @@ namespace MondayApi.Updates {
             return response.LikeUpdate;
         }
 
-        public async Task<Update> DeleteAsync(string updateID) {
+        public async Task<Update> Delete(string updateID) {
             var mutation = new MutationQueryBuilder().WithDeleteUpdate(
                 getUpdateQueryBuilder(true),
                 id: updateID
@@ -87,7 +87,7 @@ namespace MondayApi.Updates {
             return response.DeleteUpdate;
         }
 
-        public async Task<Item> ClearForItemAsync(string itemID) {
+        public async Task<Item> ClearForItem(string itemID) {
             var mutation = new MutationQueryBuilder().WithClearItemUpdates(
                 new ItemQueryBuilder().WithUpdates(new UpdateQueryBuilder().WithAllScalarFields()),
                 itemID: itemID

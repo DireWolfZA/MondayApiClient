@@ -11,7 +11,7 @@ namespace MondayApi.Columns {
             this.client = client;
         }
 
-        public async Task<IEnumerable<Column>> GetAsync(string boardID) {
+        public async Task<IEnumerable<Column>> Get(string boardID) {
             var query = new QueryQueryBuilder().WithBoards(
                 new BoardQueryBuilder().WithColumns(new ColumnQueryBuilder().WithAllScalarFields()),
                 ids: new string[] { boardID }
@@ -22,14 +22,14 @@ namespace MondayApi.Columns {
 
         static readonly ColumnType?[] bannedMoveTypes = new ColumnType?[] { ColumnType.Name, ColumnType.Subtasks, ColumnType.Formula };
         public async Task<ICollection<ColumnMappingInput>> FillColumnMapping(string boardID, ICollection<ColumnMappingInput> columnMapping) {
-            var columns = await GetAsync(boardID);
+            var columns = await Get(boardID);
 
             foreach (var column in columns.Where(c => !bannedMoveTypes.Contains(c.Type) && !columnMapping.Any(cm => cm.Source == c.ID)))
                 columnMapping.Add(new ColumnMappingInput() { Source = column.ID, Target = null });
             return columnMapping;
         }
 
-        public async Task<Column> GetOneAsync(string boardID, string columnID) {
+        public async Task<Column> GetOne(string boardID, string columnID) {
             var query = new QueryQueryBuilder().WithBoards(
                 new BoardQueryBuilder().WithColumns(
                     new ColumnQueryBuilder().WithAllScalarFields(),
@@ -41,7 +41,7 @@ namespace MondayApi.Columns {
             return response.Boards?.FirstOrDefault()?.Columns?.FirstOrDefault();
         }
 
-        public async Task<string> GetSubitemsBoardIDAsync(string boardID) {
+        public async Task<string> GetSubitemsBoardID(string boardID) {
             var query = new QueryQueryBuilder().WithBoards(
                 new BoardQueryBuilder().WithColumns(
                     new ColumnQueryBuilder().WithSettingsStr(),
@@ -64,7 +64,7 @@ namespace MondayApi.Columns {
         }
 
 
-        public async Task<Item> ChangeValueAsync(string boardID, string itemID, IColumnValue value, bool? createLabelsIfMissing = null) {
+        public async Task<Item> ChangeValue(string boardID, string itemID, IColumnValue value, bool? createLabelsIfMissing = null) {
             var mutation = new MutationQueryBuilder().WithChangeColumnValue(
                 new ItemQueryBuilder().WithAllScalarFields().WithColumnValues(
                     new ColumnValueQueryBuilder().WithAllScalarFields(),
@@ -80,7 +80,7 @@ namespace MondayApi.Columns {
             return response.ChangeColumnValue;
         }
 
-        public async Task<Item> ChangeValueSimpleAsync(string boardID, string columnID, string itemID, string value, bool? createLabelsIfMissing = null) {
+        public async Task<Item> ChangeValueSimple(string boardID, string columnID, string itemID, string value, bool? createLabelsIfMissing = null) {
             var mutation = new MutationQueryBuilder().WithChangeSimpleColumnValue(
                 new ItemQueryBuilder().WithAllScalarFields().WithColumnValues(
                     new ColumnValueQueryBuilder().WithAllScalarFields(),
@@ -96,7 +96,7 @@ namespace MondayApi.Columns {
             return response.ChangeSimpleColumnValue;
         }
 
-        public async Task<Item> ChangeMultipleValuesAsync(string boardID, string itemID, IEnumerable<IColumnValue> values, bool? createLabelsIfMissing = null) {
+        public async Task<Item> ChangeMultipleValues(string boardID, string itemID, IEnumerable<IColumnValue> values, bool? createLabelsIfMissing = null) {
             var mutation = new MutationQueryBuilder().WithChangeMultipleColumnValues(
                 new ItemQueryBuilder().WithAllScalarFields().WithColumnValues(
                     new ColumnValueQueryBuilder().WithAllScalarFields()
@@ -110,7 +110,7 @@ namespace MondayApi.Columns {
             return response.ChangeMultipleColumnValues;
         }
 
-        public async Task<IEnumerable<Item>> ChangeMultipleItemsAsync(IEnumerable<ColumnMultipleUpdateValue> values, bool? createLabelsIfMissing = null) {
+        public async Task<IEnumerable<Item>> ChangeMultipleItems(IEnumerable<ColumnMultipleUpdateValue> values, bool? createLabelsIfMissing = null) {
             var mutation = new MutationQueryBuilder();
 
             int createIndex = 0;
@@ -137,7 +137,7 @@ namespace MondayApi.Columns {
 
 
         /// <inheritdoc />
-        public async Task<Column> CreateAsync(string boardID, Column column, string afterColumnID = null, string defaults = null) {
+        public async Task<Column> Create(string boardID, Column column, string afterColumnID = null, string defaults = null) {
             var mutation = new MutationQueryBuilder().WithCreateColumn(
                 new ColumnQueryBuilder().WithAllScalarFields(),
                 boardID: boardID,

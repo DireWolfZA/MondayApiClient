@@ -4,11 +4,11 @@ using MondayApi.Schema;
 
 namespace MondayApi.Assets {
     public interface IAssetActions {
-        Task<IEnumerable<IEnumerable<IFileValueItem>>> GetItemFilesAsync(string itemID, string[] columnID = null);
-        Task<IEnumerable<Asset>> GetByItemAsync(string itemID);
-        Task<IEnumerable<Update>> GetByItemUpdatesAsync(string itemID);
-        Task<Asset> GetOneAsync(string id);
-        Task<Asset> UploadFileToUpdateAsync(string updateID, System.IO.Stream file, string filename);
-        Task<Asset> UploadFileToItemAsync(string itemID, string columnID, System.IO.Stream file, string filename);
+        Task<IEnumerable<IEnumerable<IFileValueItem>>> GetItemFiles(string itemID, string[] columnID = null);
+        Task<IEnumerable<Asset>> GetByItem(string itemID);
+        Task<IEnumerable<Update>> GetByItemUpdates(string itemID);
+        Task<Asset> GetOne(string id);
+        Task<Asset> UploadFileToUpdate(string updateID, System.IO.Stream file, string filename);
+        Task<Asset> UploadFileToItem(string itemID, string columnID, System.IO.Stream file, string filename);
     }
 }

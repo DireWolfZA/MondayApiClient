@@ -4,7 +4,7 @@ using MondayApi.Schema;
 
 namespace MondayApi.Users {
     public interface IUserActions {
-        Task<IEnumerable<User>> GetAsync(int? pageNumber = null, int? numPerPage = null);
-        Task<User> GetOneAsync(string id);
+        Task<IEnumerable<User>> Get(int? pageNumber = null, int? numPerPage = null);
+        Task<User> GetOne(string id);
     }
 }

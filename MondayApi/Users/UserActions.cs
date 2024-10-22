@@ -11,7 +11,7 @@ namespace MondayApi.Users {
             this.client = client;
         }
 
-        public async Task<IEnumerable<User>> GetAsync(int? pageNumber = null, int? numPerPage = null) {
+        public async Task<IEnumerable<User>> Get(int? pageNumber = null, int? numPerPage = null) {
             var query = new QueryQueryBuilder().WithUsers(
                 new UserQueryBuilder().WithAllScalarFields(),
                 page: pageNumber,
@@ -21,7 +21,7 @@ namespace MondayApi.Users {
             return response.Users;
         }
 
-        public async Task<User> GetOneAsync(string id) {
+        public async Task<User> GetOne(string id) {
             var query = new QueryQueryBuilder().WithUsers(
                 new UserQueryBuilder().WithAllScalarFields(),
                 ids: new string[] { id }

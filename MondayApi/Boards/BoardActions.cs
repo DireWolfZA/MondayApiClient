@@ -11,7 +11,7 @@ namespace MondayApi.Boards {
             this.client = client;
         }
 
-        public async Task<IEnumerable<Board>> GetAsync(int pageNumber, int numPerPage) {
+        public async Task<IEnumerable<Board>> Get(int pageNumber, int numPerPage) {
             var query = new QueryQueryBuilder().WithBoards(
                 new BoardQueryBuilder().WithAllScalarFields(),
                 page: pageNumber,
@@ -21,7 +21,7 @@ namespace MondayApi.Boards {
             return response.Boards;
         }
 
-        public async Task<Board> GetOneAsync(string id) {
+        public async Task<Board> GetOne(string id) {
             var query = new QueryQueryBuilder().WithBoards(
                 new BoardQueryBuilder().WithAllScalarFields(),
                 ids: new string[] { id }
@@ -30,7 +30,7 @@ namespace MondayApi.Boards {
             return response.Boards?.FirstOrDefault();
         }
 
-        public async Task<Board> CreateAsync(Board board, string templateID = null, bool? empty = null) {
+        public async Task<Board> Create(Board board, string templateID = null, bool? empty = null) {
             Utils.Utils.RequireArgument(nameof(board.Name), board.Name);
             Utils.Utils.RequireArgument(nameof(board.BoardKind), board.BoardKind);
 
@@ -53,7 +53,7 @@ namespace MondayApi.Boards {
             return response.CreateBoard;
         }
 
-        public async Task<UpdateBoardResponse> UpdateAsync(string id, BoardAttributes attribute, string newValue) {
+        public async Task<UpdateBoardResponse> Update(string id, BoardAttributes attribute, string newValue) {
             var mutation = new MutationQueryBuilder().WithUpdateBoard(
                 boardID: id,
                 boardAttribute: attribute,
@@ -64,7 +64,7 @@ namespace MondayApi.Boards {
             return Newtonsoft.Json.JsonConvert.DeserializeObject<UpdateBoardResponse>(response.UpdateBoard);
         }
 
-        public async Task<Board> DeleteAsync(string id) {
+        public async Task<Board> Delete(string id) {
             var mutation = new MutationQueryBuilder().WithDeleteBoard(new BoardQueryBuilder().WithAllScalarFields(), id);
 
             var response = await client.RunMutation(mutation);

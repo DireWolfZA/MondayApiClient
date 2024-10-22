@@ -11,7 +11,7 @@ namespace MondayApi.Assets {
             this.client = client;
         }
 
-        public async Task<IEnumerable<IEnumerable<IFileValueItem>>> GetItemFilesAsync(string itemID, string[] columnIDs = null) {
+        public async Task<IEnumerable<IEnumerable<IFileValueItem>>> GetItemFiles(string itemID, string[] columnIDs = null) {
             var query = new QueryQueryBuilder().WithItems(
                 new ItemQueryBuilder().WithColumnValues(
                     new ColumnValueQueryBuilder().WithAllScalarFields().WithFileValueFragment(
@@ -31,7 +31,7 @@ namespace MondayApi.Assets {
             return response.Items?.FirstOrDefault()?.ColumnValues?.OfType<FileValue>()?.Select(fv => fv.Files);
         }
 
-        public async Task<IEnumerable<Asset>> GetByItemAsync(string itemID) {
+        public async Task<IEnumerable<Asset>> GetByItem(string itemID) {
             var query = new QueryQueryBuilder().WithItems(
                 new ItemQueryBuilder().WithAssets(
                     new AssetQueryBuilder().WithAllScalarFields()
@@ -42,7 +42,7 @@ namespace MondayApi.Assets {
             return response.Items?.FirstOrDefault()?.Assets;
         }
 
-        public async Task<IEnumerable<Update>> GetByItemUpdatesAsync(string itemID) {
+        public async Task<IEnumerable<Update>> GetByItemUpdates(string itemID) {
             var query = new QueryQueryBuilder().WithItems(
                 new ItemQueryBuilder().WithUpdates(
                     new UpdateQueryBuilder().WithID().WithAssets(
@@ -55,7 +55,7 @@ namespace MondayApi.Assets {
             return response.Items?.FirstOrDefault()?.Updates;
         }
 
-        public async Task<Asset> GetOneAsync(string id) {
+        public async Task<Asset> GetOne(string id) {
             var query = new QueryQueryBuilder().WithAssets(
                 new AssetQueryBuilder().WithAllScalarFields(),
                 ids: new string[] { id }
@@ -64,7 +64,7 @@ namespace MondayApi.Assets {
             return response.Assets?.FirstOrDefault();
         }
 
-        public async Task<Asset> UploadFileToUpdateAsync(string updateID, System.IO.Stream file, string filename) {
+        public async Task<Asset> UploadFileToUpdate(string updateID, System.IO.Stream file, string filename) {
             var fileParam = new GraphQlQueryParameter<object>("file", "File!");
 
             var mutation = new MutationQueryBuilder().WithAddFileToUpdate(
@@ -76,7 +76,7 @@ namespace MondayApi.Assets {
             return response.AddFileToUpdate;
         }
 
-        public async Task<Asset> UploadFileToItemAsync(string itemID, string columnID, System.IO.Stream file, string filename) {
+        public async Task<Asset> UploadFileToItem(string itemID, string columnID, System.IO.Stream file, string filename) {
             var fileParam = new GraphQlQueryParameter<object>("file", "File!");
 
             var mutation = new MutationQueryBuilder().WithAddFileToColumn(

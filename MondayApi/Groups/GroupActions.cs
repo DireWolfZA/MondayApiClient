@@ -11,7 +11,7 @@ namespace MondayApi.Groups {
             this.client = client;
         }
 
-        public async Task<IEnumerable<Group>> GetAsync(string boardID) {
+        public async Task<IEnumerable<Group>> Get(string boardID) {
             var query = new QueryQueryBuilder().WithBoards(
                 new BoardQueryBuilder().WithGroups(new GroupQueryBuilder().WithAllScalarFields()),
                 ids: new string[] { boardID }
@@ -20,7 +20,7 @@ namespace MondayApi.Groups {
             return response.Boards?.FirstOrDefault()?.Groups;
         }
 
-        public async Task<Group> GetOneAsync(string boardID, string groupID) {
+        public async Task<Group> GetOne(string boardID, string groupID) {
             var query = new QueryQueryBuilder().WithBoards(
                 new BoardQueryBuilder().WithGroups(
                     new GroupQueryBuilder().WithAllScalarFields(),
@@ -33,7 +33,7 @@ namespace MondayApi.Groups {
         }
 
         /// <inheritdoc />
-        public async Task<Group> CreateAsync(string boardID, string title, string color = null, string relativeTo = null, PositionRelative? positionRelative = null) {
+        public async Task<Group> Create(string boardID, string title, string color = null, string relativeTo = null, PositionRelative? positionRelative = null) {
             Utils.Utils.RequireArgument(nameof(boardID), boardID);
             Utils.Utils.RequireArgument(nameof(title), title);
 
@@ -51,7 +51,7 @@ namespace MondayApi.Groups {
         }
 
         /// <inheritdoc />
-        public async Task<Group> UpdateAsync(string boardID, string groupID, GroupAttributes attribute, string newValue) {
+        public async Task<Group> Update(string boardID, string groupID, GroupAttributes attribute, string newValue) {
             var mutation = new MutationQueryBuilder().WithUpdateGroup(
                 new GroupQueryBuilder().WithAllScalarFields(),
                 boardID: boardID,
@@ -64,7 +64,7 @@ namespace MondayApi.Groups {
             return response.UpdateGroup;
         }
 
-        public async Task<Group> DeleteAsync(string boardID, string groupID) {
+        public async Task<Group> Delete(string boardID, string groupID) {
             var mutation = new MutationQueryBuilder().WithDeleteGroup(
                 new GroupQueryBuilder().WithAllScalarFields(),
                 boardID: boardID,
