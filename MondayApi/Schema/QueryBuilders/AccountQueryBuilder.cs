@@ -3,6 +3,7 @@ using System.Collections.Generic;
 namespace MondayApi.Schema {
     public class AccountQueryBuilder : GraphQlQueryBuilder<AccountQueryBuilder> {
         private static readonly GraphQlFieldMetadata[] AllFieldMetadata = new[] {
+            new GraphQlFieldMetadata { Name = "active_members_count" },
             new GraphQlFieldMetadata { Name = "country_code" },
             new GraphQlFieldMetadata { Name = "first_day_of_the_week" },
             new GraphQlFieldMetadata { Name = "id" },
@@ -19,6 +20,10 @@ namespace MondayApi.Schema {
         protected override string TypeName => "Account";
         public override IReadOnlyList<GraphQlFieldMetadata> AllFields => AllFieldMetadata;
 
+        public AccountQueryBuilder WithActiveMembersCount(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
+            WithScalarField("active_members_count", alias, new GraphQlDirective[] { include, skip });
+        public AccountQueryBuilder ExceptActiveMembersCount() =>
+            ExceptField("active_members_count");
         public AccountQueryBuilder WithCountryCode(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
             WithScalarField("country_code", alias, new GraphQlDirective[] { include, skip });
         public AccountQueryBuilder ExceptCountryCode() =>

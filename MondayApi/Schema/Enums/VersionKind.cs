@@ -12,6 +12,8 @@ namespace MondayApi.Schema {
         Maintenance,
         [EnumMember(Value = "current")]
         Current,
+        [EnumMember(Value = "old_previous_maintenance")]
+        OldPreviousMaintenance,
         [EnumMember(Value = "release_candidate")]
         ReleaseCandidate
     }

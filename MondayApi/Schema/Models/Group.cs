@@ -1,6 +1,7 @@
 using Newtonsoft.Json;
 
 namespace MondayApi.Schema {
+    [GraphQlObjectType("Group")]
     public class Group : IMirroredValue {
         public bool? Archived { get; set; }
         public string Color { get; set; }

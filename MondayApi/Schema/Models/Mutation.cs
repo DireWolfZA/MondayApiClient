@@ -3,6 +3,26 @@ using Newtonsoft.Json;
 
 namespace MondayApi.Schema {
     public class Mutation {
+        [JsonProperty("unlike_update")]
+        public Update UnlikeUpdate { get; set; }
+        [JsonProperty("edit_update")]
+        public Update EditUpdate { get; set; }
+        [JsonProperty("pin_to_top")]
+        public Update PinToTop { get; set; }
+        [JsonProperty("unpin_from_top")]
+        public Update UnpinFromTop { get; set; }
+        [JsonProperty("create_timeline_item")]
+        public TimelineItem CreateTimelineItem { get; set; }
+        [JsonProperty("delete_timeline_item")]
+        public TimelineItem DeleteTimelineItem { get; set; }
+        [JsonProperty("create_custom_activity")]
+        public CustomActivity CreateCustomActivity { get; set; }
+        [JsonProperty("delete_custom_activity")]
+        public CustomActivity DeleteCustomActivity { get; set; }
+        [JsonProperty("grant_marketplace_app_discount")]
+        public GrantMarketplaceAppDiscountResult GrantMarketplaceAppDiscount { get; set; }
+        [JsonProperty("delete_marketplace_app_discount")]
+        public DeleteMarketplaceAppDiscountResult DeleteMarketplaceAppDiscount { get; set; }
         [JsonProperty("add_file_to_column")]
         public Asset AddFileToColumn { get; set; }
         [JsonProperty("add_file_to_update")]
@@ -122,5 +142,9 @@ namespace MondayApi.Schema {
         public Workspace UpdateWorkspace { get; set; }
         [JsonProperty("use_template")]
         public Template UseTemplate { get; set; }
+        [JsonProperty("create_team")]
+        public Team CreateTeam { get; set; }
+        [JsonProperty("delete_team")]
+        public Team DeleteTeam { get; set; }
     }
 }

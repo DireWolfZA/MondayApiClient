@@ -22,6 +22,9 @@ namespace MondayApi.Schema {
         public const string BoardSubscriberKind = "BoardSubscriberKind";
         public const string ColumnProperty = "ColumnProperty";
         public const string ColumnType = "ColumnType";
+        public const string CustomActivityColor = "CustomActivityColor";
+        public const string CustomActivityIcon = "CustomActivityIcon";
+        public const string DiscountPeriod = "DiscountPeriod";
         public const string DocBlockContentType = "DocBlockContentType";
         public const string DocsOrderBy = "DocsOrderBy";
         public const string DuplicateBoardType = "DuplicateBoardType";
@@ -38,6 +41,7 @@ namespace MondayApi.Schema {
         public const string NotificationTargetType = "NotificationTargetType";
         public const string NumberValueUnitDirection = "NumberValueUnitDirection";
         public const string PositionRelative = "PositionRelative";
+        public const string ReactionType = "ReactionType";
         public const string State = "State";
         public const string UserKind = "UserKind";
         public const string VersionKind = "VersionKind";
@@ -54,6 +58,7 @@ namespace MondayApi.Schema {
         public const string AppInstallPermissions = "AppInstallPermissions";
         public const string AppInstallUser = "AppInstallUser";
         public const string AppMonetizationStatus = "AppMonetizationStatus";
+        public const string AppsMonetizationInfo = "AppsMonetizationInfo";
         public const string AppSubscription = "AppSubscription";
         public const string AppSubscriptionOperationsCounter = "AppSubscriptionOperationsCounter";
         public const string AppVersion = "AppVersion";
@@ -72,7 +77,10 @@ namespace MondayApi.Schema {
         public const string Country = "Country";
         public const string CountryValue = "CountryValue";
         public const string CreationLogValue = "CreationLogValue";
+        public const string CustomActivity = "CustomActivity";
         public const string DateValue = "DateValue";
+        public const string DeleteMarketplaceAppDiscount = "DeleteMarketplaceAppDiscount";
+        public const string DeleteMarketplaceAppDiscountResult = "DeleteMarketplaceAppDiscountResult";
         public const string DependencyValue = "DependencyValue";
         public const string Document = "Document";
         public const string DocumentBlock = "DocumentBlock";
@@ -88,6 +96,8 @@ namespace MondayApi.Schema {
         public const string FileValue = "FileValue";
         public const string Folder = "Folder";
         public const string FormulaValue = "FormulaValue";
+        public const string GrantMarketplaceAppDiscount = "GrantMarketplaceAppDiscount";
+        public const string GrantMarketplaceAppDiscountResult = "GrantMarketplaceAppDiscountResult";
         public const string Group = "Group";
         public const string GroupValue = "GroupValue";
         public const string HourValue = "HourValue";
@@ -96,9 +106,11 @@ namespace MondayApi.Schema {
         public const string ItemIDValue = "ItemIdValue";
         public const string ItemsResponse = "ItemsResponse";
         public const string LastUpdatedValue = "LastUpdatedValue";
+        public const string Like = "Like";
         public const string LinkValue = "LinkValue";
         public const string LocationValue = "LocationValue";
         public const string LongTextValue = "LongTextValue";
+        public const string MarketplaceAppDiscount = "MarketplaceAppDiscount";
         public const string MirroredItem = "MirroredItem";
         public const string MirrorValue = "MirrorValue";
         public const string Mutation = "Mutation";
@@ -123,11 +135,13 @@ namespace MondayApi.Schema {
         public const string TeamValue = "TeamValue";
         public const string Template = "Template";
         public const string TextValue = "TextValue";
+        public const string TimelineItem = "TimelineItem";
         public const string TimelineValue = "TimelineValue";
         public const string TimeTrackingHistoryItem = "TimeTrackingHistoryItem";
         public const string TimeTrackingValue = "TimeTrackingValue";
         public const string UnsupportedValue = "UnsupportedValue";
         public const string Update = "Update";
+        public const string UpdatePin = "UpdatePin";
         public const string User = "User";
         public const string Version = "Version";
         public const string VoteValue = "VoteValue";
@@ -142,11 +156,15 @@ namespace MondayApi.Schema {
         public const string CreateDocBoardInput = "CreateDocBoardInput";
         public const string CreateDocInput = "CreateDocInput";
         public const string CreateDocWorkspaceInput = "CreateDocWorkspaceInput";
+        public const string CreateTeamAttributesInput = "CreateTeamAttributesInput";
+        public const string CreateTeamOptionsInput = "CreateTeamOptionsInput";
+        public const string GrantMarketplaceAppDiscountData = "GrantMarketplaceAppDiscountData";
         public const string ItemsPageByColumnValuesQuery = "ItemsPageByColumnValuesQuery";
         public const string ItemsQuery = "ItemsQuery";
         public const string ItemsQueryGroup = "ItemsQueryGroup";
         public const string ItemsQueryOrderBy = "ItemsQueryOrderBy";
         public const string ItemsQueryRule = "ItemsQueryRule";
+        public const string TimelineItemTimeRange = "TimelineItemTimeRange";
         public const string UpdateWorkspaceAttributesInput = "UpdateWorkspaceAttributesInput";
 
         public const string FileValueItem = "FileValueItem";
@@ -164,11 +182,15 @@ namespace MondayApi.Schema {
             { typeof(CreateDocBoardInput), "CreateDocBoardInput" },
             { typeof(CreateDocInput), "CreateDocInput" },
             { typeof(CreateDocWorkspaceInput), "CreateDocWorkspaceInput" },
+            { typeof(CreateTeamAttributesInput), "CreateTeamAttributesInput" },
+            { typeof(CreateTeamOptionsInput), "CreateTeamOptionsInput" },
+            { typeof(GrantMarketplaceAppDiscountData), "GrantMarketplaceAppDiscountData" },
             { typeof(ItemsPageByColumnValuesQuery), "ItemsPageByColumnValuesQuery" },
             { typeof(ItemsQuery), "ItemsQuery" },
             { typeof(ItemsQueryGroup), "ItemsQueryGroup" },
             { typeof(ItemsQueryOrderBy), "ItemsQueryOrderBy" },
             { typeof(ItemsQueryRule), "ItemsQueryRule" },
+            { typeof(TimelineItemTimeRange), "TimelineItemTimeRange" },
             { typeof(UpdateWorkspaceAttributesInput), "UpdateWorkspaceAttributesInput" }
         };
     }

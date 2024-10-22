@@ -4,6 +4,7 @@ namespace MondayApi.Schema {
     public class UserQueryBuilder : GraphQlQueryBuilder<UserQueryBuilder> {
         private static readonly GraphQlFieldMetadata[] AllFieldMetadata = new[] {
             new GraphQlFieldMetadata { Name = "account", IsComplex = true, QueryBuilderType = typeof(AccountQueryBuilder) },
+            new GraphQlFieldMetadata { Name = "account_products", IsComplex = true, QueryBuilderType = typeof(AccountProductQueryBuilder) },
             new GraphQlFieldMetadata { Name = "birthday", IsComplex = true },
             new GraphQlFieldMetadata { Name = "country_code" },
             new GraphQlFieldMetadata { Name = "created_at" },
@@ -11,6 +12,7 @@ namespace MondayApi.Schema {
             new GraphQlFieldMetadata { Name = "email" },
             new GraphQlFieldMetadata { Name = "enabled" },
             new GraphQlFieldMetadata { Name = "id" },
+            new GraphQlFieldMetadata { Name = "encrypt_api_token" },
             new GraphQlFieldMetadata { Name = "is_admin" },
             new GraphQlFieldMetadata { Name = "is_guest" },
             new GraphQlFieldMetadata { Name = "is_pending" },
@@ -51,6 +53,10 @@ namespace MondayApi.Schema {
             WithObjectField("account", alias, accountQueryBuilder, new GraphQlDirective[] { include, skip });
         public UserQueryBuilder ExceptAccount() =>
             ExceptField("account");
+        public UserQueryBuilder WithAccountProducts(AccountProductQueryBuilder accountProductQueryBuilder, string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
+            WithObjectField("account_products", alias, accountProductQueryBuilder, new GraphQlDirective[] { include, skip });
+        public UserQueryBuilder ExceptAccountProducts() =>
+            ExceptField("account_products");
         public UserQueryBuilder WithBirthday(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
             WithScalarField("birthday", alias, new GraphQlDirective[] { include, skip });
         public UserQueryBuilder ExceptBirthday() =>
@@ -79,6 +85,10 @@ namespace MondayApi.Schema {
             WithScalarField("id", alias, new GraphQlDirective[] { include, skip });
         public UserQueryBuilder ExceptID() =>
             ExceptField("id");
+        public UserQueryBuilder WithEncryptApiToken(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
+            WithScalarField("encrypt_api_token", alias, new GraphQlDirective[] { include, skip });
+        public UserQueryBuilder ExceptEncryptApiToken() =>
+            ExceptField("encrypt_api_token");
         public UserQueryBuilder WithIsAdmin(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
             WithScalarField("is_admin", alias, new GraphQlDirective[] { include, skip });
         public UserQueryBuilder ExceptIsAdmin() =>

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Newtonsoft.Json;
 
 namespace MondayApi.Schema {
+    [GraphQlObjectType("Board")]
     public class Board : IMirroredValue {
         [JsonProperty("activity_logs")]
         public ICollection<ActivityLogType> ActivityLogs { get; set; }
@@ -10,6 +11,7 @@ namespace MondayApi.Schema {
         public string BoardFolderID { get; set; }
         [JsonProperty("board_kind")]
         public BoardKind? BoardKind { get; set; }
+        public ICollection<User> Collaborators { get; set; }
         public ICollection<Column> Columns { get; set; }
         public object Communication { get; set; }
         public User Creator { get; set; }

@@ -9,5 +9,7 @@ namespace MondayApi.Schema {
         [JsonProperty("picture_url")]
         public string PictureURL { get; set; }
         public ICollection<User> Users { get; set; }
+        [JsonProperty("is_guest")]
+        public bool? IsGuest { get; set; }
     }
 }

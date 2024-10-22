@@ -4,10 +4,14 @@ namespace MondayApi.Schema {
     public class ReplyQueryBuilder : GraphQlQueryBuilder<ReplyQueryBuilder> {
         private static readonly GraphQlFieldMetadata[] AllFieldMetadata = new[] {
             new GraphQlFieldMetadata { Name = "body" },
+            new GraphQlFieldMetadata { Name = "kind" },
             new GraphQlFieldMetadata { Name = "created_at" },
+            new GraphQlFieldMetadata { Name = "edited_at", IsComplex = true },
             new GraphQlFieldMetadata { Name = "creator", IsComplex = true, QueryBuilderType = typeof(UserQueryBuilder) },
             new GraphQlFieldMetadata { Name = "creator_id" },
             new GraphQlFieldMetadata { Name = "id" },
+            new GraphQlFieldMetadata { Name = "likes", IsComplex = true, QueryBuilderType = typeof(LikeQueryBuilder) },
+            new GraphQlFieldMetadata { Name = "pinned_to_top", IsComplex = true, QueryBuilderType = typeof(UpdatePinQueryBuilder) },
             new GraphQlFieldMetadata { Name = "text_body" },
             new GraphQlFieldMetadata { Name = "updated_at" }
         };
@@ -19,6 +23,22 @@ namespace MondayApi.Schema {
             WithScalarField("body", alias, new GraphQlDirective[] { include, skip });
         public ReplyQueryBuilder ExceptBody() =>
             ExceptField("body");
+        public ReplyQueryBuilder WithKind(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
+            WithScalarField("kind", alias, new GraphQlDirective[] { include, skip });
+        public ReplyQueryBuilder ExceptKind() =>
+            ExceptField("kind");
+        public ReplyQueryBuilder WithEditedAt(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
+            WithScalarField("edited_at", alias, new GraphQlDirective[] { include, skip });
+        public ReplyQueryBuilder ExceptEditedAt() =>
+            ExceptField("edited_at");
+        public ReplyQueryBuilder WithLikes(LikeQueryBuilder likeQueryBuilder, string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
+            WithObjectField("likes", alias, likeQueryBuilder, new GraphQlDirective[] { include, skip });
+        public ReplyQueryBuilder ExceptLikes() =>
+            ExceptField("likes");
+        public ReplyQueryBuilder WithPinnedToTop(UpdatePinQueryBuilder updatePinQueryBuilder, string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
+            WithObjectField("pinned_to_top", alias, updatePinQueryBuilder, new GraphQlDirective[] { include, skip });
+        public ReplyQueryBuilder ExceptPinnedToTop() =>
+            ExceptField("pinned_to_top");
         public ReplyQueryBuilder WithCreatedAt(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
             WithScalarField("created_at", alias, new GraphQlDirective[] { include, skip });
         public ReplyQueryBuilder ExceptCreatedAt() =>

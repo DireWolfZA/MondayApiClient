@@ -7,7 +7,8 @@ namespace MondayApi.Schema {
             new GraphQlFieldMetadata { Name = "name" },
             new GraphQlFieldMetadata { Name = "owners", IsComplex = true, QueryBuilderType = typeof(UserQueryBuilder) },
             new GraphQlFieldMetadata { Name = "picture_url" },
-            new GraphQlFieldMetadata { Name = "users", IsComplex = true, QueryBuilderType = typeof(UserQueryBuilder) }
+            new GraphQlFieldMetadata { Name = "users", IsComplex = true, QueryBuilderType = typeof(UserQueryBuilder) },
+            new GraphQlFieldMetadata { Name = "is_guest" }
         };
 
         protected override string TypeName => "Team";
@@ -58,5 +59,9 @@ namespace MondayApi.Schema {
             ExceptField("picture_url");
         public TeamQueryBuilder ExceptUsers() =>
             ExceptField("users");
+        public TeamQueryBuilder WithIsGuest(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
+            WithScalarField("is_guest", alias, new GraphQlDirective[] { include, skip });
+        public TeamQueryBuilder ExceptIsGuest() =>
+            ExceptField("is_guest");
     }
 }

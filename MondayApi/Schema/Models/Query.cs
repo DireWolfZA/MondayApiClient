@@ -3,6 +3,12 @@ using Newtonsoft.Json;
 
 namespace MondayApi.Schema {
     public class Query {
+        [JsonProperty("custom_activity")]
+        public ICollection<CustomActivity> CustomActivity { get; set; }
+        [JsonProperty("timeline_item")]
+        public TimelineItem TimelineItem { get; set; }
+        [JsonProperty("marketplace_app_discounts")]
+        public ICollection<MarketplaceAppDiscount> MarketplaceAppDiscounts { get; set; }
         public Account Account { get; set; }
         [JsonProperty("app_installs")]
         public ICollection<AppInstall> AppInstalls { get; set; }
@@ -10,6 +16,8 @@ namespace MondayApi.Schema {
         public ICollection<AppSubscription> AppSubscription { get; set; }
         [JsonProperty("app_subscription_operations")]
         public AppSubscriptionOperationsCounter AppSubscriptionOperations { get; set; }
+        [JsonProperty("apps_monetization_info")]
+        public AppsMonetizationInfo AppsMonetizationInfo { get; set; }
         [JsonProperty("apps_monetization_status")]
         public AppMonetizationStatus AppsMonetizationStatus { get; set; }
         public ICollection<Asset> Assets { get; set; }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 namespace MondayApi.Schema {
     public class FileValueItemQueryBuilder : GraphQlQueryBuilder<FileValueItemQueryBuilder> {
         private static readonly GraphQlFieldMetadata[] AllFieldMetadata = new GraphQlFieldMetadata[0];
+
         public FileValueItemQueryBuilder() => WithTypeName();
         protected override string TypeName => "FileValueItem";
         public override IReadOnlyList<GraphQlFieldMetadata> AllFields => AllFieldMetadata;

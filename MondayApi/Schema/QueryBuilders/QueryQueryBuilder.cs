@@ -3,10 +3,14 @@ using System.Collections.Generic;
 namespace MondayApi.Schema {
     public class QueryQueryBuilder : GraphQlQueryBuilder<QueryQueryBuilder> {
         private static readonly GraphQlFieldMetadata[] AllFieldMetadata = new[] {
+            new GraphQlFieldMetadata { Name = "custom_activity", IsComplex = true, QueryBuilderType = typeof(CustomActivityQueryBuilder) },
+            new GraphQlFieldMetadata { Name = "timeline_item", RequiresParameters = true, IsComplex = true, QueryBuilderType = typeof(TimelineItemQueryBuilder) },
+            new GraphQlFieldMetadata { Name = "marketplace_app_discounts", RequiresParameters = true, IsComplex = true, QueryBuilderType = typeof(MarketplaceAppDiscountQueryBuilder) },
             new GraphQlFieldMetadata { Name = "account", IsComplex = true, QueryBuilderType = typeof(AccountQueryBuilder) },
             new GraphQlFieldMetadata { Name = "app_installs", RequiresParameters = true, IsComplex = true, QueryBuilderType = typeof(AppInstallQueryBuilder) },
             new GraphQlFieldMetadata { Name = "app_subscription", IsComplex = true, QueryBuilderType = typeof(AppSubscriptionQueryBuilder) },
             new GraphQlFieldMetadata { Name = "app_subscription_operations", IsComplex = true, QueryBuilderType = typeof(AppSubscriptionOperationsCounterQueryBuilder) },
+            new GraphQlFieldMetadata { Name = "apps_monetization_info", IsComplex = true, QueryBuilderType = typeof(AppsMonetizationInfoQueryBuilder) },
             new GraphQlFieldMetadata { Name = "apps_monetization_status", IsComplex = true, QueryBuilderType = typeof(AppMonetizationStatusQueryBuilder) },
             new GraphQlFieldMetadata { Name = "assets", RequiresParameters = true, IsComplex = true, QueryBuilderType = typeof(AssetQueryBuilder) },
             new GraphQlFieldMetadata { Name = "boards", IsComplex = true, QueryBuilderType = typeof(BoardQueryBuilder) },
@@ -30,6 +34,18 @@ namespace MondayApi.Schema {
         protected override string TypeName => "Query";
         public override IReadOnlyList<GraphQlFieldMetadata> AllFields => AllFieldMetadata;
 
+        public QueryQueryBuilder WithTimelineItem(TimelineItemQueryBuilder timelineItemQueryBuilder, QueryBuilderParameter<string> id, string alias = null, IncludeDirective include = null, SkipDirective skip = null) {
+            var args = new List<QueryBuilderArgumentInfo> {
+                new QueryBuilderArgumentInfo { ArgumentName = "id", ArgumentValue = id }
+            };
+            return WithObjectField("timeline_item", alias, timelineItemQueryBuilder, new GraphQlDirective[] { include, skip }, args);
+        }
+        public QueryQueryBuilder WithMarketplaceAppDiscounts(MarketplaceAppDiscountQueryBuilder marketplaceAppDiscountQueryBuilder, QueryBuilderParameter<string> appID, string alias = null, IncludeDirective include = null, SkipDirective skip = null) {
+            var args = new List<QueryBuilderArgumentInfo> {
+                new QueryBuilderArgumentInfo { ArgumentName = "app_id", ArgumentValue = appID }
+            };
+            return WithObjectField("marketplace_app_discounts", alias, marketplaceAppDiscountQueryBuilder, new GraphQlDirective[] { include, skip }, args);
+        }
         public QueryQueryBuilder WithAppInstalls(AppInstallQueryBuilder appInstallQueryBuilder, QueryBuilderParameter<string> appID, QueryBuilderParameter<string> accountID = null, QueryBuilderParameter<int?> limit = null, QueryBuilderParameter<int?> page = null, string alias = null, IncludeDirective include = null, SkipDirective skip = null) {
             var args = new List<QueryBuilderArgumentInfo> {
                 new QueryBuilderArgumentInfo { ArgumentName = "app_id", ArgumentValue = appID }
@@ -47,6 +63,7 @@ namespace MondayApi.Schema {
             var args = new List<QueryBuilderArgumentInfo>();
             if (kind != null)
                 args.Add(new QueryBuilderArgumentInfo { ArgumentName = "kind", ArgumentValue = kind });
+
             return WithObjectField("app_subscription_operations", alias, appSubscriptionOperationsCounterQueryBuilder, new GraphQlDirective[] { include, skip }, args);
         }
         public QueryQueryBuilder WithAssets(AssetQueryBuilder assetQueryBuilder, QueryBuilderParameter<IEnumerable<string>> ids, string alias = null, IncludeDirective include = null, SkipDirective skip = null) {
@@ -214,6 +231,14 @@ namespace MondayApi.Schema {
         public QueryQueryBuilder(string operationName = null) : base("query", operationName) { }
         public QueryQueryBuilder WithParameter<T>(GraphQlQueryParameter<T> parameter) =>
             WithParameterInternal(parameter);
+        public QueryQueryBuilder WithCustomActivity(CustomActivityQueryBuilder customActivityQueryBuilder, string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
+            WithObjectField("custom_activity", alias, customActivityQueryBuilder, new GraphQlDirective[] { include, skip });
+        public QueryQueryBuilder ExceptCustomActivity() =>
+            ExceptField("custom_activity");
+        public QueryQueryBuilder ExceptTimelineItem() =>
+            ExceptField("timeline_item");
+        public QueryQueryBuilder ExceptMarketplaceAppDiscounts() =>
+            ExceptField("marketplace_app_discounts");
         public QueryQueryBuilder WithAccount(AccountQueryBuilder accountQueryBuilder, string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
             WithObjectField("account", alias, accountQueryBuilder, new GraphQlDirective[] { include, skip });
         public QueryQueryBuilder ExceptAccount() =>
@@ -226,6 +251,10 @@ namespace MondayApi.Schema {
             ExceptField("app_subscription");
         public QueryQueryBuilder ExceptAppSubscriptionOperations() =>
             ExceptField("app_subscription_operations");
+        public QueryQueryBuilder WithAppsMonetizationInfo(AppsMonetizationInfoQueryBuilder appsMonetizationInfoQueryBuilder, string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
+            WithObjectField("apps_monetization_info", alias, appsMonetizationInfoQueryBuilder, new GraphQlDirective[] { include, skip });
+        public QueryQueryBuilder ExceptAppsMonetizationInfo() =>
+            ExceptField("apps_monetization_info");
         public QueryQueryBuilder WithAppsMonetizationStatus(AppMonetizationStatusQueryBuilder appMonetizationStatusQueryBuilder, string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
             WithObjectField("apps_monetization_status", alias, appMonetizationStatusQueryBuilder, new GraphQlDirective[] { include, skip });
         public QueryQueryBuilder ExceptAppsMonetizationStatus() =>

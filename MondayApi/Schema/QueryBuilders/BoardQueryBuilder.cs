@@ -7,6 +7,7 @@ namespace MondayApi.Schema {
             new GraphQlFieldMetadata { Name = "activity_logs", IsComplex = true, QueryBuilderType = typeof(ActivityLogTypeQueryBuilder) },
             new GraphQlFieldMetadata { Name = "board_folder_id" },
             new GraphQlFieldMetadata { Name = "board_kind" },
+            new GraphQlFieldMetadata { Name = "collaborators", IsComplex = true, QueryBuilderType = typeof(UserQueryBuilder) },
             new GraphQlFieldMetadata { Name = "columns", IsComplex = true, QueryBuilderType = typeof(ColumnQueryBuilder) },
             new GraphQlFieldMetadata { Name = "communication", IsComplex = true },
             new GraphQlFieldMetadata { Name = "creator", IsComplex = true, QueryBuilderType = typeof(UserQueryBuilder) },
@@ -134,6 +135,10 @@ namespace MondayApi.Schema {
             WithScalarField("board_kind", alias, new GraphQlDirective[] { include, skip });
         public BoardQueryBuilder ExceptBoardKind() =>
             ExceptField("board_kind");
+        public BoardQueryBuilder WithCollaborators(UserQueryBuilder userQueryBuilder, string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
+            WithObjectField("collaborators", alias, userQueryBuilder, new GraphQlDirective[] { include, skip });
+        public BoardQueryBuilder ExceptCollaborators() =>
+            ExceptField("collaborators");
         public BoardQueryBuilder ExceptColumns() =>
             ExceptField("columns");
         public BoardQueryBuilder WithCommunication(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>

@@ -5,4 +5,4 @@ graphql-client-generator --serviceUrl "https://api.monday.com/v2" ^
   --outputType OneClassPerFile ^
   --idTypeMapping String ^
   --header "Authorization:%1" ^
-  --header "API-Version: 2024-04"
+  --header "API-Version: 2024-10"

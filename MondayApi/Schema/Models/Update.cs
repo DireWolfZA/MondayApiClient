@@ -11,9 +11,15 @@ namespace MondayApi.Schema {
         public User Creator { get; set; }
         [JsonProperty("creator_id")]
         public string CreatorID { get; set; }
+        [JsonProperty("edited_at")]
+        public object EditedAt { get; set; }
+        public ICollection<Like> Likes { get; set; }
+        [JsonProperty("pinned_to_top")]
+        public ICollection<UpdatePin> PinnedToTop { get; set; }
         public string ID { get; set; }
         [JsonProperty("item_id")]
         public string ItemID { get; set; }
+        public Item Item { get; set; }
         public ICollection<Reply> Replies { get; set; }
         [JsonProperty("text_body")]
         public string TextBody { get; set; }

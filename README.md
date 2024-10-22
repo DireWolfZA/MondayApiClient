@@ -1,7 +1,7 @@
 # MondayApiClient [![Build status](https://ci.appveyor.com/api/projects/status/dud56wnemhwb39m7)](https://ci.appveyor.com/project/Walkman100/MondayApiClient)
 A C# wrapper for the [Monday.com API](https://developer.monday.com/api-reference/reference)
 
-Current API version is **`2024-04`** - this can be seen in [MondayApiClient.cs](/MondayApi/MondayApiClient.cs)
+Current API version is **`2024-10`** - this can be seen in [MondayApiClient.cs](/MondayApi/MondayApiClient.cs)
 
 ---
 - Built using `netstandard2.0` - compatible with .Net Framework

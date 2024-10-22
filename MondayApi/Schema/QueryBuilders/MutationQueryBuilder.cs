@@ -1,8 +1,19 @@
+using System;
 using System.Collections.Generic;
 
 namespace MondayApi.Schema {
     public class MutationQueryBuilder : GraphQlQueryBuilder<MutationQueryBuilder> {
         private static readonly GraphQlFieldMetadata[] AllFieldMetadata = new[] {
+            new GraphQlFieldMetadata { Name = "unlike_update", RequiresParameters = true, IsComplex = true, QueryBuilderType = typeof(UpdateQueryBuilder) },
+            new GraphQlFieldMetadata { Name = "edit_update", RequiresParameters = true, IsComplex = true, QueryBuilderType = typeof(UpdateQueryBuilder) },
+            new GraphQlFieldMetadata { Name = "pin_to_top", RequiresParameters = true, IsComplex = true, QueryBuilderType = typeof(UpdateQueryBuilder) },
+            new GraphQlFieldMetadata { Name = "unpin_from_top", RequiresParameters = true, IsComplex = true, QueryBuilderType = typeof(UpdateQueryBuilder) },
+            new GraphQlFieldMetadata { Name = "create_timeline_item", RequiresParameters = true, IsComplex = true, QueryBuilderType = typeof(TimelineItemQueryBuilder) },
+            new GraphQlFieldMetadata { Name = "delete_timeline_item", RequiresParameters = true, IsComplex = true, QueryBuilderType = typeof(TimelineItemQueryBuilder) },
+            new GraphQlFieldMetadata { Name = "create_custom_activity", RequiresParameters = true, IsComplex = true, QueryBuilderType = typeof(CustomActivityQueryBuilder) },
+            new GraphQlFieldMetadata { Name = "delete_custom_activity", RequiresParameters = true, IsComplex = true, QueryBuilderType = typeof(CustomActivityQueryBuilder) },
+            new GraphQlFieldMetadata { Name = "grant_marketplace_app_discount", RequiresParameters = true, IsComplex = true, QueryBuilderType = typeof(GrantMarketplaceAppDiscountResultQueryBuilder) },
+            new GraphQlFieldMetadata { Name = "delete_marketplace_app_discount", RequiresParameters = true, IsComplex = true, QueryBuilderType = typeof(DeleteMarketplaceAppDiscountResultQueryBuilder) },
             new GraphQlFieldMetadata { Name = "add_file_to_column", RequiresParameters = true, IsComplex = true, QueryBuilderType = typeof(AssetQueryBuilder) },
             new GraphQlFieldMetadata { Name = "add_file_to_update", RequiresParameters = true, IsComplex = true, QueryBuilderType = typeof(AssetQueryBuilder) },
             new GraphQlFieldMetadata { Name = "add_teams_to_board", RequiresParameters = true, IsComplex = true, QueryBuilderType = typeof(TeamQueryBuilder) },
@@ -51,7 +62,7 @@ namespace MondayApi.Schema {
             new GraphQlFieldMetadata { Name = "duplicate_group", RequiresParameters = true, IsComplex = true, QueryBuilderType = typeof(GroupQueryBuilder) },
             new GraphQlFieldMetadata { Name = "duplicate_item", RequiresParameters = true, IsComplex = true, QueryBuilderType = typeof(ItemQueryBuilder) },
             new GraphQlFieldMetadata { Name = "increase_app_subscription_operations", IsComplex = true, QueryBuilderType = typeof(AppSubscriptionOperationsCounterQueryBuilder) },
-            new GraphQlFieldMetadata { Name = "like_update", IsComplex = true, QueryBuilderType = typeof(UpdateQueryBuilder) },
+            new GraphQlFieldMetadata { Name = "like_update", RequiresParameters = true, IsComplex = true, QueryBuilderType = typeof(UpdateQueryBuilder) },
             new GraphQlFieldMetadata { Name = "move_item_to_board", RequiresParameters = true, IsComplex = true, QueryBuilderType = typeof(ItemQueryBuilder) },
             new GraphQlFieldMetadata { Name = "move_item_to_group", RequiresParameters = true, IsComplex = true, QueryBuilderType = typeof(ItemQueryBuilder) },
             new GraphQlFieldMetadata { Name = "remove_mock_app_subscription", RequiresParameters = true, IsComplex = true, QueryBuilderType = typeof(AppSubscriptionQueryBuilder) },
@@ -63,11 +74,97 @@ namespace MondayApi.Schema {
             new GraphQlFieldMetadata { Name = "update_group", RequiresParameters = true, IsComplex = true, QueryBuilderType = typeof(GroupQueryBuilder) },
             new GraphQlFieldMetadata { Name = "update_workspace", RequiresParameters = true, IsComplex = true, QueryBuilderType = typeof(WorkspaceQueryBuilder) },
             new GraphQlFieldMetadata { Name = "use_template", RequiresParameters = true, IsComplex = true, QueryBuilderType = typeof(TemplateQueryBuilder) },
+            new GraphQlFieldMetadata { Name = "create_team", RequiresParameters = true, IsComplex = true, QueryBuilderType = typeof(TeamQueryBuilder) },
+            new GraphQlFieldMetadata { Name = "delete_team", RequiresParameters = true, IsComplex = true, QueryBuilderType = typeof(TeamQueryBuilder) }
         };
 
         protected override string TypeName => "Mutation";
         public override IReadOnlyList<GraphQlFieldMetadata> AllFields => AllFieldMetadata;
 
+        public MutationQueryBuilder WithUnlikeUpdate(UpdateQueryBuilder updateQueryBuilder, QueryBuilderParameter<string> updateID, string alias = null, IncludeDirective include = null, SkipDirective skip = null) {
+            var args = new List<QueryBuilderArgumentInfo> {
+                new QueryBuilderArgumentInfo { ArgumentName = "update_id", ArgumentValue = updateID }
+            };
+            return WithObjectField("unlike_update", alias, updateQueryBuilder, new GraphQlDirective[] { include, skip }, args);
+        }
+        public MutationQueryBuilder WithEditUpdate(UpdateQueryBuilder updateQueryBuilder, QueryBuilderParameter<string> id, QueryBuilderParameter<string> body, string alias = null, IncludeDirective include = null, SkipDirective skip = null) {
+            var args = new List<QueryBuilderArgumentInfo> {
+                new QueryBuilderArgumentInfo { ArgumentName = "id", ArgumentValue = id },
+                new QueryBuilderArgumentInfo { ArgumentName = "body", ArgumentValue = body }
+            };
+            return WithObjectField("edit_update", alias, updateQueryBuilder, new GraphQlDirective[] { include, skip }, args);
+        }
+        public MutationQueryBuilder WithPinToTop(UpdateQueryBuilder updateQueryBuilder, QueryBuilderParameter<string> id, QueryBuilderParameter<int> itemID, string alias = null, IncludeDirective include = null, SkipDirective skip = null) {
+            var args = new List<QueryBuilderArgumentInfo> {
+                new QueryBuilderArgumentInfo { ArgumentName = "id", ArgumentValue = id },
+                new QueryBuilderArgumentInfo { ArgumentName = "item_id", ArgumentValue = itemID }
+            };
+            return WithObjectField("pin_to_top", alias, updateQueryBuilder, new GraphQlDirective[] { include, skip }, args);
+        }
+        public MutationQueryBuilder WithUnpinFromTop(UpdateQueryBuilder updateQueryBuilder, QueryBuilderParameter<string> id, QueryBuilderParameter<int> itemID, string alias = null, IncludeDirective include = null, SkipDirective skip = null) {
+            var args = new List<QueryBuilderArgumentInfo> {
+                new QueryBuilderArgumentInfo { ArgumentName = "id", ArgumentValue = id },
+                new QueryBuilderArgumentInfo { ArgumentName = "item_id", ArgumentValue = itemID }
+            };
+            return WithObjectField("unpin_from_top", alias, updateQueryBuilder, new GraphQlDirective[] { include, skip }, args);
+        }
+        public MutationQueryBuilder WithCreateTimelineItem(TimelineItemQueryBuilder timelineItemQueryBuilder, QueryBuilderParameter<string> itemID, QueryBuilderParameter<string> title, QueryBuilderParameter<DateTimeOffset?> timestamp, QueryBuilderParameter<string> customActivityID, QueryBuilderParameter<string> summary = null, QueryBuilderParameter<string> content = null, QueryBuilderParameter<string> location = null, QueryBuilderParameter<string> phone = null, QueryBuilderParameter<string> url = null, QueryBuilderParameter<TimelineItemTimeRange> timeRange = null, string alias = null, IncludeDirective include = null, SkipDirective skip = null) {
+            var args = new List<QueryBuilderArgumentInfo> {
+                new QueryBuilderArgumentInfo { ArgumentName = "item_id", ArgumentValue = itemID },
+                new QueryBuilderArgumentInfo { ArgumentName = "title", ArgumentValue = title },
+                new QueryBuilderArgumentInfo { ArgumentName = "timestamp", ArgumentValue = timestamp },
+                new QueryBuilderArgumentInfo { ArgumentName = "custom_activity_id", ArgumentValue = customActivityID }
+            };
+            if (summary != null)
+                args.Add(new QueryBuilderArgumentInfo { ArgumentName = "summary", ArgumentValue = summary });
+            if (content != null)
+                args.Add(new QueryBuilderArgumentInfo { ArgumentName = "content", ArgumentValue = content });
+            if (location != null)
+                args.Add(new QueryBuilderArgumentInfo { ArgumentName = "location", ArgumentValue = location });
+            if (phone != null)
+                args.Add(new QueryBuilderArgumentInfo { ArgumentName = "phone", ArgumentValue = phone });
+            if (url != null)
+                args.Add(new QueryBuilderArgumentInfo { ArgumentName = "url", ArgumentValue = url });
+            if (timeRange != null)
+                args.Add(new QueryBuilderArgumentInfo { ArgumentName = "time_range", ArgumentValue = timeRange });
+
+            return WithObjectField("create_timeline_item", alias, timelineItemQueryBuilder, new GraphQlDirective[] { include, skip }, args);
+        }
+        public MutationQueryBuilder WithDeleteTimelineItem(TimelineItemQueryBuilder timelineItemQueryBuilder, QueryBuilderParameter<string> id, string alias = null, IncludeDirective include = null, SkipDirective skip = null) {
+            var args = new List<QueryBuilderArgumentInfo> {
+                new QueryBuilderArgumentInfo { ArgumentName = "id", ArgumentValue = id }
+            };
+            return WithObjectField("delete_timeline_item", alias, timelineItemQueryBuilder, new GraphQlDirective[] { include, skip }, args);
+        }
+        public MutationQueryBuilder WithCreateCustomActivity(CustomActivityQueryBuilder customActivityQueryBuilder, QueryBuilderParameter<string> name, QueryBuilderParameter<CustomActivityIcon?> iconID, QueryBuilderParameter<CustomActivityColor?> color, string alias = null, IncludeDirective include = null, SkipDirective skip = null) {
+            var args = new List<QueryBuilderArgumentInfo> {
+                new QueryBuilderArgumentInfo { ArgumentName = "name", ArgumentValue = name },
+                new QueryBuilderArgumentInfo { ArgumentName = "icon_id", ArgumentValue = iconID },
+                new QueryBuilderArgumentInfo { ArgumentName = "color", ArgumentValue = color }
+            };
+            return WithObjectField("create_custom_activity", alias, customActivityQueryBuilder, new GraphQlDirective[] { include, skip }, args);
+        }
+        public MutationQueryBuilder WithDeleteCustomActivity(CustomActivityQueryBuilder customActivityQueryBuilder, QueryBuilderParameter<string> id, string alias = null, IncludeDirective include = null, SkipDirective skip = null) {
+            var args = new List<QueryBuilderArgumentInfo> {
+                new QueryBuilderArgumentInfo { ArgumentName = "id", ArgumentValue = id }
+            };
+            return WithObjectField("delete_custom_activity", alias, customActivityQueryBuilder, new GraphQlDirective[] { include, skip }, args);
+        }
+        public MutationQueryBuilder WithGrantMarketplaceAppDiscount(GrantMarketplaceAppDiscountResultQueryBuilder grantMarketplaceAppDiscountResultQueryBuilder, QueryBuilderParameter<string> appID, QueryBuilderParameter<string> accountSlug, QueryBuilderParameter<GrantMarketplaceAppDiscountData> data, string alias = null, IncludeDirective include = null, SkipDirective skip = null) {
+            var args = new List<QueryBuilderArgumentInfo> {
+                new QueryBuilderArgumentInfo { ArgumentName = "app_id", ArgumentValue = appID },
+                new QueryBuilderArgumentInfo { ArgumentName = "account_slug", ArgumentValue = accountSlug },
+                new QueryBuilderArgumentInfo { ArgumentName = "data", ArgumentValue = data }
+            };
+            return WithObjectField("grant_marketplace_app_discount", alias, grantMarketplaceAppDiscountResultQueryBuilder, new GraphQlDirective[] { include, skip }, args);
+        }
+        public MutationQueryBuilder WithDeleteMarketplaceAppDiscount(DeleteMarketplaceAppDiscountResultQueryBuilder deleteMarketplaceAppDiscountResultQueryBuilder, QueryBuilderParameter<string> appID, QueryBuilderParameter<string> accountSlug, string alias = null, IncludeDirective include = null, SkipDirective skip = null) {
+            var args = new List<QueryBuilderArgumentInfo> {
+                new QueryBuilderArgumentInfo { ArgumentName = "app_id", ArgumentValue = appID },
+                new QueryBuilderArgumentInfo { ArgumentName = "account_slug", ArgumentValue = accountSlug }
+            };
+            return WithObjectField("delete_marketplace_app_discount", alias, deleteMarketplaceAppDiscountResultQueryBuilder, new GraphQlDirective[] { include, skip }, args);
+        }
         public MutationQueryBuilder WithAddFileToColumn(AssetQueryBuilder assetQueryBuilder, QueryBuilderParameter<string> itemID, QueryBuilderParameter<string> columnID, QueryBuilderParameter<object> file, string alias = null, IncludeDirective include = null, SkipDirective skip = null) {
             var args = new List<QueryBuilderArgumentInfo> {
                 new QueryBuilderArgumentInfo { ArgumentName = "item_id", ArgumentValue = itemID },
@@ -532,11 +629,10 @@ namespace MondayApi.Schema {
 
             return WithObjectField("increase_app_subscription_operations", alias, appSubscriptionOperationsCounterQueryBuilder, new GraphQlDirective[] { include, skip }, args);
         }
-        public MutationQueryBuilder WithLikeUpdate(UpdateQueryBuilder updateQueryBuilder, QueryBuilderParameter<string> updateID = null, string alias = null, IncludeDirective include = null, SkipDirective skip = null) {
-            var args = new List<QueryBuilderArgumentInfo>();
-            if (updateID != null)
-                args.Add(new QueryBuilderArgumentInfo { ArgumentName = "update_id", ArgumentValue = updateID });
-
+        public MutationQueryBuilder WithLikeUpdate(UpdateQueryBuilder updateQueryBuilder, QueryBuilderParameter<string> updateID, string alias = null, IncludeDirective include = null, SkipDirective skip = null) {
+            var args = new List<QueryBuilderArgumentInfo> {
+                new QueryBuilderArgumentInfo { ArgumentName = "update_id", ArgumentValue = updateID }
+            };
             return WithObjectField("like_update", alias, updateQueryBuilder, new GraphQlDirective[] { include, skip }, args);
         }
         public MutationQueryBuilder WithMoveItemToBoard(ItemQueryBuilder itemQueryBuilder, QueryBuilderParameter<string> boardID, QueryBuilderParameter<string> groupID, QueryBuilderParameter<string> itemID, QueryBuilderParameter<IEnumerable<ColumnMappingInput>> columnsMapping = null, QueryBuilderParameter<IEnumerable<ColumnMappingInput>> subitemsColumnsMapping = null, string alias = null, IncludeDirective include = null, SkipDirective skip = null) {
@@ -670,10 +766,44 @@ namespace MondayApi.Schema {
 
             return WithObjectField("use_template", alias, templateQueryBuilder, new GraphQlDirective[] { include, skip }, args);
         }
+        public MutationQueryBuilder WithCreateTeam(TeamQueryBuilder teamQueryBuilder, QueryBuilderParameter<CreateTeamAttributesInput> input, QueryBuilderParameter<CreateTeamOptionsInput> options = null, string alias = null, IncludeDirective include = null, SkipDirective skip = null) {
+            var args = new List<QueryBuilderArgumentInfo> {
+                new QueryBuilderArgumentInfo { ArgumentName = "input", ArgumentValue = input }
+            };
+            if (options != null)
+                args.Add(new QueryBuilderArgumentInfo { ArgumentName = "options", ArgumentValue = options });
+            return WithObjectField("create_team", alias, teamQueryBuilder, new GraphQlDirective[] { include, skip }, args);
+        }
+        public MutationQueryBuilder WithDeleteTeam(TeamQueryBuilder teamQueryBuilder, QueryBuilderParameter<string> teamID, string alias = null, IncludeDirective include = null, SkipDirective skip = null) {
+            var args = new List<QueryBuilderArgumentInfo> {
+                new QueryBuilderArgumentInfo { ArgumentName = "team_id", ArgumentValue = teamID }
+            };
+            return WithObjectField("delete_team", alias, teamQueryBuilder, new GraphQlDirective[] { include, skip }, args);
+        }
 
         public MutationQueryBuilder(string operationName = null) : base("mutation", operationName) { }
         public MutationQueryBuilder WithParameter<T>(GraphQlQueryParameter<T> parameter) =>
             WithParameterInternal(parameter);
+        public MutationQueryBuilder ExceptUnlikeUpdate() =>
+            ExceptField("unlike_update");
+        public MutationQueryBuilder ExceptEditUpdate() =>
+            ExceptField("edit_update");
+        public MutationQueryBuilder ExceptPinToTop() =>
+            ExceptField("pin_to_top");
+        public MutationQueryBuilder ExceptUnpinFromTop() =>
+            ExceptField("unpin_from_top");
+        public MutationQueryBuilder ExceptCreateTimelineItem() =>
+            ExceptField("create_timeline_item");
+        public MutationQueryBuilder ExceptDeleteTimelineItem() =>
+            ExceptField("delete_timeline_item");
+        public MutationQueryBuilder ExceptCreateCustomActivity() =>
+            ExceptField("create_custom_activity");
+        public MutationQueryBuilder ExceptDeleteCustomActivity() =>
+            ExceptField("delete_custom_activity");
+        public MutationQueryBuilder ExceptGrantMarketplaceAppDiscount() =>
+            ExceptField("grant_marketplace_app_discount");
+        public MutationQueryBuilder ExceptDeleteMarketplaceAppDiscount() =>
+            ExceptField("delete_marketplace_app_discount");
         public MutationQueryBuilder ExceptAddFileToColumn() =>
             ExceptField("add_file_to_column");
         public MutationQueryBuilder ExceptAddFileToUpdate() =>
@@ -796,5 +926,9 @@ namespace MondayApi.Schema {
             ExceptField("update_workspace");
         public MutationQueryBuilder ExceptUseTemplate() =>
             ExceptField("use_template");
+        public MutationQueryBuilder ExceptCreateTeam() =>
+            ExceptField("create_team");
+        public MutationQueryBuilder ExceptDeleteTeam() =>
+            ExceptField("delete_team");
     }
 }

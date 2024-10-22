@@ -3,6 +3,8 @@ using Newtonsoft.Json;
 
 namespace MondayApi.Schema {
     public class Account {
+        [JsonProperty("active_members_count")]
+        public int? ActiveMembersCount { get; set; }
         [JsonProperty("country_code")]
         public string CountryCode { get; set; }
         [JsonProperty("first_day_of_the_week")]

@@ -5,6 +5,8 @@ using Newtonsoft.Json;
 namespace MondayApi.Schema {
     public class User {
         public Account Account { get; set; }
+        [JsonProperty("account_products")]
+        public ICollection<AccountProduct> AccountProducts { get; set; }
         public object Birthday { get; set; }
         [JsonProperty("country_code")]
         public string CountryCode { get; set; }
@@ -15,6 +17,8 @@ namespace MondayApi.Schema {
         public string Email { get; set; }
         public bool? Enabled { get; set; }
         public string ID { get; set; }
+        [JsonProperty("encrypt_api_token")]
+        public string EncryptApiToken { get; set; }
         [JsonProperty("is_admin")]
         public bool? IsAdmin { get; set; }
         [JsonProperty("is_guest")]
