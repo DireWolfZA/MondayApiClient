@@ -13,7 +13,7 @@ namespace MondayApi.Users {
 
         public async Task<IEnumerable<User>> Get(int? pageNumber = null, int? numPerPage = null) {
             var query = new QueryQueryBuilder().WithUsers(
-                new UserQueryBuilder().WithAllScalarFields(),
+                new UserQueryBuilder().WithAllScalarFields().ExceptEncryptApiToken(),
                 page: pageNumber,
                 limit: numPerPage
             );
@@ -23,7 +23,7 @@ namespace MondayApi.Users {
 
         public async Task<User> GetOne(string id) {
             var query = new QueryQueryBuilder().WithUsers(
-                new UserQueryBuilder().WithAllScalarFields(),
+                new UserQueryBuilder().WithAllScalarFields().ExceptEncryptApiToken(),
                 ids: new string[] { id }
             );
             var response = await client.RunQuery(query);
