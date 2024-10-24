@@ -17,12 +17,12 @@ namespace MondayApi.Utils {
         public static GraphQlQueryParameter<T> GetParameter<T>(T value, bool isNullable = true) =>
             value == null ? null : new GraphQlQueryParameter<T>(null, defaultValue: value, isNullable);
 
+        private static readonly Newtonsoft.Json.Serialization.SnakeCaseNamingStrategy snakeCaseNamingStrategy = new Newtonsoft.Json.Serialization.SnakeCaseNamingStrategy();
         private static readonly Newtonsoft.Json.JsonSerializerSettings settings = new Newtonsoft.Json.JsonSerializerSettings() {
-            ContractResolver = new Newtonsoft.Json.Serialization.DefaultContractResolver() {
-                NamingStrategy = new Newtonsoft.Json.Serialization.SnakeCaseNamingStrategy()
-            },
-            NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore
+            ContractResolver = new Newtonsoft.Json.Serialization.DefaultContractResolver() { NamingStrategy = snakeCaseNamingStrategy },
+            NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore,
         };
+        static Utils() => settings.Converters.Add(new Newtonsoft.Json.Converters.StringEnumConverter() { NamingStrategy = snakeCaseNamingStrategy });
 
         private static object convertColumn(IColumnValue column) {
             column.ID = null;
