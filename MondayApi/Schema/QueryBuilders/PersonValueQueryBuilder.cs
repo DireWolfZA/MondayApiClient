@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 
 namespace MondayApi.Schema {
+    [System.Obsolete("This column type is deprecated, see https://developer.monday.com/api-reference/reference/person")]
     public class PersonValueQueryBuilder : GraphQlQueryBuilder<PersonValueQueryBuilder> {
         private static readonly GraphQlFieldMetadata[] AllFieldMetadata = new[] {
             new GraphQlFieldMetadata { Name = "column", IsComplex = true, QueryBuilderType = typeof(ColumnQueryBuilder) },

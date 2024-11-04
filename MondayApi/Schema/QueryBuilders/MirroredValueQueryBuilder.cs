@@ -60,6 +60,7 @@ namespace MondayApi.Schema {
             WithFragment(numbersValueQueryBuilder, new GraphQlDirective[] { include, skip });
         public MirroredValueQueryBuilder WithPeopleValueFragment(PeopleValueQueryBuilder peopleValueQueryBuilder, IncludeDirective include = null, SkipDirective skip = null) =>
             WithFragment(peopleValueQueryBuilder, new GraphQlDirective[] { include, skip });
+        [System.Obsolete("This column type is deprecated, see https://developer.monday.com/api-reference/reference/person")]
         public MirroredValueQueryBuilder WithPersonValueFragment(PersonValueQueryBuilder personValueQueryBuilder, IncludeDirective include = null, SkipDirective skip = null) =>
             WithFragment(personValueQueryBuilder, new GraphQlDirective[] { include, skip });
         public MirroredValueQueryBuilder WithPhoneValueFragment(PhoneValueQueryBuilder phoneValueQueryBuilder, IncludeDirective include = null, SkipDirective skip = null) =>
@@ -74,6 +75,7 @@ namespace MondayApi.Schema {
             WithFragment(subtasksValueQueryBuilder, new GraphQlDirective[] { include, skip });
         public MirroredValueQueryBuilder WithTagsValueFragment(TagsValueQueryBuilder tagsValueQueryBuilder, IncludeDirective include = null, SkipDirective skip = null) =>
             WithFragment(tagsValueQueryBuilder, new GraphQlDirective[] { include, skip });
+        [System.Obsolete("This column type is deprecated, see https://developer.monday.com/api-reference/reference/team")]
         public MirroredValueQueryBuilder WithTeamValueFragment(TeamValueQueryBuilder teamValueQueryBuilder, IncludeDirective include = null, SkipDirective skip = null) =>
             WithFragment(teamValueQueryBuilder, new GraphQlDirective[] { include, skip });
         public MirroredValueQueryBuilder WithTextValueFragment(TextValueQueryBuilder textValueQueryBuilder, IncludeDirective include = null, SkipDirective skip = null) =>

@@ -2,7 +2,7 @@ using System;
 using Newtonsoft.Json;
 
 namespace MondayApi.Schema {
-    [GraphQlObjectType("TeamValue")]
+    [GraphQlObjectType("TeamValue"), Obsolete("This column type is deprecated, see https://developer.monday.com/api-reference/reference/team")]
     public class TeamValue : IMirroredValue, IColumnValue {
         public Column Column { get; set; }
         public string ID { get; set; }
