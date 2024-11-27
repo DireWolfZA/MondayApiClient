@@ -20,6 +20,8 @@ namespace MondayApi {
         Task<T> Run<T>(GraphQlQueryBuilder queryBuilder);
         Task<T> RunFileMutation<T>(GraphQlQueryBuilder queryBuilder, System.IO.Stream file, string filename);
 
+        Task<T> Run<T>(GraphQL.GraphQLRequest request);
+
         IActivityLogActions ActivityLogs { get; }
         IAssetActions Assets { get; }
         IBoardActions Boards { get; }
