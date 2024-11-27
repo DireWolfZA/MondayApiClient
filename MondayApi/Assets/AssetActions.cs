@@ -88,5 +88,21 @@ namespace MondayApi.Assets {
             var response = await client.RunFileMutation(mutation, file, filename);
             return response.AddFileToColumn;
         }
+
+        // https://developer.monday.com/api-reference/reference/files-1#clear-the-files-column
+        public async Task<Item> ClearItemFilesColumn(string boardID, string itemID, string columnID) {
+            var mutation = new MutationQueryBuilder().WithChangeColumnValue(
+                new ItemQueryBuilder().WithAllScalarFields().WithColumnValues(
+                    new ColumnValueQueryBuilder().WithAllScalarFields(),
+                    ids: new string[] { columnID }
+                ),
+                boardID: boardID,
+                itemID: itemID,
+                columnID: columnID,
+                value: "{\"clear_all\": true}"
+            );
+            var response = await client.RunMutation(mutation);
+            return response.ChangeColumnValue;
+        }
     }
 }

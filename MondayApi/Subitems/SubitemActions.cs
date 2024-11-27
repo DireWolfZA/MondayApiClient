@@ -37,6 +37,15 @@ namespace MondayApi.Subitems {
             return response.Items?.FirstOrDefault().Subitems;
         }
 
+        public async Task<Item> GetParentItem(string subitemID, bool withColumnValues = false, IEnumerable<string> columnIDs = null) {
+            var query = new QueryQueryBuilder().WithItems(
+                new ItemQueryBuilder().WithParentItem(getSubitemQueryBuilder(withColumnValues, columnIDs)),
+                ids: new string[] { subitemID }
+            );
+            var response = await client.RunQuery(query);
+            return response.Items?.FirstOrDefault()?.ParentItem;
+        }
+
         public async Task<Item> CreateSubitem(string itemName, string parentItemID, IEnumerable<IColumnValue> columnValues = null, bool? createLabelsIfMissing = null) {
             Utils.Utils.RequireArgument(nameof(parentItemID), parentItemID);
             Utils.Utils.RequireArgument(nameof(itemName), itemName);

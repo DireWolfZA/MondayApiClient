@@ -10,5 +10,6 @@ namespace MondayApi.Assets {
         Task<Asset> GetOne(string id);
         Task<Asset> UploadFileToUpdate(string updateID, System.IO.Stream file, string filename);
         Task<Asset> UploadFileToItem(string itemID, string columnID, System.IO.Stream file, string filename);
+        Task<Item> ClearItemFilesColumn(string boardID, string itemID, string columnID);
     }
 }
