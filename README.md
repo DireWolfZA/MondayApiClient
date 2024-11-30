@@ -12,9 +12,11 @@ Current API version is **`2024-10`** - this can be seen in [MondayApiClient.cs](
   - Asset columns have nonsense CreatedAt values - e.g. `55686-09-26T02:33:47+00:00` - see [AssetActions.cs](/MondayApi/Assets/AssetActions.cs)
   - ActivityLogs [CreatedAt](https://developer.monday.com/api-reference/reference/activity-logs#created_at-field) is returned as 17-digit value - this is handled in [UnixDateTimeConverter.cs](/MondayApi/Utils/UnixDateTimeConverter.cs)
   - On updating columns, some columns require specific different JSON property names to update, that is handled by [Utils.convertColumn](/MondayApi/Utils/Utils.cs)
+  - When retrieving Users with `.WithAllScalarFields()`, an undocumented `encrypt_api_token` field is included which causes the entire query to return null data - this field is excluded specifically in [UserActions.cs](/MondayApi/Users/UserActions.cs). This field is not mentioned in the [API Docs](https://developer.monday.com/api-reference/reference/users#fields), however GraphQL Schema introspection describes it as "The token of the user for email to board." (???)
 
 ---
 This project is meant to be used in two ways:
 - Useful helper methods to accomplish most tasks
 - Reference code to build your own specific methods
-- Also, models for responses to Monday Webhooks are provided in [WebhookResponses](/MondayApi/WebhookResponses)
+
+Also, models for responses to Monday Webhooks are provided in [WebhookResponses](/MondayApi/WebhookResponses)
