@@ -2,6 +2,7 @@ using System;
 using Newtonsoft.Json;
 
 namespace MondayApi.Schema {
+    [System.Diagnostics.DebuggerDisplay("{Type.ToString(),nq}:{ID}: {CountryShortName}: {Text}")]
     [GraphQlObjectType("PhoneValue")]
     public class PhoneValue : IMirroredValue, IColumnValue {
         public Column Column { get; set; }

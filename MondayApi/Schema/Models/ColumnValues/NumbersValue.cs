@@ -1,4 +1,5 @@
 namespace MondayApi.Schema {
+    [System.Diagnostics.DebuggerDisplay("{Type.ToString(),nq}:{ID}: {Number}")]
     [GraphQlObjectType("NumbersValue")]
     public class NumbersValue : IMirroredValue, IColumnValue {
         public Column Column { get; set; }

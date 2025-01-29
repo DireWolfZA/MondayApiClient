@@ -1,6 +1,7 @@
 using Newtonsoft.Json;
 
 namespace MondayApi.Schema {
+    [System.Diagnostics.DebuggerDisplay("{ID}: {Title}")]
     public class TimelineItem {
         public string ID { get; set; }
         public string Type { get; set; }

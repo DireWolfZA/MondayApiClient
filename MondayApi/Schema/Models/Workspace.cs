@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Newtonsoft.Json;
 
 namespace MondayApi.Schema {
+    [System.Diagnostics.DebuggerDisplay("{ID}: {Name}")]
     public class Workspace {
         [JsonProperty("account_product")]
         public AccountProduct AccountProduct { get; set; }

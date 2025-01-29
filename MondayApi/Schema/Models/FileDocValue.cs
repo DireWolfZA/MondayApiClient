@@ -2,6 +2,7 @@ using System;
 using Newtonsoft.Json;
 
 namespace MondayApi.Schema {
+    [System.Diagnostics.DebuggerDisplay("{FileID}: {Doc.Name}")]
     [GraphQlObjectType("FileDocValue")]
     public class FileDocValue : IFileValueItem {
         [JsonProperty("created_at")]

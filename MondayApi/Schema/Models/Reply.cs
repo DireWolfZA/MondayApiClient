@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Newtonsoft.Json;
 
 namespace MondayApi.Schema {
+    [System.Diagnostics.DebuggerDisplay("{ID}: {TextBody}")]
     public class Reply {
         public string ID { get; set; }
         public string Body { get; set; }

@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using Newtonsoft.Json;
 
 namespace MondayApi.Schema {
+    [System.Diagnostics.DebuggerDisplay("{Type.ToString(),nq}:{ID}: {Text}")]
     [GraphQlObjectType("TagsValue")]
     public class TagsValue : IMirroredValue, IColumnValue {
         public Column Column { get; set; }

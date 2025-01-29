@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 
 namespace MondayApi.Schema {
+    [System.Diagnostics.DebuggerDisplay("{Type.ToString(),nq}:{ID}: {Text}")]
     [GraphQlObjectType("DropdownValue")]
     public class DropdownValue : IMirroredValue, IColumnValue {
         public Column Column { get; set; }

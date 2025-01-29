@@ -1,8 +1,10 @@
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 
 //https://developer.monday.com/api-reference/reference/webhooks#sample-payload-for-webhook-events
 namespace MondayApi.WebhookResponses {
+    [DebuggerDisplay("{BoardID}/{PulseID}")]
     public class EventClassBase {
         public string App { get; set; }
         public string Type { get; set; }
@@ -17,6 +19,7 @@ namespace MondayApi.WebhookResponses {
         public string TriggerUUID { get; set; }
     }
 
+    [DebuggerDisplay("{BoardID}/{PulseID} {PulseName}")]
     public class EventClassItemCreated : EventClassBase {
         /// <summary>Item Name</summary>
         public string PulseName { get; set; }
@@ -25,6 +28,7 @@ namespace MondayApi.WebhookResponses {
         public bool? IsTopGroup { get; set; }
         public Dictionary<string, object> ColumnValues { get; set; }
     }
+    [DebuggerDisplay("{BoardID}/{PulseID} {PreviousValue} => {Value}")]
     public class EventClassItemNameChanged : EventClassBase {
         public ValueWithName Value { get; set; }
         public ValueWithName PreviousValue { get; set; }
@@ -32,6 +36,7 @@ namespace MondayApi.WebhookResponses {
             public string Name { get; set; }
         }
     }
+    [DebuggerDisplay("{BoardID}/{PulseID} {SourceGroupID} => {DestGroupID}")]
     public class EventClassItemGroupChanged : EventClassBase {
         public string SourceGroupID { get; set; }
         public string DestGroupID { get; set; }
@@ -43,6 +48,7 @@ namespace MondayApi.WebhookResponses {
             public bool? IsTopGroup { get; set; }
         }
     }
+    [DebuggerDisplay("{BoardID}/{PulseID} {PulseName} {ColumnTitle}")]
     public class EventClassColumnChanged : EventClassBase {
         /// <summary>Item Name</summary>
         public string PulseName { get; set; }

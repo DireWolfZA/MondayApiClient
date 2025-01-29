@@ -2,6 +2,7 @@ using System;
 using Newtonsoft.Json;
 
 namespace MondayApi.Schema {
+    [System.Diagnostics.DebuggerDisplay("{Type.ToString(),nq}:{ID}: {Text}/{CreatorID}/{CreatedAt}")]
     [GraphQlObjectType("CreationLogValue")]
     public class CreationLogValue : IMirroredValue, IColumnValue {
         public Column Column { get; set; }

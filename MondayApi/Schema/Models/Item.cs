@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Newtonsoft.Json;
 
 namespace MondayApi.Schema {
+    [System.Diagnostics.DebuggerDisplay("{ID}: {Name} G:{Group.ID}")]
     public class Item {
         public string ID { get; set; }
         public ICollection<Update> Updates { get; set; }

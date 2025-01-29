@@ -1,4 +1,5 @@
 namespace MondayApi.Utils {
+    [System.Diagnostics.DebuggerDisplay("{StatusCode}: {ErrorCode}: {ErrorMessage}")]
     public class MondayApiError {
         public string ErrorCode { get; set; }
         public int? StatusCode { get; set; }

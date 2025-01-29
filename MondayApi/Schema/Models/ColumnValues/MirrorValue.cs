@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using Newtonsoft.Json;
 
 namespace MondayApi.Schema {
+    [System.Diagnostics.DebuggerDisplay("{Type.ToString(),nq}:{ID}: {DisplayValue}")]
     [GraphQlObjectType("MirrorValue")]
     public class MirrorValue : IMirroredValue, IColumnValue {
         public Column Column { get; set; }

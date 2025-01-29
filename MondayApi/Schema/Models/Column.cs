@@ -1,6 +1,7 @@
 using Newtonsoft.Json;
 
 namespace MondayApi.Schema {
+    [System.Diagnostics.DebuggerDisplay("{ID}: {Title} ({Type})")]
     public class Column {
         public bool? Archived { get; set; }
         public string Description { get; set; }

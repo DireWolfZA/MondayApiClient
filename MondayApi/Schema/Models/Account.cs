@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using Newtonsoft.Json;
 
 namespace MondayApi.Schema {
+    [System.Diagnostics.DebuggerDisplay("{ID}: {Name}")]
     public class Account {
         [JsonProperty("active_members_count")]
         public int? ActiveMembersCount { get; set; }

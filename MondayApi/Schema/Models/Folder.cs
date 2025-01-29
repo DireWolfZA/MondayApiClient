@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Newtonsoft.Json;
 
 namespace MondayApi.Schema {
+    [System.Diagnostics.DebuggerDisplay("{ID}: {Name}")]
     public class Folder {
         public ICollection<Board> Children { get; set; }
         public FolderColor? Color { get; set; }

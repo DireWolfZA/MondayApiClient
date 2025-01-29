@@ -1,4 +1,5 @@
 namespace MondayApi.Schema {
+    [System.Diagnostics.DebuggerDisplay("{Type.ToString(),nq}:{ID}: {Text}")]
     [GraphQlObjectType("UnsupportedValue")]
     public class UnsupportedValue : IMirroredValue, IColumnValue {
         public Column Column { get; set; }

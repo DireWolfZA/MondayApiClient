@@ -2,6 +2,7 @@ using Newtonsoft.Json;
 
 namespace MondayApi.Boards {
     // https://developer.monday.com/api-reference/docs/boards#update-a-board
+    [System.Diagnostics.DebuggerDisplay("Success: {Success}")]
     public class UpdateBoardResponse {
         public bool Success { get; set; }
         [JsonProperty("undo_data")]

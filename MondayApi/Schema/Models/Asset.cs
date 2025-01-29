@@ -2,6 +2,7 @@ using System;
 using Newtonsoft.Json;
 
 namespace MondayApi.Schema {
+    [System.Diagnostics.DebuggerDisplay("{ID}: {Name}")]
     public class Asset {
         [JsonProperty("created_at")]
         public DateTimeOffset? CreatedAt { get; set; }

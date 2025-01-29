@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Newtonsoft.Json;
 
 namespace MondayApi.Schema {
+    [System.Diagnostics.DebuggerDisplay("{ID}: {Name}")]
     [GraphQlObjectType("Board")]
     public class Board : IMirroredValue {
         public string ID { get; set; }

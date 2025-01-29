@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Newtonsoft.Json;
 
 namespace MondayApi.Schema {
+    [System.Diagnostics.DebuggerDisplay("{ID}: {Name}")]
     public class Document {
         public ICollection<DocumentBlock> Blocks { get; set; }
         [JsonProperty("created_at")]
