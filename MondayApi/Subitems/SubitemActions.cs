@@ -18,6 +18,7 @@ namespace MondayApi.Subitems {
                     new ColumnValueQueryBuilder()
                         .WithAllScalarFields()
                         .WithPeopleValueFragment(new PeopleValueQueryBuilder().WithPersonsAndTeams(new PeopleEntityQueryBuilder().WithAllScalarFields()))
+                        .WithDropdownValueFragment(new DropdownValueQueryBuilder().WithValues(new DropdownValueOptionQueryBuilder().WithAllScalarFields()))
                         .WithBoardRelationValueFragment(new BoardRelationValueQueryBuilder().WithLinkedItemIDs())
                         .WithStatusValueFragment(new StatusValueQueryBuilder().WithIndex())
                         .WithNumbersValueFragment(new NumbersValueQueryBuilder().WithNumber())
