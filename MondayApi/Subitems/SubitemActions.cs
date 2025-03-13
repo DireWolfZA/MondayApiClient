@@ -62,5 +62,30 @@ namespace MondayApi.Subitems {
             var response = await client.RunMutation(mutation);
             return response.CreateSubitem;
         }
+
+        /// <inheritdoc />
+        public async Task<IEnumerable<Item>> CreateMultiple(string parentItemID, IEnumerable<Item> items, bool? createLabelsIfMissing = null) {
+            Utils.Utils.RequireArgument(nameof(items), items);
+            var mutation = new MutationQueryBuilder();
+
+            int createIndex = 0;
+            foreach (var item in items) {
+                Utils.Utils.RequireArgument($"{nameof(items)}.{nameof(item.Name)}", item.Name);
+
+                mutation = mutation.WithCreateSubitem(
+                    getSubitemQueryBuilder(true, null),
+                    itemName: item.Name,
+                    parentItemID: parentItemID,
+                    columnValues: Utils.Utils.SerializeColumnValues(item.ColumnValues),
+                    createLabelsIfMissing: createLabelsIfMissing,
+
+                    alias: $"createItem{createIndex}"
+                );
+                createIndex++;
+            }
+
+            var response = await client.Run<Dictionary<string, Item>>(mutation);
+            return response.Select(kv => kv.Value);
+        }
     }
 }

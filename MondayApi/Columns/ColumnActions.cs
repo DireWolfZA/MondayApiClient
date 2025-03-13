@@ -130,9 +130,8 @@ namespace MondayApi.Columns {
                 );
                 createIndex++;
             }
-
-            var response = await client.Run<Newtonsoft.Json.Linq.JObject>(mutation);
-            return response.AsEnumerable<KeyValuePair<string, Newtonsoft.Json.Linq.JToken>>().Select(i => i.Value.ToObject<Item>());
+            var response = await client.Run<Dictionary<string, Item>>(mutation);
+            return response.Select(kv => kv.Value);
         }
 
 

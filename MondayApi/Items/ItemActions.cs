@@ -141,8 +141,8 @@ namespace MondayApi.Items {
                 createIndex++;
             }
 
-            var response = await client.Run<Newtonsoft.Json.Linq.JObject>(mutation);
-            return response.AsEnumerable<KeyValuePair<string, Newtonsoft.Json.Linq.JToken>>().Select(i => i.Value.ToObject<Item>());
+            var response = await client.Run<Dictionary<string, Item>>(mutation);
+            return response.Select(kv => kv.Value);
         }
 
         public async Task<Item> MoveToGroup(string itemID, string groupID) {
@@ -214,8 +214,8 @@ namespace MondayApi.Items {
                 deleteIndex++;
             }
 
-            var response = await client.Run<Newtonsoft.Json.Linq.JObject>(mutation);
-            return response.AsEnumerable<KeyValuePair<string, Newtonsoft.Json.Linq.JToken>>().Select(i => i.Value.ToObject<Item>());
+            var response = await client.Run<Dictionary<string, Item>>(mutation);
+            return response.Select(kv => kv.Value);
         }
     }
 }
