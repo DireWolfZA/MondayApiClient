@@ -3,7 +3,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using MondayApi.Schema;
 
-//https://developer.monday.com/api-reference/docs/subitems
+//https://developer.monday.com/api-reference/reference/subitems
 namespace MondayApi.Subitems {
     public class SubitemActions : ISubitemActions {
         private readonly IMondayApiClient client;

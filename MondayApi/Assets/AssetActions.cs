@@ -3,7 +3,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using MondayApi.Schema;
 
-//https://developer.monday.com/api-reference/docs/files
+//https://developer.monday.com/api-reference/reference/assets-1
 namespace MondayApi.Assets {
     public class AssetActions : IAssetActions {
         private readonly IMondayApiClient client;

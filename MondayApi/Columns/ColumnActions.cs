@@ -3,7 +3,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using MondayApi.Schema;
 
-//https://developer.monday.com/api-reference/docs/columns
+//https://developer.monday.com/api-reference/reference/columns
 namespace MondayApi.Columns {
     public class ColumnActions : IColumnActions {
         private readonly IMondayApiClient client;

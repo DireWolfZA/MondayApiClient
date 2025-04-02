@@ -3,7 +3,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using MondayApi.Schema;
 
-//https://developer.monday.com/api-reference/docs/groups
+//https://developer.monday.com/api-reference/reference/groups
 namespace MondayApi.Groups {
     public class GroupActions : IGroupActions {
         private readonly IMondayApiClient client;
