@@ -5,6 +5,6 @@ using MondayApi.Schema;
 namespace MondayApi.Users {
     public interface IUserActions {
         Task<IEnumerable<User>> Get(int? pageNumber = null, int? numPerPage = null);
-        Task<User> GetOne(string id);
+        Task<User?> GetOne(string id);
     }
 }

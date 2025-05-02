@@ -11,16 +11,16 @@ namespace MondayApi.Groups {
             this.client = client;
         }
 
-        public async Task<IEnumerable<Group>> Get(string boardID) {
+        public async Task<IEnumerable<Group>?> Get(string boardID) {
             var query = new QueryQueryBuilder().WithBoards(
                 new BoardQueryBuilder().WithGroups(new GroupQueryBuilder().WithAllScalarFields()),
                 ids: new string[] { boardID }
             );
             var response = await client.RunQuery(query);
-            return response.Boards?.FirstOrDefault()?.Groups;
+            return response.Boards?.FirstOrDefault()?.Groups!;
         }
 
-        public async Task<Group> GetOne(string boardID, string groupID) {
+        public async Task<Group?> GetOne(string boardID, string groupID) {
             var query = new QueryQueryBuilder().WithBoards(
                 new BoardQueryBuilder().WithGroups(
                     new GroupQueryBuilder().WithAllScalarFields(),
@@ -33,7 +33,7 @@ namespace MondayApi.Groups {
         }
 
         /// <inheritdoc />
-        public async Task<Group> Create(string boardID, string title, string color = null, string relativeTo = null, PositionRelative? positionRelative = null) {
+        public async Task<Group> Create(string boardID, string title, string? color = null, string? relativeTo = null, PositionRelative? positionRelative = null) {
             Utils.Utils.RequireArgument(nameof(boardID), boardID);
             Utils.Utils.RequireArgument(nameof(title), title);
 
@@ -47,7 +47,7 @@ namespace MondayApi.Groups {
             );
 
             var response = await client.RunMutation(mutation);
-            return response.CreateGroup;
+            return response.CreateGroup!;
         }
 
         /// <inheritdoc />
@@ -61,7 +61,7 @@ namespace MondayApi.Groups {
             );
 
             var response = await client.RunMutation(mutation);
-            return response.UpdateGroup;
+            return response.UpdateGroup!;
         }
 
         public async Task<Group> Delete(string boardID, string groupID) {
@@ -72,7 +72,7 @@ namespace MondayApi.Groups {
             );
 
             var response = await client.RunMutation(mutation);
-            return response.DeleteGroup;
+            return response.DeleteGroup!;
         }
     }
 }

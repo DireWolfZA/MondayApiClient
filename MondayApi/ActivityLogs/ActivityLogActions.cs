@@ -13,8 +13,8 @@ namespace MondayApi.ActivityLogs {
         }
 
         public async Task<IEnumerable<ActivityLogType>> Get(int pageNumber, int numPerPage, string boardID,
-                string[] userIDs = null, string[] columnIDs = null, string[] groupIDs = null,
-                string[] itemIDs = null, DateTime? from = null, DateTime? to = null) {
+                string[]? userIDs = null, string[]? columnIDs = null, string[]? groupIDs = null,
+                string[]? itemIDs = null, DateTime? from = null, DateTime? to = null) {
 
             var query = new QueryQueryBuilder().WithBoards(
                 new BoardQueryBuilder().WithActivityLogs(
@@ -32,7 +32,7 @@ namespace MondayApi.ActivityLogs {
             );
 
             var response = await client.RunQuery(query);
-            return response.Boards.First().ActivityLogs;
+            return response.Boards.First()!.ActivityLogs!;
         }
     }
 }

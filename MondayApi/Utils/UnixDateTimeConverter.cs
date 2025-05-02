@@ -18,9 +18,9 @@ namespace MondayApi.Utils {
 
         public UnixDateTimeConverter() { }
         public UnixDateTimeConverter(ETimeType timeType) => TimeType = timeType;
-        public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer) => throw new NotImplementedException();
+        public override void WriteJson(JsonWriter writer, object? value, JsonSerializer serializer) => throw new NotImplementedException();
 
-        public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer) {
+        public override object? ReadJson(JsonReader reader, Type objectType, object? existingValue, JsonSerializer serializer) {
             bool isNullable = !objectType.IsValueType || (objectType.IsGenericType && objectType.GetGenericTypeDefinition() == typeof(Nullable<>));
 
             if (isNullable && reader.TokenType == JsonToken.Null)

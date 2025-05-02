@@ -18,10 +18,10 @@ namespace MondayApi.Boards {
                 limit: numPerPage
             );
             var response = await client.RunQuery(query);
-            return response.Boards;
+            return response.Boards!;
         }
 
-        public async Task<Board> GetOne(string id) {
+        public async Task<Board?> GetOne(string id) {
             var query = new QueryQueryBuilder().WithBoards(
                 new BoardQueryBuilder().WithAllScalarFields(),
                 ids: new string[] { id }
@@ -30,7 +30,7 @@ namespace MondayApi.Boards {
             return response.Boards?.FirstOrDefault();
         }
 
-        public async Task<Board> Create(Board board, string templateID = null, bool? empty = null) {
+        public async Task<Board> Create(Board board, string? templateID = null, bool? empty = null) {
             Utils.Utils.RequireArgument(nameof(board.Name), board.Name);
             Utils.Utils.RequireArgument(nameof(board.BoardKind), board.BoardKind);
 
@@ -50,7 +50,7 @@ namespace MondayApi.Boards {
             );
 
             var response = await client.RunMutation(mutation);
-            return response.CreateBoard;
+            return response.CreateBoard!;
         }
 
         public async Task<UpdateBoardResponse> Update(string id, BoardAttributes attribute, string newValue) {
@@ -61,14 +61,14 @@ namespace MondayApi.Boards {
             );
 
             var response = await client.RunMutation(mutation);
-            return Newtonsoft.Json.JsonConvert.DeserializeObject<UpdateBoardResponse>(response.UpdateBoard);
+            return Newtonsoft.Json.JsonConvert.DeserializeObject<UpdateBoardResponse>(response.UpdateBoard)!;
         }
 
         public async Task<Board> Delete(string id) {
             var mutation = new MutationQueryBuilder().WithDeleteBoard(new BoardQueryBuilder().WithAllScalarFields(), id);
 
             var response = await client.RunMutation(mutation);
-            return response.DeleteBoard;
+            return response.DeleteBoard!;
         }
     }
 }

@@ -25,10 +25,10 @@ namespace MondayApi.Updates {
                 limit: numPerPage
             );
             var response = await client.RunQuery(query);
-            return response.Updates;
+            return response.Updates!;
         }
 
-        public async Task<IEnumerable<Update>> GetByBoard(int pageNumber, int numPerPage, string boardID, bool includeReplies = false) {
+        public async Task<IEnumerable<Update>?> GetByBoard(int pageNumber, int numPerPage, string boardID, bool includeReplies = false) {
             var query = new QueryQueryBuilder().WithBoards(
                 new BoardQueryBuilder().WithUpdates(
                     getUpdateQueryBuilder(includeReplies),
@@ -41,7 +41,7 @@ namespace MondayApi.Updates {
             return response.Boards?.FirstOrDefault()?.Updates;
         }
 
-        public async Task<IEnumerable<Update>> GetByItem(int pageNumber, int numPerPage, string itemID, bool includeReplies = false) {
+        public async Task<IEnumerable<Update>?> GetByItem(int pageNumber, int numPerPage, string itemID, bool includeReplies = false) {
             var query = new QueryQueryBuilder().WithItems(
                 new ItemQueryBuilder().WithUpdates(
                     getUpdateQueryBuilder(includeReplies),
@@ -54,7 +54,7 @@ namespace MondayApi.Updates {
             return response.Items?.FirstOrDefault()?.Updates;
         }
 
-        public async Task<Update> Create(string itemID, string body, string parentUpdateID = null) {
+        public async Task<Update> Create(string itemID, string body, string? parentUpdateID = null) {
             Utils.Utils.RequireArgument(nameof(itemID), itemID);
             Utils.Utils.RequireArgument(nameof(body), body);
 
@@ -65,7 +65,7 @@ namespace MondayApi.Updates {
                 parentID: parentUpdateID
             );
             var response = await client.RunMutation(mutation);
-            return response.CreateUpdate;
+            return response.CreateUpdate!;
         }
 
         /// <inheritdoc />
@@ -75,7 +75,7 @@ namespace MondayApi.Updates {
                 updateID: updateID
             );
             var response = await client.RunMutation(mutation);
-            return response.LikeUpdate;
+            return response.LikeUpdate!;
         }
 
         public async Task<Update> Delete(string updateID) {
@@ -84,7 +84,7 @@ namespace MondayApi.Updates {
                 id: updateID
             );
             var response = await client.RunMutation(mutation);
-            return response.DeleteUpdate;
+            return response.DeleteUpdate!;
         }
 
         public async Task<Item> ClearForItem(string itemID) {
@@ -93,7 +93,7 @@ namespace MondayApi.Updates {
                 itemID: itemID
             );
             var response = await client.RunMutation(mutation);
-            return response.ClearItemUpdates;
+            return response.ClearItemUpdates!;
         }
     }
 }

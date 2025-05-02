@@ -9,13 +9,15 @@ namespace MondayApi.Utils {
         /// <summary>Require a parameter to not be null</summary>
         /// <param name="argumentName">Name of the parameter</param>
         /// <param name="argumentValue">Value of the parameter</param>
-        public static void RequireArgument(string argumentName, object argumentValue) {
+        public static void RequireArgument(string? argumentName, [System.Diagnostics.CodeAnalysis.NotNull] object? argumentValue) {
             if (argumentValue == null)
                 throw new ArgumentNullException(argumentName);
         }
 
-        public static GraphQlQueryParameter<T> GetParameter<T>(T value, bool isNullable = true) =>
+        public static GraphQlQueryParameter<T>? GetParameter<T>(T? value, bool isNullable = true) =>
             value == null ? null : new GraphQlQueryParameter<T>(null, defaultValue: value, isNullable);
+        public static IEnumerable<T>? SkipEmpty<T>(IEnumerable<T?>? values) =>
+            values.Where(v => v != null)!;
 
         private static readonly Newtonsoft.Json.Serialization.SnakeCaseNamingStrategy snakeCaseNamingStrategy = new Newtonsoft.Json.Serialization.SnakeCaseNamingStrategy();
         private static readonly Newtonsoft.Json.JsonSerializerSettings settings = new Newtonsoft.Json.JsonSerializerSettings() {
@@ -24,7 +26,7 @@ namespace MondayApi.Utils {
         };
         static Utils() => settings.Converters.Add(new Newtonsoft.Json.Converters.StringEnumConverter() { NamingStrategy = snakeCaseNamingStrategy });
 
-        private static object convertColumn(IColumnValue column) {
+        private static object? convertColumn(IColumnValue column) {
             column.ID = null;
             switch (column) {
                 case TextValue tv:
@@ -46,8 +48,8 @@ namespace MondayApi.Utils {
                     };
                 case DropdownValue dv:
                     return new DropdownValueForUpdate() {
-                        IDs = dv.Values.Select(v => v.ID).ToList(),
-                        Labels = dv.Values.Select(v => v.Label).ToList(),
+                        IDs = dv.Values?.Select(v => v.ID).ToList(),
+                        Labels = dv.Values?.Select(v => v.Label).ToList(),
                     };
                 case CheckboxValue cv:
                     return cv.Checked.HasValue && cv.Checked.Value
@@ -58,18 +60,22 @@ namespace MondayApi.Utils {
             }
         }
 
-        public static string SerializeColumnValues(IEnumerable<IColumnValue> columnValues) {
+        public static string? SerializeColumnValues(IEnumerable<IColumnValue>? columnValues) {
             if (columnValues == null)
                 return null;
-            var dict = columnValues.ToDictionary<IColumnValue, string, object>(column => column.ID, convertColumn);
+            var dict = columnValues.ToDictionary<IColumnValue, string?, object?>(column => column.ID, convertColumn);
             return Newtonsoft.Json.JsonConvert.SerializeObject(dict, settings);
         }
         public static string SerializeColumnValue(IColumnValue columnValue) =>
             Newtonsoft.Json.JsonConvert.SerializeObject(convertColumn(columnValue), settings);
 
-        internal static bool TryDeserializeMondayApiError(string response, out MondayApiError mondayApiError) {
+        internal static bool TryDeserializeMondayApiError(string response, [System.Diagnostics.CodeAnalysis.NotNullWhen(true)] out MondayApiError? mondayApiError) {
+            if (string.IsNullOrEmpty(response)) {
+                mondayApiError = null;
+                return false;
+            }
             try {
-                mondayApiError = Newtonsoft.Json.JsonConvert.DeserializeObject<MondayApiError>(response, settings);
+                mondayApiError = Newtonsoft.Json.JsonConvert.DeserializeObject<MondayApiError>(response, settings)!;
                 return true;
             } catch (Newtonsoft.Json.JsonReaderException) {
                 mondayApiError = null;

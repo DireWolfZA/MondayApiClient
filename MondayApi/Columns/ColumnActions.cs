@@ -11,13 +11,13 @@ namespace MondayApi.Columns {
             this.client = client;
         }
 
-        public async Task<IEnumerable<Column>> Get(string boardID) {
+        public async Task<IEnumerable<Column>?> Get(string boardID) {
             var query = new QueryQueryBuilder().WithBoards(
                 new BoardQueryBuilder().WithColumns(new ColumnQueryBuilder().WithAllScalarFields()),
                 ids: new string[] { boardID }
             );
             var response = await client.RunQuery(query);
-            return response.Boards?.FirstOrDefault()?.Columns;
+            return response.Boards?.FirstOrDefault()?.Columns!;
         }
 
         static readonly ColumnType?[] bannedMoveTypes = new ColumnType?[] { ColumnType.Name, ColumnType.Subtasks, ColumnType.Formula };
@@ -29,7 +29,7 @@ namespace MondayApi.Columns {
             return columnMapping;
         }
 
-        public async Task<Column> GetOne(string boardID, string columnID) {
+        public async Task<Column?> GetOne(string boardID, string columnID) {
             var query = new QueryQueryBuilder().WithBoards(
                 new BoardQueryBuilder().WithColumns(
                     new ColumnQueryBuilder().WithAllScalarFields(),
@@ -41,7 +41,7 @@ namespace MondayApi.Columns {
             return response.Boards?.FirstOrDefault()?.Columns?.FirstOrDefault();
         }
 
-        public async Task<string> GetSubitemsBoardID(string boardID) {
+        public async Task<string?> GetSubitemsBoardID(string boardID) {
             var query = new QueryQueryBuilder().WithBoards(
                 new BoardQueryBuilder().WithColumns(
                     new ColumnQueryBuilder().WithSettingsStr(),
@@ -51,7 +51,7 @@ namespace MondayApi.Columns {
             );
             var response = await client.RunQuery(query);
 
-            string columnSettingsStr = response.Boards?.FirstOrDefault()?.Columns?.FirstOrDefault()?.SettingsStr;
+            string? columnSettingsStr = response.Boards?.FirstOrDefault()?.Columns?.FirstOrDefault()?.SettingsStr;
             if (columnSettingsStr == null)
                 return null;
 
@@ -59,12 +59,14 @@ namespace MondayApi.Columns {
             using (var reader = new Newtonsoft.Json.JsonTextReader(sr)) {
                 var serializer = Newtonsoft.Json.JsonSerializer.Create();
                 var columnSettings = serializer.Deserialize<ColumnSettings>(reader);
-                return columnSettings.BoardIDs.FirstOrDefault();
+                return columnSettings?.BoardIDs.FirstOrDefault();
             }
         }
 
 
         public async Task<Item> ChangeValue(string boardID, string itemID, IColumnValue value, bool? createLabelsIfMissing = null) {
+            Utils.Utils.RequireArgument($"{nameof(value)}.{nameof(value.ID)}", value.ID);
+
             var mutation = new MutationQueryBuilder().WithChangeColumnValue(
                 new ItemQueryBuilder().WithAllScalarFields().WithColumnValues(
                     new ColumnValueQueryBuilder().WithAllScalarFields(),
@@ -77,7 +79,7 @@ namespace MondayApi.Columns {
                 createLabelsIfMissing: createLabelsIfMissing
             );
             var response = await client.RunMutation(mutation);
-            return response.ChangeColumnValue;
+            return response.ChangeColumnValue!;
         }
 
         public async Task<Item> ChangeValueSimple(string boardID, string columnID, string itemID, string value, bool? createLabelsIfMissing = null) {
@@ -93,7 +95,7 @@ namespace MondayApi.Columns {
                 createLabelsIfMissing: createLabelsIfMissing
             );
             var response = await client.RunMutation(mutation);
-            return response.ChangeSimpleColumnValue;
+            return response.ChangeSimpleColumnValue!;
         }
 
         public async Task<Item> ChangeMultipleValues(string boardID, string itemID, IEnumerable<IColumnValue> values, bool? createLabelsIfMissing = null) {
@@ -107,7 +109,7 @@ namespace MondayApi.Columns {
                 createLabelsIfMissing: createLabelsIfMissing
             );
             var response = await client.RunMutation(mutation);
-            return response.ChangeMultipleColumnValues;
+            return response.ChangeMultipleColumnValues!;
         }
 
         public async Task<IEnumerable<Item>> ChangeMultipleItems(IEnumerable<ColumnMultipleUpdateValue> values, bool? createLabelsIfMissing = null) {
@@ -115,6 +117,8 @@ namespace MondayApi.Columns {
 
             int createIndex = 0;
             foreach (var value in values) {
+                Utils.Utils.RequireArgument($"{nameof(value)}.{nameof(value.Value.ID)}", value.Value.ID);
+
                 mutation = mutation.WithChangeColumnValue(
                     new ItemQueryBuilder().WithAllScalarFields().WithColumnValues(
                         new ColumnValueQueryBuilder().WithAllScalarFields(),
@@ -136,7 +140,9 @@ namespace MondayApi.Columns {
 
 
         /// <inheritdoc />
-        public async Task<Column> Create(string boardID, Column column, string afterColumnID = null, string defaults = null) {
+        public async Task<Column> Create(string boardID, Column column, string? afterColumnID = null, string? defaults = null) {
+            Utils.Utils.RequireArgument($"{nameof(column)}.{nameof(column.Type)}", column.Type);
+
             var mutation = new MutationQueryBuilder().WithCreateColumn(
                 new ColumnQueryBuilder().WithAllScalarFields(),
                 boardID: boardID,
@@ -148,7 +154,7 @@ namespace MondayApi.Columns {
                 defaults: defaults
             );
             var response = await client.RunMutation(mutation);
-            return response.CreateColumn;
+            return response.CreateColumn!;
         }
     }
 }

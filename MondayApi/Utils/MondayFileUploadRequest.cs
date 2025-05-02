@@ -13,8 +13,8 @@ namespace MondayApi.Utils {
             Filename = filename;
         }
 
-        public Stream File { get; set; }
-        public string Filename { get; set; }
+        public Stream? File { get; set; }
+        public string? Filename { get; set; }
 
         public override HttpRequestMessage ToHttpRequestMessage(GraphQLHttpClientOptions options, IGraphQLJsonSerializer serializer) {
             Utils.RequireArgument(nameof(File), File);

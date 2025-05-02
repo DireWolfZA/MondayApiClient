@@ -4,10 +4,10 @@ using MondayApi.Schema;
 
 namespace MondayApi.Columns {
     public interface IColumnActions {
-        Task<IEnumerable<Column>> Get(string boardID);
+        Task<IEnumerable<Column>?> Get(string boardID);
         Task<ICollection<ColumnMappingInput>> FillColumnMapping(string boardID, ICollection<ColumnMappingInput> columnMapping);
-        Task<Column> GetOne(string boardID, string columnID);
-        Task<string> GetSubitemsBoardID(string boardID);
+        Task<Column?> GetOne(string boardID, string columnID);
+        Task<string?> GetSubitemsBoardID(string boardID);
 
         Task<Item> ChangeValue(string boardID, string itemID, IColumnValue value, bool? createLabelsIfMissing = null);
         Task<Item> ChangeValueSimple(string boardID, string columnID, string itemID, string value, bool? createLabelsIfMissing = null);
@@ -23,6 +23,6 @@ namespace MondayApi.Columns {
         /// <br />- Can't reuse column IDs, even if the column has been deleted from the board
         /// <br />- Can't be null, blank, or an empty string
         /// </summary>
-        Task<Column> Create(string boardID, Column column, string afterColumnID = null, string defaults = null);
+        Task<Column> Create(string boardID, Column column, string? afterColumnID = null, string? defaults = null);
     }
 }

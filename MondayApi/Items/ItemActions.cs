@@ -12,7 +12,7 @@ namespace MondayApi.Items {
             this.client = client;
         }
 
-        private ItemQueryBuilder getItemQueryBuilder(bool withColumnValues, IEnumerable<string> columnIDs) {
+        private ItemQueryBuilder getItemQueryBuilder(bool withColumnValues, IEnumerable<string>? columnIDs) {
             var itemQueryBuilder = new ItemQueryBuilder().WithAllScalarFields().WithGroup(new GroupQueryBuilder().WithID());
             if (withColumnValues)
                 itemQueryBuilder = itemQueryBuilder.WithColumnValues(
@@ -33,7 +33,7 @@ namespace MondayApi.Items {
             return itemQueryBuilder;
         }
 
-        public async Task<ItemsResponse> GetByBoard(string cursor, int numPerPage, string boardID, bool withColumnValues = false, IEnumerable<string> columnIDs = null, ItemsQuery queryParams = null) {
+        public async Task<ItemsResponse?> GetByBoard(string cursor, int numPerPage, string boardID, bool withColumnValues = false, IEnumerable<string>? columnIDs = null, ItemsQuery? queryParams = null) {
             var query = new QueryQueryBuilder().WithBoards(
                 new BoardQueryBuilder().WithItemsPage(
                     new ItemsResponseQueryBuilder().WithCursor().WithItems(getItemQueryBuilder(withColumnValues, columnIDs)),
@@ -48,7 +48,7 @@ namespace MondayApi.Items {
         }
 
         //https://developer.monday.com/api-reference/docs/items-page-by-column-values
-        public async Task<ItemsResponse> GetByBoardColumnValues(string cursor, int numPerPage, string boardID, bool withColumnValues = false, IEnumerable<string> columnIDs = null, IEnumerable<ItemsPageByColumnValuesQuery> columnFilters = null) {
+        public async Task<ItemsResponse> GetByBoardColumnValues(string cursor, int numPerPage, string boardID, bool withColumnValues = false, IEnumerable<string>? columnIDs = null, IEnumerable<ItemsPageByColumnValuesQuery>? columnFilters = null) {
             var query = new QueryQueryBuilder().WithItemsPageByColumnValues(
                 new ItemsResponseQueryBuilder().WithCursor().WithItems(getItemQueryBuilder(withColumnValues, columnIDs)),
                 cursor: cursor,
@@ -57,11 +57,11 @@ namespace MondayApi.Items {
                 columns: Utils.Utils.GetParameter(columnFilters)
             );
             var response = await client.RunQuery(query);
-            return response.ItemsPageByColumnValues;
+            return response.ItemsPageByColumnValues!;
         }
 
 
-        public async Task<ItemsResponse> GetByBoardNextPage(string cursor, int numPerPage, bool withColumnValues = false, IEnumerable<string> columnIDs = null) {
+        public async Task<ItemsResponse> GetByBoardNextPage(string cursor, int numPerPage, bool withColumnValues = false, IEnumerable<string>? columnIDs = null) {
             Utils.Utils.RequireArgument(nameof(cursor), cursor);
             var query = new QueryQueryBuilder().WithNextItemsPage(
                 new ItemsResponseQueryBuilder().WithCursor().WithItems(getItemQueryBuilder(withColumnValues, columnIDs)),
@@ -69,10 +69,10 @@ namespace MondayApi.Items {
                 limit: numPerPage
             );
             var response = await client.RunQuery(query);
-            return response.NextItemsPage;
+            return response.NextItemsPage!;
         }
 
-        public async Task<ItemsResponse> GetByBoardGroup(string cursor, int numPerPage, string boardID, string groupID, bool withColumnValues = false, IEnumerable<string> columnIDs = null) {
+        public async Task<ItemsResponse?> GetByBoardGroup(string cursor, int numPerPage, string boardID, string groupID, bool withColumnValues = false, IEnumerable<string>? columnIDs = null) {
             var query = new QueryQueryBuilder().WithBoards(
                 new BoardQueryBuilder().WithGroups(
                     new GroupQueryBuilder().WithItemsPage(
@@ -85,10 +85,10 @@ namespace MondayApi.Items {
                 ids: new string[] { boardID }
             );
             var response = await client.RunQuery(query);
-            return response.Boards?.FirstOrDefault().Groups?.FirstOrDefault()?.ItemsPage;
+            return response.Boards?.FirstOrDefault()?.Groups?.FirstOrDefault()?.ItemsPage;
         }
 
-        public async Task<Item> GetOne(string id, bool withColumnValues = false, IEnumerable<string> columnIDs = null) {
+        public async Task<Item?> GetOne(string id, bool withColumnValues = false, IEnumerable<string>? columnIDs = null) {
             var query = new QueryQueryBuilder().WithItems(
                 getItemQueryBuilder(withColumnValues, columnIDs),
                 ids: new string[] { id }
@@ -98,8 +98,8 @@ namespace MondayApi.Items {
         }
 
         /// <inheritdoc />
-        public async Task<Item> Create(string itemName, string boardID, string groupID = null, IEnumerable<IColumnValue> columnValues = null,
-            bool? createLabelsIfMissing = null, string relativeTo = null, PositionRelative? positionRelative = null
+        public async Task<Item> Create(string itemName, string boardID, string? groupID = null, IEnumerable<IColumnValue>? columnValues = null,
+            bool? createLabelsIfMissing = null, string? relativeTo = null, PositionRelative? positionRelative = null
         ) {
             Utils.Utils.RequireArgument(nameof(itemName), itemName);
             Utils.Utils.RequireArgument(nameof(boardID), boardID);
@@ -116,7 +116,7 @@ namespace MondayApi.Items {
             );
 
             var response = await client.RunMutation(mutation);
-            return response.CreateItem;
+            return response.CreateItem!;
         }
 
         /// <inheritdoc />
@@ -127,7 +127,7 @@ namespace MondayApi.Items {
             int createIndex = 0;
             foreach (var item in items) {
                 Utils.Utils.RequireArgument($"{nameof(items)}.{nameof(item.Name)}", item.Name);
-                Utils.Utils.RequireArgument($"{nameof(items)}.{nameof(item.Board)}.{nameof(item.Board.ID)}", item.Board.ID);
+                Utils.Utils.RequireArgument($"{nameof(items)}.{nameof(item.Board)}.{nameof(item.Board.ID)}", item.Board?.ID);
 
                 mutation = mutation.WithCreateItem(
                     getItemQueryBuilder(true, null),
@@ -157,11 +157,11 @@ namespace MondayApi.Items {
             );
 
             var response = await client.RunMutation(mutation);
-            return response.MoveItemToGroup;
+            return response.MoveItemToGroup!;
         }
 
         /// <inheritdoc />
-        public async Task<Item> MoveToBoard(string itemID, string boardID, string groupID, IEnumerable<ColumnMappingInput> columnsMapping = null, IEnumerable<ColumnMappingInput> subitemsColumnsMapping = null) {
+        public async Task<Item> MoveToBoard(string itemID, string boardID, string groupID, IEnumerable<ColumnMappingInput>? columnsMapping = null, IEnumerable<ColumnMappingInput>? subitemsColumnsMapping = null) {
             Utils.Utils.RequireArgument(nameof(itemID), itemID);
             Utils.Utils.RequireArgument(nameof(boardID), boardID);
             Utils.Utils.RequireArgument(nameof(groupID), groupID);
@@ -175,7 +175,7 @@ namespace MondayApi.Items {
             );
 
             var response = await client.RunMutation(mutation);
-            return response.MoveItemToBoard;
+            return response.MoveItemToBoard!;
         }
 
         public async Task<Item> Duplicate(string itemID, string boardID, bool? withUpdates = false) {
@@ -189,14 +189,14 @@ namespace MondayApi.Items {
             );
 
             var response = await client.RunMutation(mutation);
-            return response.DuplicateItem;
+            return response.DuplicateItem!;
         }
 
         public async Task<Item> Delete(string id) {
             var mutation = new MutationQueryBuilder().WithDeleteItem(new ItemQueryBuilder().WithAllScalarFields(), id);
 
             var response = await client.RunMutation(mutation);
-            return response.DeleteItem;
+            return response.DeleteItem!;
         }
 
         public async Task<IEnumerable<Item>> DeleteMultiple(IEnumerable<string> ids) {

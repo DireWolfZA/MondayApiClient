@@ -18,10 +18,10 @@ namespace MondayApi.Users {
                 limit: numPerPage
             );
             var response = await client.RunQuery(query);
-            return response.Users;
+            return response.Users!;
         }
 
-        public async Task<User> GetOne(string id) {
+        public async Task<User?> GetOne(string id) {
             var query = new QueryQueryBuilder().WithUsers(
                 new UserQueryBuilder().WithAllScalarFields().ExceptEncryptApiToken(),
                 ids: new string[] { id }

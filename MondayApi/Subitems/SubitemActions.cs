@@ -11,7 +11,7 @@ namespace MondayApi.Subitems {
             this.client = client;
         }
 
-        private ItemQueryBuilder getSubitemQueryBuilder(bool withColumnValues, IEnumerable<string> columnIDs) {
+        private ItemQueryBuilder getSubitemQueryBuilder(bool withColumnValues, IEnumerable<string>? columnIDs) {
             var itemQueryBuilder = new ItemQueryBuilder().WithAllScalarFields();
             if (withColumnValues)
                 itemQueryBuilder = itemQueryBuilder.WithColumnValues(
@@ -29,16 +29,16 @@ namespace MondayApi.Subitems {
             return itemQueryBuilder;
         }
 
-        public async Task<IEnumerable<Item>> Get(string parentItemID, bool withColumnValues = false, IEnumerable<string> columnIDs = null) {
+        public async Task<IEnumerable<Item>?> Get(string parentItemID, bool withColumnValues = false, IEnumerable<string>? columnIDs = null) {
             var query = new QueryQueryBuilder().WithItems(
                 new ItemQueryBuilder().WithSubitems(getSubitemQueryBuilder(withColumnValues, columnIDs)),
                 ids: new string[] { parentItemID }
             );
             var response = await client.RunQuery(query);
-            return response.Items?.FirstOrDefault().Subitems;
+            return Utils.Utils.SkipEmpty(response.Items?.FirstOrDefault()?.Subitems);
         }
 
-        public async Task<Item> GetParentItem(string subitemID, bool withColumnValues = false, IEnumerable<string> columnIDs = null) {
+        public async Task<Item?> GetParentItem(string subitemID, bool withColumnValues = false, IEnumerable<string>? columnIDs = null) {
             var query = new QueryQueryBuilder().WithItems(
                 new ItemQueryBuilder().WithParentItem(getSubitemQueryBuilder(withColumnValues, columnIDs)),
                 ids: new string[] { subitemID }
@@ -47,7 +47,7 @@ namespace MondayApi.Subitems {
             return response.Items?.FirstOrDefault()?.ParentItem;
         }
 
-        public async Task<Item> CreateSubitem(string itemName, string parentItemID, IEnumerable<IColumnValue> columnValues = null, bool? createLabelsIfMissing = null) {
+        public async Task<Item> CreateSubitem(string itemName, string parentItemID, IEnumerable<IColumnValue>? columnValues = null, bool? createLabelsIfMissing = null) {
             Utils.Utils.RequireArgument(nameof(parentItemID), parentItemID);
             Utils.Utils.RequireArgument(nameof(itemName), itemName);
 
@@ -60,7 +60,7 @@ namespace MondayApi.Subitems {
             );
 
             var response = await client.RunMutation(mutation);
-            return response.CreateSubitem;
+            return response.CreateSubitem!;
         }
 
         /// <inheritdoc />

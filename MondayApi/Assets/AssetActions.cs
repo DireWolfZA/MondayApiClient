@@ -11,7 +11,7 @@ namespace MondayApi.Assets {
             this.client = client;
         }
 
-        public async Task<IEnumerable<IEnumerable<IFileValueItem>>> GetItemFiles(string itemID, string[] columnIDs = null) {
+        public async Task<IEnumerable<IEnumerable<IFileValueItem>>?> GetItemFiles(string itemID, string[] columnIDs = null) {
             var query = new QueryQueryBuilder().WithItems(
                 new ItemQueryBuilder().WithColumnValues(
                     new ColumnValueQueryBuilder().WithAllScalarFields().WithFileValueFragment(
@@ -28,10 +28,10 @@ namespace MondayApi.Assets {
                 ids: new string[] { itemID }
             );
             var response = await client.RunQuery(query);
-            return response.Items?.FirstOrDefault()?.ColumnValues?.OfType<FileValue>()?.Select(fv => fv.Files);
+            return response.Items?.FirstOrDefault()?.ColumnValues?.OfType<FileValue>()?.Select(fv => fv.Files)!;
         }
 
-        public async Task<IEnumerable<Asset>> GetByItem(string itemID) {
+        public async Task<IEnumerable<Asset>?> GetByItem(string itemID) {
             var query = new QueryQueryBuilder().WithItems(
                 new ItemQueryBuilder().WithAssets(
                     new AssetQueryBuilder().WithAllScalarFields()
@@ -39,10 +39,10 @@ namespace MondayApi.Assets {
                 ids: new string[] { itemID }
             );
             var response = await client.RunQuery(query);
-            return response.Items?.FirstOrDefault()?.Assets;
+            return response.Items?.FirstOrDefault()?.Assets!;
         }
 
-        public async Task<IEnumerable<Update>> GetByItemUpdates(string itemID) {
+        public async Task<IEnumerable<Update>?> GetByItemUpdates(string itemID) {
             var query = new QueryQueryBuilder().WithItems(
                 new ItemQueryBuilder().WithUpdates(
                     new UpdateQueryBuilder().WithID().WithAssets(
@@ -55,7 +55,7 @@ namespace MondayApi.Assets {
             return response.Items?.FirstOrDefault()?.Updates;
         }
 
-        public async Task<Asset> GetOne(string id) {
+        public async Task<Asset?> GetOne(string id) {
             var query = new QueryQueryBuilder().WithAssets(
                 new AssetQueryBuilder().WithAllScalarFields(),
                 ids: new string[] { id }
@@ -73,7 +73,7 @@ namespace MondayApi.Assets {
                 file: fileParam
             ).WithParameter(fileParam);
             var response = await client.RunFileMutation(mutation, file, filename);
-            return response.AddFileToUpdate;
+            return response.AddFileToUpdate!;
         }
 
         public async Task<Asset> UploadFileToItem(string itemID, string columnID, System.IO.Stream file, string filename) {
@@ -86,7 +86,7 @@ namespace MondayApi.Assets {
                 file: fileParam
             ).WithParameter(fileParam);
             var response = await client.RunFileMutation(mutation, file, filename);
-            return response.AddFileToColumn;
+            return response.AddFileToColumn!;
         }
 
         // https://developer.monday.com/api-reference/reference/files-1#clear-the-files-column
@@ -102,7 +102,7 @@ namespace MondayApi.Assets {
                 value: "{\"clear_all\": true}"
             );
             var response = await client.RunMutation(mutation);
-            return response.ChangeColumnValue;
+            return response.ChangeColumnValue!;
         }
     }
 }

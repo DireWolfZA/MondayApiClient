@@ -6,12 +6,12 @@ using GraphQL;
 
 namespace MondayApi {
     public class MondayException : Exception {
-        public GraphQLError ErrorData { get; }
+        public GraphQLError? ErrorData { get; }
         public MondayException(GraphQLError error) : base(error.Message) {
             ErrorData = error;
         }
 
-        public Utils.MondayApiError MondayApiError { get; }
+        public Utils.MondayApiError? MondayApiError { get; }
         public MondayException(Utils.MondayApiError mondayApiError) : base(
             mondayApiError.ErrorMessage ??
             mondayApiError.Errors?.FirstOrDefault() ??

@@ -21,7 +21,7 @@ namespace MondayApi {
         private readonly string baseURL = "https://api.monday.com/v2";
         private readonly GraphQLHttpClient client;
 
-        private string queryResponse;
+        private string queryResponse = string.Empty;
 
         public MondayApiClient(string token) {
             Utils.Utils.RequireArgument(nameof(token), string.IsNullOrWhiteSpace(token) ? null : token);
@@ -38,7 +38,7 @@ namespace MondayApi {
         public Task<Mutation> RunFileMutation(MutationQueryBuilder queryBuilder, System.IO.Stream file, string filename) => RunFileMutation<Mutation>(queryBuilder, file, filename);
 
         public Task<T> Run<T>(GraphQlQueryBuilder queryOrMutationBuilder) {
-            string query = null;
+            string? query = null;
 #if DEBUG
             if (Environment.GetEnvironmentVariable(EnvironmentDebugShowQuery) != null) {
                 query = queryOrMutationBuilder.Build(Formatting.Indented);
@@ -51,7 +51,7 @@ namespace MondayApi {
             return Run<T>(new GraphQL.GraphQLRequest(query));
         }
         public Task<T> RunFileMutation<T>(GraphQlQueryBuilder queryBuilder, System.IO.Stream file, string filename) {
-            string query = null;
+            string? query = null;
 #if DEBUG
             if (Environment.GetEnvironmentVariable(EnvironmentDebugShowQuery) != null) {
                 query = queryBuilder.Build(Formatting.Indented);

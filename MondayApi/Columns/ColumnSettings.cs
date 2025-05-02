@@ -6,10 +6,10 @@ namespace MondayApi.Columns {
         [JsonProperty("allowMultipleItems")]
         public bool AllowMultipleItems { get; set; }
         [JsonProperty("itemTypeName")]
-        public string ItemTypeName { get; set; }
+        public string? ItemTypeName { get; set; }
         [JsonProperty("displayType")]
-        public string DisplayType { get; set; }
+        public string? DisplayType { get; set; }
         [JsonProperty("boardIds")]
-        public ICollection<string> BoardIDs { get; set; }
+        public ICollection<string>? BoardIDs { get; set; }
     }
 }
