@@ -7,8 +7,8 @@ namespace MondayApi.Schema {
 
         [JsonProperty("allow_empty_team")]
         [JsonConverter(typeof(QueryBuilderParameterConverter<bool?>))]
-        public QueryBuilderParameter<bool?> AllowEmptyTeam {
-            get => (QueryBuilderParameter<bool?>)_allowEmptyTeam.Value;
+        public QueryBuilderParameter<bool?>? AllowEmptyTeam {
+            get => (QueryBuilderParameter<bool?>?)_allowEmptyTeam.Value;
             set => _allowEmptyTeam = new InputPropertyInfo { Name = "allow_empty_team", Value = value };
         }
 

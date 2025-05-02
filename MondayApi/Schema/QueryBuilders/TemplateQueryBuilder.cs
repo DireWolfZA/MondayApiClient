@@ -9,8 +9,8 @@ namespace MondayApi.Schema {
         protected override string TypeName => "Template";
         public override IReadOnlyList<GraphQlFieldMetadata> AllFields => AllFieldMetadata;
 
-        public TemplateQueryBuilder WithProcessID(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
-            WithScalarField("process_id", alias, new GraphQlDirective[] { include, skip });
+        public TemplateQueryBuilder WithProcessID(string? alias = null, IncludeDirective? include = null, SkipDirective? skip = null) =>
+            WithScalarField("process_id", alias, new GraphQlDirective?[] { include, skip });
         public TemplateQueryBuilder ExceptProcessID() =>
             ExceptField("process_id");
     }

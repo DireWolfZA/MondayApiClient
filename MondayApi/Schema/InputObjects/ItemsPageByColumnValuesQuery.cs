@@ -7,16 +7,16 @@ namespace MondayApi.Schema {
         private InputPropertyInfo _columnValues;
 
         [JsonProperty("column_id")]
-        [JsonConverter(typeof(QueryBuilderParameterConverter<string>))]
-        public QueryBuilderParameter<string> ColumnID {
-            get => (QueryBuilderParameter<string>)_columnID.Value;
+        [JsonConverter(typeof(QueryBuilderParameterConverter<string?>))]
+        public QueryBuilderParameter<string?>? ColumnID {
+            get => (QueryBuilderParameter<string?>?)_columnID.Value;
             set => _columnID = new InputPropertyInfo { Name = "column_id", Value = value };
         }
 
         [JsonProperty("column_values")]
-        [JsonConverter(typeof(QueryBuilderParameterConverter<ICollection<string>>))]
-        public QueryBuilderParameter<ICollection<string>> ColumnValues {
-            get => (QueryBuilderParameter<ICollection<string>>)_columnValues.Value;
+        [JsonConverter(typeof(QueryBuilderParameterConverter<ICollection<string?>?>))]
+        public QueryBuilderParameter<ICollection<string?>?>? ColumnValues {
+            get => (QueryBuilderParameter<ICollection<string?>?>?)_columnValues.Value;
             set => _columnValues = new InputPropertyInfo { Name = "column_values", Value = value };
         }
 

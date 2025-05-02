@@ -9,8 +9,8 @@ namespace MondayApi.Schema {
         protected override string TypeName => "GrantMarketplaceAppDiscountResult";
         public override IReadOnlyList<GraphQlFieldMetadata> AllFields => AllFieldMetadata;
 
-        public GrantMarketplaceAppDiscountResultQueryBuilder WithGrantedDiscount(GrantMarketplaceAppDiscountQueryBuilder grantMarketplaceAppDiscountQueryBuilder, string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
-            WithObjectField("granted_discount", alias, grantMarketplaceAppDiscountQueryBuilder, new GraphQlDirective[] { include, skip });
+        public GrantMarketplaceAppDiscountResultQueryBuilder WithGrantedDiscount(GrantMarketplaceAppDiscountQueryBuilder grantMarketplaceAppDiscountQueryBuilder, string? alias = null, IncludeDirective? include = null, SkipDirective? skip = null) =>
+            WithObjectField("granted_discount", alias, grantMarketplaceAppDiscountQueryBuilder, new GraphQlDirective?[] { include, skip });
         public GrantMarketplaceAppDiscountResultQueryBuilder ExceptGrantedDiscount() =>
             ExceptField("granted_discount");
     }

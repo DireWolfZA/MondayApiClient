@@ -10,12 +10,12 @@ namespace MondayApi.Schema {
         protected override string TypeName => "AppInstallPermissions";
         public override IReadOnlyList<GraphQlFieldMetadata> AllFields => AllFieldMetadata;
 
-        public AppInstallPermissionsQueryBuilder WithApprovedScopes(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
-            WithScalarField("approved_scopes", alias, new GraphQlDirective[] { include, skip });
+        public AppInstallPermissionsQueryBuilder WithApprovedScopes(string? alias = null, IncludeDirective? include = null, SkipDirective? skip = null) =>
+            WithScalarField("approved_scopes", alias, new GraphQlDirective?[] { include, skip });
         public AppInstallPermissionsQueryBuilder ExceptApprovedScopes() =>
             ExceptField("approved_scopes");
-        public AppInstallPermissionsQueryBuilder WithRequiredScopes(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
-            WithScalarField("required_scopes", alias, new GraphQlDirective[] { include, skip });
+        public AppInstallPermissionsQueryBuilder WithRequiredScopes(string? alias = null, IncludeDirective? include = null, SkipDirective? skip = null) =>
+            WithScalarField("required_scopes", alias, new GraphQlDirective?[] { include, skip });
         public AppInstallPermissionsQueryBuilder ExceptRequiredScopes() =>
             ExceptField("required_scopes");
     }

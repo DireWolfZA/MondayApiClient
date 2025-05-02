@@ -6,15 +6,15 @@ namespace MondayApi.Schema {
         private InputPropertyInfo _board;
         private InputPropertyInfo _workspace;
 
-        [JsonConverter(typeof(QueryBuilderParameterConverter<CreateDocBoardInput>))]
-        public QueryBuilderParameter<CreateDocBoardInput> Board {
-            get => (QueryBuilderParameter<CreateDocBoardInput>)_board.Value;
+        [JsonConverter(typeof(QueryBuilderParameterConverter<CreateDocBoardInput?>))]
+        public QueryBuilderParameter<CreateDocBoardInput?>? Board {
+            get => (QueryBuilderParameter<CreateDocBoardInput?>?)_board.Value;
             set => _board = new InputPropertyInfo { Name = "board", Value = value };
         }
 
-        [JsonConverter(typeof(QueryBuilderParameterConverter<CreateDocWorkspaceInput>))]
-        public QueryBuilderParameter<CreateDocWorkspaceInput> Workspace {
-            get => (QueryBuilderParameter<CreateDocWorkspaceInput>)_workspace.Value;
+        [JsonConverter(typeof(QueryBuilderParameterConverter<CreateDocWorkspaceInput?>))]
+        public QueryBuilderParameter<CreateDocWorkspaceInput?>? Workspace {
+            get => (QueryBuilderParameter<CreateDocWorkspaceInput?>?)_workspace.Value;
             set => _workspace = new InputPropertyInfo { Name = "workspace", Value = value };
         }
 

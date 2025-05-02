@@ -9,8 +9,8 @@ namespace MondayApi.Schema {
         protected override string TypeName => "AppInstallAccount";
         public override IReadOnlyList<GraphQlFieldMetadata> AllFields => AllFieldMetadata;
 
-        public AppInstallAccountQueryBuilder WithID(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
-            WithScalarField("id", alias, new GraphQlDirective[] { include, skip });
+        public AppInstallAccountQueryBuilder WithID(string? alias = null, IncludeDirective? include = null, SkipDirective? skip = null) =>
+            WithScalarField("id", alias, new GraphQlDirective?[] { include, skip });
         public AppInstallAccountQueryBuilder ExceptID() =>
             ExceptField("id");
     }

@@ -45,7 +45,7 @@ namespace MondayApi.Columns {
             var query = new QueryQueryBuilder().WithBoards(
                 new BoardQueryBuilder().WithColumns(
                     new ColumnQueryBuilder().WithSettingsStr(),
-                    types: new ColumnType?[] { ColumnType.Subtasks }
+                    types: new ColumnType[] { ColumnType.Subtasks }
                 ),
                 ids: new string[] { boardID }
             );

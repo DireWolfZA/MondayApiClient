@@ -15,7 +15,7 @@ namespace MondayApi.Schema {
         protected override string TypeName => "Group";
         public override IReadOnlyList<GraphQlFieldMetadata> AllFields => AllFieldMetadata;
 
-        public GroupQueryBuilder WithItemsPage(ItemsResponseQueryBuilder itemsResponseQueryBuilder, QueryBuilderParameter<int> limit, QueryBuilderParameter<string> cursor = null, QueryBuilderParameter<ItemsQuery> queryParams = null, string alias = null, IncludeDirective include = null, SkipDirective skip = null) {
+        public GroupQueryBuilder WithItemsPage(ItemsResponseQueryBuilder itemsResponseQueryBuilder, QueryBuilderParameter<int> limit, QueryBuilderParameter<string?>? cursor = null, QueryBuilderParameter<ItemsQuery?>? queryParams = null, string? alias = null, IncludeDirective? include = null, SkipDirective? skip = null) {
             var args = new List<QueryBuilderArgumentInfo> {
                 new QueryBuilderArgumentInfo { ArgumentName = "limit", ArgumentValue = limit }
             };
@@ -24,33 +24,33 @@ namespace MondayApi.Schema {
             if (queryParams != null)
                 args.Add(new QueryBuilderArgumentInfo { ArgumentName = "query_params", ArgumentValue = queryParams });
 
-            return WithObjectField("items_page", alias, itemsResponseQueryBuilder, new GraphQlDirective[] { include, skip }, args);
+            return WithObjectField("items_page", alias, itemsResponseQueryBuilder, new GraphQlDirective?[] { include, skip }, args);
         }
 
-        public GroupQueryBuilder WithArchived(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
-            WithScalarField("archived", alias, new GraphQlDirective[] { include, skip });
+        public GroupQueryBuilder WithArchived(string? alias = null, IncludeDirective? include = null, SkipDirective? skip = null) =>
+            WithScalarField("archived", alias, new GraphQlDirective?[] { include, skip });
         public GroupQueryBuilder ExceptArchived() =>
             ExceptField("archived");
-        public GroupQueryBuilder WithColor(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
-            WithScalarField("color", alias, new GraphQlDirective[] { include, skip });
+        public GroupQueryBuilder WithColor(string? alias = null, IncludeDirective? include = null, SkipDirective? skip = null) =>
+            WithScalarField("color", alias, new GraphQlDirective?[] { include, skip });
         public GroupQueryBuilder ExceptColor() =>
             ExceptField("color");
-        public GroupQueryBuilder WithDeleted(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
-            WithScalarField("deleted", alias, new GraphQlDirective[] { include, skip });
+        public GroupQueryBuilder WithDeleted(string? alias = null, IncludeDirective? include = null, SkipDirective? skip = null) =>
+            WithScalarField("deleted", alias, new GraphQlDirective?[] { include, skip });
         public GroupQueryBuilder ExceptDeleted() =>
             ExceptField("deleted");
-        public GroupQueryBuilder WithID(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
-            WithScalarField("id", alias, new GraphQlDirective[] { include, skip });
+        public GroupQueryBuilder WithID(string? alias = null, IncludeDirective? include = null, SkipDirective? skip = null) =>
+            WithScalarField("id", alias, new GraphQlDirective?[] { include, skip });
         public GroupQueryBuilder ExceptID() =>
             ExceptField("id");
         public GroupQueryBuilder ExceptItemsPage() =>
             ExceptField("items_page");
-        public GroupQueryBuilder WithPosition(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
-            WithScalarField("position", alias, new GraphQlDirective[] { include, skip });
+        public GroupQueryBuilder WithPosition(string? alias = null, IncludeDirective? include = null, SkipDirective? skip = null) =>
+            WithScalarField("position", alias, new GraphQlDirective?[] { include, skip });
         public GroupQueryBuilder ExceptPosition() =>
             ExceptField("position");
-        public GroupQueryBuilder WithTitle(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
-            WithScalarField("title", alias, new GraphQlDirective[] { include, skip });
+        public GroupQueryBuilder WithTitle(string? alias = null, IncludeDirective? include = null, SkipDirective? skip = null) =>
+            WithScalarField("title", alias, new GraphQlDirective?[] { include, skip });
         public GroupQueryBuilder ExceptTitle() =>
             ExceptField("title");
     }

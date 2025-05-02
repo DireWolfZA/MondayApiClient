@@ -10,42 +10,42 @@ namespace MondayApi.Schema {
             new GraphQlFieldMetadata { Name = "id" },
             new GraphQlFieldMetadata { Name = "text" },
             new GraphQlFieldMetadata { Name = "type" },
-            new GraphQlFieldMetadata { Name = "value", IsComplex = true }
+            new GraphQlFieldMetadata { Name = "value" }
         };
 
         protected override string TypeName => "CreationLogValue";
         public override IReadOnlyList<GraphQlFieldMetadata> AllFields => AllFieldMetadata;
 
-        public CreationLogValueQueryBuilder WithColumn(ColumnQueryBuilder columnQueryBuilder, string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
-            WithObjectField("column", alias, columnQueryBuilder, new GraphQlDirective[] { include, skip });
+        public CreationLogValueQueryBuilder WithColumn(ColumnQueryBuilder columnQueryBuilder, string? alias = null, IncludeDirective? include = null, SkipDirective? skip = null) =>
+            WithObjectField("column", alias, columnQueryBuilder, new GraphQlDirective?[] { include, skip });
         public CreationLogValueQueryBuilder ExceptColumn() =>
             ExceptField("column");
-        public CreationLogValueQueryBuilder WithCreatedAt(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
-            WithScalarField("created_at", alias, new GraphQlDirective[] { include, skip });
+        public CreationLogValueQueryBuilder WithCreatedAt(string? alias = null, IncludeDirective? include = null, SkipDirective? skip = null) =>
+            WithScalarField("created_at", alias, new GraphQlDirective?[] { include, skip });
         public CreationLogValueQueryBuilder ExceptCreatedAt() =>
             ExceptField("created_at");
-        public CreationLogValueQueryBuilder WithCreator(UserQueryBuilder userQueryBuilder, string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
-            WithObjectField("creator", alias, userQueryBuilder, new GraphQlDirective[] { include, skip });
+        public CreationLogValueQueryBuilder WithCreator(UserQueryBuilder userQueryBuilder, string? alias = null, IncludeDirective? include = null, SkipDirective? skip = null) =>
+            WithObjectField("creator", alias, userQueryBuilder, new GraphQlDirective?[] { include, skip });
         public CreationLogValueQueryBuilder ExceptCreator() =>
             ExceptField("creator");
-        public CreationLogValueQueryBuilder WithCreatorID(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
-            WithScalarField("creator_id", alias, new GraphQlDirective[] { include, skip });
+        public CreationLogValueQueryBuilder WithCreatorID(string? alias = null, IncludeDirective? include = null, SkipDirective? skip = null) =>
+            WithScalarField("creator_id", alias, new GraphQlDirective?[] { include, skip });
         public CreationLogValueQueryBuilder ExceptCreatorID() =>
             ExceptField("creator_id");
-        public CreationLogValueQueryBuilder WithID(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
-            WithScalarField("id", alias, new GraphQlDirective[] { include, skip });
+        public CreationLogValueQueryBuilder WithID(string? alias = null, IncludeDirective? include = null, SkipDirective? skip = null) =>
+            WithScalarField("id", alias, new GraphQlDirective?[] { include, skip });
         public CreationLogValueQueryBuilder ExceptID() =>
             ExceptField("id");
-        public CreationLogValueQueryBuilder WithText(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
-            WithScalarField("text", alias, new GraphQlDirective[] { include, skip });
+        public CreationLogValueQueryBuilder WithText(string? alias = null, IncludeDirective? include = null, SkipDirective? skip = null) =>
+            WithScalarField("text", alias, new GraphQlDirective?[] { include, skip });
         public CreationLogValueQueryBuilder ExceptText() =>
             ExceptField("text");
-        public CreationLogValueQueryBuilder WithType(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
-            WithScalarField("type", alias, new GraphQlDirective[] { include, skip });
+        public CreationLogValueQueryBuilder WithType(string? alias = null, IncludeDirective? include = null, SkipDirective? skip = null) =>
+            WithScalarField("type", alias, new GraphQlDirective?[] { include, skip });
         public CreationLogValueQueryBuilder ExceptType() =>
             ExceptField("type");
-        public CreationLogValueQueryBuilder WithValue(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
-            WithScalarField("value", alias, new GraphQlDirective[] { include, skip });
+        public CreationLogValueQueryBuilder WithValue(string? alias = null, IncludeDirective? include = null, SkipDirective? skip = null) =>
+            WithScalarField("value", alias, new GraphQlDirective?[] { include, skip });
         public CreationLogValueQueryBuilder ExceptValue() =>
             ExceptField("value");
     }

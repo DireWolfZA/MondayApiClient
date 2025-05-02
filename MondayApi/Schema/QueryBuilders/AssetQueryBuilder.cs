@@ -18,44 +18,44 @@ namespace MondayApi.Schema {
         protected override string TypeName => "Asset";
         public override IReadOnlyList<GraphQlFieldMetadata> AllFields => AllFieldMetadata;
 
-        public AssetQueryBuilder WithCreatedAt(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
-            WithScalarField("created_at", alias, new GraphQlDirective[] { include, skip });
+        public AssetQueryBuilder WithCreatedAt(string? alias = null, IncludeDirective? include = null, SkipDirective? skip = null) =>
+            WithScalarField("created_at", alias, new GraphQlDirective?[] { include, skip });
         public AssetQueryBuilder ExceptCreatedAt() =>
             ExceptField("created_at");
-        public AssetQueryBuilder WithFileExtension(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
-            WithScalarField("file_extension", alias, new GraphQlDirective[] { include, skip });
+        public AssetQueryBuilder WithFileExtension(string? alias = null, IncludeDirective? include = null, SkipDirective? skip = null) =>
+            WithScalarField("file_extension", alias, new GraphQlDirective?[] { include, skip });
         public AssetQueryBuilder ExceptFileExtension() =>
             ExceptField("file_extension");
-        public AssetQueryBuilder WithFileSize(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
-            WithScalarField("file_size", alias, new GraphQlDirective[] { include, skip });
+        public AssetQueryBuilder WithFileSize(string? alias = null, IncludeDirective? include = null, SkipDirective? skip = null) =>
+            WithScalarField("file_size", alias, new GraphQlDirective?[] { include, skip });
         public AssetQueryBuilder ExceptFileSize() =>
             ExceptField("file_size");
-        public AssetQueryBuilder WithID(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
-            WithScalarField("id", alias, new GraphQlDirective[] { include, skip });
+        public AssetQueryBuilder WithID(string? alias = null, IncludeDirective? include = null, SkipDirective? skip = null) =>
+            WithScalarField("id", alias, new GraphQlDirective?[] { include, skip });
         public AssetQueryBuilder ExceptID() =>
             ExceptField("id");
-        public AssetQueryBuilder WithName(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
-            WithScalarField("name", alias, new GraphQlDirective[] { include, skip });
+        public AssetQueryBuilder WithName(string? alias = null, IncludeDirective? include = null, SkipDirective? skip = null) =>
+            WithScalarField("name", alias, new GraphQlDirective?[] { include, skip });
         public AssetQueryBuilder ExceptName() =>
             ExceptField("name");
-        public AssetQueryBuilder WithOriginalGeometry(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
-            WithScalarField("original_geometry", alias, new GraphQlDirective[] { include, skip });
+        public AssetQueryBuilder WithOriginalGeometry(string? alias = null, IncludeDirective? include = null, SkipDirective? skip = null) =>
+            WithScalarField("original_geometry", alias, new GraphQlDirective?[] { include, skip });
         public AssetQueryBuilder ExceptOriginalGeometry() =>
             ExceptField("original_geometry");
-        public AssetQueryBuilder WithPublicURL(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
-            WithScalarField("public_url", alias, new GraphQlDirective[] { include, skip });
+        public AssetQueryBuilder WithPublicURL(string? alias = null, IncludeDirective? include = null, SkipDirective? skip = null) =>
+            WithScalarField("public_url", alias, new GraphQlDirective?[] { include, skip });
         public AssetQueryBuilder ExceptPublicURL() =>
             ExceptField("public_url");
-        public AssetQueryBuilder WithUploadedBy(UserQueryBuilder userQueryBuilder, string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
-            WithObjectField("uploaded_by", alias, userQueryBuilder, new GraphQlDirective[] { include, skip });
+        public AssetQueryBuilder WithUploadedBy(UserQueryBuilder userQueryBuilder, string? alias = null, IncludeDirective? include = null, SkipDirective? skip = null) =>
+            WithObjectField("uploaded_by", alias, userQueryBuilder, new GraphQlDirective?[] { include, skip });
         public AssetQueryBuilder ExceptUploadedBy() =>
             ExceptField("uploaded_by");
-        public AssetQueryBuilder WithURL(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
-            WithScalarField("url", alias, new GraphQlDirective[] { include, skip });
+        public AssetQueryBuilder WithURL(string? alias = null, IncludeDirective? include = null, SkipDirective? skip = null) =>
+            WithScalarField("url", alias, new GraphQlDirective?[] { include, skip });
         public AssetQueryBuilder ExceptURL() =>
             ExceptField("url");
-        public AssetQueryBuilder WithUrlThumbnail(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
-            WithScalarField("url_thumbnail", alias, new GraphQlDirective[] { include, skip });
+        public AssetQueryBuilder WithUrlThumbnail(string? alias = null, IncludeDirective? include = null, SkipDirective? skip = null) =>
+            WithScalarField("url_thumbnail", alias, new GraphQlDirective?[] { include, skip });
         public AssetQueryBuilder ExceptUrlThumbnail() =>
             ExceptField("url_thumbnail");
     }

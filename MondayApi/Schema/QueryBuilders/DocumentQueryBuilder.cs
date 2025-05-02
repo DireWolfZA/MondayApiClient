@@ -12,7 +12,7 @@ namespace MondayApi.Schema {
             new GraphQlFieldMetadata { Name = "name" },
             new GraphQlFieldMetadata { Name = "object_id" },
             new GraphQlFieldMetadata { Name = "relative_url" },
-            new GraphQlFieldMetadata { Name = "settings", IsComplex = true },
+            new GraphQlFieldMetadata { Name = "settings" },
             new GraphQlFieldMetadata { Name = "url" },
             new GraphQlFieldMetadata { Name = "workspace", IsComplex = true, QueryBuilderType = typeof(WorkspaceQueryBuilder) },
             new GraphQlFieldMetadata { Name = "workspace_id" }
@@ -21,64 +21,64 @@ namespace MondayApi.Schema {
         protected override string TypeName => "Document";
         public override IReadOnlyList<GraphQlFieldMetadata> AllFields => AllFieldMetadata;
 
-        public DocumentQueryBuilder WithBlocks(DocumentBlockQueryBuilder documentBlockQueryBuilder, QueryBuilderParameter<int?> limit = null, QueryBuilderParameter<int?> page = null, string alias = null, IncludeDirective include = null, SkipDirective skip = null) {
+        public DocumentQueryBuilder WithBlocks(DocumentBlockQueryBuilder documentBlockQueryBuilder, QueryBuilderParameter<int?>? limit = null, QueryBuilderParameter<int?>? page = null, string? alias = null, IncludeDirective? include = null, SkipDirective? skip = null) {
             var args = new List<QueryBuilderArgumentInfo>();
             if (limit != null)
                 args.Add(new QueryBuilderArgumentInfo { ArgumentName = "limit", ArgumentValue = limit });
             if (page != null)
                 args.Add(new QueryBuilderArgumentInfo { ArgumentName = "page", ArgumentValue = page });
 
-            return WithObjectField("blocks", alias, documentBlockQueryBuilder, new GraphQlDirective[] { include, skip }, args);
+            return WithObjectField("blocks", alias, documentBlockQueryBuilder, new GraphQlDirective?[] { include, skip }, args);
         }
 
         public DocumentQueryBuilder ExceptBlocks() =>
             ExceptField("blocks");
-        public DocumentQueryBuilder WithCreatedAt(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
-            WithScalarField("created_at", alias, new GraphQlDirective[] { include, skip });
+        public DocumentQueryBuilder WithCreatedAt(string? alias = null, IncludeDirective? include = null, SkipDirective? skip = null) =>
+            WithScalarField("created_at", alias, new GraphQlDirective?[] { include, skip });
         public DocumentQueryBuilder ExceptCreatedAt() =>
             ExceptField("created_at");
-        public DocumentQueryBuilder WithCreatedBy(UserQueryBuilder userQueryBuilder, string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
-            WithObjectField("created_by", alias, userQueryBuilder, new GraphQlDirective[] { include, skip });
+        public DocumentQueryBuilder WithCreatedBy(UserQueryBuilder userQueryBuilder, string? alias = null, IncludeDirective? include = null, SkipDirective? skip = null) =>
+            WithObjectField("created_by", alias, userQueryBuilder, new GraphQlDirective?[] { include, skip });
         public DocumentQueryBuilder ExceptCreatedBy() =>
             ExceptField("created_by");
-        public DocumentQueryBuilder WithDocFolderID(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
-            WithScalarField("doc_folder_id", alias, new GraphQlDirective[] { include, skip });
+        public DocumentQueryBuilder WithDocFolderID(string? alias = null, IncludeDirective? include = null, SkipDirective? skip = null) =>
+            WithScalarField("doc_folder_id", alias, new GraphQlDirective?[] { include, skip });
         public DocumentQueryBuilder ExceptDocFolderID() =>
             ExceptField("doc_folder_id");
-        public DocumentQueryBuilder WithDocKind(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
-            WithScalarField("doc_kind", alias, new GraphQlDirective[] { include, skip });
+        public DocumentQueryBuilder WithDocKind(string? alias = null, IncludeDirective? include = null, SkipDirective? skip = null) =>
+            WithScalarField("doc_kind", alias, new GraphQlDirective?[] { include, skip });
         public DocumentQueryBuilder ExceptDocKind() =>
             ExceptField("doc_kind");
-        public DocumentQueryBuilder WithID(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
-            WithScalarField("id", alias, new GraphQlDirective[] { include, skip });
+        public DocumentQueryBuilder WithID(string? alias = null, IncludeDirective? include = null, SkipDirective? skip = null) =>
+            WithScalarField("id", alias, new GraphQlDirective?[] { include, skip });
         public DocumentQueryBuilder ExceptID() =>
             ExceptField("id");
-        public DocumentQueryBuilder WithName(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
-            WithScalarField("name", alias, new GraphQlDirective[] { include, skip });
+        public DocumentQueryBuilder WithName(string? alias = null, IncludeDirective? include = null, SkipDirective? skip = null) =>
+            WithScalarField("name", alias, new GraphQlDirective?[] { include, skip });
         public DocumentQueryBuilder ExceptName() =>
             ExceptField("name");
-        public DocumentQueryBuilder WithObjectID(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
-            WithScalarField("object_id", alias, new GraphQlDirective[] { include, skip });
+        public DocumentQueryBuilder WithObjectID(string? alias = null, IncludeDirective? include = null, SkipDirective? skip = null) =>
+            WithScalarField("object_id", alias, new GraphQlDirective?[] { include, skip });
         public DocumentQueryBuilder ExceptObjectID() =>
             ExceptField("object_id");
-        public DocumentQueryBuilder WithRelativeURL(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
-            WithScalarField("relative_url", alias, new GraphQlDirective[] { include, skip });
+        public DocumentQueryBuilder WithRelativeURL(string? alias = null, IncludeDirective? include = null, SkipDirective? skip = null) =>
+            WithScalarField("relative_url", alias, new GraphQlDirective?[] { include, skip });
         public DocumentQueryBuilder ExceptRelativeURL() =>
             ExceptField("relative_url");
-        public DocumentQueryBuilder WithSettings(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
-            WithScalarField("settings", alias, new GraphQlDirective[] { include, skip });
+        public DocumentQueryBuilder WithSettings(string? alias = null, IncludeDirective? include = null, SkipDirective? skip = null) =>
+            WithScalarField("settings", alias, new GraphQlDirective?[] { include, skip });
         public DocumentQueryBuilder ExceptSettings() =>
             ExceptField("settings");
-        public DocumentQueryBuilder WithURL(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
-            WithScalarField("url", alias, new GraphQlDirective[] { include, skip });
+        public DocumentQueryBuilder WithURL(string? alias = null, IncludeDirective? include = null, SkipDirective? skip = null) =>
+            WithScalarField("url", alias, new GraphQlDirective?[] { include, skip });
         public DocumentQueryBuilder ExceptURL() =>
             ExceptField("url");
-        public DocumentQueryBuilder WithWorkspace(WorkspaceQueryBuilder workspaceQueryBuilder, string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
-            WithObjectField("workspace", alias, workspaceQueryBuilder, new GraphQlDirective[] { include, skip });
+        public DocumentQueryBuilder WithWorkspace(WorkspaceQueryBuilder workspaceQueryBuilder, string? alias = null, IncludeDirective? include = null, SkipDirective? skip = null) =>
+            WithObjectField("workspace", alias, workspaceQueryBuilder, new GraphQlDirective?[] { include, skip });
         public DocumentQueryBuilder ExceptWorkspace() =>
             ExceptField("workspace");
-        public DocumentQueryBuilder WithWorkspaceID(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
-            WithScalarField("workspace_id", alias, new GraphQlDirective[] { include, skip });
+        public DocumentQueryBuilder WithWorkspaceID(string? alias = null, IncludeDirective? include = null, SkipDirective? skip = null) =>
+            WithScalarField("workspace_id", alias, new GraphQlDirective?[] { include, skip });
         public DocumentQueryBuilder ExceptWorkspaceID() =>
             ExceptField("workspace_id");
     }

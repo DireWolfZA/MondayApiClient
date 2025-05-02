@@ -1,5 +1,5 @@
 namespace MondayApi.Schema {
     public class AppInstallAccount {
-        public string ID { get; set; }
+        public string? ID { get; set; }
     }
 }

@@ -11,16 +11,16 @@ namespace MondayApi.Schema {
         protected override string TypeName => "BatchExtendTrialPeriod";
         public override IReadOnlyList<GraphQlFieldMetadata> AllFields => AllFieldMetadata;
 
-        public BatchExtendTrialPeriodQueryBuilder WithDetails(ExtendTrialPeriodQueryBuilder extendTrialPeriodQueryBuilder, string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
-            WithObjectField("details", alias, extendTrialPeriodQueryBuilder, new GraphQlDirective[] { include, skip });
+        public BatchExtendTrialPeriodQueryBuilder WithDetails(ExtendTrialPeriodQueryBuilder extendTrialPeriodQueryBuilder, string? alias = null, IncludeDirective? include = null, SkipDirective? skip = null) =>
+            WithObjectField("details", alias, extendTrialPeriodQueryBuilder, new GraphQlDirective?[] { include, skip });
         public BatchExtendTrialPeriodQueryBuilder ExceptDetails() =>
             ExceptField("details");
-        public BatchExtendTrialPeriodQueryBuilder WithReason(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
-            WithScalarField("reason", alias, new GraphQlDirective[] { include, skip });
+        public BatchExtendTrialPeriodQueryBuilder WithReason(string? alias = null, IncludeDirective? include = null, SkipDirective? skip = null) =>
+            WithScalarField("reason", alias, new GraphQlDirective?[] { include, skip });
         public BatchExtendTrialPeriodQueryBuilder ExceptReason() =>
             ExceptField("reason");
-        public BatchExtendTrialPeriodQueryBuilder WithSuccess(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
-            WithScalarField("success", alias, new GraphQlDirective[] { include, skip });
+        public BatchExtendTrialPeriodQueryBuilder WithSuccess(string? alias = null, IncludeDirective? include = null, SkipDirective? skip = null) =>
+            WithScalarField("success", alias, new GraphQlDirective?[] { include, skip });
         public BatchExtendTrialPeriodQueryBuilder ExceptSuccess() =>
             ExceptField("success");
     }

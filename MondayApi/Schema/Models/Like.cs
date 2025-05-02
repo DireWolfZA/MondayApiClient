@@ -3,10 +3,10 @@ using Newtonsoft.Json;
 
 namespace MondayApi.Schema {
     public class Like {
-        public string ID { get; set; }
+        public string? ID { get; set; }
         [JsonProperty("creator_id")]
-        public string CreatorID { get; set; }
-        public User Creator { get; set; }
+        public string? CreatorID { get; set; }
+        public User? Creator { get; set; }
         [JsonProperty("reaction_type")]
         public ReactionType? ReactionType { get; set; }
         [JsonProperty("created_at")]

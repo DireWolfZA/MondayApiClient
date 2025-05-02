@@ -9,8 +9,8 @@ namespace MondayApi.Schema {
         protected override string TypeName => "AppMonetizationStatus";
         public override IReadOnlyList<GraphQlFieldMetadata> AllFields => AllFieldMetadata;
 
-        public AppMonetizationStatusQueryBuilder WithIsSupported(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
-            WithScalarField("is_supported", alias, new GraphQlDirective[] { include, skip });
+        public AppMonetizationStatusQueryBuilder WithIsSupported(string? alias = null, IncludeDirective? include = null, SkipDirective? skip = null) =>
+            WithScalarField("is_supported", alias, new GraphQlDirective?[] { include, skip });
         public AppMonetizationStatusQueryBuilder ExceptIsSupported() =>
             ExceptField("is_supported");
     }

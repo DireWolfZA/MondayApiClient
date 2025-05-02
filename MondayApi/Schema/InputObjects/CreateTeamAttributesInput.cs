@@ -8,30 +8,30 @@ namespace MondayApi.Schema {
         private InputPropertyInfo _parentTeamID;
         private InputPropertyInfo _subscriberIDs;
 
-        [JsonConverter(typeof(QueryBuilderParameterConverter<string>))]
-        public QueryBuilderParameter<string> Name {
-            get => (QueryBuilderParameter<string>)_name.Value;
+        [JsonConverter(typeof(QueryBuilderParameterConverter<string?>))]
+        public QueryBuilderParameter<string?>? Name {
+            get => (QueryBuilderParameter<string?>?)_name.Value;
             set => _name = new InputPropertyInfo { Name = "name", Value = value };
         }
 
         [JsonProperty("is_guest_team")]
         [JsonConverter(typeof(QueryBuilderParameterConverter<bool?>))]
-        public QueryBuilderParameter<bool?> IsGuestTeam {
-            get => (QueryBuilderParameter<bool?>)_isGuestTeam.Value;
+        public QueryBuilderParameter<bool?>? IsGuestTeam {
+            get => (QueryBuilderParameter<bool?>?)_isGuestTeam.Value;
             set => _isGuestTeam = new InputPropertyInfo { Name = "is_guest_team", Value = value };
         }
 
         [JsonProperty("parent_team_id")]
-        [JsonConverter(typeof(QueryBuilderParameterConverter<string>))]
-        public QueryBuilderParameter<string> ParentTeamID {
-            get => (QueryBuilderParameter<string>)_parentTeamID.Value;
+        [JsonConverter(typeof(QueryBuilderParameterConverter<string?>))]
+        public QueryBuilderParameter<string?>? ParentTeamID {
+            get => (QueryBuilderParameter<string?>?)_parentTeamID.Value;
             set => _parentTeamID = new InputPropertyInfo { Name = "parent_team_id", Value = value };
         }
 
         [JsonProperty("subscriber_ids")]
-        [JsonConverter(typeof(QueryBuilderParameterConverter<ICollection<string>>))]
-        public QueryBuilderParameter<ICollection<string>> SubscriberIDs {
-            get => (QueryBuilderParameter<ICollection<string>>)_subscriberIDs.Value;
+        [JsonConverter(typeof(QueryBuilderParameterConverter<ICollection<string>?>))]
+        public QueryBuilderParameter<ICollection<string>?>? SubscriberIDs {
+            get => (QueryBuilderParameter<ICollection<string>?>?)_subscriberIDs.Value;
             set => _subscriberIDs = new InputPropertyInfo { Name = "subscriber_ids", Value = value };
         }
 

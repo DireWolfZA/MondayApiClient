@@ -23,7 +23,7 @@ namespace MondayApi.Assets {
                         )
                     ),
                     ids: columnIDs,
-                    types: new ColumnType?[] { ColumnType.File }
+                    types: new ColumnType[] { ColumnType.File }
                 ),
                 ids: new string[] { itemID }
             );

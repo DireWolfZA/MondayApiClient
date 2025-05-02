@@ -23,7 +23,7 @@ namespace MondayApi.Schema {
         [EnumMember(Value = "lower_than")]
         LowerThan,
         [EnumMember(Value = "lower_than_or_equal")]
-        LowerThanOrEqualss,
+        LowerThanOrEqual,
         [EnumMember(Value = "not_any_of")]
         NotAnyOf,
         [EnumMember(Value = "not_contains_text")]

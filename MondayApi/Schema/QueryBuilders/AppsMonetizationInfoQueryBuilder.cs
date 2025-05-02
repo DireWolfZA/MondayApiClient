@@ -9,8 +9,8 @@ namespace MondayApi.Schema {
         protected override string TypeName => "AppsMonetizationInfo";
         public override IReadOnlyList<GraphQlFieldMetadata> AllFields => AllFieldMetadata;
 
-        public AppsMonetizationInfoQueryBuilder WithSeatsCount(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
-            WithScalarField("seats_count", alias, new GraphQlDirective[] { include, skip });
+        public AppsMonetizationInfoQueryBuilder WithSeatsCount(string? alias = null, IncludeDirective? include = null, SkipDirective? skip = null) =>
+            WithScalarField("seats_count", alias, new GraphQlDirective?[] { include, skip });
         public AppsMonetizationInfoQueryBuilder ExceptSeatsCount() =>
             ExceptField("seats_count");
     }

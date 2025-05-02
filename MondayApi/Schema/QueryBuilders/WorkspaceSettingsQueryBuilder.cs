@@ -9,8 +9,8 @@ namespace MondayApi.Schema {
         protected override string TypeName => "WorkspaceSettings";
         public override IReadOnlyList<GraphQlFieldMetadata> AllFields => AllFieldMetadata;
 
-        public WorkspaceSettingsQueryBuilder WithIcon(WorkspaceIconQueryBuilder workspaceIconQueryBuilder, string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
-            WithObjectField("icon", alias, workspaceIconQueryBuilder, new GraphQlDirective[] { include, skip });
+        public WorkspaceSettingsQueryBuilder WithIcon(WorkspaceIconQueryBuilder workspaceIconQueryBuilder, string? alias = null, IncludeDirective? include = null, SkipDirective? skip = null) =>
+            WithObjectField("icon", alias, workspaceIconQueryBuilder, new GraphQlDirective?[] { include, skip });
         public WorkspaceSettingsQueryBuilder ExceptIcon() =>
             ExceptField("icon");
     }

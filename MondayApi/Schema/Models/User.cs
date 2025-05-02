@@ -5,21 +5,21 @@ using Newtonsoft.Json;
 namespace MondayApi.Schema {
     [System.Diagnostics.DebuggerDisplay("{ID}: {Name}")]
     public class User {
-        public string ID { get; set; }
-        public Account Account { get; set; }
+        public string? ID { get; set; }
+        public Account? Account { get; set; }
         [JsonProperty("account_products")]
-        public ICollection<AccountProduct> AccountProducts { get; set; }
-        public object Birthday { get; set; }
+        public ICollection<AccountProduct>? AccountProducts { get; set; }
+        public object? Birthday { get; set; }
         [JsonProperty("country_code")]
-        public string CountryCode { get; set; }
+        public string? CountryCode { get; set; }
         [JsonProperty("created_at")]
         public DateTimeOffset? CreatedAt { get; set; }
         [JsonProperty("current_language")]
-        public string CurrentLanguage { get; set; }
-        public string Email { get; set; }
+        public string? CurrentLanguage { get; set; }
+        public string? Email { get; set; }
         public bool? Enabled { get; set; }
         [JsonProperty("encrypt_api_token")]
-        public string EncryptApiToken { get; set; }
+        public string? EncryptApiToken { get; set; }
         [JsonProperty("is_admin")]
         public bool? IsAdmin { get; set; }
         [JsonProperty("is_guest")]
@@ -31,33 +31,33 @@ namespace MondayApi.Schema {
         [JsonProperty("is_view_only")]
         public bool? IsViewOnly { get; set; }
         [JsonProperty("join_date")]
-        public object JoinDate { get; set; }
+        public object? JoinDate { get; set; }
         [JsonProperty("last_activity")]
-        public object LastActivity { get; set; }
-        public string Location { get; set; }
+        public object? LastActivity { get; set; }
+        public string? Location { get; set; }
         [JsonProperty("mobile_phone")]
-        public string MobilePhone { get; set; }
-        public string Name { get; set; }
+        public string? MobilePhone { get; set; }
+        public string? Name { get; set; }
         [JsonProperty("out_of_office")]
-        public OutOfOffice OutOfOffice { get; set; }
-        public string Phone { get; set; }
+        public OutOfOffice? OutOfOffice { get; set; }
+        public string? Phone { get; set; }
         [JsonProperty("photo_original")]
-        public string PhotoOriginal { get; set; }
+        public string? PhotoOriginal { get; set; }
         [JsonProperty("photo_small")]
-        public string PhotoSmall { get; set; }
+        public string? PhotoSmall { get; set; }
         [JsonProperty("photo_thumb")]
-        public string PhotoThumb { get; set; }
+        public string? PhotoThumb { get; set; }
         [JsonProperty("photo_thumb_small")]
-        public string PhotoThumbSmall { get; set; }
+        public string? PhotoThumbSmall { get; set; }
         [JsonProperty("photo_tiny")]
-        public string PhotoTiny { get; set; }
+        public string? PhotoTiny { get; set; }
         [JsonProperty("sign_up_product_kind")]
-        public string SignUpProductKind { get; set; }
-        public ICollection<Team> Teams { get; set; }
+        public string? SignUpProductKind { get; set; }
+        public ICollection<Team?>? Teams { get; set; }
         [JsonProperty("time_zone_identifier")]
-        public string TimeZoneIdentifier { get; set; }
-        public string Title { get; set; }
-        public string URL { get; set; }
+        public string? TimeZoneIdentifier { get; set; }
+        public string? Title { get; set; }
+        public string? URL { get; set; }
         [JsonProperty("utc_hours_diff")]
         public int? UTCHoursDiff { get; set; }
     }

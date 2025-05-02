@@ -9,8 +9,8 @@ namespace MondayApi.Schema {
         protected override string TypeName => "UpdatePin";
         public override IReadOnlyList<GraphQlFieldMetadata> AllFields => AllFieldMetadata;
 
-        public UpdatePinQueryBuilder WithItemID(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
-            WithScalarField("item_id", alias, new GraphQlDirective[] { include, skip });
+        public UpdatePinQueryBuilder WithItemID(string? alias = null, IncludeDirective? include = null, SkipDirective? skip = null) =>
+            WithScalarField("item_id", alias, new GraphQlDirective?[] { include, skip });
         public UpdatePinQueryBuilder ExceptItemID() =>
             ExceptField("item_id");
     }

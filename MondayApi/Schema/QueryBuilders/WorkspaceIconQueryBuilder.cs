@@ -10,12 +10,12 @@ namespace MondayApi.Schema {
         protected override string TypeName => "WorkspaceIcon";
         public override IReadOnlyList<GraphQlFieldMetadata> AllFields => AllFieldMetadata;
 
-        public WorkspaceIconQueryBuilder WithColor(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
-            WithScalarField("color", alias, new GraphQlDirective[] { include, skip });
+        public WorkspaceIconQueryBuilder WithColor(string? alias = null, IncludeDirective? include = null, SkipDirective? skip = null) =>
+            WithScalarField("color", alias, new GraphQlDirective?[] { include, skip });
         public WorkspaceIconQueryBuilder ExceptColor() =>
             ExceptField("color");
-        public WorkspaceIconQueryBuilder WithImage(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
-            WithScalarField("image", alias, new GraphQlDirective[] { include, skip });
+        public WorkspaceIconQueryBuilder WithImage(string? alias = null, IncludeDirective? include = null, SkipDirective? skip = null) =>
+            WithScalarField("image", alias, new GraphQlDirective?[] { include, skip });
         public WorkspaceIconQueryBuilder ExceptImage() =>
             ExceptField("image");
     }

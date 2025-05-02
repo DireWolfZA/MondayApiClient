@@ -10,12 +10,12 @@ namespace MondayApi.Schema {
         protected override string TypeName => "BoardDuplication";
         public override IReadOnlyList<GraphQlFieldMetadata> AllFields => AllFieldMetadata;
 
-        public BoardDuplicationQueryBuilder WithBoard(BoardQueryBuilder boardQueryBuilder, string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
-            WithObjectField("board", alias, boardQueryBuilder, new GraphQlDirective[] { include, skip });
+        public BoardDuplicationQueryBuilder WithBoard(BoardQueryBuilder boardQueryBuilder, string? alias = null, IncludeDirective? include = null, SkipDirective? skip = null) =>
+            WithObjectField("board", alias, boardQueryBuilder, new GraphQlDirective?[] { include, skip });
         public BoardDuplicationQueryBuilder ExceptBoard() =>
             ExceptField("board");
-        public BoardDuplicationQueryBuilder WithIsAsync(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
-            WithScalarField("is_async", alias, new GraphQlDirective[] { include, skip });
+        public BoardDuplicationQueryBuilder WithIsAsync(string? alias = null, IncludeDirective? include = null, SkipDirective? skip = null) =>
+            WithScalarField("is_async", alias, new GraphQlDirective?[] { include, skip });
         public BoardDuplicationQueryBuilder ExceptIsAsync() =>
             ExceptField("is_async");
     }

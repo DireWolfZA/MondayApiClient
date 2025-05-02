@@ -14,28 +14,28 @@ namespace MondayApi.Schema {
         protected override string TypeName => "GrantMarketplaceAppDiscount";
         public override IReadOnlyList<GraphQlFieldMetadata> AllFields => AllFieldMetadata;
 
-        public GrantMarketplaceAppDiscountQueryBuilder WithDaysValid(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
-            WithScalarField("days_valid", alias, new GraphQlDirective[] { include, skip });
+        public GrantMarketplaceAppDiscountQueryBuilder WithDaysValid(string? alias = null, IncludeDirective? include = null, SkipDirective? skip = null) =>
+            WithScalarField("days_valid", alias, new GraphQlDirective?[] { include, skip });
         public GrantMarketplaceAppDiscountQueryBuilder ExceptDaysValid() =>
             ExceptField("days_valid");
-        public GrantMarketplaceAppDiscountQueryBuilder WithDiscount(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
-            WithScalarField("discount", alias, new GraphQlDirective[] { include, skip });
+        public GrantMarketplaceAppDiscountQueryBuilder WithDiscount(string? alias = null, IncludeDirective? include = null, SkipDirective? skip = null) =>
+            WithScalarField("discount", alias, new GraphQlDirective?[] { include, skip });
         public GrantMarketplaceAppDiscountQueryBuilder ExceptDiscount() =>
             ExceptField("discount");
-        public GrantMarketplaceAppDiscountQueryBuilder WithIsRecurring(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
-            WithScalarField("is_recurring", alias, new GraphQlDirective[] { include, skip });
+        public GrantMarketplaceAppDiscountQueryBuilder WithIsRecurring(string? alias = null, IncludeDirective? include = null, SkipDirective? skip = null) =>
+            WithScalarField("is_recurring", alias, new GraphQlDirective?[] { include, skip });
         public GrantMarketplaceAppDiscountQueryBuilder ExceptIsRecurring() =>
             ExceptField("is_recurring");
-        public GrantMarketplaceAppDiscountQueryBuilder WithPeriod(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
-            WithScalarField("period", alias, new GraphQlDirective[] { include, skip });
+        public GrantMarketplaceAppDiscountQueryBuilder WithPeriod(string? alias = null, IncludeDirective? include = null, SkipDirective? skip = null) =>
+            WithScalarField("period", alias, new GraphQlDirective?[] { include, skip });
         public GrantMarketplaceAppDiscountQueryBuilder ExceptPeriod() =>
             ExceptField("period");
-        public GrantMarketplaceAppDiscountQueryBuilder WithAppPlanIDs(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
-            WithScalarField("app_plan_ids", alias, new GraphQlDirective[] { include, skip });
+        public GrantMarketplaceAppDiscountQueryBuilder WithAppPlanIDs(string? alias = null, IncludeDirective? include = null, SkipDirective? skip = null) =>
+            WithScalarField("app_plan_ids", alias, new GraphQlDirective?[] { include, skip });
         public GrantMarketplaceAppDiscountQueryBuilder ExceptAppPlanIDs() =>
             ExceptField("app_plan_ids");
-        public GrantMarketplaceAppDiscountQueryBuilder WithAppID(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
-            WithScalarField("app_id", alias, new GraphQlDirective[] { include, skip });
+        public GrantMarketplaceAppDiscountQueryBuilder WithAppID(string? alias = null, IncludeDirective? include = null, SkipDirective? skip = null) =>
+            WithScalarField("app_id", alias, new GraphQlDirective?[] { include, skip });
         public GrantMarketplaceAppDiscountQueryBuilder ExceptAppID() =>
             ExceptField("app_id");
     }

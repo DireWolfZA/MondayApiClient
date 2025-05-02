@@ -10,8 +10,8 @@ namespace MondayApi.Schema {
         public bool? IsRecurring { get; set; }
         public DiscountPeriod? Period { get; set; }
         [JsonProperty("app_plan_ids")]
-        public ICollection<string> AppPlanIDs { get; set; }
+        public ICollection<string>? AppPlanIDs { get; set; }
         [JsonProperty("app_id")]
-        public string AppID { get; set; }
+        public string? AppID { get; set; }
     }
 }

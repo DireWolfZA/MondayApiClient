@@ -662,7 +662,8 @@ namespace MondayApi.Schema {
                 if (field.QueryBuilderType == null)
                     IncludeScalarField(field.Name, field.DefaultAlias, null, null);
                 else {
-                    if (_operationType != null && GetType() == field.QueryBuilderType || parentTypeLevel.TryGetValue(field.QueryBuilderType, out var parentLevel) && parentLevel < level)
+                    int parentLevel;
+                    if (_operationType != null && GetType() == field.QueryBuilderType || parentTypeLevel.TryGetValue(field.QueryBuilderType, out parentLevel) && parentLevel < level)
                         continue;
 
                     if (builderType is null) {
@@ -671,14 +672,18 @@ namespace MondayApi.Schema {
                         parentTypeLevel[builderType] = Math.Min(level, parentLevel);
                     }
 
-                    var queryBuilder = InitializeChildQueryBuilder(builderType, field.QueryBuilderType, level, parentTypeLevel);
+                    var queryBuilder = InitializeChildQueryBuilder(field.QueryBuilderType, level, parentTypeLevel);
 
-                    var includeFragmentMethods = field.QueryBuilderType.GetMethods().Where(IsIncludeFragmentMethod);
+                    foreach (var includeFragmentMethod in field.QueryBuilderType.GetMethods().Where(IsIncludeFragmentMethod)) {
+                        var includeFragmentParameterInfo = includeFragmentMethod.GetParameters();
+                        var includeFragmentQueryBuilderType = includeFragmentParameterInfo[0].ParameterType;
+                        if (parentTypeLevel.TryGetValue(includeFragmentQueryBuilderType, out parentLevel))
+                            continue;
 
-                    foreach (var includeFragmentMethod in includeFragmentMethods)
-                        includeFragmentMethod.Invoke(
-                            queryBuilder,
-                            new object[] { InitializeChildQueryBuilder(builderType, includeFragmentMethod.GetParameters()[0].ParameterType, level, parentTypeLevel) });
+                        var includeFragmentParameters = new object[includeFragmentParameterInfo.Length];
+                        includeFragmentParameters[0] = InitializeChildQueryBuilder(includeFragmentQueryBuilderType, level, parentTypeLevel);
+                        includeFragmentMethod.Invoke(queryBuilder, includeFragmentParameters);
+                    }
 
                     if (queryBuilder._fieldCriteria.Count > 0 || queryBuilder._fragments != null)
                         IncludeObjectField(field.Name, field.DefaultAlias, queryBuilder, null, null);
@@ -686,7 +691,7 @@ namespace MondayApi.Schema {
             }
         }
 
-        private static GraphQlQueryBuilder InitializeChildQueryBuilder(Type parentQueryBuilderType, Type queryBuilderType, int level, Dictionary<Type, int> parentTypeLevel) {
+        private static GraphQlQueryBuilder InitializeChildQueryBuilder(Type queryBuilderType, int level, Dictionary<Type, int> parentTypeLevel) {
             var queryBuilder = (GraphQlQueryBuilder)Activator.CreateInstance(queryBuilderType);
             queryBuilder.IncludeFields(queryBuilder.AllFields.Where(f => !f.RequiresParameters), level + 1, parentTypeLevel);
             return queryBuilder;
@@ -697,7 +702,7 @@ namespace MondayApi.Schema {
                 return false;
 
             var parameters = methodInfo.GetParameters();
-            return parameters.Length == 1 && parameters[0].ParameterType.IsSubclassOf(typeof(GraphQlQueryBuilder));
+            return parameters.Count(p => !p.IsOptional) == 1 && parameters[0].ParameterType.IsSubclassOf(typeof(GraphQlQueryBuilder));
         }
 
         protected void AddParameter<T>(GraphQlQueryParameter<T> parameter) {

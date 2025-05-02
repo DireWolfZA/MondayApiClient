@@ -11,7 +11,7 @@ namespace MondayApi.Schema {
             new GraphQlFieldMetadata { Name = "board_kind" },
             new GraphQlFieldMetadata { Name = "collaborators", IsComplex = true, QueryBuilderType = typeof(UserQueryBuilder) },
             new GraphQlFieldMetadata { Name = "columns", IsComplex = true, QueryBuilderType = typeof(ColumnQueryBuilder) },
-            new GraphQlFieldMetadata { Name = "communication", IsComplex = true },
+            new GraphQlFieldMetadata { Name = "communication" },
             new GraphQlFieldMetadata { Name = "creator", IsComplex = true, QueryBuilderType = typeof(UserQueryBuilder) },
             new GraphQlFieldMetadata { Name = "description" },
             new GraphQlFieldMetadata { Name = "groups", IsComplex = true, QueryBuilderType = typeof(GroupQueryBuilder) },
@@ -38,7 +38,7 @@ namespace MondayApi.Schema {
         protected override string TypeName => "Board";
         public override IReadOnlyList<GraphQlFieldMetadata> AllFields => AllFieldMetadata;
 
-        public BoardQueryBuilder WithUpdates(UpdateQueryBuilder updateQueryBuilder, QueryBuilderParameter<int?> limit = null, QueryBuilderParameter<int?> page = null, QueryBuilderParameter<IEnumerable<string>> ids = null, string alias = null, IncludeDirective include = null, SkipDirective skip = null) {
+        public BoardQueryBuilder WithUpdates(UpdateQueryBuilder updateQueryBuilder, QueryBuilderParameter<int?>? limit = null, QueryBuilderParameter<int?>? page = null, QueryBuilderParameter<IEnumerable<string>>? ids = null, string? alias = null, IncludeDirective? include = null, SkipDirective? skip = null) {
             var args = new List<QueryBuilderArgumentInfo>();
             if (limit != null)
                 args.Add(new QueryBuilderArgumentInfo { ArgumentName = "limit", ArgumentValue = limit });
@@ -47,9 +47,9 @@ namespace MondayApi.Schema {
             if (ids != null)
                 args.Add(new QueryBuilderArgumentInfo { ArgumentName = "ids", ArgumentValue = ids });
 
-            return WithObjectField("updates", alias, updateQueryBuilder, new GraphQlDirective[] { include, skip }, args);
+            return WithObjectField("updates", alias, updateQueryBuilder, new GraphQlDirective?[] { include, skip }, args);
         }
-        public BoardQueryBuilder WithActivityLogs(ActivityLogTypeQueryBuilder activityLogTypeQueryBuilder, QueryBuilderParameter<IEnumerable<string>> columnIDs = null, QueryBuilderParameter<DateTimeOffset?> from = null, QueryBuilderParameter<IEnumerable<string>> groupIDs = null, QueryBuilderParameter<IEnumerable<string>> itemIDs = null, QueryBuilderParameter<int?> limit = null, QueryBuilderParameter<int?> page = null, QueryBuilderParameter<DateTimeOffset?> to = null, QueryBuilderParameter<IEnumerable<string>> userIDs = null, string alias = null, IncludeDirective include = null, SkipDirective skip = null) {
+        public BoardQueryBuilder WithActivityLogs(ActivityLogTypeQueryBuilder activityLogTypeQueryBuilder, QueryBuilderParameter<IEnumerable<string?>>? columnIDs = null, QueryBuilderParameter<DateTimeOffset?>? from = null, QueryBuilderParameter<IEnumerable<string?>>? groupIDs = null, QueryBuilderParameter<IEnumerable<string>>? itemIDs = null, QueryBuilderParameter<int?>? limit = null, QueryBuilderParameter<int?>? page = null, QueryBuilderParameter<DateTimeOffset?>? to = null, QueryBuilderParameter<IEnumerable<string>>? userIDs = null, string? alias = null, IncludeDirective? include = null, SkipDirective? skip = null) {
             var args = new List<QueryBuilderArgumentInfo>();
             if (columnIDs != null)
                 args.Add(new QueryBuilderArgumentInfo { ArgumentName = "column_ids", ArgumentValue = columnIDs });
@@ -68,25 +68,25 @@ namespace MondayApi.Schema {
             if (userIDs != null)
                 args.Add(new QueryBuilderArgumentInfo { ArgumentName = "user_ids", ArgumentValue = userIDs });
 
-            return WithObjectField("activity_logs", alias, activityLogTypeQueryBuilder, new GraphQlDirective[] { include, skip }, args);
+            return WithObjectField("activity_logs", alias, activityLogTypeQueryBuilder, new GraphQlDirective?[] { include, skip }, args);
         }
-        public BoardQueryBuilder WithColumns(ColumnQueryBuilder columnQueryBuilder, QueryBuilderParameter<IEnumerable<string>> ids = null, QueryBuilderParameter<IEnumerable<ColumnType?>> types = null, string alias = null, IncludeDirective include = null, SkipDirective skip = null) {
+        public BoardQueryBuilder WithColumns(ColumnQueryBuilder columnQueryBuilder, QueryBuilderParameter<IEnumerable<string?>>? ids = null, QueryBuilderParameter<IEnumerable<ColumnType>>? types = null, string? alias = null, IncludeDirective? include = null, SkipDirective? skip = null) {
             var args = new List<QueryBuilderArgumentInfo>();
             if (ids != null)
                 args.Add(new QueryBuilderArgumentInfo { ArgumentName = "ids", ArgumentValue = ids });
             if (types != null)
                 args.Add(new QueryBuilderArgumentInfo { ArgumentName = "types", ArgumentValue = types });
 
-            return WithObjectField("columns", alias, columnQueryBuilder, new GraphQlDirective[] { include, skip }, args);
+            return WithObjectField("columns", alias, columnQueryBuilder, new GraphQlDirective?[] { include, skip }, args);
         }
-        public BoardQueryBuilder WithGroups(GroupQueryBuilder groupQueryBuilder, QueryBuilderParameter<IEnumerable<string>> ids = null, string alias = null, IncludeDirective include = null, SkipDirective skip = null) {
+        public BoardQueryBuilder WithGroups(GroupQueryBuilder groupQueryBuilder, QueryBuilderParameter<IEnumerable<string?>>? ids = null, string? alias = null, IncludeDirective? include = null, SkipDirective? skip = null) {
             var args = new List<QueryBuilderArgumentInfo>();
             if (ids != null)
                 args.Add(new QueryBuilderArgumentInfo { ArgumentName = "ids", ArgumentValue = ids });
 
-            return WithObjectField("groups", alias, groupQueryBuilder, new GraphQlDirective[] { include, skip }, args);
+            return WithObjectField("groups", alias, groupQueryBuilder, new GraphQlDirective?[] { include, skip }, args);
         }
-        public BoardQueryBuilder WithItemsPage(ItemsResponseQueryBuilder itemsResponseQueryBuilder, QueryBuilderParameter<int> limit, QueryBuilderParameter<string> cursor = null, QueryBuilderParameter<ItemsQuery> queryParams = null, string alias = null, IncludeDirective include = null, SkipDirective skip = null) {
+        public BoardQueryBuilder WithItemsPage(ItemsResponseQueryBuilder itemsResponseQueryBuilder, QueryBuilderParameter<int> limit, QueryBuilderParameter<string?>? cursor = null, QueryBuilderParameter<ItemsQuery?>? queryParams = null, string? alias = null, IncludeDirective? include = null, SkipDirective? skip = null) {
             var args = new List<QueryBuilderArgumentInfo> {
                 new QueryBuilderArgumentInfo { ArgumentName = "limit", ArgumentValue = limit }
             };
@@ -95,134 +95,134 @@ namespace MondayApi.Schema {
             if (queryParams != null)
                 args.Add(new QueryBuilderArgumentInfo { ArgumentName = "query_params", ArgumentValue = queryParams });
 
-            return WithObjectField("items_page", alias, itemsResponseQueryBuilder, new GraphQlDirective[] { include, skip }, args);
+            return WithObjectField("items_page", alias, itemsResponseQueryBuilder, new GraphQlDirective?[] { include, skip }, args);
         }
-        public BoardQueryBuilder WithTeamOwners(TeamQueryBuilder teamQueryBuilder, QueryBuilderParameter<int?> limit = null, QueryBuilderParameter<int?> page = null, string alias = null, IncludeDirective include = null, SkipDirective skip = null) {
+        public BoardQueryBuilder WithTeamOwners(TeamQueryBuilder teamQueryBuilder, QueryBuilderParameter<int?>? limit = null, QueryBuilderParameter<int?>? page = null, string? alias = null, IncludeDirective? include = null, SkipDirective? skip = null) {
             var args = new List<QueryBuilderArgumentInfo>();
             if (limit != null)
                 args.Add(new QueryBuilderArgumentInfo { ArgumentName = "limit", ArgumentValue = limit });
             if (page != null)
                 args.Add(new QueryBuilderArgumentInfo { ArgumentName = "page", ArgumentValue = page });
 
-            return WithObjectField("team_owners", alias, teamQueryBuilder, new GraphQlDirective[] { include, skip }, args);
+            return WithObjectField("team_owners", alias, teamQueryBuilder, new GraphQlDirective?[] { include, skip }, args);
         }
-        public BoardQueryBuilder WithTeamSubscribers(TeamQueryBuilder teamQueryBuilder, QueryBuilderParameter<int?> limit = null, QueryBuilderParameter<int?> page = null, string alias = null, IncludeDirective include = null, SkipDirective skip = null) {
+        public BoardQueryBuilder WithTeamSubscribers(TeamQueryBuilder teamQueryBuilder, QueryBuilderParameter<int?>? limit = null, QueryBuilderParameter<int?>? page = null, string? alias = null, IncludeDirective? include = null, SkipDirective? skip = null) {
             var args = new List<QueryBuilderArgumentInfo>();
             if (limit != null)
                 args.Add(new QueryBuilderArgumentInfo { ArgumentName = "limit", ArgumentValue = limit });
             if (page != null)
                 args.Add(new QueryBuilderArgumentInfo { ArgumentName = "page", ArgumentValue = page });
 
-            return WithObjectField("team_subscribers", alias, teamQueryBuilder, new GraphQlDirective[] { include, skip }, args);
+            return WithObjectField("team_subscribers", alias, teamQueryBuilder, new GraphQlDirective?[] { include, skip }, args);
         }
-        public BoardQueryBuilder WithViews(BoardViewQueryBuilder boardViewQueryBuilder, QueryBuilderParameter<IEnumerable<string>> ids = null, QueryBuilderParameter<string> type = null, string alias = null, IncludeDirective include = null, SkipDirective skip = null) {
+        public BoardQueryBuilder WithViews(BoardViewQueryBuilder boardViewQueryBuilder, QueryBuilderParameter<IEnumerable<string>>? ids = null, QueryBuilderParameter<string?>? type = null, string? alias = null, IncludeDirective? include = null, SkipDirective? skip = null) {
             var args = new List<QueryBuilderArgumentInfo>();
             if (ids != null)
                 args.Add(new QueryBuilderArgumentInfo { ArgumentName = "ids", ArgumentValue = ids });
             if (type != null)
                 args.Add(new QueryBuilderArgumentInfo { ArgumentName = "type", ArgumentValue = type });
 
-            return WithObjectField("views", alias, boardViewQueryBuilder, new GraphQlDirective[] { include, skip }, args);
+            return WithObjectField("views", alias, boardViewQueryBuilder, new GraphQlDirective?[] { include, skip }, args);
         }
 
-        public BoardQueryBuilder WithID(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
-            WithScalarField("id", alias, new GraphQlDirective[] { include, skip });
+        public BoardQueryBuilder WithID(string? alias = null, IncludeDirective? include = null, SkipDirective? skip = null) =>
+            WithScalarField("id", alias, new GraphQlDirective?[] { include, skip });
         public BoardQueryBuilder ExceptID() =>
             ExceptField("id");
         public BoardQueryBuilder ExceptUpdates() =>
             ExceptField("updates");
         public BoardQueryBuilder ExceptActivityLogs() =>
             ExceptField("activity_logs");
-        public BoardQueryBuilder WithBoardFolderID(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
-            WithScalarField("board_folder_id", alias, new GraphQlDirective[] { include, skip });
+        public BoardQueryBuilder WithBoardFolderID(string? alias = null, IncludeDirective? include = null, SkipDirective? skip = null) =>
+            WithScalarField("board_folder_id", alias, new GraphQlDirective?[] { include, skip });
         public BoardQueryBuilder ExceptBoardFolderID() =>
             ExceptField("board_folder_id");
-        public BoardQueryBuilder WithBoardKind(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
-            WithScalarField("board_kind", alias, new GraphQlDirective[] { include, skip });
+        public BoardQueryBuilder WithBoardKind(string? alias = null, IncludeDirective? include = null, SkipDirective? skip = null) =>
+            WithScalarField("board_kind", alias, new GraphQlDirective?[] { include, skip });
         public BoardQueryBuilder ExceptBoardKind() =>
             ExceptField("board_kind");
-        public BoardQueryBuilder WithCollaborators(UserQueryBuilder userQueryBuilder, string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
-            WithObjectField("collaborators", alias, userQueryBuilder, new GraphQlDirective[] { include, skip });
+        public BoardQueryBuilder WithCollaborators(UserQueryBuilder userQueryBuilder, string? alias = null, IncludeDirective? include = null, SkipDirective? skip = null) =>
+            WithObjectField("collaborators", alias, userQueryBuilder, new GraphQlDirective?[] { include, skip });
         public BoardQueryBuilder ExceptCollaborators() =>
             ExceptField("collaborators");
         public BoardQueryBuilder ExceptColumns() =>
             ExceptField("columns");
-        public BoardQueryBuilder WithCommunication(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
-            WithScalarField("communication", alias, new GraphQlDirective[] { include, skip });
+        public BoardQueryBuilder WithCommunication(string? alias = null, IncludeDirective? include = null, SkipDirective? skip = null) =>
+            WithScalarField("communication", alias, new GraphQlDirective?[] { include, skip });
         public BoardQueryBuilder ExceptCommunication() =>
             ExceptField("communication");
-        public BoardQueryBuilder WithCreator(UserQueryBuilder userQueryBuilder, string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
-            WithObjectField("creator", alias, userQueryBuilder, new GraphQlDirective[] { include, skip });
+        public BoardQueryBuilder WithCreator(UserQueryBuilder userQueryBuilder, string? alias = null, IncludeDirective? include = null, SkipDirective? skip = null) =>
+            WithObjectField("creator", alias, userQueryBuilder, new GraphQlDirective?[] { include, skip });
         public BoardQueryBuilder ExceptCreator() =>
             ExceptField("creator");
-        public BoardQueryBuilder WithDescription(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
-            WithScalarField("description", alias, new GraphQlDirective[] { include, skip });
+        public BoardQueryBuilder WithDescription(string? alias = null, IncludeDirective? include = null, SkipDirective? skip = null) =>
+            WithScalarField("description", alias, new GraphQlDirective?[] { include, skip });
         public BoardQueryBuilder ExceptDescription() =>
             ExceptField("description");
         public BoardQueryBuilder ExceptGroups() =>
             ExceptField("groups");
-        public BoardQueryBuilder WithItemTerminology(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
-            WithScalarField("item_terminology", alias, new GraphQlDirective[] { include, skip });
+        public BoardQueryBuilder WithItemTerminology(string? alias = null, IncludeDirective? include = null, SkipDirective? skip = null) =>
+            WithScalarField("item_terminology", alias, new GraphQlDirective?[] { include, skip });
         public BoardQueryBuilder ExceptItemTerminology() =>
             ExceptField("item_terminology");
-        public BoardQueryBuilder WithItemsCount(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
-            WithScalarField("items_count", alias, new GraphQlDirective[] { include, skip });
+        public BoardQueryBuilder WithItemsCount(string? alias = null, IncludeDirective? include = null, SkipDirective? skip = null) =>
+            WithScalarField("items_count", alias, new GraphQlDirective?[] { include, skip });
         public BoardQueryBuilder ExceptItemsCount() =>
             ExceptField("items_count");
         public BoardQueryBuilder ExceptItemsPage() =>
             ExceptField("items_page");
-        public BoardQueryBuilder WithName(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
-            WithScalarField("name", alias, new GraphQlDirective[] { include, skip });
+        public BoardQueryBuilder WithName(string? alias = null, IncludeDirective? include = null, SkipDirective? skip = null) =>
+            WithScalarField("name", alias, new GraphQlDirective?[] { include, skip });
         public BoardQueryBuilder ExceptName() =>
             ExceptField("name");
-        public BoardQueryBuilder WithOwners(UserQueryBuilder userQueryBuilder, string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
-            WithObjectField("owners", alias, userQueryBuilder, new GraphQlDirective[] { include, skip });
+        public BoardQueryBuilder WithOwners(UserQueryBuilder userQueryBuilder, string? alias = null, IncludeDirective? include = null, SkipDirective? skip = null) =>
+            WithObjectField("owners", alias, userQueryBuilder, new GraphQlDirective?[] { include, skip });
         public BoardQueryBuilder ExceptOwners() =>
             ExceptField("owners");
-        public BoardQueryBuilder WithPermissions(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
-            WithScalarField("permissions", alias, new GraphQlDirective[] { include, skip });
+        public BoardQueryBuilder WithPermissions(string? alias = null, IncludeDirective? include = null, SkipDirective? skip = null) =>
+            WithScalarField("permissions", alias, new GraphQlDirective?[] { include, skip });
         public BoardQueryBuilder ExceptPermissions() =>
             ExceptField("permissions");
-        public BoardQueryBuilder WithState(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
-            WithScalarField("state", alias, new GraphQlDirective[] { include, skip });
+        public BoardQueryBuilder WithState(string? alias = null, IncludeDirective? include = null, SkipDirective? skip = null) =>
+            WithScalarField("state", alias, new GraphQlDirective?[] { include, skip });
         public BoardQueryBuilder ExceptState() =>
             ExceptField("state");
-        public BoardQueryBuilder WithSubscribers(UserQueryBuilder userQueryBuilder, string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
-            WithObjectField("subscribers", alias, userQueryBuilder, new GraphQlDirective[] { include, skip });
+        public BoardQueryBuilder WithSubscribers(UserQueryBuilder userQueryBuilder, string? alias = null, IncludeDirective? include = null, SkipDirective? skip = null) =>
+            WithObjectField("subscribers", alias, userQueryBuilder, new GraphQlDirective?[] { include, skip });
         public BoardQueryBuilder ExceptSubscribers() =>
             ExceptField("subscribers");
-        public BoardQueryBuilder WithTags(TagQueryBuilder tagQueryBuilder, string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
-            WithObjectField("tags", alias, tagQueryBuilder, new GraphQlDirective[] { include, skip });
+        public BoardQueryBuilder WithTags(TagQueryBuilder tagQueryBuilder, string? alias = null, IncludeDirective? include = null, SkipDirective? skip = null) =>
+            WithObjectField("tags", alias, tagQueryBuilder, new GraphQlDirective?[] { include, skip });
         public BoardQueryBuilder ExceptTags() =>
             ExceptField("tags");
         public BoardQueryBuilder ExceptTeamOwners() =>
             ExceptField("team_owners");
         public BoardQueryBuilder ExceptTeamSubscribers() =>
             ExceptField("team_subscribers");
-        public BoardQueryBuilder WithTopGroup(GroupQueryBuilder groupQueryBuilder, string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
-            WithObjectField("top_group", alias, groupQueryBuilder, new GraphQlDirective[] { include, skip });
+        public BoardQueryBuilder WithTopGroup(GroupQueryBuilder groupQueryBuilder, string? alias = null, IncludeDirective? include = null, SkipDirective? skip = null) =>
+            WithObjectField("top_group", alias, groupQueryBuilder, new GraphQlDirective?[] { include, skip });
         public BoardQueryBuilder ExceptTopGroup() =>
             ExceptField("top_group");
-        public BoardQueryBuilder WithType(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
-            WithScalarField("type", alias, new GraphQlDirective[] { include, skip });
+        public BoardQueryBuilder WithType(string? alias = null, IncludeDirective? include = null, SkipDirective? skip = null) =>
+            WithScalarField("type", alias, new GraphQlDirective?[] { include, skip });
         public BoardQueryBuilder ExceptType() =>
             ExceptField("type");
-        public BoardQueryBuilder WithUpdatedAt(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
-            WithScalarField("updated_at", alias, new GraphQlDirective[] { include, skip });
+        public BoardQueryBuilder WithUpdatedAt(string? alias = null, IncludeDirective? include = null, SkipDirective? skip = null) =>
+            WithScalarField("updated_at", alias, new GraphQlDirective?[] { include, skip });
         public BoardQueryBuilder ExceptUpdatedAt() =>
             ExceptField("updated_at");
-        public BoardQueryBuilder WithURL(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
-            WithScalarField("url", alias, new GraphQlDirective[] { include, skip });
+        public BoardQueryBuilder WithURL(string? alias = null, IncludeDirective? include = null, SkipDirective? skip = null) =>
+            WithScalarField("url", alias, new GraphQlDirective?[] { include, skip });
         public BoardQueryBuilder ExceptURL() =>
             ExceptField("url");
         public BoardQueryBuilder ExceptViews() =>
             ExceptField("views");
-        public BoardQueryBuilder WithWorkspace(WorkspaceQueryBuilder workspaceQueryBuilder, string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
-            WithObjectField("workspace", alias, workspaceQueryBuilder, new GraphQlDirective[] { include, skip });
+        public BoardQueryBuilder WithWorkspace(WorkspaceQueryBuilder workspaceQueryBuilder, string? alias = null, IncludeDirective? include = null, SkipDirective? skip = null) =>
+            WithObjectField("workspace", alias, workspaceQueryBuilder, new GraphQlDirective?[] { include, skip });
         public BoardQueryBuilder ExceptWorkspace() =>
             ExceptField("workspace");
-        public BoardQueryBuilder WithWorkspaceID(string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
-            WithScalarField("workspace_id", alias, new GraphQlDirective[] { include, skip });
+        public BoardQueryBuilder WithWorkspaceID(string? alias = null, IncludeDirective? include = null, SkipDirective? skip = null) =>
+            WithScalarField("workspace_id", alias, new GraphQlDirective?[] { include, skip });
         public BoardQueryBuilder ExceptWorkspaceID() =>
             ExceptField("workspace_id");
     }

@@ -7,21 +7,21 @@ namespace MondayApi.Schema {
         private InputPropertyInfo _kind;
         private InputPropertyInfo _name;
 
-        [JsonConverter(typeof(QueryBuilderParameterConverter<string>))]
-        public QueryBuilderParameter<string> Description {
-            get => (QueryBuilderParameter<string>)_description.Value;
+        [JsonConverter(typeof(QueryBuilderParameterConverter<string?>))]
+        public QueryBuilderParameter<string?>? Description {
+            get => (QueryBuilderParameter<string?>?)_description.Value;
             set => _description = new InputPropertyInfo { Name = "description", Value = value };
         }
 
         [JsonConverter(typeof(QueryBuilderParameterConverter<WorkspaceKind?>))]
-        public QueryBuilderParameter<WorkspaceKind?> Kind {
-            get => (QueryBuilderParameter<WorkspaceKind?>)_kind.Value;
+        public QueryBuilderParameter<WorkspaceKind?>? Kind {
+            get => (QueryBuilderParameter<WorkspaceKind?>?)_kind.Value;
             set => _kind = new InputPropertyInfo { Name = "kind", Value = value };
         }
 
-        [JsonConverter(typeof(QueryBuilderParameterConverter<string>))]
-        public QueryBuilderParameter<string> Name {
-            get => (QueryBuilderParameter<string>)_name.Value;
+        [JsonConverter(typeof(QueryBuilderParameterConverter<string?>))]
+        public QueryBuilderParameter<string?>? Name {
+            get => (QueryBuilderParameter<string?>?)_name.Value;
             set => _name = new InputPropertyInfo { Name = "name", Value = value };
         }
 

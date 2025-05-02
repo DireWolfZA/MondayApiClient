@@ -4,14 +4,14 @@ namespace MondayApi.Schema {
     [System.Diagnostics.DebuggerDisplay("{Type.ToString(),nq}:{ID}: {Text}")]
     [GraphQlObjectType("WeekValue")]
     public class WeekValue : IMirroredValue, IColumnValue {
-        public Column Column { get; set; }
+        public Column? Column { get; set; }
         [JsonProperty("end_date")]
-        public object EndDate { get; set; }
-        public string ID { get; set; }
+        public object? EndDate { get; set; }
+        public string? ID { get; set; }
         [JsonProperty("start_date")]
-        public object StartDate { get; set; }
-        public string Text { get; set; }
+        public object? StartDate { get; set; }
+        public string? Text { get; set; }
         public ColumnType? Type { get; set; }
-        public object Value { get; set; }
+        public object? Value { get; set; }
     }
 }
