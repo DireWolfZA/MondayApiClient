@@ -61,7 +61,7 @@ namespace MondayApi.Boards {
             );
 
             var response = await client.RunMutation(mutation);
-            return Newtonsoft.Json.JsonConvert.DeserializeObject<UpdateBoardResponse>(response.UpdateBoard)!;
+            return Newtonsoft.Json.JsonConvert.DeserializeObject<UpdateBoardResponse>(response.UpdateBoard!)!;
         }
 
         public async Task<Board> Delete(string id) {

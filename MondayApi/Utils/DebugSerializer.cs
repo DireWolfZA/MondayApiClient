@@ -33,7 +33,7 @@ namespace MondayApi.Utils {
 
                     using (JsonReader reader = new JsonTextReader(sr)) {
                         var serializer = JsonSerializer.Create(implementation.JsonSerializerSettings);
-                        return serializer.Deserialize<GraphQLResponse<TResponse>>(reader);
+                        return serializer.Deserialize<GraphQLResponse<TResponse>>(reader)!;
                     }
                 }
             }

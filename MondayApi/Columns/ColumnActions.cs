@@ -24,7 +24,7 @@ namespace MondayApi.Columns {
         public async Task<ICollection<ColumnMappingInput>> FillColumnMapping(string boardID, ICollection<ColumnMappingInput> columnMapping) {
             var columns = await Get(boardID);
 
-            foreach (var column in columns.Where(c => !bannedMoveTypes.Contains(c.Type) && !columnMapping.Any(cm => cm.Source == c.ID)))
+            foreach (var column in columns.Where(c => !bannedMoveTypes.Contains(c.Type) && !columnMapping.Any(cm => cm.Source?.Value == c.ID)))
                 columnMapping.Add(new ColumnMappingInput() { Source = column.ID, Target = null });
             return columnMapping;
         }

@@ -385,7 +385,7 @@ namespace MondayApi.Schema {
 
     internal struct InputPropertyInfo {
         public string Name { get; set; }
-        public object Value { get; set; }
+        public object? Value { get; set; }
         public string FormatMask { get; set; }
     }
 

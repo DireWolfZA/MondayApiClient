@@ -222,8 +222,8 @@ namespace MondayApi.Schema {
             WithParameterInternal(parameter);
         public QueryQueryBuilder ExceptUpdates() =>
             ExceptField("updates");
-        public QueryQueryBuilder WithCustomActivity(CustomActivityQueryBuilder customActivityQueryBuilder, string alias = null, IncludeDirective include = null, SkipDirective skip = null) =>
-            WithObjectField("custom_activity", alias, customActivityQueryBuilder, new GraphQlDirective[] { include, skip });
+        public QueryQueryBuilder WithCustomActivity(CustomActivityQueryBuilder customActivityQueryBuilder, string? alias = null, IncludeDirective? include = null, SkipDirective? skip = null) =>
+            WithObjectField("custom_activity", alias, customActivityQueryBuilder, new GraphQlDirective?[] { include, skip });
         public QueryQueryBuilder ExceptCustomActivity() =>
             ExceptField("custom_activity");
         public QueryQueryBuilder ExceptTimelineItem() =>
