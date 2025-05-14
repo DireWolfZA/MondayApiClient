@@ -20,7 +20,7 @@ namespace MondayApi.Columns {
             return response.Boards?.FirstOrDefault()?.Columns!;
         }
 
-        static readonly ColumnType?[] bannedMoveTypes = new ColumnType?[] { ColumnType.Name, ColumnType.Subtasks, ColumnType.Formula };
+        private static readonly ColumnType?[] bannedMoveTypes = new ColumnType?[] { ColumnType.Name, ColumnType.Subtasks, ColumnType.Formula };
         public async Task<ICollection<ColumnMappingInput>> FillColumnMapping(string boardID, ICollection<ColumnMappingInput> columnMapping) {
             var columns = await Get(boardID);
 

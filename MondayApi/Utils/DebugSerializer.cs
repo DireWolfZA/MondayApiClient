@@ -10,8 +10,8 @@ using Newtonsoft.Json;
 namespace MondayApi.Utils {
     // thanks to https://github.com/graphql-dotnet/graphql-client/issues/527#issuecomment-1655503961
     internal class DebugSerializer : IGraphQLWebsocketJsonSerializer {
-        readonly NewtonsoftJsonSerializer implementation = new NewtonsoftJsonSerializer();
-        readonly Action<string> captureResponse;
+        private readonly NewtonsoftJsonSerializer implementation = new NewtonsoftJsonSerializer();
+        private readonly Action<string> captureResponse;
 
         public DebugSerializer(Action<string> captureResponse) => this.captureResponse = captureResponse;
         public byte[] SerializeToBytes(GraphQLWebSocketRequest request) => implementation.SerializeToBytes(request);

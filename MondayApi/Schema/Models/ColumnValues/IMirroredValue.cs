@@ -1,4 +1,3 @@
 namespace MondayApi.Schema {
-    public interface IMirroredValue {
-    }
+    public interface IMirroredValue { }
 }

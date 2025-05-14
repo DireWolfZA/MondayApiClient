@@ -4,7 +4,7 @@ using MondayApi.Schema;
 
 namespace MondayApi.Assets {
     public interface IAssetActions {
-        Task<IEnumerable<IEnumerable<IFileValueItem>>?> GetItemFiles(string itemID, string[]? columnID = null);
+        Task<IEnumerable<IEnumerable<IFileValueItem>>?> GetItemFiles(string itemID, params string[]? columnID);
         Task<IEnumerable<Asset>?> GetByItem(string itemID);
         Task<IEnumerable<Update>?> GetByItemUpdates(string itemID);
         Task<Asset?> GetOne(string id);
