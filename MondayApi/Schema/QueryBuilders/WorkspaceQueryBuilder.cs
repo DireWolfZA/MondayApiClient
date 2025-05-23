@@ -27,7 +27,6 @@ namespace MondayApi.Schema {
                 args.Add(new QueryBuilderArgumentInfo { ArgumentName = "limit", ArgumentValue = limit });
             if (page != null)
                 args.Add(new QueryBuilderArgumentInfo { ArgumentName = "page", ArgumentValue = page });
-
             return WithObjectField("owners_subscribers", alias, userQueryBuilder, new GraphQlDirective?[] { include, skip }, args);
         }
         public WorkspaceQueryBuilder WithTeamOwnersSubscribers(TeamQueryBuilder teamQueryBuilder, QueryBuilderParameter<int?>? limit = null, QueryBuilderParameter<int?>? page = null, string? alias = null, IncludeDirective? include = null, SkipDirective? skip = null) {
@@ -36,7 +35,6 @@ namespace MondayApi.Schema {
                 args.Add(new QueryBuilderArgumentInfo { ArgumentName = "limit", ArgumentValue = limit });
             if (page != null)
                 args.Add(new QueryBuilderArgumentInfo { ArgumentName = "page", ArgumentValue = page });
-
             return WithObjectField("team_owners_subscribers", alias, teamQueryBuilder, new GraphQlDirective?[] { include, skip }, args);
         }
         public WorkspaceQueryBuilder WithTeamsSubscribers(TeamQueryBuilder teamQueryBuilder, QueryBuilderParameter<int?>? limit = null, QueryBuilderParameter<int?>? page = null, string? alias = null, IncludeDirective? include = null, SkipDirective? skip = null) {
@@ -45,7 +43,6 @@ namespace MondayApi.Schema {
                 args.Add(new QueryBuilderArgumentInfo { ArgumentName = "limit", ArgumentValue = limit });
             if (page != null)
                 args.Add(new QueryBuilderArgumentInfo { ArgumentName = "page", ArgumentValue = page });
-
             return WithObjectField("teams_subscribers", alias, teamQueryBuilder, new GraphQlDirective?[] { include, skip }, args);
         }
         public WorkspaceQueryBuilder WithUsersSubscribers(UserQueryBuilder userQueryBuilder, QueryBuilderParameter<int?>? limit = null, QueryBuilderParameter<int?>? page = null, string? alias = null, IncludeDirective? include = null, SkipDirective? skip = null) {
@@ -54,7 +51,6 @@ namespace MondayApi.Schema {
                 args.Add(new QueryBuilderArgumentInfo { ArgumentName = "limit", ArgumentValue = limit });
             if (page != null)
                 args.Add(new QueryBuilderArgumentInfo { ArgumentName = "page", ArgumentValue = page });
-
             return WithObjectField("users_subscribers", alias, userQueryBuilder, new GraphQlDirective?[] { include, skip }, args);
         }
 

@@ -6,6 +6,7 @@ namespace MondayApi.Schema {
             new GraphQlFieldMetadata { Name = "billing_period" },
             new GraphQlFieldMetadata { Name = "days_left" },
             new GraphQlFieldMetadata { Name = "is_trial" },
+            new GraphQlFieldMetadata { Name = "max_units" },
             new GraphQlFieldMetadata { Name = "plan_id" },
             new GraphQlFieldMetadata { Name = "pricing_version" },
             new GraphQlFieldMetadata { Name = "renewal_date" }
@@ -26,6 +27,10 @@ namespace MondayApi.Schema {
             WithScalarField("is_trial", alias, new GraphQlDirective?[] { include, skip });
         public AppSubscriptionQueryBuilder ExceptIsTrial() =>
             ExceptField("is_trial");
+        public AppSubscriptionQueryBuilder WithMaxUnits(string? alias = null, IncludeDirective? include = null, SkipDirective? skip = null) =>
+            WithScalarField("max_units", alias, new GraphQlDirective?[] { include, skip });
+        public AppSubscriptionQueryBuilder ExceptMaxUnits() =>
+            ExceptField("max_units");
         public AppSubscriptionQueryBuilder WithPlanID(string? alias = null, IncludeDirective? include = null, SkipDirective? skip = null) =>
             WithScalarField("plan_id", alias, new GraphQlDirective?[] { include, skip });
         public AppSubscriptionQueryBuilder ExceptPlanID() =>

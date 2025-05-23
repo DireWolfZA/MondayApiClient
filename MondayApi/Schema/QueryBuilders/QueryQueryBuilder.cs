@@ -3,10 +3,16 @@ using System.Collections.Generic;
 namespace MondayApi.Schema {
     public class QueryQueryBuilder : GraphQlQueryBuilder<QueryQueryBuilder> {
         private static readonly GraphQlFieldMetadata[] AllFieldMetadata = new[] {
+            new GraphQlFieldMetadata { Name = "blocks", IsComplex = true, QueryBuilderType = typeof(BlocksResultQueryBuilder) },
+            new GraphQlFieldMetadata { Name = "remote_options", RequiresParameters = true, IsComplex = true, QueryBuilderType = typeof(RemoteOptionsResponseQueryBuilder) },
             new GraphQlFieldMetadata { Name = "updates", IsComplex = true, QueryBuilderType = typeof(UpdateQueryBuilder) },
             new GraphQlFieldMetadata { Name = "custom_activity", IsComplex = true, QueryBuilderType = typeof(CustomActivityQueryBuilder) },
             new GraphQlFieldMetadata { Name = "timeline_item", RequiresParameters = true, IsComplex = true, QueryBuilderType = typeof(TimelineItemQueryBuilder) },
+            new GraphQlFieldMetadata { Name = "timeline", RequiresParameters = true, IsComplex = true, QueryBuilderType = typeof(TimelineResponseQueryBuilder) },
+            new GraphQlFieldMetadata { Name = "managed_column", IsComplex = true, QueryBuilderType = typeof(ManagedColumnQueryBuilder) },
             new GraphQlFieldMetadata { Name = "marketplace_app_discounts", RequiresParameters = true, IsComplex = true, QueryBuilderType = typeof(MarketplaceAppDiscountQueryBuilder) },
+            new GraphQlFieldMetadata { Name = "app_subscriptions", RequiresParameters = true, IsComplex = true, QueryBuilderType = typeof(AppSubscriptionsQueryBuilder) },
+            new GraphQlFieldMetadata { Name = "app", RequiresParameters = true, IsComplex = true, QueryBuilderType = typeof(AppTypeQueryBuilder) },
             new GraphQlFieldMetadata { Name = "account", IsComplex = true, QueryBuilderType = typeof(AccountQueryBuilder) },
             new GraphQlFieldMetadata { Name = "app_installs", RequiresParameters = true, IsComplex = true, QueryBuilderType = typeof(AppInstallQueryBuilder) },
             new GraphQlFieldMetadata { Name = "app_subscription", IsComplex = true, QueryBuilderType = typeof(AppSubscriptionQueryBuilder) },
@@ -25,15 +31,29 @@ namespace MondayApi.Schema {
             new GraphQlFieldMetadata { Name = "tags", IsComplex = true, QueryBuilderType = typeof(TagQueryBuilder) },
             new GraphQlFieldMetadata { Name = "teams", IsComplex = true, QueryBuilderType = typeof(TeamQueryBuilder) },
             new GraphQlFieldMetadata { Name = "users", IsComplex = true, QueryBuilderType = typeof(UserQueryBuilder) },
+            new GraphQlFieldMetadata { Name = "webhooks", RequiresParameters = true, IsComplex = true, QueryBuilderType = typeof(WebhookQueryBuilder) },
+            new GraphQlFieldMetadata { Name = "workspaces", IsComplex = true, QueryBuilderType = typeof(WorkspaceQueryBuilder) },
             new GraphQlFieldMetadata { Name = "version", IsComplex = true, QueryBuilderType = typeof(VersionQueryBuilder) },
             new GraphQlFieldMetadata { Name = "versions", IsComplex = true, QueryBuilderType = typeof(VersionQueryBuilder) },
-            new GraphQlFieldMetadata { Name = "webhooks", RequiresParameters = true, IsComplex = true, QueryBuilderType = typeof(WebhookQueryBuilder) },
-            new GraphQlFieldMetadata { Name = "workspaces", IsComplex = true, QueryBuilderType = typeof(WorkspaceQueryBuilder) }
+            new GraphQlFieldMetadata { Name = "platform_api", IsComplex = true, QueryBuilderType = typeof(PlatformAPIQueryBuilder) },
+            new GraphQlFieldMetadata { Name = "account_roles", IsComplex = true, QueryBuilderType = typeof(AccountRoleQueryBuilder) }
         };
 
         protected override string TypeName => "Query";
         public override IReadOnlyList<GraphQlFieldMetadata> AllFields => AllFieldMetadata;
 
+        public QueryQueryBuilder WithBlocks(BlocksResultQueryBuilder blocksResultQueryBuilder, QueryBuilderParameter<GetBlocksInput?>? input = null, string? alias = null, IncludeDirective? include = null, SkipDirective? skip = null) {
+            var args = new List<QueryBuilderArgumentInfo>();
+            if (input != null)
+                args.Add(new QueryBuilderArgumentInfo { ArgumentName = "input", ArgumentValue = input });
+            return WithObjectField("blocks", alias, blocksResultQueryBuilder, new GraphQlDirective?[] { include, skip }, args);
+        }
+        public QueryQueryBuilder WithRemoteOptions(RemoteOptionsResponseQueryBuilder remoteOptionsResponseQueryBuilder, QueryBuilderParameter<RemoteOptionsInput> input, string? alias = null, IncludeDirective? include = null, SkipDirective? skip = null) {
+            var args = new List<QueryBuilderArgumentInfo> {
+                new QueryBuilderArgumentInfo { ArgumentName = "input", ArgumentValue = input }
+            };
+            return WithObjectField("remote_options", alias, remoteOptionsResponseQueryBuilder, new GraphQlDirective?[] { include, skip }, args);
+        }
         public QueryQueryBuilder WithUpdates(UpdateQueryBuilder updateQueryBuilder, QueryBuilderParameter<int?>? limit = null, QueryBuilderParameter<int?>? page = null, QueryBuilderParameter<IEnumerable<string>>? ids = null, string? alias = null, IncludeDirective? include = null, SkipDirective? skip = null) {
             var args = new List<QueryBuilderArgumentInfo>();
             if (limit != null)
@@ -44,17 +64,63 @@ namespace MondayApi.Schema {
                 args.Add(new QueryBuilderArgumentInfo { ArgumentName = "ids", ArgumentValue = ids });
             return WithObjectField("updates", alias, updateQueryBuilder, new GraphQlDirective?[] { include, skip }, args);
         }
+        public QueryQueryBuilder WithCustomActivity(CustomActivityQueryBuilder customActivityQueryBuilder, QueryBuilderParameter<IEnumerable<string>>? ids = null, QueryBuilderParameter<string?>? name = null, QueryBuilderParameter<CustomActivityIcon?>? iconID = null, QueryBuilderParameter<CustomActivityColor?>? color = null, string? alias = null, IncludeDirective? include = null, SkipDirective? skip = null) {
+            var args = new List<QueryBuilderArgumentInfo>();
+            if (ids != null)
+                args.Add(new QueryBuilderArgumentInfo { ArgumentName = "ids", ArgumentValue = ids });
+            if (name != null)
+                args.Add(new QueryBuilderArgumentInfo { ArgumentName = "name", ArgumentValue = name });
+            if (iconID != null)
+                args.Add(new QueryBuilderArgumentInfo { ArgumentName = "icon_id", ArgumentValue = iconID });
+            if (color != null)
+                args.Add(new QueryBuilderArgumentInfo { ArgumentName = "color", ArgumentValue = color });
+            return WithObjectField("custom_activity", alias, customActivityQueryBuilder, new GraphQlDirective?[] { include, skip }, args);
+        }
         public QueryQueryBuilder WithTimelineItem(TimelineItemQueryBuilder timelineItemQueryBuilder, QueryBuilderParameter<string> id, string? alias = null, IncludeDirective? include = null, SkipDirective? skip = null) {
             var args = new List<QueryBuilderArgumentInfo> {
                 new QueryBuilderArgumentInfo { ArgumentName = "id", ArgumentValue = id }
             };
             return WithObjectField("timeline_item", alias, timelineItemQueryBuilder, new GraphQlDirective?[] { include, skip }, args);
         }
+        public QueryQueryBuilder WithTimeline(TimelineResponseQueryBuilder timelineResponseQueryBuilder, QueryBuilderParameter<string> id, string? alias = null, IncludeDirective? include = null, SkipDirective? skip = null) {
+            var args = new List<QueryBuilderArgumentInfo> {
+                new QueryBuilderArgumentInfo { ArgumentName = "id", ArgumentValue = id }
+            };
+            return WithObjectField("timeline", alias, timelineResponseQueryBuilder, new GraphQlDirective?[] { include, skip }, args);
+        }
+        public QueryQueryBuilder WithManagedColumn(ManagedColumnQueryBuilder managedColumnQueryBuilder, QueryBuilderParameter<IEnumerable<string>>? id = null, QueryBuilderParameter<IEnumerable<ManagedColumnState>>? state = null, string? alias = null, IncludeDirective? include = null, SkipDirective? skip = null) {
+            var args = new List<QueryBuilderArgumentInfo>();
+            if (id != null)
+                args.Add(new QueryBuilderArgumentInfo { ArgumentName = "id", ArgumentValue = id });
+            if (state != null)
+                args.Add(new QueryBuilderArgumentInfo { ArgumentName = "state", ArgumentValue = state });
+            return WithObjectField("managed_column", alias, managedColumnQueryBuilder, new GraphQlDirective?[] { include, skip }, args);
+        }
         public QueryQueryBuilder WithMarketplaceAppDiscounts(MarketplaceAppDiscountQueryBuilder marketplaceAppDiscountQueryBuilder, QueryBuilderParameter<string> appID, string? alias = null, IncludeDirective? include = null, SkipDirective? skip = null) {
             var args = new List<QueryBuilderArgumentInfo> {
                 new QueryBuilderArgumentInfo { ArgumentName = "app_id", ArgumentValue = appID }
             };
             return WithObjectField("marketplace_app_discounts", alias, marketplaceAppDiscountQueryBuilder, new GraphQlDirective?[] { include, skip }, args);
+        }
+        public QueryQueryBuilder WithAppSubscriptions(AppSubscriptionsQueryBuilder appSubscriptionsQueryBuilder, QueryBuilderParameter<string> appID, QueryBuilderParameter<SubscriptionStatus?>? status = null, QueryBuilderParameter<int?>? accountID = null, QueryBuilderParameter<string?>? cursor = null, QueryBuilderParameter<int?>? limit = null, string? alias = null, IncludeDirective? include = null, SkipDirective? skip = null) {
+            var args = new List<QueryBuilderArgumentInfo> {
+                new QueryBuilderArgumentInfo { ArgumentName = "app_id", ArgumentValue = appID }
+            };
+            if (status != null)
+                args.Add(new QueryBuilderArgumentInfo { ArgumentName = "status", ArgumentValue = status });
+            if (accountID != null)
+                args.Add(new QueryBuilderArgumentInfo { ArgumentName = "account_id", ArgumentValue = accountID });
+            if (cursor != null)
+                args.Add(new QueryBuilderArgumentInfo { ArgumentName = "cursor", ArgumentValue = cursor });
+            if (limit != null)
+                args.Add(new QueryBuilderArgumentInfo { ArgumentName = "limit", ArgumentValue = limit });
+            return WithObjectField("app_subscriptions", alias, appSubscriptionsQueryBuilder, new GraphQlDirective?[] { include, skip }, args);
+        }
+        public QueryQueryBuilder WithApp(AppTypeQueryBuilder appTypeQueryBuilder, QueryBuilderParameter<string> id, string? alias = null, IncludeDirective? include = null, SkipDirective? skip = null) {
+            var args = new List<QueryBuilderArgumentInfo> {
+                new QueryBuilderArgumentInfo { ArgumentName = "id", ArgumentValue = id }
+            };
+            return WithObjectField("app", alias, appTypeQueryBuilder, new GraphQlDirective?[] { include, skip }, args);
         }
         public QueryQueryBuilder WithAppInstalls(AppInstallQueryBuilder appInstallQueryBuilder, QueryBuilderParameter<string> appID, QueryBuilderParameter<string?>? accountID = null, QueryBuilderParameter<int?>? limit = null, QueryBuilderParameter<int?>? page = null, string? alias = null, IncludeDirective? include = null, SkipDirective? skip = null) {
             var args = new List<QueryBuilderArgumentInfo> {
@@ -220,16 +286,26 @@ namespace MondayApi.Schema {
         public QueryQueryBuilder(string? operationName = null) : base("query", operationName) { }
         public QueryQueryBuilder WithParameter<T>(GraphQlQueryParameter<T> parameter) =>
             WithParameterInternal(parameter);
+        public QueryQueryBuilder ExceptBlocks() =>
+            ExceptField("blocks");
+        public QueryQueryBuilder ExceptRemoteOptions() =>
+            ExceptField("remote_options");
         public QueryQueryBuilder ExceptUpdates() =>
             ExceptField("updates");
-        public QueryQueryBuilder WithCustomActivity(CustomActivityQueryBuilder customActivityQueryBuilder, string? alias = null, IncludeDirective? include = null, SkipDirective? skip = null) =>
-            WithObjectField("custom_activity", alias, customActivityQueryBuilder, new GraphQlDirective?[] { include, skip });
         public QueryQueryBuilder ExceptCustomActivity() =>
             ExceptField("custom_activity");
         public QueryQueryBuilder ExceptTimelineItem() =>
             ExceptField("timeline_item");
+        public QueryQueryBuilder ExceptTimeline() =>
+            ExceptField("timeline");
+        public QueryQueryBuilder ExceptManagedColumn() =>
+            ExceptField("managed_column");
         public QueryQueryBuilder ExceptMarketplaceAppDiscounts() =>
             ExceptField("marketplace_app_discounts");
+        public QueryQueryBuilder ExceptAppSubscriptions() =>
+            ExceptField("app_subscriptions");
+        public QueryQueryBuilder ExceptApp() =>
+            ExceptField("app");
         public QueryQueryBuilder WithAccount(AccountQueryBuilder accountQueryBuilder, string? alias = null, IncludeDirective? include = null, SkipDirective? skip = null) =>
             WithObjectField("account", alias, accountQueryBuilder, new GraphQlDirective?[] { include, skip });
         public QueryQueryBuilder ExceptAccount() =>
@@ -278,6 +354,10 @@ namespace MondayApi.Schema {
             ExceptField("teams");
         public QueryQueryBuilder ExceptUsers() =>
             ExceptField("users");
+        public QueryQueryBuilder ExceptWebhooks() =>
+            ExceptField("webhooks");
+        public QueryQueryBuilder ExceptWorkspaces() =>
+            ExceptField("workspaces");
         public QueryQueryBuilder WithVersion(VersionQueryBuilder versionQueryBuilder, string? alias = null, IncludeDirective? include = null, SkipDirective? skip = null) =>
             WithObjectField("version", alias, versionQueryBuilder, new GraphQlDirective?[] { include, skip });
         public QueryQueryBuilder ExceptVersion() =>
@@ -286,9 +366,13 @@ namespace MondayApi.Schema {
             WithObjectField("versions", alias, versionQueryBuilder, new GraphQlDirective?[] { include, skip });
         public QueryQueryBuilder ExceptVersions() =>
             ExceptField("versions");
-        public QueryQueryBuilder ExceptWebhooks() =>
-            ExceptField("webhooks");
-        public QueryQueryBuilder ExceptWorkspaces() =>
-            ExceptField("workspaces");
+        public QueryQueryBuilder WithPlatformAPI(PlatformAPIQueryBuilder platformAPIQueryBuilder, string? alias = null, IncludeDirective? include = null, SkipDirective? skip = null) =>
+            WithObjectField("platform_api", alias, platformAPIQueryBuilder, new GraphQlDirective?[] { include, skip });
+        public QueryQueryBuilder ExceptPlatformAPI() =>
+            ExceptField("platform_api");
+        public QueryQueryBuilder WithAccountRoles(AccountRoleQueryBuilder accountRoleQueryBuilder, string? alias = null, IncludeDirective? include = null, SkipDirective? skip = null) =>
+            WithObjectField("account_roles", alias, accountRoleQueryBuilder, new GraphQlDirective?[] { include, skip });
+        public QueryQueryBuilder ExceptAccountRoles() =>
+            ExceptField("account_roles");
     }
 }

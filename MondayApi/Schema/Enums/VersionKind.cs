@@ -10,6 +10,8 @@ namespace MondayApi.Schema {
         Dev,
         [EnumMember(Value = "maintenance")]
         Maintenance,
+        [EnumMember(Value = "old__maintenance")]
+        OldMaintenance,
         [EnumMember(Value = "old_previous_maintenance")]
         OldPreviousMaintenance,
         [EnumMember(Value = "previous_maintenance")]

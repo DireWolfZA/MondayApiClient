@@ -9,7 +9,9 @@ namespace MondayApi.Schema {
             new GraphQlFieldMetadata { Name = "board", IsComplex = true, QueryBuilderType = typeof(BoardQueryBuilder) },
             new GraphQlFieldMetadata { Name = "user", IsComplex = true, QueryBuilderType = typeof(UserQueryBuilder) },
             new GraphQlFieldMetadata { Name = "title" },
-            new GraphQlFieldMetadata { Name = "custom_activity_id" }
+            new GraphQlFieldMetadata { Name = "custom_activity_id" },
+            new GraphQlFieldMetadata { Name = "content" },
+            new GraphQlFieldMetadata { Name = "created_at" }
         };
 
         protected override string TypeName => "TimelineItem";
@@ -43,5 +45,13 @@ namespace MondayApi.Schema {
             WithScalarField("custom_activity_id", alias, new GraphQlDirective?[] { include, skip });
         public TimelineItemQueryBuilder ExceptCustomActivityID() =>
             ExceptField("custom_activity_id");
+        public TimelineItemQueryBuilder WithContent(string? alias = null, IncludeDirective? include = null, SkipDirective? skip = null) =>
+            WithScalarField("content", alias, new GraphQlDirective?[] { include, skip });
+        public TimelineItemQueryBuilder ExceptContent() =>
+            ExceptField("content");
+        public TimelineItemQueryBuilder WithCreatedAt(string? alias = null, IncludeDirective? include = null, SkipDirective? skip = null) =>
+            WithScalarField("created_at", alias, new GraphQlDirective?[] { include, skip });
+        public TimelineItemQueryBuilder ExceptCreatedAt() =>
+            ExceptField("created_at");
     }
 }

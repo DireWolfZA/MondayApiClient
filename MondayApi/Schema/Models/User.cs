@@ -16,6 +16,10 @@ namespace MondayApi.Schema {
         public DateTimeOffset? CreatedAt { get; set; }
         [JsonProperty("current_language")]
         public string? CurrentLanguage { get; set; }
+        [JsonProperty("custom_field_metas")]
+        public ICollection<CustomFieldMetas?>? CustomFieldMetas { get; set; }
+        [JsonProperty("custom_field_values")]
+        public ICollection<CustomFieldValue?>? CustomFieldValues { get; set; }
         public string? Email { get; set; }
         public bool? Enabled { get; set; }
         [JsonProperty("encrypt_api_token")]
@@ -60,5 +64,6 @@ namespace MondayApi.Schema {
         public string? URL { get; set; }
         [JsonProperty("utc_hours_diff")]
         public int? UTCHoursDiff { get; set; }
+        public string? Greeting { get; set; }
     }
 }

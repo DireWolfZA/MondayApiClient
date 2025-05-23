@@ -1,3 +1,4 @@
+using System;
 using Newtonsoft.Json;
 
 namespace MondayApi.Schema {
@@ -11,5 +12,8 @@ namespace MondayApi.Schema {
         public string? Title { get; set; }
         [JsonProperty("custom_activity_id")]
         public string? CustomActivityID { get; set; }
+        public string? Content { get; set; }
+        [JsonProperty("created_at")]
+        public DateTimeOffset? CreatedAt { get; set; }
     }
 }

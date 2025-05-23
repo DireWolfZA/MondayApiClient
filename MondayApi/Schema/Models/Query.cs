@@ -3,13 +3,22 @@ using Newtonsoft.Json;
 
 namespace MondayApi.Schema {
     public class Query {
+        public BlocksResult? Blocks { get; set; }
+        [JsonProperty("remote_options")]
+        public RemoteOptionsResponse? RemoteOptions { get; set; }
         public ICollection<Update>? Updates { get; set; }
         [JsonProperty("custom_activity")]
         public ICollection<CustomActivity>? CustomActivity { get; set; }
         [JsonProperty("timeline_item")]
         public TimelineItem? TimelineItem { get; set; }
+        public TimelineResponse? Timeline { get; set; }
+        [JsonProperty("managed_column")]
+        public ICollection<ManagedColumn>? ManagedColumn { get; set; }
         [JsonProperty("marketplace_app_discounts")]
         public ICollection<MarketplaceAppDiscount>? MarketplaceAppDiscounts { get; set; }
+        [JsonProperty("app_subscriptions")]
+        public AppSubscriptions? AppSubscriptions { get; set; }
+        public AppType? App { get; set; }
         public Account? Account { get; set; }
         [JsonProperty("app_installs")]
         public ICollection<AppInstall?>? AppInstalls { get; set; }
@@ -35,9 +44,13 @@ namespace MondayApi.Schema {
         public ICollection<Tag?>? Tags { get; set; }
         public ICollection<Team?>? Teams { get; set; }
         public ICollection<User?>? Users { get; set; }
-        public Version? Version { get; set; }
-        public ICollection<Version>? Versions { get; set; }
         public ICollection<Webhook?>? Webhooks { get; set; }
         public ICollection<Workspace?>? Workspaces { get; set; }
+        public Version? Version { get; set; }
+        public ICollection<Version>? Versions { get; set; }
+        [JsonProperty("platform_api")]
+        public PlatformAPI? PlatformAPI { get; set; }
+        [JsonProperty("account_roles")]
+        public ICollection<AccountRole>? AccountRoles { get; set; }
     }
 }

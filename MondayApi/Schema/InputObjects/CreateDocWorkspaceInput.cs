@@ -3,9 +3,17 @@ using Newtonsoft.Json;
 
 namespace MondayApi.Schema {
     public class CreateDocWorkspaceInput : IGraphQlInputObject {
+        private InputPropertyInfo _folderID;
         private InputPropertyInfo _kind;
         private InputPropertyInfo _name;
         private InputPropertyInfo _workspaceID;
+
+        [JsonProperty("folder_id")]
+        [JsonConverter(typeof(QueryBuilderParameterConverter<string?>))]
+        public QueryBuilderParameter<string?>? FolderID {
+            get => (QueryBuilderParameter<string?>?)_folderID.Value;
+            set => _folderID = new InputPropertyInfo { Name = "folder_id", Value = value };
+        }
 
         [JsonConverter(typeof(QueryBuilderParameterConverter<BoardKind?>))]
         public QueryBuilderParameter<BoardKind?>? Kind {
@@ -27,6 +35,7 @@ namespace MondayApi.Schema {
         }
 
         IEnumerable<InputPropertyInfo> IGraphQlInputObject.GetPropertyValues() {
+            if (_folderID.Name != null) yield return _folderID;
             if (_kind.Name != null) yield return _kind;
             if (_name.Name != null) yield return _name;
             if (_workspaceID.Name != null) yield return _workspaceID;

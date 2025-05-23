@@ -26,12 +26,9 @@ namespace MondayApi.Schema {
         }
 
         IEnumerable<InputPropertyInfo> IGraphQlInputObject.GetPropertyValues() {
-            if (_description.Name != null)
-                yield return _description;
-            if (_kind.Name != null)
-                yield return _kind;
-            if (_name.Name != null)
-                yield return _name;
+            if (_description.Name != null) yield return _description;
+            if (_kind.Name != null) yield return _kind;
+            if (_name.Name != null) yield return _name;
         }
     }
 }

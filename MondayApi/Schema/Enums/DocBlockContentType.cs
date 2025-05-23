@@ -24,6 +24,8 @@ namespace MondayApi.Schema {
         NoticeBox,
         [EnumMember(Value = "numbered_list")]
         NumberedList,
+        [EnumMember(Value = "page_break")]
+        PageBreak,
         [EnumMember(Value = "quote")]
         Quote,
         [EnumMember(Value = "small_title")]

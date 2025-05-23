@@ -25,6 +25,20 @@ namespace MondayApi.Schema {
         public CustomActivity? CreateCustomActivity { get; set; }
         [JsonProperty("delete_custom_activity")]
         public CustomActivity? DeleteCustomActivity { get; set; }
+        [JsonProperty("create_dropdown_managed_column")]
+        public DropdownManagedColumn? CreateDropdownManagedColumn { get; set; }
+        [JsonProperty("create_status_managed_column")]
+        public StatusManagedColumn? CreateStatusManagedColumn { get; set; }
+        [JsonProperty("update_dropdown_managed_column")]
+        public DropdownManagedColumn? UpdateDropdownManagedColumn { get; set; }
+        [JsonProperty("update_status_managed_column")]
+        public StatusManagedColumn? UpdateStatusManagedColumn { get; set; }
+        [JsonProperty("activate_managed_column")]
+        public ManagedColumn? ActivateManagedColumn { get; set; }
+        [JsonProperty("deactivate_managed_column")]
+        public ManagedColumn? DeactivateManagedColumn { get; set; }
+        [JsonProperty("delete_managed_column")]
+        public ManagedColumn? DeleteManagedColumn { get; set; }
         [JsonProperty("grant_marketplace_app_discount")]
         public GrantMarketplaceAppDiscountResult? GrantMarketplaceAppDiscount { get; set; }
         [JsonProperty("delete_marketplace_app_discount")]
@@ -130,6 +144,8 @@ namespace MondayApi.Schema {
         public ChangeTeamMembershipsResult? RemoveUsersFromTeam { get; set; }
         [JsonProperty("set_mock_app_subscription")]
         public AppSubscription? SetMockAppSubscription { get; set; }
+        [JsonProperty("update_assets_on_item")]
+        public Item? UpdateAssetsOnItem { get; set; }
         [JsonProperty("update_board")]
         public string? UpdateBoard { get; set; }
         [JsonProperty("update_doc_block")]
@@ -142,9 +158,27 @@ namespace MondayApi.Schema {
         public Workspace? UpdateWorkspace { get; set; }
         [JsonProperty("use_template")]
         public Template? UseTemplate { get; set; }
+        [JsonProperty("connect_project_to_portfolio")]
+        public ConnectProjectResult? ConnectProjectToPortfolio { get; set; }
         [JsonProperty("create_team")]
         public Team? CreateTeam { get; set; }
+        [JsonProperty("activate_users")]
+        public ActivateUsersResult? ActivateUsers { get; set; }
+        [JsonProperty("deactivate_users")]
+        public DeactivateUsersResult? DeactivateUsers { get; set; }
         [JsonProperty("delete_team")]
         public Team? DeleteTeam { get; set; }
+        [JsonProperty("update_users_role")]
+        public UpdateUsersRoleResult? UpdateUsersRole { get; set; }
+        [JsonProperty("assign_team_owners")]
+        public AssignTeamOwnersResult? AssignTeamOwners { get; set; }
+        [JsonProperty("remove_team_owners")]
+        public RemoveTeamOwnersResult? RemoveTeamOwners { get; set; }
+        [JsonProperty("update_email_domain")]
+        public UpdateEmailDomainResult? UpdateEmailDomain { get; set; }
+        [JsonProperty("update_multiple_users")]
+        public UpdateUserAttributesResult? UpdateMultipleUsers { get; set; }
+        [JsonProperty("invite_users")]
+        public InviteUsersResult? InviteUsers { get; set; }
     }
 }

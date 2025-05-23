@@ -20,6 +20,8 @@ namespace MondayApi.Schema {
         Date,
         [EnumMember(Value = "dependency")]
         Dependency,
+        [EnumMember(Value = "direct_doc")]
+        DirectDoc,
         [EnumMember(Value = "doc")]
         Doc,
         [EnumMember(Value = "dropdown")]

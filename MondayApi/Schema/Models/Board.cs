@@ -14,8 +14,9 @@ namespace MondayApi.Schema {
         public string? BoardFolderID { get; set; }
         [JsonProperty("board_kind")]
         public BoardKind? BoardKind { get; set; }
-        public ICollection<User?>? Collaborators { get; set; }
         public ICollection<Column?>? Columns { get; set; }
+        [JsonProperty("columns_namespace")]
+        public string? ColumnsNamespace { get; set; }
         public object? Communication { get; set; }
         public User? Creator { get; set; }
         public string? Description { get; set; }
@@ -24,6 +25,8 @@ namespace MondayApi.Schema {
         public string? ItemTerminology { get; set; }
         [JsonProperty("items_count")]
         public int? ItemsCount { get; set; }
+        [JsonProperty("items_limit")]
+        public int? ItemsLimit { get; set; }
         [JsonProperty("items_page")]
         public ItemsResponse? ItemsPage { get; set; }
         public string? Name { get; set; }

@@ -10,6 +10,7 @@ namespace MondayApi.Schema {
             new GraphQlFieldMetadata { Name = "creator", IsComplex = true, QueryBuilderType = typeof(UserQueryBuilder) },
             new GraphQlFieldMetadata { Name = "likes", IsComplex = true, QueryBuilderType = typeof(LikeQueryBuilder) },
             new GraphQlFieldMetadata { Name = "pinned_to_top", IsComplex = true, QueryBuilderType = typeof(UpdatePinQueryBuilder) },
+            new GraphQlFieldMetadata { Name = "viewers", IsComplex = true, QueryBuilderType = typeof(WatcherQueryBuilder) },
             new GraphQlFieldMetadata { Name = "created_at" },
             new GraphQlFieldMetadata { Name = "updated_at" },
             new GraphQlFieldMetadata { Name = "item_id" },
@@ -21,6 +22,15 @@ namespace MondayApi.Schema {
 
         protected override string TypeName => "Update";
         public override IReadOnlyList<GraphQlFieldMetadata> AllFields => AllFieldMetadata;
+
+        public UpdateQueryBuilder WithViewers(WatcherQueryBuilder watcherQueryBuilder, QueryBuilderParameter<int?>? limit = null, QueryBuilderParameter<int?>? page = null, string? alias = null, IncludeDirective? include = null, SkipDirective? skip = null) {
+            var args = new List<QueryBuilderArgumentInfo>();
+            if (limit != null)
+                args.Add(new QueryBuilderArgumentInfo { ArgumentName = "limit", ArgumentValue = limit });
+            if (page != null)
+                args.Add(new QueryBuilderArgumentInfo { ArgumentName = "page", ArgumentValue = page });
+            return WithObjectField("viewers", alias, watcherQueryBuilder, new GraphQlDirective?[] { include, skip }, args);
+        }
 
         public UpdateQueryBuilder WithID(string? alias = null, IncludeDirective? include = null, SkipDirective? skip = null) =>
             WithScalarField("id", alias, new GraphQlDirective?[] { include, skip });
@@ -50,6 +60,8 @@ namespace MondayApi.Schema {
             WithObjectField("pinned_to_top", alias, updatePinQueryBuilder, new GraphQlDirective?[] { include, skip });
         public UpdateQueryBuilder ExceptPinnedToTop() =>
             ExceptField("pinned_to_top");
+        public UpdateQueryBuilder ExceptViewers() =>
+            ExceptField("viewers");
         public UpdateQueryBuilder WithCreatedAt(string? alias = null, IncludeDirective? include = null, SkipDirective? skip = null) =>
             WithScalarField("created_at", alias, new GraphQlDirective?[] { include, skip });
         public UpdateQueryBuilder ExceptCreatedAt() =>

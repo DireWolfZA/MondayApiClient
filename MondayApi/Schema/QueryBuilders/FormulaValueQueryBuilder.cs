@@ -7,7 +7,8 @@ namespace MondayApi.Schema {
             new GraphQlFieldMetadata { Name = "id" },
             new GraphQlFieldMetadata { Name = "text" },
             new GraphQlFieldMetadata { Name = "type" },
-            new GraphQlFieldMetadata { Name = "value" }
+            new GraphQlFieldMetadata { Name = "value" },
+            new GraphQlFieldMetadata { Name = "display_value" }
         };
 
         protected override string TypeName => "FormulaValue";
@@ -33,5 +34,9 @@ namespace MondayApi.Schema {
             WithScalarField("value", alias, new GraphQlDirective?[] { include, skip });
         public FormulaValueQueryBuilder ExceptValue() =>
             ExceptField("value");
+        public FormulaValueQueryBuilder WithDisplayValue(string? alias = null, IncludeDirective? include = null, SkipDirective? skip = null) =>
+            WithScalarField("display_value", alias, new GraphQlDirective?[] { include, skip });
+        public FormulaValueQueryBuilder ExceptDisplayValue() =>
+            ExceptField("display_value");
     }
 }

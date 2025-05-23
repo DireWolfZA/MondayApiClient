@@ -10,6 +10,8 @@ namespace MondayApi.Schema {
             new GraphQlFieldMetadata { Name = "country_code" },
             new GraphQlFieldMetadata { Name = "created_at" },
             new GraphQlFieldMetadata { Name = "current_language" },
+            new GraphQlFieldMetadata { Name = "custom_field_metas", IsComplex = true, QueryBuilderType = typeof(CustomFieldMetasQueryBuilder) },
+            new GraphQlFieldMetadata { Name = "custom_field_values", IsComplex = true, QueryBuilderType = typeof(CustomFieldValueQueryBuilder) },
             new GraphQlFieldMetadata { Name = "email" },
             new GraphQlFieldMetadata { Name = "enabled" },
             new GraphQlFieldMetadata { Name = "encrypt_api_token" },
@@ -35,7 +37,8 @@ namespace MondayApi.Schema {
             new GraphQlFieldMetadata { Name = "time_zone_identifier" },
             new GraphQlFieldMetadata { Name = "title" },
             new GraphQlFieldMetadata { Name = "url" },
-            new GraphQlFieldMetadata { Name = "utc_hours_diff" }
+            new GraphQlFieldMetadata { Name = "utc_hours_diff" },
+            new GraphQlFieldMetadata { Name = "greeting" }
         };
 
         protected override string TypeName => "User";
@@ -76,6 +79,14 @@ namespace MondayApi.Schema {
             WithScalarField("current_language", alias, new GraphQlDirective?[] { include, skip });
         public UserQueryBuilder ExceptCurrentLanguage() =>
             ExceptField("current_language");
+        public UserQueryBuilder WithCustomFieldMetas(CustomFieldMetasQueryBuilder customFieldMetasQueryBuilder, string? alias = null, IncludeDirective? include = null, SkipDirective? skip = null) =>
+            WithObjectField("custom_field_metas", alias, customFieldMetasQueryBuilder, new GraphQlDirective?[] { include, skip });
+        public UserQueryBuilder ExceptCustomFieldMetas() =>
+            ExceptField("custom_field_metas");
+        public UserQueryBuilder WithCustomFieldValues(CustomFieldValueQueryBuilder customFieldValueQueryBuilder, string? alias = null, IncludeDirective? include = null, SkipDirective? skip = null) =>
+            WithObjectField("custom_field_values", alias, customFieldValueQueryBuilder, new GraphQlDirective?[] { include, skip });
+        public UserQueryBuilder ExceptCustomFieldValues() =>
+            ExceptField("custom_field_values");
         public UserQueryBuilder WithEmail(string? alias = null, IncludeDirective? include = null, SkipDirective? skip = null) =>
             WithScalarField("email", alias, new GraphQlDirective?[] { include, skip });
         public UserQueryBuilder ExceptEmail() =>
@@ -178,5 +189,9 @@ namespace MondayApi.Schema {
             WithScalarField("utc_hours_diff", alias, new GraphQlDirective?[] { include, skip });
         public UserQueryBuilder ExceptUtcHoursDiff() =>
             ExceptField("utc_hours_diff");
+        public UserQueryBuilder WithGreeting(string? alias = null, IncludeDirective? include = null, SkipDirective? skip = null) =>
+            WithScalarField("greeting", alias, new GraphQlDirective?[] { include, skip });
+        public UserQueryBuilder ExceptGreeting() =>
+            ExceptField("greeting");
     }
 }

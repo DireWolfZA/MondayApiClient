@@ -8,7 +8,7 @@ namespace MondayApi.Schema {
         public string? CreatorID { get; set; }
         public User? Creator { get; set; }
         [JsonProperty("reaction_type")]
-        public ReactionType? ReactionType { get; set; }
+        public string? ReactionType { get; set; }
         [JsonProperty("created_at")]
         public DateTimeOffset? CreatedAt { get; set; }
         [JsonProperty("updated_at")]

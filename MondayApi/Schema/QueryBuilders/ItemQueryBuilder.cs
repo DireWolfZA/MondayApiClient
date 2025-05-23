@@ -35,7 +35,6 @@ namespace MondayApi.Schema {
                 args.Add(new QueryBuilderArgumentInfo { ArgumentName = "page", ArgumentValue = page });
             if (ids != null)
                 args.Add(new QueryBuilderArgumentInfo { ArgumentName = "ids", ArgumentValue = ids });
-
             return WithObjectField("updates", alias, updateQueryBuilder, new GraphQlDirective?[] { include, skip }, args);
         }
         public ItemQueryBuilder WithAssets(AssetQueryBuilder assetQueryBuilder, QueryBuilderParameter<AssetsSource?>? assetsSource = null, QueryBuilderParameter<IEnumerable<string?>>? columnIDs = null, string? alias = null, IncludeDirective? include = null, SkipDirective? skip = null) {
@@ -44,7 +43,6 @@ namespace MondayApi.Schema {
                 args.Add(new QueryBuilderArgumentInfo { ArgumentName = "assets_source", ArgumentValue = assetsSource });
             if (columnIDs != null)
                 args.Add(new QueryBuilderArgumentInfo { ArgumentName = "column_ids", ArgumentValue = columnIDs });
-
             return WithObjectField("assets", alias, assetQueryBuilder, new GraphQlDirective?[] { include, skip }, args);
         }
         public ItemQueryBuilder WithColumnValues(ColumnValueQueryBuilder columnValueQueryBuilder, QueryBuilderParameter<IEnumerable<string>>? ids = null, QueryBuilderParameter<IEnumerable<ColumnType>>? types = null, string? alias = null, IncludeDirective? include = null, SkipDirective? skip = null) {
@@ -53,7 +51,6 @@ namespace MondayApi.Schema {
                 args.Add(new QueryBuilderArgumentInfo { ArgumentName = "ids", ArgumentValue = ids });
             if (types != null)
                 args.Add(new QueryBuilderArgumentInfo { ArgumentName = "types", ArgumentValue = types });
-
             return WithObjectField("column_values", alias, columnValueQueryBuilder, new GraphQlDirective?[] { include, skip }, args);
         }
         public ItemQueryBuilder WithLinkedItems(ItemQueryBuilder itemQueryBuilder, QueryBuilderParameter<string> linkToItemColumnID, QueryBuilderParameter<string> linkedBoardID, string? alias = null, IncludeDirective? include = null, SkipDirective? skip = null) {

@@ -15,6 +15,7 @@ namespace MondayApi.Schema {
         public ICollection<Like>? Likes { get; set; }
         [JsonProperty("pinned_to_top")]
         public ICollection<UpdatePin>? PinnedToTop { get; set; }
+        public ICollection<Watcher>? Viewers { get; set; }
         [JsonProperty("created_at")]
         public DateTimeOffset? CreatedAt { get; set; }
         [JsonProperty("updated_at")]

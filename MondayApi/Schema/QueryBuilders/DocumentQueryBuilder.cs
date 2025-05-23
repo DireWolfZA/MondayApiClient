@@ -27,7 +27,6 @@ namespace MondayApi.Schema {
                 args.Add(new QueryBuilderArgumentInfo { ArgumentName = "limit", ArgumentValue = limit });
             if (page != null)
                 args.Add(new QueryBuilderArgumentInfo { ArgumentName = "page", ArgumentValue = page });
-
             return WithObjectField("blocks", alias, documentBlockQueryBuilder, new GraphQlDirective?[] { include, skip }, args);
         }
 

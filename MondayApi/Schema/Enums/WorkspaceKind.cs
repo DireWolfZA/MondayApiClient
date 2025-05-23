@@ -5,6 +5,8 @@ namespace MondayApi.Schema {
         [EnumMember(Value = "closed")]
         Closed,
         [EnumMember(Value = "open")]
-        Open
+        Open,
+        [EnumMember(Value = "template")]
+        Template
     }
 }
