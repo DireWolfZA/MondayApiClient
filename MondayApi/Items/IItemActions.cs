@@ -4,13 +4,13 @@ using MondayApi.Schema;
 
 namespace MondayApi.Items {
     public interface IItemActions {
-        Task<ItemsResponse?> GetByBoard(string cursor, int numPerPage, string boardID,
+        Task<ItemsResponse?> GetByBoard(string? cursor, int numPerPage, string boardID,
             bool withColumnValues = false, IEnumerable<string>? columnIDs = null, ItemsQuery? queryParams = null);
-        Task<ItemsResponse> GetByBoardColumnValues(string cursor, int numPerPage, string boardID,
+        Task<ItemsResponse> GetByBoardColumnValues(string? cursor, int numPerPage, string boardID,
             bool withColumnValues = false, IEnumerable<string>? columnIDs = null, IEnumerable<ItemsPageByColumnValuesQuery>? columnFilters = null);
         Task<ItemsResponse> GetByBoardNextPage(string cursor, int numPerPage,
             bool withColumnValues = false, IEnumerable<string>? columnIDs = null);
-        Task<ItemsResponse?> GetByBoardGroup(string cursor, int numPerPage, string boardID, string groupID,
+        Task<ItemsResponse?> GetByBoardGroup(string? cursor, int numPerPage, string boardID, string groupID,
             bool withColumnValues = false, IEnumerable<string>? columnIDs = null);
         Task<Item?> GetOne(string id,
             bool withColumnValues = false, IEnumerable<string>? columnIDs = null);

@@ -5,7 +5,7 @@ Current API version is **`2025-04`** - this can be seen in [MondayApiClient.cs](
 
 ---
 - Built using `netstandard2.0` - compatible with .Net Framework
-- Uses [GraphQL.Client](https://github.com/graphql-dotnet/graphql-client) for most request functionality, however MondayAPI returns non-GraphQL-standard errors so a [special serializer](/MondayApi/Utils/DebugSerializer.cs) is used (thanks to [this comment](https://github.com/graphql-dotnet/graphql-client/issues/527#issuecomment-1655503961))
+- Uses [GraphQL.Client](https://github.com/graphql-dotnet/graphql-client) for most request functionality, however MondayAPI returns non-GraphQL-standard errors so a [custom serializer](/MondayApi/Utils/DebugSerializer.cs) is used (thanks to [this comment](https://github.com/graphql-dotnet/graphql-client/issues/527#issuecomment-1655503961))
 - I use [Husqvik/GraphQlClientGenerator](https://github.com/Husqvik/GraphQlClientGenerator) to generate the [Schema](/MondayApi/Schema) used to generate requests - install with `dotnet tool install --global graphqlclientgenerator.tool` and see [generate api schema.cmd](/MondayApi/generate%20api%20schema.cmd)
   - (version 0.9.28+ doesn't work - use version 0.9.27: `dotnet tool update --global graphqlclientgenerator.tool --version 0.9.27`)
   - (error is: `System.InvalidOperationException: Status code: 400 (BadRequest); content: {"errors":[{"message":"Cannot query field \"isOneOf\" on type \"__Type\".","locations":[{"line":51,"column":5}],"extensions":{"code":"GRAPHQL_VALIDATION_FAILED"}}]}`)
