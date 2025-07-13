@@ -10,7 +10,7 @@ namespace MondayApi.Schema {
         [JsonProperty("creator_id")]
         public string? CreatorID { get; set; }
         [JsonProperty("edited_at")]
-        public object? EditedAt { get; set; }
+        public DateTimeOffset? EditedAt { get; set; }
         public User? Creator { get; set; }
         public ICollection<Like>? Likes { get; set; }
         [JsonProperty("pinned_to_top")]
