@@ -11,16 +11,22 @@ namespace MondayApi.Updates {
             this.client = client;
         }
 
-        private UpdateQueryBuilder getUpdateQueryBuilder(bool includeReplies) {
+        private UpdateQueryBuilder getUpdateQueryBuilder(bool includeReplies, bool includeAssets) {
             var updateQueryBuilder = new UpdateQueryBuilder().WithAllScalarFields();
+            // when client updates past 2025-07: https://developer.monday.com/api-reference/changelog/new-field-to-retrieve-assets-on-reply-object
+            //if (includeReplies && includeAssets)
+            //    updateQueryBuilder = updateQueryBuilder.WithReplies(new ReplyQueryBuilder().WithAllScalarFields().WithAssets(new AssetQueryBuilder().WithAllScalarFields()));
+            //else if (includeReplies)
             if (includeReplies)
                 updateQueryBuilder = updateQueryBuilder.WithReplies(new ReplyQueryBuilder().WithAllScalarFields());
+            if (includeAssets)
+                updateQueryBuilder = updateQueryBuilder.WithAssets(new AssetQueryBuilder().WithAllScalarFields());
             return updateQueryBuilder;
         }
 
-        public async Task<IEnumerable<Update>> Get(int pageNumber, int numPerPage, bool includeReplies = false) {
+        public async Task<IEnumerable<Update>> Get(int pageNumber, int numPerPage, bool includeReplies = false, bool includeAssets = false) {
             var query = new QueryQueryBuilder().WithUpdates(
-                getUpdateQueryBuilder(includeReplies),
+                getUpdateQueryBuilder(includeReplies, includeAssets),
                 page: pageNumber,
                 limit: numPerPage
             );
@@ -28,10 +34,10 @@ namespace MondayApi.Updates {
             return response.Updates!;
         }
 
-        public async Task<IEnumerable<Update>?> GetByBoard(int pageNumber, int numPerPage, string boardID, bool includeReplies = false) {
+        public async Task<IEnumerable<Update>?> GetByBoard(int pageNumber, int numPerPage, string boardID, bool includeReplies = false, bool includeAssets = false) {
             var query = new QueryQueryBuilder().WithBoards(
                 new BoardQueryBuilder().WithUpdates(
-                    getUpdateQueryBuilder(includeReplies),
+                    getUpdateQueryBuilder(includeReplies, includeAssets),
                     page: pageNumber,
                     limit: numPerPage
                 ),
@@ -41,10 +47,10 @@ namespace MondayApi.Updates {
             return response.Boards?.FirstOrDefault()?.Updates;
         }
 
-        public async Task<IEnumerable<Update>?> GetByItem(int pageNumber, int numPerPage, string itemID, bool includeReplies = false) {
+        public async Task<IEnumerable<Update>?> GetByItem(int pageNumber, int numPerPage, string itemID, bool includeReplies = false, bool includeAssets = false) {
             var query = new QueryQueryBuilder().WithItems(
                 new ItemQueryBuilder().WithUpdates(
-                    getUpdateQueryBuilder(includeReplies),
+                    getUpdateQueryBuilder(includeReplies, includeAssets),
                     page: pageNumber,
                     limit: numPerPage
                 ),
@@ -59,7 +65,7 @@ namespace MondayApi.Updates {
             Utils.Utils.RequireArgument(nameof(body), body);
 
             var mutation = new MutationQueryBuilder().WithCreateUpdate(
-                getUpdateQueryBuilder(true),
+                getUpdateQueryBuilder(true, true),
                 body: body,
                 itemID: itemID,
                 parentID: null
@@ -73,7 +79,7 @@ namespace MondayApi.Updates {
             Utils.Utils.RequireArgument(nameof(body), body);
 
             var mutation = new MutationQueryBuilder().WithCreateUpdate(
-                getUpdateQueryBuilder(true),
+                getUpdateQueryBuilder(true, true),
                 body: body,
                 itemID: null,
                 parentID: parentUpdateID
@@ -94,7 +100,7 @@ namespace MondayApi.Updates {
 
         public async Task<Update> Delete(string updateID) {
             var mutation = new MutationQueryBuilder().WithDeleteUpdate(
-                getUpdateQueryBuilder(true),
+                getUpdateQueryBuilder(true, true),
                 id: updateID
             );
             var response = await client.RunMutation(mutation);
