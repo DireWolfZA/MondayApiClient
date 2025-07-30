@@ -11,11 +11,15 @@ namespace MondayApi.Users {
             this.client = client;
         }
 
-        public async Task<IEnumerable<User>> Get(int? pageNumber = null, int? numPerPage = null) {
+        private UserQueryBuilder getUserQueryBuilder() =>
+            new UserQueryBuilder().WithAllScalarFields().ExceptEncryptApiToken().ExceptGreeting();
+
+        public async Task<IEnumerable<User>> Get(int? pageNumber = null, int? numPerPage = null, bool? inactive = null) {
             var query = new QueryQueryBuilder().WithUsers(
-                new UserQueryBuilder().WithAllScalarFields().ExceptEncryptApiToken().ExceptGreeting(),
+                getUserQueryBuilder(),
                 page: pageNumber,
-                limit: numPerPage
+                limit: numPerPage,
+                nonActive: inactive
             );
             var response = await client.RunQuery(query);
             return response.Users!;
@@ -23,11 +27,26 @@ namespace MondayApi.Users {
 
         public async Task<User?> GetOne(string id) {
             var query = new QueryQueryBuilder().WithUsers(
-                new UserQueryBuilder().WithAllScalarFields().ExceptEncryptApiToken().ExceptGreeting(),
+                getUserQueryBuilder(),
                 ids: new string[] { id }
             );
             var response = await client.RunQuery(query);
             return response.Users?.FirstOrDefault();
+        }
+
+        public async Task<User?> GetOneIncludeInactive(string id) {
+            var query = new QueryQueryBuilder().WithUsers(
+                getUserQueryBuilder(),
+                ids: new string[] { id },
+                alias: "getActiveUser"
+            ).WithUsers(
+                getUserQueryBuilder(),
+                ids: new string[] { id },
+                nonActive: true,
+                alias: "getInactiveUser"
+            );
+            var response = await client.Run<Dictionary<string, List<User>>>(query);
+            return response.Values.FirstOrDefault(q => q.Count > 0).FirstOrDefault();
         }
     }
 }
