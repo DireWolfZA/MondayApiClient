@@ -45,10 +45,9 @@ namespace MondayApi {
                 Console.WriteLine(query);
             }
 #endif
-            if (query == null)
-                query = queryOrMutationBuilder.Build();
+            query ??= queryOrMutationBuilder.Build();
 
-            return Run<T>(new GraphQL.GraphQLRequest(query));
+            return Run<T>(new Utils.MondayQueryRequest(query));
         }
         public Task<T> RunFileMutation<T>(GraphQlQueryBuilder queryBuilder, System.IO.Stream file, string filename) {
             string? query = null;
@@ -58,8 +57,7 @@ namespace MondayApi {
                 Console.WriteLine(query);
             }
 #endif
-            if (query == null)
-                query = queryBuilder.Build();
+            query ??= queryBuilder.Build();
 
             return Run<T>(new Utils.MondayFileUploadRequest(query, file, filename));
         }
