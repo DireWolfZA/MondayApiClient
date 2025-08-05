@@ -32,6 +32,9 @@ namespace MondayApi {
 
                 if (ErrorData?.Path?.Count > 0)
                     lineData.Add($"Path: {string.Join(".", ErrorData.Path.Select(p => p.ToString()))}");
+                if (ErrorData?.Extensions != null)
+                    foreach (var extension in ErrorData.Extensions)
+                        lineData.Add($"Extension: {extension.Key}: {extension.Value}");
                 if (MondayApiError?.ErrorCode != null)
                     lineData.Add($"Error Code: {MondayApiError.ErrorCode}");
                 if (MondayApiError?.StatusCode != null)

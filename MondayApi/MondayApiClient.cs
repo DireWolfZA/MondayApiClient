@@ -81,6 +81,11 @@ namespace MondayApi {
 #endif
             }
 
+#if DEBUG
+            if (Environment.GetEnvironmentVariable(EnvironmentDebugShowResponse) != null)
+                Console.WriteLine(queryResponse);
+#endif
+
             if (response.Errors != null)
                 throw MondayException.FromErrors(response.Errors);
             if (response.Data == null) {
@@ -88,11 +93,6 @@ namespace MondayApi {
                     throw new AggregateException(new MondayException(mondayApiError));
                 throw new AggregateException(new MondayException(queryResponse));
             }
-
-#if DEBUG
-            if (Environment.GetEnvironmentVariable(EnvironmentDebugShowResponse) != null)
-                Console.WriteLine(queryResponse);
-#endif
 
             return response.Data;
         }
