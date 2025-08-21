@@ -1,7 +1,9 @@
-# MondayApiClient [![Build status](https://ci.appveyor.com/api/projects/status/dud56wnemhwb39m7)](https://ci.appveyor.com/project/Walkman100/MondayApiClient)
+# Monday API Client [![Build status](https://ci.appveyor.com/api/projects/status/dud56wnemhwb39m7)](https://ci.appveyor.com/project/Walkman100/MondayApiClient)
 A C# wrapper for the [Monday.com API](https://developer.monday.com/api-reference/reference)
 
 Current API version is **`2025-04`** - this can be seen in [MondayApiClient.cs](/MondayApi/MondayApiClient.cs)
+
+NuGet package: https://www.nuget.org/packages/DireWolf.MondayApi
 
 ---
 - Built using `netstandard2.0` - compatible with .Net Framework
