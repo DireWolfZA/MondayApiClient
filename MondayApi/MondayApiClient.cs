@@ -9,6 +9,7 @@ using MondayApi.Groups;
 using MondayApi.Items;
 using MondayApi.Schema;
 using MondayApi.Subitems;
+using MondayApi.TimelineItems;
 using MondayApi.Updates;
 using MondayApi.Users;
 using MondayApi.Workspaces;
@@ -102,6 +103,7 @@ namespace MondayApi {
         public IGroupActions Groups => new GroupActions(this);
         public IItemActions Items => new ItemActions(this);
         public ISubitemActions Subitems => new SubitemActions(this);
+        public ITimelineItemActions TimelineItems => new TimelineItemActions(this);
         public IUpdateActions Updates => new UpdateActions(this);
         public IUserActions Users => new UserActions(this);
         public IWorkspaceActions Workspaces => new WorkspaceActions(this);
