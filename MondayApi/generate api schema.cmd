@@ -7,4 +7,4 @@ graphql-client-generator --serviceUrl "https://api.monday.com/v2" ^
   --csharpVersion CSharp6 ^
   --nullableReferences true ^
   --header "Authorization:%1" ^
-  --header "API-Version: 2025-04"
+  --header "API-Version: 2025-10"

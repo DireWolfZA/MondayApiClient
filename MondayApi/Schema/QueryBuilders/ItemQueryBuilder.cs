@@ -11,6 +11,7 @@ namespace MondayApi.Schema {
             new GraphQlFieldMetadata { Name = "created_at" },
             new GraphQlFieldMetadata { Name = "creator", IsComplex = true, QueryBuilderType = typeof(UserQueryBuilder) },
             new GraphQlFieldMetadata { Name = "creator_id" },
+            new GraphQlFieldMetadata { Name = "description", IsComplex = true, QueryBuilderType = typeof(ItemDescriptionQueryBuilder) },
             new GraphQlFieldMetadata { Name = "email" },
             new GraphQlFieldMetadata { Name = "group", IsComplex = true, QueryBuilderType = typeof(GroupQueryBuilder) },
             new GraphQlFieldMetadata { Name = "linked_items", RequiresParameters = true, IsComplex = true, QueryBuilderType = typeof(ItemQueryBuilder) },
@@ -27,6 +28,10 @@ namespace MondayApi.Schema {
         protected override string TypeName => "Item";
         public override IReadOnlyList<GraphQlFieldMetadata> AllFields => AllFieldMetadata;
 
+        public ItemQueryBuilder WithID(string? alias = null, IncludeDirective? include = null, SkipDirective? skip = null) =>
+            WithScalarField("id", alias, new GraphQlDirective?[] { include, skip });
+        public ItemQueryBuilder ExceptID() =>
+            ExceptField("id");
         public ItemQueryBuilder WithUpdates(UpdateQueryBuilder updateQueryBuilder, QueryBuilderParameter<int?>? limit = null, QueryBuilderParameter<int?>? page = null, QueryBuilderParameter<IEnumerable<string>>? ids = null, string? alias = null, IncludeDirective? include = null, SkipDirective? skip = null) {
             var args = new List<QueryBuilderArgumentInfo>();
             if (limit != null)
@@ -37,6 +42,8 @@ namespace MondayApi.Schema {
                 args.Add(new QueryBuilderArgumentInfo { ArgumentName = "ids", ArgumentValue = ids });
             return WithObjectField("updates", alias, updateQueryBuilder, new GraphQlDirective?[] { include, skip }, args);
         }
+        public ItemQueryBuilder ExceptUpdates() =>
+            ExceptField("updates");
         public ItemQueryBuilder WithAssets(AssetQueryBuilder assetQueryBuilder, QueryBuilderParameter<AssetsSource?>? assetsSource = null, QueryBuilderParameter<IEnumerable<string?>>? columnIDs = null, string? alias = null, IncludeDirective? include = null, SkipDirective? skip = null) {
             var args = new List<QueryBuilderArgumentInfo>();
             if (assetsSource != null)
@@ -45,34 +52,22 @@ namespace MondayApi.Schema {
                 args.Add(new QueryBuilderArgumentInfo { ArgumentName = "column_ids", ArgumentValue = columnIDs });
             return WithObjectField("assets", alias, assetQueryBuilder, new GraphQlDirective?[] { include, skip }, args);
         }
-        public ItemQueryBuilder WithColumnValues(ColumnValueQueryBuilder columnValueQueryBuilder, QueryBuilderParameter<IEnumerable<string>>? ids = null, QueryBuilderParameter<IEnumerable<ColumnType>>? types = null, string? alias = null, IncludeDirective? include = null, SkipDirective? skip = null) {
-            var args = new List<QueryBuilderArgumentInfo>();
-            if (ids != null)
-                args.Add(new QueryBuilderArgumentInfo { ArgumentName = "ids", ArgumentValue = ids });
-            if (types != null)
-                args.Add(new QueryBuilderArgumentInfo { ArgumentName = "types", ArgumentValue = types });
-            return WithObjectField("column_values", alias, columnValueQueryBuilder, new GraphQlDirective?[] { include, skip }, args);
-        }
-        public ItemQueryBuilder WithLinkedItems(ItemQueryBuilder itemQueryBuilder, QueryBuilderParameter<string> linkToItemColumnID, QueryBuilderParameter<string> linkedBoardID, string? alias = null, IncludeDirective? include = null, SkipDirective? skip = null) {
-            var args = new List<QueryBuilderArgumentInfo> {
-                new QueryBuilderArgumentInfo { ArgumentName = "link_to_item_column_id", ArgumentValue = linkToItemColumnID },
-                new QueryBuilderArgumentInfo { ArgumentName = "linked_board_id", ArgumentValue = linkedBoardID }
-            };
-            return WithObjectField("linked_items", alias, itemQueryBuilder, new GraphQlDirective?[] { include, skip }, args);
-        }
-
-        public ItemQueryBuilder WithID(string? alias = null, IncludeDirective? include = null, SkipDirective? skip = null) =>
-            WithScalarField("id", alias, new GraphQlDirective?[] { include, skip });
-        public ItemQueryBuilder ExceptID() =>
-            ExceptField("id");
-        public ItemQueryBuilder ExceptUpdates() =>
-            ExceptField("updates");
         public ItemQueryBuilder ExceptAssets() =>
             ExceptField("assets");
         public ItemQueryBuilder WithBoard(BoardQueryBuilder boardQueryBuilder, string? alias = null, IncludeDirective? include = null, SkipDirective? skip = null) =>
             WithObjectField("board", alias, boardQueryBuilder, new GraphQlDirective?[] { include, skip });
         public ItemQueryBuilder ExceptBoard() =>
             ExceptField("board");
+        public ItemQueryBuilder WithColumnValues(ColumnValueQueryBuilder columnValueQueryBuilder, QueryBuilderParameter<IEnumerable<ColumnCapability>>? capabilities = null, QueryBuilderParameter<IEnumerable<string>>? ids = null, QueryBuilderParameter<IEnumerable<ColumnType>>? types = null, string? alias = null, IncludeDirective? include = null, SkipDirective? skip = null) {
+            var args = new List<QueryBuilderArgumentInfo>();
+            if (capabilities != null)
+                args.Add(new QueryBuilderArgumentInfo { ArgumentName = "capabilities", ArgumentValue = capabilities });
+            if (ids != null)
+                args.Add(new QueryBuilderArgumentInfo { ArgumentName = "ids", ArgumentValue = ids });
+            if (types != null)
+                args.Add(new QueryBuilderArgumentInfo { ArgumentName = "types", ArgumentValue = types });
+            return WithObjectField("column_values", alias, columnValueQueryBuilder, new GraphQlDirective?[] { include, skip }, args);
+        }
         public ItemQueryBuilder ExceptColumnValues() =>
             ExceptField("column_values");
         public ItemQueryBuilder WithCreatedAt(string? alias = null, IncludeDirective? include = null, SkipDirective? skip = null) =>
@@ -87,6 +82,10 @@ namespace MondayApi.Schema {
             WithScalarField("creator_id", alias, new GraphQlDirective?[] { include, skip });
         public ItemQueryBuilder ExceptCreatorID() =>
             ExceptField("creator_id");
+        public ItemQueryBuilder WithDescription(ItemDescriptionQueryBuilder itemDescriptionQueryBuilder, string? alias = null, IncludeDirective? include = null, SkipDirective? skip = null) =>
+            WithObjectField("description", alias, itemDescriptionQueryBuilder, new GraphQlDirective?[] { include, skip });
+        public ItemQueryBuilder ExceptDescription() =>
+            ExceptField("description");
         public ItemQueryBuilder WithEmail(string? alias = null, IncludeDirective? include = null, SkipDirective? skip = null) =>
             WithScalarField("email", alias, new GraphQlDirective?[] { include, skip });
         public ItemQueryBuilder ExceptEmail() =>
@@ -95,6 +94,12 @@ namespace MondayApi.Schema {
             WithObjectField("group", alias, groupQueryBuilder, new GraphQlDirective?[] { include, skip });
         public ItemQueryBuilder ExceptGroup() =>
             ExceptField("group");
+        public ItemQueryBuilder WithLinkedItems(ItemQueryBuilder itemQueryBuilder, QueryBuilderParameter<string> linkToItemColumnID, QueryBuilderParameter<string> linkedBoardID, string? alias = null, IncludeDirective? include = null, SkipDirective? skip = null) {
+            var args = new List<QueryBuilderArgumentInfo>();
+            args.Add(new QueryBuilderArgumentInfo { ArgumentName = "link_to_item_column_id", ArgumentValue = linkToItemColumnID });
+            args.Add(new QueryBuilderArgumentInfo { ArgumentName = "linked_board_id", ArgumentValue = linkedBoardID });
+            return WithObjectField("linked_items", alias, itemQueryBuilder, new GraphQlDirective?[] { include, skip }, args);
+        }
         public ItemQueryBuilder ExceptLinkedItems() =>
             ExceptField("linked_items");
         public ItemQueryBuilder WithName(string? alias = null, IncludeDirective? include = null, SkipDirective? skip = null) =>

@@ -14,12 +14,22 @@ namespace MondayApi.Schema {
         protected override string TypeName => "Team";
         public override IReadOnlyList<GraphQlFieldMetadata> AllFields => AllFieldMetadata;
 
+        public TeamQueryBuilder WithID(string? alias = null, IncludeDirective? include = null, SkipDirective? skip = null) =>
+            WithScalarField("id", alias, new GraphQlDirective?[] { include, skip });
+        public TeamQueryBuilder ExceptID() =>
+            ExceptField("id");
         public TeamQueryBuilder WithOwners(UserQueryBuilder userQueryBuilder, QueryBuilderParameter<IEnumerable<string>>? ids = null, string? alias = null, IncludeDirective? include = null, SkipDirective? skip = null) {
             var args = new List<QueryBuilderArgumentInfo>();
             if (ids != null)
                 args.Add(new QueryBuilderArgumentInfo { ArgumentName = "ids", ArgumentValue = ids });
             return WithObjectField("owners", alias, userQueryBuilder, new GraphQlDirective?[] { include, skip }, args);
         }
+        public TeamQueryBuilder ExceptOwners() =>
+            ExceptField("owners");
+        public TeamQueryBuilder WithPictureURL(string? alias = null, IncludeDirective? include = null, SkipDirective? skip = null) =>
+            WithScalarField("picture_url", alias, new GraphQlDirective?[] { include, skip });
+        public TeamQueryBuilder ExceptPictureURL() =>
+            ExceptField("picture_url");
         public TeamQueryBuilder WithUsers(UserQueryBuilder userQueryBuilder, QueryBuilderParameter<IEnumerable<string?>>? emails = null, QueryBuilderParameter<IEnumerable<string>>? ids = null, QueryBuilderParameter<UserKind?>? kind = null, QueryBuilderParameter<int?>? limit = null, QueryBuilderParameter<string?>? name = null, QueryBuilderParameter<bool?>? newestFirst = null, QueryBuilderParameter<bool?>? nonActive = null, QueryBuilderParameter<int?>? page = null, string? alias = null, IncludeDirective? include = null, SkipDirective? skip = null) {
             var args = new List<QueryBuilderArgumentInfo>();
             if (emails != null)
@@ -40,17 +50,6 @@ namespace MondayApi.Schema {
                 args.Add(new QueryBuilderArgumentInfo { ArgumentName = "page", ArgumentValue = page });
             return WithObjectField("users", alias, userQueryBuilder, new GraphQlDirective?[] { include, skip }, args);
         }
-
-        public TeamQueryBuilder WithID(string? alias = null, IncludeDirective? include = null, SkipDirective? skip = null) =>
-            WithScalarField("id", alias, new GraphQlDirective?[] { include, skip });
-        public TeamQueryBuilder ExceptID() =>
-            ExceptField("id");
-        public TeamQueryBuilder ExceptOwners() =>
-            ExceptField("owners");
-        public TeamQueryBuilder WithPictureURL(string? alias = null, IncludeDirective? include = null, SkipDirective? skip = null) =>
-            WithScalarField("picture_url", alias, new GraphQlDirective?[] { include, skip });
-        public TeamQueryBuilder ExceptPictureURL() =>
-            ExceptField("picture_url");
         public TeamQueryBuilder ExceptUsers() =>
             ExceptField("users");
         public TeamQueryBuilder WithName(string? alias = null, IncludeDirective? include = null, SkipDirective? skip = null) =>

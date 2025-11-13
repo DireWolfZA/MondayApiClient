@@ -20,8 +20,6 @@ namespace MondayApi.Schema {
         Date,
         [EnumMember(Value = "dependency")]
         Dependency,
-        [EnumMember(Value = "direct_doc")]
-        DirectDoc,
         [EnumMember(Value = "doc")]
         Doc,
         [EnumMember(Value = "dropdown")]
@@ -41,7 +39,7 @@ namespace MondayApi.Schema {
         [EnumMember(Value = "item_assignees")]
         ItemAssignees,
         [EnumMember(Value = "item_id")]
-        ItemID,
+        ItemId,
         [EnumMember(Value = "last_updated")]
         LastUpdated,
         [EnumMember(Value = "link")]
@@ -52,14 +50,10 @@ namespace MondayApi.Schema {
         LongText,
         [EnumMember(Value = "mirror")]
         Mirror,
-        [EnumMember(Value = "name")]
-        Name,
         [EnumMember(Value = "numbers")]
         Numbers,
         [EnumMember(Value = "people")]
         People,
-        [EnumMember(Value = "person")]
-        Person,
         [EnumMember(Value = "phone")]
         Phone,
         [EnumMember(Value = "progress")]
@@ -68,25 +62,31 @@ namespace MondayApi.Schema {
         Rating,
         [EnumMember(Value = "status")]
         Status,
-        [EnumMember(Value = "subtasks")]
-        Subtasks,
         [EnumMember(Value = "tags")]
         Tags,
         [EnumMember(Value = "team")]
         Team,
         [EnumMember(Value = "text")]
         Text,
-        [EnumMember(Value = "time_tracking")]
-        TimeTracking,
         [EnumMember(Value = "timeline")]
         Timeline,
-        [EnumMember(Value = "unsupported")]
-        Unsupported,
+        [EnumMember(Value = "time_tracking")]
+        TimeTracking,
         [EnumMember(Value = "vote")]
         Vote,
         [EnumMember(Value = "week")]
         Week,
         [EnumMember(Value = "world_clock")]
-        WorldClock
+        WorldClock,
+        [EnumMember(Value = "unsupported")]
+        Unsupported,
+        [EnumMember(Value = "name")]
+        Name,
+        [EnumMember(Value = "person")]
+        Person,
+        [EnumMember(Value = "direct_doc")]
+        DirectDoc,
+        [EnumMember(Value = "subtasks")]
+        Subtasks
     }
 }

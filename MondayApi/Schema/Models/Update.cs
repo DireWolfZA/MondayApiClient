@@ -22,6 +22,8 @@ namespace MondayApi.Schema {
         public DateTimeOffset? UpdatedAt { get; set; }
         [JsonProperty("item_id")]
         public string? ItemID { get; set; }
+        [JsonProperty("original_creation_date")]
+        public string? OriginalCreationDate { get; set; }
         public Item? Item { get; set; }
         public ICollection<Reply>? Replies { get; set; }
         public ICollection<Asset?>? Assets { get; set; }

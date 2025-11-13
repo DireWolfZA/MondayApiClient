@@ -13,5 +13,6 @@ namespace MondayApi.Schema {
         public string? AppID { get; set; }
         public string? Type { get; set; }
         public object? Data { get; set; }
+        public object? Deployment { get; set; }
     }
 }

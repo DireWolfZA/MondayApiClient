@@ -44,14 +44,14 @@ namespace MondayApi.Columns {
         public async Task<string?> GetSubitemsBoardID(string boardID) {
             var query = new QueryQueryBuilder().WithBoards(
                 new BoardQueryBuilder().WithColumns(
-                    new ColumnQueryBuilder().WithSettingsStr(),
+                    new ColumnQueryBuilder().WithSettings(),
                     types: new ColumnType[] { ColumnType.Subtasks }
                 ),
                 ids: new string[] { boardID }
             );
             var response = await client.RunQuery(query);
 
-            string? columnSettingsStr = response.Boards?.FirstOrDefault()?.Columns?.FirstOrDefault()?.SettingsStr;
+            string? columnSettingsStr = (string?)(response.Boards?.FirstOrDefault()?.Columns?.FirstOrDefault()?.Settings);
             if (columnSettingsStr == null)
                 return null;
 

@@ -14,20 +14,12 @@ namespace MondayApi.Schema {
             new GraphQlFieldMetadata { Name = "viewers", IsComplex = true, QueryBuilderType = typeof(WatcherQueryBuilder) },
             new GraphQlFieldMetadata { Name = "created_at" },
             new GraphQlFieldMetadata { Name = "updated_at" },
+            new GraphQlFieldMetadata { Name = "assets", IsComplex = true, QueryBuilderType = typeof(AssetQueryBuilder) },
             new GraphQlFieldMetadata { Name = "text_body" }
         };
 
         protected override string TypeName => "Reply";
         public override IReadOnlyList<GraphQlFieldMetadata> AllFields => AllFieldMetadata;
-
-        public ReplyQueryBuilder WithViewers(WatcherQueryBuilder watcherQueryBuilder, QueryBuilderParameter<int?>? limit = null, QueryBuilderParameter<int?>? page = null, string? alias = null, IncludeDirective? include = null, SkipDirective? skip = null) {
-            var args = new List<QueryBuilderArgumentInfo>();
-            if (limit != null)
-                args.Add(new QueryBuilderArgumentInfo { ArgumentName = "limit", ArgumentValue = limit });
-            if (page != null)
-                args.Add(new QueryBuilderArgumentInfo { ArgumentName = "page", ArgumentValue = page });
-            return WithObjectField("viewers", alias, watcherQueryBuilder, new GraphQlDirective?[] { include, skip }, args);
-        }
 
         public ReplyQueryBuilder WithID(string? alias = null, IncludeDirective? include = null, SkipDirective? skip = null) =>
             WithScalarField("id", alias, new GraphQlDirective?[] { include, skip });
@@ -61,6 +53,14 @@ namespace MondayApi.Schema {
             WithObjectField("pinned_to_top", alias, updatePinQueryBuilder, new GraphQlDirective?[] { include, skip });
         public ReplyQueryBuilder ExceptPinnedToTop() =>
             ExceptField("pinned_to_top");
+        public ReplyQueryBuilder WithViewers(WatcherQueryBuilder watcherQueryBuilder, QueryBuilderParameter<int?>? limit = null, QueryBuilderParameter<int?>? page = null, string? alias = null, IncludeDirective? include = null, SkipDirective? skip = null) {
+            var args = new List<QueryBuilderArgumentInfo>();
+            if (limit != null)
+                args.Add(new QueryBuilderArgumentInfo { ArgumentName = "limit", ArgumentValue = limit });
+            if (page != null)
+                args.Add(new QueryBuilderArgumentInfo { ArgumentName = "page", ArgumentValue = page });
+            return WithObjectField("viewers", alias, watcherQueryBuilder, new GraphQlDirective?[] { include, skip }, args);
+        }
         public ReplyQueryBuilder ExceptViewers() =>
             ExceptField("viewers");
         public ReplyQueryBuilder WithCreatedAt(string? alias = null, IncludeDirective? include = null, SkipDirective? skip = null) =>
@@ -71,6 +71,10 @@ namespace MondayApi.Schema {
             WithScalarField("updated_at", alias, new GraphQlDirective?[] { include, skip });
         public ReplyQueryBuilder ExceptUpdatedAt() =>
             ExceptField("updated_at");
+        public ReplyQueryBuilder WithAssets(AssetQueryBuilder assetQueryBuilder, string? alias = null, IncludeDirective? include = null, SkipDirective? skip = null) =>
+            WithObjectField("assets", alias, assetQueryBuilder, new GraphQlDirective?[] { include, skip });
+        public ReplyQueryBuilder ExceptAssets() =>
+            ExceptField("assets");
         public ReplyQueryBuilder WithTextBody(string? alias = null, IncludeDirective? include = null, SkipDirective? skip = null) =>
             WithScalarField("text_body", alias, new GraphQlDirective?[] { include, skip });
         public ReplyQueryBuilder ExceptTextBody() =>

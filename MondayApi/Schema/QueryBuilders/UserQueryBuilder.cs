@@ -37,19 +37,11 @@ namespace MondayApi.Schema {
             new GraphQlFieldMetadata { Name = "time_zone_identifier" },
             new GraphQlFieldMetadata { Name = "title" },
             new GraphQlFieldMetadata { Name = "url" },
-            new GraphQlFieldMetadata { Name = "utc_hours_diff" },
-            new GraphQlFieldMetadata { Name = "greeting" }
+            new GraphQlFieldMetadata { Name = "utc_hours_diff" }
         };
 
         protected override string TypeName => "User";
         public override IReadOnlyList<GraphQlFieldMetadata> AllFields => AllFieldMetadata;
-
-        public UserQueryBuilder WithTeams(TeamQueryBuilder teamQueryBuilder, QueryBuilderParameter<IEnumerable<string>>? ids = null, string? alias = null, IncludeDirective? include = null, SkipDirective? skip = null) {
-            var args = new List<QueryBuilderArgumentInfo>();
-            if (ids != null)
-                args.Add(new QueryBuilderArgumentInfo { ArgumentName = "ids", ArgumentValue = ids });
-            return WithObjectField("teams", alias, teamQueryBuilder, new GraphQlDirective?[] { include, skip }, args);
-        }
 
         public UserQueryBuilder WithID(string? alias = null, IncludeDirective? include = null, SkipDirective? skip = null) =>
             WithScalarField("id", alias, new GraphQlDirective?[] { include, skip });
@@ -171,6 +163,12 @@ namespace MondayApi.Schema {
             WithScalarField("sign_up_product_kind", alias, new GraphQlDirective?[] { include, skip });
         public UserQueryBuilder ExceptSignUpProductKind() =>
             ExceptField("sign_up_product_kind");
+        public UserQueryBuilder WithTeams(TeamQueryBuilder teamQueryBuilder, QueryBuilderParameter<IEnumerable<string>>? ids = null, string? alias = null, IncludeDirective? include = null, SkipDirective? skip = null) {
+            var args = new List<QueryBuilderArgumentInfo>();
+            if (ids != null)
+                args.Add(new QueryBuilderArgumentInfo { ArgumentName = "ids", ArgumentValue = ids });
+            return WithObjectField("teams", alias, teamQueryBuilder, new GraphQlDirective?[] { include, skip }, args);
+        }
         public UserQueryBuilder ExceptTeams() =>
             ExceptField("teams");
         public UserQueryBuilder WithTimeZoneIdentifier(string? alias = null, IncludeDirective? include = null, SkipDirective? skip = null) =>
@@ -189,9 +187,5 @@ namespace MondayApi.Schema {
             WithScalarField("utc_hours_diff", alias, new GraphQlDirective?[] { include, skip });
         public UserQueryBuilder ExceptUtcHoursDiff() =>
             ExceptField("utc_hours_diff");
-        public UserQueryBuilder WithGreeting(string? alias = null, IncludeDirective? include = null, SkipDirective? skip = null) =>
-            WithScalarField("greeting", alias, new GraphQlDirective?[] { include, skip });
-        public UserQueryBuilder ExceptGreeting() =>
-            ExceptField("greeting");
     }
 }

@@ -17,7 +17,6 @@ namespace MondayApi.Schema {
                 args.Add(new QueryBuilderArgumentInfo { ArgumentName = "limit", ArgumentValue = limit });
             return WithObjectField("timeline_items_page", alias, timelineItemsPageQueryBuilder, new GraphQlDirective?[] { include, skip }, args);
         }
-
         public TimelineResponseQueryBuilder ExceptTimelineItemsPage() =>
             ExceptField("timeline_items_page");
     }

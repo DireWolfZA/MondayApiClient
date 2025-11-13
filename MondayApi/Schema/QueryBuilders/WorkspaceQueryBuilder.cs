@@ -21,39 +21,6 @@ namespace MondayApi.Schema {
         protected override string TypeName => "Workspace";
         public override IReadOnlyList<GraphQlFieldMetadata> AllFields => AllFieldMetadata;
 
-        public WorkspaceQueryBuilder WithOwnersSubscribers(UserQueryBuilder userQueryBuilder, QueryBuilderParameter<int?>? limit = null, QueryBuilderParameter<int?>? page = null, string? alias = null, IncludeDirective? include = null, SkipDirective? skip = null) {
-            var args = new List<QueryBuilderArgumentInfo>();
-            if (limit != null)
-                args.Add(new QueryBuilderArgumentInfo { ArgumentName = "limit", ArgumentValue = limit });
-            if (page != null)
-                args.Add(new QueryBuilderArgumentInfo { ArgumentName = "page", ArgumentValue = page });
-            return WithObjectField("owners_subscribers", alias, userQueryBuilder, new GraphQlDirective?[] { include, skip }, args);
-        }
-        public WorkspaceQueryBuilder WithTeamOwnersSubscribers(TeamQueryBuilder teamQueryBuilder, QueryBuilderParameter<int?>? limit = null, QueryBuilderParameter<int?>? page = null, string? alias = null, IncludeDirective? include = null, SkipDirective? skip = null) {
-            var args = new List<QueryBuilderArgumentInfo>();
-            if (limit != null)
-                args.Add(new QueryBuilderArgumentInfo { ArgumentName = "limit", ArgumentValue = limit });
-            if (page != null)
-                args.Add(new QueryBuilderArgumentInfo { ArgumentName = "page", ArgumentValue = page });
-            return WithObjectField("team_owners_subscribers", alias, teamQueryBuilder, new GraphQlDirective?[] { include, skip }, args);
-        }
-        public WorkspaceQueryBuilder WithTeamsSubscribers(TeamQueryBuilder teamQueryBuilder, QueryBuilderParameter<int?>? limit = null, QueryBuilderParameter<int?>? page = null, string? alias = null, IncludeDirective? include = null, SkipDirective? skip = null) {
-            var args = new List<QueryBuilderArgumentInfo>();
-            if (limit != null)
-                args.Add(new QueryBuilderArgumentInfo { ArgumentName = "limit", ArgumentValue = limit });
-            if (page != null)
-                args.Add(new QueryBuilderArgumentInfo { ArgumentName = "page", ArgumentValue = page });
-            return WithObjectField("teams_subscribers", alias, teamQueryBuilder, new GraphQlDirective?[] { include, skip }, args);
-        }
-        public WorkspaceQueryBuilder WithUsersSubscribers(UserQueryBuilder userQueryBuilder, QueryBuilderParameter<int?>? limit = null, QueryBuilderParameter<int?>? page = null, string? alias = null, IncludeDirective? include = null, SkipDirective? skip = null) {
-            var args = new List<QueryBuilderArgumentInfo>();
-            if (limit != null)
-                args.Add(new QueryBuilderArgumentInfo { ArgumentName = "limit", ArgumentValue = limit });
-            if (page != null)
-                args.Add(new QueryBuilderArgumentInfo { ArgumentName = "page", ArgumentValue = page });
-            return WithObjectField("users_subscribers", alias, userQueryBuilder, new GraphQlDirective?[] { include, skip }, args);
-        }
-
         public WorkspaceQueryBuilder WithAccountProduct(AccountProductQueryBuilder accountProductQueryBuilder, string? alias = null, IncludeDirective? include = null, SkipDirective? skip = null) =>
             WithObjectField("account_product", alias, accountProductQueryBuilder, new GraphQlDirective?[] { include, skip });
         public WorkspaceQueryBuilder ExceptAccountProduct() =>
@@ -82,6 +49,14 @@ namespace MondayApi.Schema {
             WithScalarField("name", alias, new GraphQlDirective?[] { include, skip });
         public WorkspaceQueryBuilder ExceptName() =>
             ExceptField("name");
+        public WorkspaceQueryBuilder WithOwnersSubscribers(UserQueryBuilder userQueryBuilder, QueryBuilderParameter<int?>? limit = null, QueryBuilderParameter<int?>? page = null, string? alias = null, IncludeDirective? include = null, SkipDirective? skip = null) {
+            var args = new List<QueryBuilderArgumentInfo>();
+            if (limit != null)
+                args.Add(new QueryBuilderArgumentInfo { ArgumentName = "limit", ArgumentValue = limit });
+            if (page != null)
+                args.Add(new QueryBuilderArgumentInfo { ArgumentName = "page", ArgumentValue = page });
+            return WithObjectField("owners_subscribers", alias, userQueryBuilder, new GraphQlDirective?[] { include, skip }, args);
+        }
         public WorkspaceQueryBuilder ExceptOwnersSubscribers() =>
             ExceptField("owners_subscribers");
         public WorkspaceQueryBuilder WithSettings(WorkspaceSettingsQueryBuilder workspaceSettingsQueryBuilder, string? alias = null, IncludeDirective? include = null, SkipDirective? skip = null) =>
@@ -92,10 +67,34 @@ namespace MondayApi.Schema {
             WithScalarField("state", alias, new GraphQlDirective?[] { include, skip });
         public WorkspaceQueryBuilder ExceptState() =>
             ExceptField("state");
+        public WorkspaceQueryBuilder WithTeamOwnersSubscribers(TeamQueryBuilder teamQueryBuilder, QueryBuilderParameter<int?>? limit = null, QueryBuilderParameter<int?>? page = null, string? alias = null, IncludeDirective? include = null, SkipDirective? skip = null) {
+            var args = new List<QueryBuilderArgumentInfo>();
+            if (limit != null)
+                args.Add(new QueryBuilderArgumentInfo { ArgumentName = "limit", ArgumentValue = limit });
+            if (page != null)
+                args.Add(new QueryBuilderArgumentInfo { ArgumentName = "page", ArgumentValue = page });
+            return WithObjectField("team_owners_subscribers", alias, teamQueryBuilder, new GraphQlDirective?[] { include, skip }, args);
+        }
         public WorkspaceQueryBuilder ExceptTeamOwnersSubscribers() =>
             ExceptField("team_owners_subscribers");
+        public WorkspaceQueryBuilder WithTeamsSubscribers(TeamQueryBuilder teamQueryBuilder, QueryBuilderParameter<int?>? limit = null, QueryBuilderParameter<int?>? page = null, string? alias = null, IncludeDirective? include = null, SkipDirective? skip = null) {
+            var args = new List<QueryBuilderArgumentInfo>();
+            if (limit != null)
+                args.Add(new QueryBuilderArgumentInfo { ArgumentName = "limit", ArgumentValue = limit });
+            if (page != null)
+                args.Add(new QueryBuilderArgumentInfo { ArgumentName = "page", ArgumentValue = page });
+            return WithObjectField("teams_subscribers", alias, teamQueryBuilder, new GraphQlDirective?[] { include, skip }, args);
+        }
         public WorkspaceQueryBuilder ExceptTeamsSubscribers() =>
             ExceptField("teams_subscribers");
+        public WorkspaceQueryBuilder WithUsersSubscribers(UserQueryBuilder userQueryBuilder, QueryBuilderParameter<int?>? limit = null, QueryBuilderParameter<int?>? page = null, string? alias = null, IncludeDirective? include = null, SkipDirective? skip = null) {
+            var args = new List<QueryBuilderArgumentInfo>();
+            if (limit != null)
+                args.Add(new QueryBuilderArgumentInfo { ArgumentName = "limit", ArgumentValue = limit });
+            if (page != null)
+                args.Add(new QueryBuilderArgumentInfo { ArgumentName = "page", ArgumentValue = page });
+            return WithObjectField("users_subscribers", alias, userQueryBuilder, new GraphQlDirective?[] { include, skip }, args);
+        }
         public WorkspaceQueryBuilder ExceptUsersSubscribers() =>
             ExceptField("users_subscribers");
     }

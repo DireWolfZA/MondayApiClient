@@ -3,9 +3,17 @@ using Newtonsoft.Json;
 
 namespace MondayApi.Schema {
     public class UpdateWorkspaceAttributesInput : IGraphQlInputObject {
+        private InputPropertyInfo _accountProductID;
         private InputPropertyInfo _description;
         private InputPropertyInfo _kind;
         private InputPropertyInfo _name;
+
+        [JsonProperty("account_product_id")]
+        [JsonConverter(typeof(QueryBuilderParameterConverter<string?>))]
+        public QueryBuilderParameter<string?>? AccountProductID {
+            get => (QueryBuilderParameter<string?>?)_accountProductID.Value;
+            set => _accountProductID = new InputPropertyInfo { Name = "account_product_id", Value = value };
+        }
 
         [JsonConverter(typeof(QueryBuilderParameterConverter<string?>))]
         public QueryBuilderParameter<string?>? Description {
@@ -26,6 +34,7 @@ namespace MondayApi.Schema {
         }
 
         IEnumerable<InputPropertyInfo> IGraphQlInputObject.GetPropertyValues() {
+            if (_accountProductID.Name != null) yield return _accountProductID;
             if (_description.Name != null) yield return _description;
             if (_kind.Name != null) yield return _kind;
             if (_name.Name != null) yield return _name;

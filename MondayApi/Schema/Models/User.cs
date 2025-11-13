@@ -64,6 +64,5 @@ namespace MondayApi.Schema {
         public string? URL { get; set; }
         [JsonProperty("utc_hours_diff")]
         public int? UTCHoursDiff { get; set; }
-        public string? Greeting { get; set; }
     }
 }

@@ -3,7 +3,6 @@ using System.Collections.Generic;
 namespace MondayApi.Schema {
     public class ConnectProjectResultQueryBuilder : GraphQlQueryBuilder<ConnectProjectResultQueryBuilder> {
         private static readonly GraphQlFieldMetadata[] AllFieldMetadata = new[] {
-            new GraphQlFieldMetadata { Name = "request_id" },
             new GraphQlFieldMetadata { Name = "success" },
             new GraphQlFieldMetadata { Name = "message" },
             new GraphQlFieldMetadata { Name = "portfolio_item_id" }
@@ -12,10 +11,6 @@ namespace MondayApi.Schema {
         protected override string TypeName => "ConnectProjectResult";
         public override IReadOnlyList<GraphQlFieldMetadata> AllFields => AllFieldMetadata;
 
-        public ConnectProjectResultQueryBuilder WithRequestID(string? alias = null, IncludeDirective? include = null, SkipDirective? skip = null) =>
-            WithScalarField("request_id", alias, new GraphQlDirective?[] { include, skip });
-        public ConnectProjectResultQueryBuilder ExceptRequestID() =>
-            ExceptField("request_id");
         public ConnectProjectResultQueryBuilder WithSuccess(string? alias = null, IncludeDirective? include = null, SkipDirective? skip = null) =>
             WithScalarField("success", alias, new GraphQlDirective?[] { include, skip });
         public ConnectProjectResultQueryBuilder ExceptSuccess() =>

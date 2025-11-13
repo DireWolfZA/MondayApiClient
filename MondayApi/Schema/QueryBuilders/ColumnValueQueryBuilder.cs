@@ -34,6 +34,8 @@ namespace MondayApi.Schema {
             WithScalarField("value", alias, new GraphQlDirective?[] { include, skip });
         public ColumnValueQueryBuilder ExceptValue() =>
             ExceptField("value");
+        public ColumnValueQueryBuilder WithBatteryValueFragment(BatteryValueQueryBuilder batteryValueQueryBuilder, IncludeDirective? include = null, SkipDirective? skip = null) =>
+            WithFragment(batteryValueQueryBuilder, new GraphQlDirective?[] { include, skip });
         public ColumnValueQueryBuilder WithBoardRelationValueFragment(BoardRelationValueQueryBuilder boardRelationValueQueryBuilder, IncludeDirective? include = null, SkipDirective? skip = null) =>
             WithFragment(boardRelationValueQueryBuilder, new GraphQlDirective?[] { include, skip });
         public ColumnValueQueryBuilder WithButtonValueFragment(ButtonValueQueryBuilder buttonValueQueryBuilder, IncludeDirective? include = null, SkipDirective? skip = null) =>
@@ -50,6 +52,8 @@ namespace MondayApi.Schema {
             WithFragment(dateValueQueryBuilder, new GraphQlDirective?[] { include, skip });
         public ColumnValueQueryBuilder WithDependencyValueFragment(DependencyValueQueryBuilder dependencyValueQueryBuilder, IncludeDirective? include = null, SkipDirective? skip = null) =>
             WithFragment(dependencyValueQueryBuilder, new GraphQlDirective?[] { include, skip });
+        public ColumnValueQueryBuilder WithDirectDocValueFragment(DirectDocValueQueryBuilder directDocValueQueryBuilder, IncludeDirective? include = null, SkipDirective? skip = null) =>
+            WithFragment(directDocValueQueryBuilder, new GraphQlDirective?[] { include, skip });
         public ColumnValueQueryBuilder WithDocValueFragment(DocValueQueryBuilder docValueQueryBuilder, IncludeDirective? include = null, SkipDirective? skip = null) =>
             WithFragment(docValueQueryBuilder, new GraphQlDirective?[] { include, skip });
         public ColumnValueQueryBuilder WithDropdownValueFragment(DropdownValueQueryBuilder dropdownValueQueryBuilder, IncludeDirective? include = null, SkipDirective? skip = null) =>

@@ -9,7 +9,8 @@ namespace MondayApi.Schema {
             new GraphQlFieldMetadata { Name = "name" },
             new GraphQlFieldMetadata { Name = "app_id" },
             new GraphQlFieldMetadata { Name = "type" },
-            new GraphQlFieldMetadata { Name = "data" }
+            new GraphQlFieldMetadata { Name = "data" },
+            new GraphQlFieldMetadata { Name = "deployment" }
         };
 
         protected override string TypeName => "AppFeatureType";
@@ -43,5 +44,9 @@ namespace MondayApi.Schema {
             WithScalarField("data", alias, new GraphQlDirective?[] { include, skip });
         public AppFeatureTypeQueryBuilder ExceptData() =>
             ExceptField("data");
+        public AppFeatureTypeQueryBuilder WithDeployment(string? alias = null, IncludeDirective? include = null, SkipDirective? skip = null) =>
+            WithScalarField("deployment", alias, new GraphQlDirective?[] { include, skip });
+        public AppFeatureTypeQueryBuilder ExceptDeployment() =>
+            ExceptField("deployment");
     }
 }

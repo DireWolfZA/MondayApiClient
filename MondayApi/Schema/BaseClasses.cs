@@ -76,8 +76,6 @@ namespace MondayApi.Schema {
                         throw CreateJsonReaderException(reader, $"\"{GetType().FullName}\" requires JSON object to contain \"{FieldNameType}\" field with type name");
 
                     var typeName = token.Value<string>();
-                    if (typeName == "DirectDocValue")
-                        typeName = nameof(UnsupportedValue);
                     if (typeName == null || !InterfaceTypeMapping.TryGetValue(typeName, out var type))
                         throw CreateJsonReaderException(reader, $"type \"{typeName}\" not found");
 

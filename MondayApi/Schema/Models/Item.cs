@@ -17,6 +17,7 @@ namespace MondayApi.Schema {
         public User? Creator { get; set; }
         [JsonProperty("creator_id")]
         public string? CreatorID { get; set; }
+        public ItemDescription? Description { get; set; }
         public string? Email { get; set; }
         public Group? Group { get; set; }
         [JsonProperty("linked_items")]

@@ -9,6 +9,8 @@ namespace MondayApi.Schema {
         protected override string TypeName => "MirroredValue";
         public override IReadOnlyList<GraphQlFieldMetadata> AllFields => AllFieldMetadata;
 
+        public MirroredValueQueryBuilder WithBatteryValueFragment(BatteryValueQueryBuilder batteryValueQueryBuilder, IncludeDirective? include = null, SkipDirective? skip = null) =>
+            WithFragment(batteryValueQueryBuilder, new GraphQlDirective?[] { include, skip });
         public MirroredValueQueryBuilder WithBoardFragment(BoardQueryBuilder boardQueryBuilder, IncludeDirective? include = null, SkipDirective? skip = null) =>
             WithFragment(boardQueryBuilder, new GraphQlDirective?[] { include, skip });
         public MirroredValueQueryBuilder WithBoardRelationValueFragment(BoardRelationValueQueryBuilder boardRelationValueQueryBuilder, IncludeDirective? include = null, SkipDirective? skip = null) =>
@@ -27,6 +29,8 @@ namespace MondayApi.Schema {
             WithFragment(dateValueQueryBuilder, new GraphQlDirective?[] { include, skip });
         public MirroredValueQueryBuilder WithDependencyValueFragment(DependencyValueQueryBuilder dependencyValueQueryBuilder, IncludeDirective? include = null, SkipDirective? skip = null) =>
             WithFragment(dependencyValueQueryBuilder, new GraphQlDirective?[] { include, skip });
+        public MirroredValueQueryBuilder WithDirectDocValueFragment(DirectDocValueQueryBuilder directDocValueQueryBuilder, IncludeDirective? include = null, SkipDirective? skip = null) =>
+            WithFragment(directDocValueQueryBuilder, new GraphQlDirective?[] { include, skip });
         public MirroredValueQueryBuilder WithDocValueFragment(DocValueQueryBuilder docValueQueryBuilder, IncludeDirective? include = null, SkipDirective? skip = null) =>
             WithFragment(docValueQueryBuilder, new GraphQlDirective?[] { include, skip });
         public MirroredValueQueryBuilder WithDropdownValueFragment(DropdownValueQueryBuilder dropdownValueQueryBuilder, IncludeDirective? include = null, SkipDirective? skip = null) =>

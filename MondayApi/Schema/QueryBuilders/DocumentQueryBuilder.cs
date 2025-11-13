@@ -29,7 +29,6 @@ namespace MondayApi.Schema {
                 args.Add(new QueryBuilderArgumentInfo { ArgumentName = "page", ArgumentValue = page });
             return WithObjectField("blocks", alias, documentBlockQueryBuilder, new GraphQlDirective?[] { include, skip }, args);
         }
-
         public DocumentQueryBuilder ExceptBlocks() =>
             ExceptField("blocks");
         public DocumentQueryBuilder WithCreatedAt(string? alias = null, IncludeDirective? include = null, SkipDirective? skip = null) =>

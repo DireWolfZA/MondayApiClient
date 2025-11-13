@@ -15,17 +15,6 @@ namespace MondayApi.Schema {
         protected override string TypeName => "Group";
         public override IReadOnlyList<GraphQlFieldMetadata> AllFields => AllFieldMetadata;
 
-        public GroupQueryBuilder WithItemsPage(ItemsResponseQueryBuilder itemsResponseQueryBuilder, QueryBuilderParameter<int> limit, QueryBuilderParameter<string?>? cursor = null, QueryBuilderParameter<ItemsQuery?>? queryParams = null, string? alias = null, IncludeDirective? include = null, SkipDirective? skip = null) {
-            var args = new List<QueryBuilderArgumentInfo> {
-                new QueryBuilderArgumentInfo { ArgumentName = "limit", ArgumentValue = limit }
-            };
-            if (cursor != null)
-                args.Add(new QueryBuilderArgumentInfo { ArgumentName = "cursor", ArgumentValue = cursor });
-            if (queryParams != null)
-                args.Add(new QueryBuilderArgumentInfo { ArgumentName = "query_params", ArgumentValue = queryParams });
-            return WithObjectField("items_page", alias, itemsResponseQueryBuilder, new GraphQlDirective?[] { include, skip }, args);
-        }
-
         public GroupQueryBuilder WithArchived(string? alias = null, IncludeDirective? include = null, SkipDirective? skip = null) =>
             WithScalarField("archived", alias, new GraphQlDirective?[] { include, skip });
         public GroupQueryBuilder ExceptArchived() =>
@@ -42,6 +31,17 @@ namespace MondayApi.Schema {
             WithScalarField("id", alias, new GraphQlDirective?[] { include, skip });
         public GroupQueryBuilder ExceptID() =>
             ExceptField("id");
+        public GroupQueryBuilder WithItemsPage(ItemsResponseQueryBuilder itemsResponseQueryBuilder, QueryBuilderParameter<int> limit, QueryBuilderParameter<string?>? cursor = null, QueryBuilderParameter<string?>? hierarchyScopeConfig = null, QueryBuilderParameter<ItemsQuery?>? queryParams = null, string? alias = null, IncludeDirective? include = null, SkipDirective? skip = null) {
+            var args = new List<QueryBuilderArgumentInfo>();
+            if (cursor != null)
+                args.Add(new QueryBuilderArgumentInfo { ArgumentName = "cursor", ArgumentValue = cursor });
+            if (hierarchyScopeConfig != null)
+                args.Add(new QueryBuilderArgumentInfo { ArgumentName = "hierarchy_scope_config", ArgumentValue = hierarchyScopeConfig });
+            args.Add(new QueryBuilderArgumentInfo { ArgumentName = "limit", ArgumentValue = limit });
+            if (queryParams != null)
+                args.Add(new QueryBuilderArgumentInfo { ArgumentName = "query_params", ArgumentValue = queryParams });
+            return WithObjectField("items_page", alias, itemsResponseQueryBuilder, new GraphQlDirective?[] { include, skip }, args);
+        }
         public GroupQueryBuilder ExceptItemsPage() =>
             ExceptField("items_page");
         public GroupQueryBuilder WithPosition(string? alias = null, IncludeDirective? include = null, SkipDirective? skip = null) =>

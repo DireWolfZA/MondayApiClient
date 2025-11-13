@@ -12,7 +12,7 @@ namespace MondayApi.Users {
         }
 
         private UserQueryBuilder getUserQueryBuilder() =>
-            new UserQueryBuilder().WithAllScalarFields().ExceptEncryptApiToken().ExceptGreeting();
+            new UserQueryBuilder().WithAllScalarFields().ExceptEncryptApiToken();
 
         public async Task<IEnumerable<User>> Get(int? pageNumber = null, int? numPerPage = null, bool? inactive = null) {
             var query = new QueryQueryBuilder().WithUsers(
