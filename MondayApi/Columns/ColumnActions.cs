@@ -51,16 +51,8 @@ namespace MondayApi.Columns {
             );
             var response = await client.RunQuery(query);
 
-            string? columnSettingsStr = (string?)(response.Boards?.FirstOrDefault()?.Columns?.FirstOrDefault()?.Settings);
-            if (columnSettingsStr == null)
-                return null;
-
-            using (var sr = new System.IO.StringReader(columnSettingsStr))
-            using (var reader = new Newtonsoft.Json.JsonTextReader(sr)) {
-                var serializer = Newtonsoft.Json.JsonSerializer.Create();
-                var columnSettings = serializer.Deserialize<ColumnSettings>(reader);
-                return columnSettings?.BoardIDs.FirstOrDefault();
-            }
+            var columnSettings = response.Boards?.FirstOrDefault()?.Columns?.FirstOrDefault()?.Settings;
+            return columnSettings?.BoardIDs?.FirstOrDefault();
         }
 
 

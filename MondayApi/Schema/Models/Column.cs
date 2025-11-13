@@ -7,7 +7,7 @@ namespace MondayApi.Schema {
         public ColumnType? Type { get; set; }
         public int? Width { get; set; }
         public bool? Archived { get; set; }
-        public object? Settings { get; set; }
+        public ColumnSettings? Settings { get; set; }
         public string? Revision { get; set; }
         public ColumnCapabilities? Capabilities { get; set; }
     }

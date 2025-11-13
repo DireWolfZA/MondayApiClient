@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using System.Threading.Tasks;
 using GraphQL.Client.Http;
 using MondayApi.ActivityLogs;
@@ -85,7 +86,7 @@ namespace MondayApi {
                 Console.WriteLine(queryResponse);
 #endif
 
-            if (response.Errors != null)
+            if (response.Errors != null && (response.Data is not Query || (response.Data is Query q && q?.Boards?.FirstOrDefault()?.Columns == null)))
                 throw MondayException.FromErrors(response.Errors);
             if (response.Data == null) {
                 if (Utils.Utils.TryDeserializeMondayApiError(queryResponse, out var mondayApiError))
