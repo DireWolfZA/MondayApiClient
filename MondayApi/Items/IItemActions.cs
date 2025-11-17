@@ -11,7 +11,7 @@ namespace MondayApi.Items {
         Task<ItemsResponse> GetByBoardNextPage(string cursor, int numPerPage,
             bool withColumnValues = false, IEnumerable<string>? columnIDs = null);
         Task<ItemsResponse?> GetByBoardGroup(string? cursor, int numPerPage, string boardID, string groupID,
-            bool withColumnValues = false, IEnumerable<string>? columnIDs = null);
+            bool withColumnValues = false, IEnumerable<string>? columnIDs = null, ItemsQuery? queryParams = null);
         Task<Item?> GetOne(string id,
             bool withColumnValues = false, IEnumerable<string>? columnIDs = null);
 
