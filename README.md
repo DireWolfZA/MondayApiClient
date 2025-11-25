@@ -14,7 +14,7 @@ NuGet package: https://www.nuget.org/packages/DireWolf.MondayApi
 - Thanks to [this comment](https://github.com/graphql-dotnet/graphql-client/issues/216#issuecomment-625118457), file uploads are supported by [MondayFileUploadRequest.cs](/MondayApi/Utils/MondayFileUploadRequest.cs) - the variable `file` must be used in the request
 - There are a couple bugs/quirks noticed in the Monday API that are mitigated by this project:
   - Asset columns have nonsense CreatedAt values - e.g. `55686-09-26T02:33:47+00:00` - see [AssetActions.cs](/MondayApi/Assets/AssetActions.cs)
-  - ActivityLogs [CreatedAt](https://developer.monday.com/api-reference/reference/activity-logs#created_at-field) is returned as 17-digit value - this is handled in [UnixDateTimeConverter.cs](/MondayApi/Utils/UnixDateTimeConverter.cs)
+  - ActivityLogs [CreatedAt](https://developer.monday.com/api-reference/reference/activity-logs#fields) is returned as 17-digit value - this is handled in [UnixDateTimeConverter.cs](/MondayApi/Utils/UnixDateTimeConverter.cs)
   - On updating columns, some columns require specific different JSON property names to update, that is handled by [Utils.convertColumn](/MondayApi/Utils/Utils.cs)
   - When retrieving Users with `.WithAllScalarFields()`, an undocumented `encrypt_api_token` field is included which causes the entire query to return null data - this field is excluded specifically in [UserActions.cs](/MondayApi/Users/UserActions.cs). This field is not mentioned in the [API Docs](https://developer.monday.com/api-reference/reference/users#fields), however GraphQL Schema introspection describes it as "The token of the user for email to board." (???)
 

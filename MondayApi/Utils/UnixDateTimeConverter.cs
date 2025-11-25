@@ -38,7 +38,7 @@ namespace MondayApi.Utils {
                 case ETimeType.Microseconds:
                     rtn = unixEpoch.AddMilliseconds((double)timestamp / 1000);
                     break;
-                case ETimeType.SeventeenDigitValue: // https://developer.monday.com/api-reference/reference/activity-logs#created_at-field
+                case ETimeType.SeventeenDigitValue: // https://developer.monday.com/api-reference/reference/activity-logs#fields
                     rtn = unixEpoch.AddMilliseconds((double)timestamp / 10_000);
                     break;
                 default:
