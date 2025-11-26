@@ -10,7 +10,7 @@ namespace MondayApi.TimelineItems {
             this.client = client;
         }
 
-        public async Task<TimelineItemsPage?> Get(string? cursor, int numPerPage, string itemID) {
+        public async Task<TimelineItemsPage?> Get(string? cursor, int numPerPage, string itemID, bool? skipConnectedItems = null) {
             var query = new QueryQueryBuilder().WithTimeline(
                 new TimelineResponseQueryBuilder().WithAllScalarFields().WithTimelineItemsPage(
                     new TimelineItemsPageQueryBuilder().WithAllScalarFields().WithTimelineItems(
@@ -21,7 +21,8 @@ namespace MondayApi.TimelineItems {
                     cursor: cursor,
                     limit: numPerPage
                 ),
-                id: itemID
+                id: itemID,
+                skipConnectedItems: skipConnectedItems
             );
 
             var response = await client.RunQuery(query);
