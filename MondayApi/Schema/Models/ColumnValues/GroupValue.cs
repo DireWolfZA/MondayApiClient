@@ -3,7 +3,7 @@ using Newtonsoft.Json;
 namespace MondayApi.Schema {
     [System.Diagnostics.DebuggerDisplay("{Type.ToString(),nq}:{ID}: {Text}")]
     [GraphQlObjectType("GroupValue")]
-    public class GroupValue : IMirroredValue, IColumnValue {
+    public class GroupValue : AddShallowCopy<IColumnValue>, IMirroredValue, IColumnValue {
         public Column? Column { get; set; }
         public Group? Group { get; set; }
         [JsonProperty("group_id")]

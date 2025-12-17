@@ -5,7 +5,7 @@ using Newtonsoft.Json;
 namespace MondayApi.Schema {
     [System.Diagnostics.DebuggerDisplay("{Type.ToString(),nq}:{ID}: {Text} {PersonsAndTeams}")]
     [GraphQlObjectType("PeopleValue")]
-    public class PeopleValue : IMirroredValue, IColumnValue {
+    public class PeopleValue : AddShallowCopy<IColumnValue>, IMirroredValue, IColumnValue {
         public Column? Column { get; set; }
         public string? ID { get; set; }
         [JsonProperty("persons_and_teams")]

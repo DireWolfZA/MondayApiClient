@@ -4,7 +4,7 @@ using Newtonsoft.Json;
 namespace MondayApi.Schema {
     [System.Diagnostics.DebuggerDisplay("{Type.ToString(),nq}:{ID}: {Text}/{CreatorID}/{CreatedAt}")]
     [GraphQlObjectType("CreationLogValue")]
-    public class CreationLogValue : IMirroredValue, IColumnValue {
+    public class CreationLogValue : AddShallowCopy<IColumnValue>, IMirroredValue, IColumnValue {
         public Column? Column { get; set; }
         [JsonProperty("created_at")]
         public DateTimeOffset? CreatedAt { get; set; }

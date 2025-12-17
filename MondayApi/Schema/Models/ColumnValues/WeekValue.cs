@@ -3,7 +3,7 @@ using Newtonsoft.Json;
 namespace MondayApi.Schema {
     [System.Diagnostics.DebuggerDisplay("{Type.ToString(),nq}:{ID}: {Text}")]
     [GraphQlObjectType("WeekValue")]
-    public class WeekValue : IMirroredValue, IColumnValue {
+    public class WeekValue : AddShallowCopy<IColumnValue>, IMirroredValue, IColumnValue {
         public Column? Column { get; set; }
         [JsonProperty("end_date")]
         public object? EndDate { get; set; }

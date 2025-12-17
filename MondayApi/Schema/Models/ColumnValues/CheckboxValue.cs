@@ -4,7 +4,7 @@ using Newtonsoft.Json;
 namespace MondayApi.Schema {
     [System.Diagnostics.DebuggerDisplay("{Type.ToString(),nq}:{ID}: Checked: {Checked}")]
     [GraphQlObjectType("CheckboxValue")]
-    public class CheckboxValue : IMirroredValue, IColumnValue {
+    public class CheckboxValue : AddShallowCopy<IColumnValue>, IMirroredValue, IColumnValue {
         public bool? Checked { get; set; }
         public Column? Column { get; set; }
         public string? ID { get; set; }

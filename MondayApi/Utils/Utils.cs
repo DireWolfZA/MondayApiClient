@@ -27,7 +27,6 @@ namespace MondayApi.Utils {
         static Utils() => settings.Converters.Add(new Newtonsoft.Json.Converters.StringEnumConverter() { NamingStrategy = snakeCaseNamingStrategy });
 
         private static object? convertColumn(IColumnValue column) {
-            column.ID = null;
             switch (column) {
                 case TextValue tv:
                     return tv.Text ?? tv.Value;
@@ -56,6 +55,8 @@ namespace MondayApi.Utils {
                         ? new CheckboxValueForUpdate() { Checked = "true" }
                         : null;
                 default:
+                    column = column.ShallowCopy();
+                    column.ID = null;
                     return column;
             }
         }

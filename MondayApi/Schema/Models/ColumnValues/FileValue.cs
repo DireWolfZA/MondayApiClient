@@ -4,7 +4,7 @@ using Newtonsoft.Json;
 namespace MondayApi.Schema {
     [System.Diagnostics.DebuggerDisplay("{Type.ToString(),nq}:{ID}: {Text}")]
     [GraphQlObjectType("FileValue")]
-    public class FileValue : IMirroredValue, IColumnValue {
+    public class FileValue : AddShallowCopy<IColumnValue>, IMirroredValue, IColumnValue {
         public Column? Column { get; set; }
         [JsonConverter(typeof(GraphQlInterfaceJsonConverter))]
         public ICollection<IFileValueItem>? Files { get; set; }

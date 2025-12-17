@@ -5,7 +5,7 @@ using Newtonsoft.Json;
 namespace MondayApi.Schema {
     [System.Diagnostics.DebuggerDisplay("{Type.ToString(),nq}:{ID}: {Text}")]
     [GraphQlObjectType("TimeTrackingValue")]
-    public class TimeTrackingValue : IMirroredValue, IColumnValue {
+    public class TimeTrackingValue : AddShallowCopy<IColumnValue>, IMirroredValue, IColumnValue {
         public Column? Column { get; set; }
         public int? Duration { get; set; }
         public ICollection<TimeTrackingHistoryItem>? History { get; set; }

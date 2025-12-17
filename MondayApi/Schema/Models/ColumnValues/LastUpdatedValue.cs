@@ -4,7 +4,7 @@ using Newtonsoft.Json;
 namespace MondayApi.Schema {
     [System.Diagnostics.DebuggerDisplay("{Type.ToString(),nq}:{ID}: {Text}/{UpdaterID}/{UpdatedAt}")]
     [GraphQlObjectType("LastUpdatedValue")]
-    public class LastUpdatedValue : IMirroredValue, IColumnValue {
+    public class LastUpdatedValue : AddShallowCopy<IColumnValue>, IMirroredValue, IColumnValue {
         public Column? Column { get; set; }
         public string? ID { get; set; }
         public string? Text { get; set; }

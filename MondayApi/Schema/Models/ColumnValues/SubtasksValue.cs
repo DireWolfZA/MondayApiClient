@@ -4,7 +4,7 @@ using Newtonsoft.Json;
 namespace MondayApi.Schema {
     [System.Diagnostics.DebuggerDisplay("{Type.ToString(),nq}:{ID}: {Text}")]
     [GraphQlObjectType("SubtasksValue")]
-    public class SubtasksValue : IMirroredValue, IColumnValue {
+    public class SubtasksValue : AddShallowCopy<IColumnValue>, IMirroredValue, IColumnValue {
         public Column? Column { get; set; }
         [JsonProperty("display_value")]
         public string? DisplayValue { get; set; }

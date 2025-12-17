@@ -5,5 +5,10 @@ namespace MondayApi.Schema {
         string? Text { get; set; }
         ColumnType? Type { get; set; }
         object? Value { get; set; }
+        IColumnValue ShallowCopy();
+    }
+
+    public abstract class AddShallowCopy<T> {
+        public T ShallowCopy() => (T)MemberwiseClone();
     }
 }

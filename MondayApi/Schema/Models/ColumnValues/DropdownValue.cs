@@ -3,7 +3,7 @@ using System.Collections.Generic;
 namespace MondayApi.Schema {
     [System.Diagnostics.DebuggerDisplay("{Type.ToString(),nq}:{ID}: {Text}")]
     [GraphQlObjectType("DropdownValue")]
-    public class DropdownValue : IMirroredValue, IColumnValue {
+    public class DropdownValue : AddShallowCopy<IColumnValue>, IMirroredValue, IColumnValue {
         public Column? Column { get; set; }
         public string? ID { get; set; }
         public string? Text { get; set; }

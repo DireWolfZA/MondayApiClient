@@ -4,7 +4,7 @@ using Newtonsoft.Json;
 namespace MondayApi.Schema {
     [System.Diagnostics.DebuggerDisplay("{Type.ToString(),nq}:{ID}: {Text}")]
     [GraphQlObjectType("ColorPickerValue")]
-    public class ColorPickerValue : IMirroredValue, IColumnValue {
+    public class ColorPickerValue : AddShallowCopy<IColumnValue>, IMirroredValue, IColumnValue {
         public string? Color { get; set; }
         public Column? Column { get; set; }
         public string? ID { get; set; }

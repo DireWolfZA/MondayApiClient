@@ -1,7 +1,7 @@
 namespace MondayApi.Schema {
     [System.Diagnostics.DebuggerDisplay("{Type.ToString(),nq}:{ID}: {Text}")]
     [GraphQlObjectType("DirectDocValue")]
-    public class DirectDocValue : IMirroredValue, IColumnValue {
+    public class DirectDocValue : AddShallowCopy<IColumnValue>, IMirroredValue, IColumnValue {
         public Column? Column { get; set; }
         public DirectDocValue? File { get; set; }
         public string? ID { get; set; }

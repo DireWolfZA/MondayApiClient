@@ -4,7 +4,7 @@ using Newtonsoft.Json;
 namespace MondayApi.Schema {
     [System.Diagnostics.DebuggerDisplay("{Type.ToString(),nq}:{ID}: {Text}/{Date}")]
     [GraphQlObjectType("DateValue")]
-    public class DateValue : IMirroredValue, IColumnValue {
+    public class DateValue : AddShallowCopy<IColumnValue>, IMirroredValue, IColumnValue {
         public Column? Column { get; set; }
         public string? Date { get; set; }
         public string? Icon { get; set; }

@@ -4,7 +4,7 @@ using Newtonsoft.Json;
 namespace MondayApi.Schema {
     [System.Diagnostics.DebuggerDisplay("{Type.ToString(),nq}:{ID}: {Text}")]
     [GraphQlObjectType("BatteryValue")]
-    public class BatteryValueData : IMirroredValue, IColumnValue {
+    public class BatteryValueData : AddShallowCopy<IColumnValue>, IMirroredValue, IColumnValue {
         [JsonProperty("battery_value")]
         public ICollection<BatteryValueItem>? BatteryValue { get; set; }
         public Column? Column { get; set; }

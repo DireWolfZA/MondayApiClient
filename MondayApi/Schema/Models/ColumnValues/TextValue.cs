@@ -1,7 +1,7 @@
 namespace MondayApi.Schema {
     [System.Diagnostics.DebuggerDisplay("{Type.ToString(),nq}:{ID}: {Text}")]
     [GraphQlObjectType("TextValue")]
-    public class TextValue : IMirroredValue, IColumnValue {
+    public class TextValue : AddShallowCopy<IColumnValue>, IMirroredValue, IColumnValue {
         public Column? Column { get; set; }
         public string? ID { get; set; }
         public string? Text { get; set; }
