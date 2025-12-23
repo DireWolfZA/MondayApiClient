@@ -16,7 +16,7 @@
     <PackageProjectUrl>https://developer.monday.com/api-reference/reference</PackageProjectUrl>
     <PackageTags>monday.com;api</PackageTags>
     <PublishRepositoryUrl>true</PublishRepositoryUrl>
-    <Version>1.1.0</Version>
+    <Version>1.1.1</Version>
   </PropertyGroup>
 
   <ItemGroup>
