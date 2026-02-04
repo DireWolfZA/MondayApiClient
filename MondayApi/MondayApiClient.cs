@@ -71,7 +71,7 @@ namespace MondayApi {
             } catch (Newtonsoft.Json.JsonSerializationException) {
                 // attempt to convert to MondayApiError. If it fails, throw original JsonSerializationException
                 if (Utils.Utils.TryDeserializeMondayApiError(queryResponse, out var mondayApiError))
-                    throw new AggregateException(new MondayException(mondayApiError));
+                    throw new AggregateException(new MondayException(mondayApiError, queryResponse));
                 throw;
 #if DEBUG
             } catch (Newtonsoft.Json.JsonReaderException) {
@@ -87,10 +87,10 @@ namespace MondayApi {
 #endif
 
             if (response.Errors != null && (response.Data is not Query || (response.Data is Query q && q?.Boards?.FirstOrDefault()?.Columns == null)))
-                throw MondayException.FromErrors(response.Errors);
+                throw MondayException.FromErrors(response.Errors, queryResponse);
             if (response.Data == null) {
                 if (Utils.Utils.TryDeserializeMondayApiError(queryResponse, out var mondayApiError))
-                    throw new AggregateException(new MondayException(mondayApiError));
+                    throw new AggregateException(new MondayException(mondayApiError, queryResponse));
                 throw new AggregateException(new MondayException(queryResponse));
             }
 

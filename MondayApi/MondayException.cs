@@ -7,20 +7,23 @@ using GraphQL;
 namespace MondayApi {
     public class MondayException : Exception {
         public GraphQLError? ErrorData { get; }
-        public MondayException(GraphQLError error) : base(error.Message) {
+        public MondayException(GraphQLError error, string queryResponse) : base(error.Message) {
             ErrorData = error;
+            QueryResponse = queryResponse;
         }
 
         public Utils.MondayApiError? MondayApiError { get; }
-        public MondayException(Utils.MondayApiError mondayApiError) : base(
+        public string QueryResponse { get; }
+        public MondayException(Utils.MondayApiError mondayApiError, string queryResponse) : base(
             mondayApiError.ErrorMessage ??
             mondayApiError.Errors?.FirstOrDefault() ??
             $"{mondayApiError.StatusCode}: {mondayApiError.ErrorCode}"
         ) {
             MondayApiError = mondayApiError;
+            QueryResponse = queryResponse;
         }
 
-        public MondayException(string error) : base(error) { }
+        public MondayException(string error) : base(error) { QueryResponse = error; } // this is called with queryResponse so save to both
 
         public override string ToString() {
             if (ErrorData != null || MondayApiError != null) {
@@ -33,8 +36,12 @@ namespace MondayApi {
                 if (ErrorData?.Path?.Count > 0)
                     lineData.Add($"Path: {string.Join(".", ErrorData.Path.Select(p => p.ToString()))}");
                 if (ErrorData?.Extensions != null)
-                    foreach (var extension in ErrorData.Extensions)
-                        lineData.Add($"Extension: {extension.Key}: {extension.Value}");
+                    foreach (var extension in ErrorData.Extensions) {
+                        if (extension.Value is IDictionary<string, object> valDict)
+                            lineData.Add($"Extension: {extension.Key}: {string.Join(";", valDict.Select(kv => $"{kv.Key}:{kv.Value}"))}");
+                        else
+                            lineData.Add($"Extension: {extension.Key}: {extension.Value}");
+                    }
                 if (MondayApiError?.ErrorCode != null)
                     lineData.Add($"Error Code: {MondayApiError.ErrorCode}");
                 if (MondayApiError?.StatusCode != null)
@@ -57,7 +64,12 @@ namespace MondayApi {
             }
         }
 
-        public static AggregateException FromErrors(IEnumerable<GraphQLError> errors) =>
-            new AggregateException(errors.Select(e => new MondayException(e)));
+        public static string? GetQueryResponse(AggregateException ex) =>
+            ex.Data["Response"]?.ToString() ?? (ex?.InnerException as MondayException)?.QueryResponse;
+        public static AggregateException FromErrors(IEnumerable<GraphQLError> errors, string queryResponse) {
+            var ex = new AggregateException(errors.Select(e => new MondayException(e, queryResponse)));
+            ex.Data["Response"] = queryResponse;
+            return ex;
+        }
     }
 }
