@@ -11,6 +11,7 @@
     <Title>Monday API Client</Title>
     <Description>A C# wrapper for the Monday.com API</Description>
     <Authors>Dire Wolf</Authors>
+    <PackageIcon>logo.png</PackageIcon>
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageProjectUrl>https://developer.monday.com/api-reference/reference</PackageProjectUrl>
@@ -20,10 +21,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Include="..\README.md">
-      <Pack>True</Pack>
-      <PackagePath>\</PackagePath>
-    </None>
+    <None Include="..\README.md" Pack="true" PackagePath="\" />
+    <None Include="..\logo.png" Pack="true" PackagePath="\" />
   </ItemGroup>
 
   <ItemGroup>
