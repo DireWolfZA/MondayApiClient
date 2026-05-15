@@ -31,8 +31,8 @@ namespace MondayApi.Workspaces {
         }
 
         public async Task<Workspace> Create(Workspace workspace) {
-            Utils.Utils.RequireArgument(nameof(workspace.Name), workspace.Name);
-            Utils.Utils.RequireArgument(nameof(workspace.Kind), workspace.Kind);
+            Utils.Utils.RequireArgument(workspace.Name);
+            Utils.Utils.RequireArgument(workspace.Kind);
 
             var mutation = new MutationQueryBuilder().WithCreateWorkspace(
                 new WorkspaceQueryBuilder().WithAllScalarFields(),

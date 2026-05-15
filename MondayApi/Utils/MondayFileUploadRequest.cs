@@ -17,8 +17,8 @@ namespace MondayApi.Utils {
         public string? Filename { get; set; }
 
         public override HttpRequestMessage ToHttpRequestMessage(GraphQLHttpClientOptions options, IGraphQLJsonSerializer serializer) {
-            Utils.RequireArgument(nameof(File), File);
-            Utils.RequireArgument(nameof(Filename), Filename);
+            Utils.RequireArgument(File);
+            Utils.RequireArgument(Filename);
 
             return new HttpRequestMessage(HttpMethod.Post, "https://api.monday.com/v2/file") { // monday file uploads go to special endpoint
                 Content = new MultipartFormDataContent("Upl----") {

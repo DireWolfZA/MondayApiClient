@@ -67,7 +67,7 @@ namespace MondayApi.Items {
 
 
         public async Task<ItemsResponse> GetByBoardNextPage(string cursor, int numPerPage, bool withColumnValues = false, IEnumerable<string>? columnIDs = null) {
-            Utils.Utils.RequireArgument(nameof(cursor), cursor);
+            Utils.Utils.RequireArgument(cursor);
             var query = new QueryQueryBuilder().WithNextItemsPage(
                 new ItemsResponseQueryBuilder().WithCursor().WithItems(getItemQueryBuilder(withColumnValues, columnIDs)),
                 cursor: cursor,
@@ -109,8 +109,8 @@ namespace MondayApi.Items {
         public async Task<Item> Create(string itemName, string boardID, string? groupID = null, IEnumerable<IColumnValue>? columnValues = null,
             bool? createLabelsIfMissing = null, string? relativeTo = null, PositionRelative? positionRelative = null
         ) {
-            Utils.Utils.RequireArgument(nameof(itemName), itemName);
-            Utils.Utils.RequireArgument(nameof(boardID), boardID);
+            Utils.Utils.RequireArgument(itemName);
+            Utils.Utils.RequireArgument(boardID);
 
             var mutation = new MutationQueryBuilder().WithCreateItem(
                 getItemQueryBuilder(true, null),
@@ -129,13 +129,13 @@ namespace MondayApi.Items {
 
         /// <inheritdoc />
         public async Task<IEnumerable<Item>> CreateMultiple(IEnumerable<Item> items, bool? createLabelsIfMissing = null) {
-            Utils.Utils.RequireArgument(nameof(items), items);
+            Utils.Utils.RequireArgument(items);
             var mutation = new MutationQueryBuilder();
 
             int createIndex = 0;
             foreach (var item in items) {
-                Utils.Utils.RequireArgument($"{nameof(items)}.{nameof(item.Name)}", item.Name);
-                Utils.Utils.RequireArgument($"{nameof(items)}.{nameof(item.Board)}.{nameof(item.Board.ID)}", item.Board?.ID);
+                Utils.Utils.RequireArgument(item.Name, $"{nameof(items)}.{nameof(item.Name)}");
+                Utils.Utils.RequireArgument(item.Board?.ID, $"{nameof(items)}.{nameof(item.Board)}.{nameof(item.Board.ID)}");
 
                 mutation = mutation.WithCreateItem(
                     getItemQueryBuilder(true, null),
@@ -155,8 +155,8 @@ namespace MondayApi.Items {
         }
 
         public async Task<Item> MoveToGroup(string itemID, string groupID) {
-            Utils.Utils.RequireArgument(nameof(itemID), itemID);
-            Utils.Utils.RequireArgument(nameof(groupID), groupID);
+            Utils.Utils.RequireArgument(itemID);
+            Utils.Utils.RequireArgument(groupID);
 
             var mutation = new MutationQueryBuilder().WithMoveItemToGroup(
                 new ItemQueryBuilder().WithAllScalarFields(),
@@ -170,9 +170,9 @@ namespace MondayApi.Items {
 
         /// <inheritdoc />
         public async Task<Item> MoveToBoard(string itemID, string boardID, string groupID, IEnumerable<ColumnMappingInput>? columnsMapping = null, IEnumerable<ColumnMappingInput>? subitemsColumnsMapping = null) {
-            Utils.Utils.RequireArgument(nameof(itemID), itemID);
-            Utils.Utils.RequireArgument(nameof(boardID), boardID);
-            Utils.Utils.RequireArgument(nameof(groupID), groupID);
+            Utils.Utils.RequireArgument(itemID);
+            Utils.Utils.RequireArgument(boardID);
+            Utils.Utils.RequireArgument(groupID);
 
             var mutation = new MutationQueryBuilder().WithMoveItemToBoard(new ItemQueryBuilder().WithAllScalarFields(),
                 itemID: itemID,
@@ -187,8 +187,8 @@ namespace MondayApi.Items {
         }
 
         public async Task<Item> Duplicate(string itemID, string boardID, bool? withUpdates = false) {
-            Utils.Utils.RequireArgument(nameof(itemID), itemID);
-            Utils.Utils.RequireArgument(nameof(boardID), boardID);
+            Utils.Utils.RequireArgument(itemID);
+            Utils.Utils.RequireArgument(boardID);
 
             var mutation = new MutationQueryBuilder().WithDuplicateItem(new ItemQueryBuilder().WithAllScalarFields(),
                 itemID: itemID,
@@ -208,12 +208,12 @@ namespace MondayApi.Items {
         }
 
         public async Task<IEnumerable<Item>> DeleteMultiple(IEnumerable<string> ids) {
-            Utils.Utils.RequireArgument($"{nameof(ids)}", ids);
+            Utils.Utils.RequireArgument(ids);
             var mutation = new MutationQueryBuilder();
 
             int deleteIndex = 0;
             foreach (string id in ids) {
-                Utils.Utils.RequireArgument($"{nameof(ids)}.Item", id);
+                Utils.Utils.RequireArgument(id, $"{nameof(ids)}.Item");
 
                 mutation = mutation.WithDeleteItem(
                     new ItemQueryBuilder().WithAllScalarFields(),

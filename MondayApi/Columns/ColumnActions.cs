@@ -57,7 +57,7 @@ namespace MondayApi.Columns {
 
 
         public async Task<Item> ChangeValue(string boardID, string itemID, IColumnValue value, bool? createLabelsIfMissing = null) {
-            Utils.Utils.RequireArgument($"{nameof(value)}.{nameof(value.ID)}", value.ID);
+            Utils.Utils.RequireArgument(value.ID);
 
             var mutation = new MutationQueryBuilder().WithChangeColumnValue(
                 new ItemQueryBuilder().WithAllScalarFields().WithColumnValues(
@@ -109,7 +109,7 @@ namespace MondayApi.Columns {
 
             int createIndex = 0;
             foreach (var value in values) {
-                Utils.Utils.RequireArgument($"{nameof(value)}.{nameof(value.Value.ID)}", value.Value.ID);
+                Utils.Utils.RequireArgument(value.Value.ID, $"{nameof(values)}.{nameof(value.Value.ID)}");
 
                 mutation = mutation.WithChangeColumnValue(
                     new ItemQueryBuilder().WithAllScalarFields().WithColumnValues(
@@ -133,7 +133,7 @@ namespace MondayApi.Columns {
 
         /// <inheritdoc />
         public async Task<Column> Create(string boardID, Column column, string? afterColumnID = null, string? defaults = null) {
-            Utils.Utils.RequireArgument($"{nameof(column)}.{nameof(column.Type)}", column.Type);
+            Utils.Utils.RequireArgument(column.Type);
 
             var mutation = new MutationQueryBuilder().WithCreateColumn(
                 new ColumnQueryBuilder().WithAllScalarFields(),

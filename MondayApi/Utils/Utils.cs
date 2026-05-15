@@ -5,13 +5,25 @@ using MondayApi.Schema;
 
 namespace MondayApi.Utils {
     public class Utils {
-        // Copied from old version of RestSharp.Validation
         /// <summary>Require a parameter to not be null</summary>
-        /// <param name="argumentName">Name of the parameter</param>
-        /// <param name="argumentValue">Value of the parameter</param>
-        public static void RequireArgument(string? argumentName, [System.Diagnostics.CodeAnalysis.NotNull] object? argumentValue) {
-            if (argumentValue == null)
-                throw new ArgumentNullException(argumentName);
+        /// <param name="argument">Value of the parameter</param>
+        /// <param name="paramName">Name of the parameter</param>
+        public static void RequireArgument(
+            [System.Diagnostics.CodeAnalysis.NotNull] object? argument,
+            [System.Runtime.CompilerServices.CallerArgumentExpression(nameof(argument))] string? paramName = null
+        ) {
+            if (argument == null)
+                throw new ArgumentNullException(paramName);
+        }
+
+        public static void RequireStringArgument(
+            [System.Diagnostics.CodeAnalysis.NotNull] string? argument,
+            [System.Runtime.CompilerServices.CallerArgumentExpression(nameof(argument))] string? paramName = null
+        ) {
+            if (string.IsNullOrWhiteSpace(argument))
+                throw new ArgumentNullException(paramName);
+            if (argument == null) // satisfy warning
+                throw new ArgumentNullException(paramName);
         }
 
         public static GraphQlQueryParameter<T>? GetParameter<T>(T? value, bool isNullable = true) =>

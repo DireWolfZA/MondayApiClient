@@ -31,8 +31,8 @@ namespace MondayApi.Boards {
         }
 
         public async Task<Board> Create(Board board, string? templateID = null, bool? empty = null) {
-            Utils.Utils.RequireArgument(nameof(board.Name), board.Name);
-            Utils.Utils.RequireArgument(nameof(board.BoardKind), board.BoardKind);
+            Utils.Utils.RequireArgument(board.Name);
+            Utils.Utils.RequireArgument(board.BoardKind);
 
             var mutation = new MutationQueryBuilder().WithCreateBoard(
                 new BoardQueryBuilder().WithAllScalarFields(),

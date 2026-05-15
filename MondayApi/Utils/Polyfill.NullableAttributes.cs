@@ -2,6 +2,7 @@
 // https://github.com/dotnet/runtime/blob/527f9ae88a0ee216b44d556f9bdc84037fe0ebda/src/libraries/System.Private.CoreLib/src/System/Diagnostics/CodeAnalysis/NullableAttributes.cs
 
 #if NETSTANDARD2_0
+#pragma warning disable
 namespace System.Diagnostics.CodeAnalysis {
     /// <summary>Specifies that null is allowed as an input even if the corresponding type disallows it.</summary>
     [AttributeUsage(AttributeTargets.Field | AttributeTargets.Parameter | AttributeTargets.Property, Inherited = false)]
@@ -57,8 +58,7 @@ namespace System.Diagnostics.CodeAnalysis {
 
     /// <summary>Specifies that the method will not return if the associated Boolean parameter is passed the specified value.</summary>
     [AttributeUsage(AttributeTargets.Parameter, Inherited = false)]
-    internal
-        sealed class DoesNotReturnIfAttribute : Attribute {
+    internal sealed class DoesNotReturnIfAttribute : Attribute {
         /// <summary>Initializes the attribute with the specified parameter value.</summary>
         /// <param name="parameterValue">
         /// The condition parameter value. Code after the method will be considered unreachable by diagnostics if the argument to
@@ -71,8 +71,7 @@ namespace System.Diagnostics.CodeAnalysis {
 
     /// <summary>Specifies that the method or property will ensure that the listed field and property members have not-null values.</summary>
     [AttributeUsage(AttributeTargets.Method | AttributeTargets.Property, Inherited = false, AllowMultiple = true)]
-    internal
-        sealed class MemberNotNullAttribute : Attribute {
+    internal sealed class MemberNotNullAttribute : Attribute {
         /// <summary>Initializes the attribute with a field or property member.</summary>
         /// <param name="member">
         /// The field or property member that is promised to be not-null.
@@ -89,8 +88,7 @@ namespace System.Diagnostics.CodeAnalysis {
 
     /// <summary>Specifies that the method or property will ensure that the listed field and property members have not-null values when returning with the specified return value condition.</summary>
     [AttributeUsage(AttributeTargets.Method | AttributeTargets.Property, Inherited = false, AllowMultiple = true)]
-    internal
-        sealed class MemberNotNullWhenAttribute : Attribute {
+    internal sealed class MemberNotNullWhenAttribute : Attribute {
         /// <summary>Initializes the attribute with the specified return value condition and a field or property member.</summary>
         /// <param name="returnValue">
         /// The return value condition. If the method returns this value, the associated parameter will not be null.
@@ -119,4 +117,5 @@ namespace System.Diagnostics.CodeAnalysis {
         public string[] Members { get; }
     }
 }
+#pragma warning restore
 #endif

@@ -14,10 +14,11 @@ namespace MondayApi.Updates {
         private UpdateQueryBuilder getUpdateQueryBuilder(bool includeReplies, bool includeAssets) {
             var updateQueryBuilder = new UpdateQueryBuilder().WithAllScalarFields();
             // when client updates past 2025-07: https://developer.monday.com/api-reference/changelog/new-field-to-retrieve-assets-on-reply-object
-            //if (includeReplies && includeAssets)
-            //    updateQueryBuilder = updateQueryBuilder.WithReplies(new ReplyQueryBuilder().WithAllScalarFields().WithAssets(new AssetQueryBuilder().WithAllScalarFields()));
-            //else if (includeReplies)
-            if (includeReplies)
+            if (includeReplies && includeAssets)
+                updateQueryBuilder = updateQueryBuilder.WithReplies(
+                    new ReplyQueryBuilder().WithAllScalarFields().WithAssets(new AssetQueryBuilder().WithAllScalarFields())
+                ).WithAssets(new AssetQueryBuilder().WithAllScalarFields());
+            else if (includeReplies)
                 updateQueryBuilder = updateQueryBuilder.WithReplies(new ReplyQueryBuilder().WithAllScalarFields());
             if (includeAssets)
                 updateQueryBuilder = updateQueryBuilder.WithAssets(new AssetQueryBuilder().WithAllScalarFields());
@@ -61,8 +62,8 @@ namespace MondayApi.Updates {
         }
 
         public async Task<Update> Create(string itemID, string body) {
-            Utils.Utils.RequireArgument(nameof(itemID), itemID);
-            Utils.Utils.RequireArgument(nameof(body), body);
+            Utils.Utils.RequireArgument(itemID);
+            Utils.Utils.RequireArgument(body);
 
             var mutation = new MutationQueryBuilder().WithCreateUpdate(
                 getUpdateQueryBuilder(true, true),
@@ -75,8 +76,8 @@ namespace MondayApi.Updates {
         }
 
         public async Task<Update> CreateReply(string parentUpdateID, string body) {
-            Utils.Utils.RequireArgument(nameof(parentUpdateID), parentUpdateID);
-            Utils.Utils.RequireArgument(nameof(body), body);
+            Utils.Utils.RequireArgument(parentUpdateID);
+            Utils.Utils.RequireArgument(body);
 
             var mutation = new MutationQueryBuilder().WithCreateUpdate(
                 getUpdateQueryBuilder(true, true),
@@ -90,6 +91,8 @@ namespace MondayApi.Updates {
 
         /// <inheritdoc />
         public async Task<Update> Like(string updateID) {
+            Utils.Utils.RequireArgument(updateID);
+
             var mutation = new MutationQueryBuilder().WithLikeUpdate(
                 new UpdateQueryBuilder().WithID().WithCreatorID().WithCreatedAt().WithUpdatedAt(),
                 updateID: updateID
@@ -99,6 +102,8 @@ namespace MondayApi.Updates {
         }
 
         public async Task<Update> Delete(string updateID) {
+            Utils.Utils.RequireArgument(updateID);
+
             var mutation = new MutationQueryBuilder().WithDeleteUpdate(
                 getUpdateQueryBuilder(true, true),
                 id: updateID
@@ -108,6 +113,8 @@ namespace MondayApi.Updates {
         }
 
         public async Task<Item> ClearForItem(string itemID) {
+            Utils.Utils.RequireArgument(itemID);
+
             var mutation = new MutationQueryBuilder().WithClearItemUpdates(
                 new ItemQueryBuilder().WithUpdates(new UpdateQueryBuilder().WithAllScalarFields()),
                 itemID: itemID

@@ -34,8 +34,8 @@ namespace MondayApi.Groups {
 
         /// <inheritdoc />
         public async Task<Group> Create(string boardID, string title, string? color = null, string? relativeTo = null, PositionRelative? positionRelative = null) {
-            Utils.Utils.RequireArgument(nameof(boardID), boardID);
-            Utils.Utils.RequireArgument(nameof(title), title);
+            Utils.Utils.RequireArgument(boardID);
+            Utils.Utils.RequireArgument(title);
 
             var mutation = new MutationQueryBuilder().WithCreateGroup(
                 new GroupQueryBuilder().WithAllScalarFields(),

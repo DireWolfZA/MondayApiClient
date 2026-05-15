@@ -26,8 +26,7 @@ namespace MondayApi {
         private string queryResponse = string.Empty;
 
         public MondayApiClient([System.Diagnostics.CodeAnalysis.AllowNull] string token) {
-            Utils.Utils.RequireArgument(nameof(token), string.IsNullOrWhiteSpace(token) ? null : token);
-
+            Utils.Utils.RequireStringArgument(token);
             client = new GraphQLHttpClient(baseURL, new Utils.DebugSerializer(captureResponse: response => queryResponse = response));
 
             client.HttpClient.DefaultRequestHeaders.Add("Authorization", token);

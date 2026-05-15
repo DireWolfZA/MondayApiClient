@@ -48,8 +48,8 @@ namespace MondayApi.Subitems {
         }
 
         public async Task<Item> CreateSubitem(string itemName, string parentItemID, IEnumerable<IColumnValue>? columnValues = null, bool? createLabelsIfMissing = null) {
-            Utils.Utils.RequireArgument(nameof(parentItemID), parentItemID);
-            Utils.Utils.RequireArgument(nameof(itemName), itemName);
+            Utils.Utils.RequireArgument(parentItemID);
+            Utils.Utils.RequireArgument(itemName);
 
             var mutation = new MutationQueryBuilder().WithCreateSubitem(
                 getSubitemQueryBuilder(true, null),
@@ -65,12 +65,12 @@ namespace MondayApi.Subitems {
 
         /// <inheritdoc />
         public async Task<IEnumerable<Item>> CreateMultiple(string parentItemID, IEnumerable<Item> items, bool? createLabelsIfMissing = null) {
-            Utils.Utils.RequireArgument(nameof(items), items);
+            Utils.Utils.RequireArgument(items);
             var mutation = new MutationQueryBuilder();
 
             int createIndex = 0;
             foreach (var item in items) {
-                Utils.Utils.RequireArgument($"{nameof(items)}.{nameof(item.Name)}", item.Name);
+                Utils.Utils.RequireArgument(item.Name, $"{nameof(items)}.{nameof(item.Name)}");
 
                 mutation = mutation.WithCreateSubitem(
                     getSubitemQueryBuilder(true, null),
