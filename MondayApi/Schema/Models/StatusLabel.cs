@@ -11,5 +11,6 @@ namespace MondayApi.Schema {
         public bool? IsDeactivated { get; set; }
         [JsonProperty("is_done")]
         public bool? IsDone { get; set; }
+        public string? Hex { get; set; }
     }
 }

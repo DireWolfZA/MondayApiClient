@@ -42,6 +42,7 @@ namespace MondayApi.Schema {
         // board relation
         //public bool? AllowMultipleItems { get; set; }
         public bool? AllowCreateReflectionColumn { get; set; }
+        public string? Layout { get; set; }
         //public List<int?>? BoardIDs { get; set; }
         public string? BoardID { get; set; }
         //public string? DisplayType { get; set; }
