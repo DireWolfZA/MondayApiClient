@@ -6,6 +6,7 @@ namespace MondayApi.Schema {
             new GraphQlFieldMetadata { Name = "column", IsComplex = true, QueryBuilderType = typeof(ColumnQueryBuilder) },
             new GraphQlFieldMetadata { Name = "display_value" },
             new GraphQlFieldMetadata { Name = "id" },
+            new GraphQlFieldMetadata { Name = "is_leaf" },
             new GraphQlFieldMetadata { Name = "subitems", IsComplex = true, QueryBuilderType = typeof(ItemQueryBuilder) },
             new GraphQlFieldMetadata { Name = "subitems_ids", IsComplex = true },
             new GraphQlFieldMetadata { Name = "text" },
@@ -28,6 +29,10 @@ namespace MondayApi.Schema {
             WithScalarField("id", alias, new GraphQlDirective?[] { include, skip });
         public SubtasksValueQueryBuilder ExceptID() =>
             ExceptField("id");
+        public SubtasksValueQueryBuilder WithIsLeaf(string? alias = null, IncludeDirective? include = null, SkipDirective? skip = null) =>
+            WithScalarField("is_leaf", alias, new GraphQlDirective?[] { include, skip });
+        public SubtasksValueQueryBuilder ExceptIsLeaf() =>
+            ExceptField("is_leaf");
         public SubtasksValueQueryBuilder WithSubitems(ItemQueryBuilder itemQueryBuilder, string? alias = null, IncludeDirective? include = null, SkipDirective? skip = null) =>
             WithObjectField("subitems", alias, itemQueryBuilder, new GraphQlDirective?[] { include, skip });
         public SubtasksValueQueryBuilder ExceptSubitems() =>

@@ -14,7 +14,6 @@ namespace MondayApi.Schema {
         public const string Json = "JSON";
         public const string PolicyPolicy = "policy__Policy";
         public const string String = "String";
-
         public const string ActivateUsersErrorCode = "ActivateUsersErrorCode";
         public const string AggregateFromElementType = "AggregateFromElementType";
         public const string AggregateSelectElementType = "AggregateSelectElementType";
@@ -22,9 +21,11 @@ namespace MondayApi.Schema {
         public const string AppFeatureReleaseKind = "AppFeatureReleaseKind";
         public const string AppFeatureTypeE = "AppFeatureTypeE";
         public const string AppKind = "AppKind";
+        public const string AppPermission = "AppPermission";
         public const string AppStatus = "AppStatus";
         public const string AssetsSource = "AssetsSource";
         public const string AssignTeamOwnersErrorCode = "AssignTeamOwnersErrorCode";
+        public const string AttributionEntity = "AttributionEntity";
         public const string BaseRoleName = "BaseRoleName";
         public const string BoardAccessLevel = "BoardAccessLevel";
         public const string BoardAttributes = "BoardAttributes";
@@ -50,6 +51,7 @@ namespace MondayApi.Schema {
         public const string DashboardKind = "DashboardKind";
         public const string DeactivateUsersErrorCode = "DeactivateUsersErrorCode";
         public const string DependencyRelation = "DependencyRelation";
+        public const string DirectoryResourceAttribute = "DirectoryResourceAttribute";
         public const string DiscountPeriod = "DiscountPeriod";
         public const string DocBlockContentType = "DocBlockContentType";
         public const string DocKind = "DocKind";
@@ -83,6 +85,8 @@ namespace MondayApi.Schema {
         public const string Kind = "Kind";
         public const string ManagedColumnState = "ManagedColumnState";
         public const string ManagedColumnTypes = "ManagedColumnTypes";
+        public const string MeetingAccess = "MeetingAccess";
+        public const string MeetingAccessFilter = "MeetingAccessFilter";
         public const string MentionType = "MentionType";
         public const string NotificationTargetType = "NotificationTargetType";
         public const string NumberValueUnitDirection = "NumberValueUnitDirection";
@@ -92,8 +96,12 @@ namespace MondayApi.Schema {
         public const string PositionRelative = "PositionRelative";
         public const string PrivacyKind = "PrivacyKind";
         public const string Product = "Product";
+        public const string RelationDirection = "RelationDirection";
+        public const string RelationKind = "RelationKind";
         public const string RemoveTeamOwnersErrorCode = "RemoveTeamOwnersErrorCode";
         public const string ScopeType = "ScopeType";
+        public const string SequenceContext = "SequenceContext";
+        public const string SequenceStatus = "SequenceStatus";
         public const string SortDirection = "SortDirection";
         public const string SprintSnapshotKind = "SprintSnapshotKind";
         public const string SprintState = "SprintState";
@@ -105,6 +113,8 @@ namespace MondayApi.Schema {
         public const string SubscriptionDiscountType = "SubscriptionDiscountType";
         public const string SubscriptionPeriodType = "SubscriptionPeriodType";
         public const string SubscriptionStatus = "SubscriptionStatus";
+        public const string TargetObject = "TargetObject";
+        public const string TriggerEventState = "TriggerEventState";
         public const string UpdateEmailDomainErrorCode = "UpdateEmailDomainErrorCode";
         public const string UpdateUserAttributesErrorCode = "UpdateUserAttributesErrorCode";
         public const string UpdateUsersRoleErrorCode = "UpdateUsersRoleErrorCode";
@@ -117,12 +127,16 @@ namespace MondayApi.Schema {
         public const string WebhookEventType = "WebhookEventType";
         public const string WidgetParentKind = "WidgetParentKind";
         public const string WorkspaceKind = "WorkspaceKind";
+        public const string WorkspaceMembershipKind = "WorkspaceMembershipKind";
         public const string WorkspacesOrderBy = "WorkspacesOrderBy";
+        public const string WorkspacesQueryAccountProductKind = "WorkspacesQueryAccountProductKind";
         public const string WorkspaceSubscriberKind = "WorkspaceSubscriberKind";
-
         public const string Account = "Account";
         public const string AccountProduct = "AccountProduct";
         public const string AccountRole = "AccountRole";
+        public const string AccountTriggersByEntityId = "AccountTriggersByEntityId";
+        public const string AccountTriggerStatistics = "AccountTriggerStatistics";
+        public const string ActionItem = "ActionItem";
         public const string ActivateUsersError = "ActivateUsersError";
         public const string ActivateUsersResult = "ActivateUsersResult";
         public const string ActivityLogType = "ActivityLogType";
@@ -131,6 +145,7 @@ namespace MondayApi.Schema {
         public const string AggregateQueryResult = "AggregateQueryResult";
         public const string AggregateResultEntry = "AggregateResultEntry";
         public const string AggregateResultSet = "AggregateResultSet";
+        public const string AppDocumentationAiResponse = "AppDocumentationAiResponse";
         public const string AppFeatureType = "AppFeatureType";
         public const string AppInstall = "AppInstall";
         public const string AppInstallAccount = "AppInstallAccount";
@@ -144,8 +159,12 @@ namespace MondayApi.Schema {
         public const string AppSubscriptions = "AppSubscriptions";
         public const string AppType = "AppType";
         public const string AppVersion = "AppVersion";
+        public const string Article = "Article";
         public const string ArticleBlock = "ArticleBlock";
+        public const string ArticleMetadata = "ArticleMetadata";
         public const string Asset = "Asset";
+        public const string AssignDepartmentMembersResult = "AssignDepartmentMembersResult";
+        public const string AssignDepartmentOwnerResult = "AssignDepartmentOwnerResult";
         public const string AssignTeamOwnersError = "AssignTeamOwnersError";
         public const string AssignTeamOwnersResult = "AssignTeamOwnersResult";
         public const string AuditEventCatalogueEntry = "AuditEventCatalogueEntry";
@@ -154,6 +173,7 @@ namespace MondayApi.Schema {
         public const string BatchExtendTrialPeriod = "BatchExtendTrialPeriod";
         public const string BatteryValue = "BatteryValue";
         public const string BatteryValueItem = "BatteryValueItem";
+        public const string BlockChanges = "BlockChanges";
         public const string BlockEvent = "BlockEvent";
         public const string BlockEventsPage = "BlockEventsPage";
         public const string Board = "Board";
@@ -166,6 +186,7 @@ namespace MondayApi.Schema {
         public const string CalculatedCapability = "CalculatedCapability";
         public const string ChangeTeamMembershipsResult = "ChangeTeamMembershipsResult";
         public const string CheckboxValue = "CheckboxValue";
+        public const string ClearUsersDepartmentResult = "ClearUsersDepartmentResult";
         public const string ColorPickerValue = "ColorPickerValue";
         public const string Column = "Column";
         public const string ColumnCapabilities = "ColumnCapabilities";
@@ -177,7 +198,10 @@ namespace MondayApi.Schema {
         public const string CountryValue = "CountryValue";
         public const string CreateAppResponse = "CreateAppResponse";
         public const string CreateFavoriteResultType = "CreateFavoriteResultType";
+        public const string CreateMarketplaceAppDiscount = "CreateMarketplaceAppDiscount";
+        public const string CreateMarketplaceAppDiscountResult = "CreateMarketplaceAppDiscountResult";
         public const string CreatePortfolioResult = "CreatePortfolioResult";
+        public const string CreateProjectResult = "CreateProjectResult";
         public const string CreationLogValue = "CreationLogValue";
         public const string CustomActivity = "CustomActivity";
         public const string CustomFieldMetas = "CustomFieldMetas";
@@ -192,21 +216,34 @@ namespace MondayApi.Schema {
         public const string DeleteFavoriteInputResultType = "DeleteFavoriteInputResultType";
         public const string DeleteMarketplaceAppDiscount = "DeleteMarketplaceAppDiscount";
         public const string DeleteMarketplaceAppDiscountResult = "DeleteMarketplaceAppDiscountResult";
+        public const string Department = "Department";
+        public const string DependencyColumnConfig = "DependencyColumnConfig";
+        public const string DependencyColumnConfigResult = "DependencyColumnConfigResult";
         public const string DependencyValue = "DependencyValue";
+        public const string DiffBlock = "DiffBlock";
         public const string DirectDocValue = "DirectDocValue";
+        public const string DirectoryResource = "DirectoryResource";
+        public const string DirectoryResourcesResponse = "DirectoryResourcesResponse";
         public const string DocBlocksFromMarkdownResult = "DocBlocksFromMarkdownResult";
+        public const string DocRestoringPoint = "DocRestoringPoint";
         public const string Document = "Document";
         public const string DocumentBlock = "DocumentBlock";
         public const string DocumentBlockIDOnly = "DocumentBlockIdOnly";
         public const string DocValue = "DocValue";
+        public const string DocVersionDiff = "DocVersionDiff";
+        public const string DocVersionHistory = "DocVersionHistory";
         public const string DropdownColumnSettings = "DropdownColumnSettings";
         public const string DropdownLabel = "DropdownLabel";
         public const string DropdownManagedColumn = "DropdownManagedColumn";
         public const string DropdownValue = "DropdownValue";
         public const string DropdownValueOption = "DropdownValueOption";
         public const string EmailValue = "EmailValue";
+        public const string EnrollToSequenceResult = "EnrollToSequenceResult";
+        public const string Event = "Event";
+        public const string EventsExport = "EventsExport";
         public const string ExportMarkdownResult = "ExportMarkdownResult";
         public const string ExtendTrialPeriod = "ExtendTrialPeriod";
+        public const string FileAssetInvalidValue = "FileAssetInvalidValue";
         public const string FileAssetValue = "FileAssetValue";
         public const string FileDocValue = "FileDocValue";
         public const string FileLinkValue = "FileLinkValue";
@@ -245,6 +282,7 @@ namespace MondayApi.Schema {
         public const string HierarchyObjectID = "HierarchyObjectID";
         public const string HourValue = "HourValue";
         public const string ImportDocFromHTMLResult = "ImportDocFromHtmlResult";
+        public const string IntegrationExecutionResult = "IntegrationExecutionResult";
         public const string IntegrationValue = "IntegrationValue";
         public const string InviteUsersError = "InviteUsersError";
         public const string InviteUsersResult = "InviteUsersResult";
@@ -252,7 +290,9 @@ namespace MondayApi.Schema {
         public const string ItemDescription = "ItemDescription";
         public const string ItemIDValue = "ItemIdValue";
         public const string ItemsResponse = "ItemsResponse";
+        public const string KnowledgeBaseAnswer = "KnowledgeBaseAnswer";
         public const string LastUpdatedValue = "LastUpdatedValue";
+        public const string LifecycleSubscriptionKind = "LifecycleSubscriptionKind";
         public const string Like = "Like";
         public const string LinkValue = "LinkValue";
         public const string LocationValue = "LocationValue";
@@ -265,9 +305,12 @@ namespace MondayApi.Schema {
         public const string MarketplaceSearchAppDocument = "MarketplaceSearchAppDocument";
         public const string MarketplaceSearchHit = "MarketplaceSearchHit";
         public const string MarketplaceSearchResults = "MarketplaceSearchResults";
+        public const string Meeting = "Meeting";
+        public const string MeetingsResponse = "MeetingsResponse";
         public const string MirroredItem = "MirroredItem";
         public const string MirrorValue = "MirrorValue";
         public const string Mutation = "Mutation";
+        public const string NotetakerQueries = "NotetakerQueries";
         public const string Notification = "Notification";
         public const string NotificationSetting = "NotificationSetting";
         public const string NotificationSettingChannel = "NotificationSettingChannel";
@@ -275,10 +318,13 @@ namespace MondayApi.Schema {
         public const string NumbersValue = "NumbersValue";
         public const string Object = "Object";
         public const string ObjectOperationResponse = "ObjectOperationResponse";
+        public const string ObjectRelation = "ObjectRelation";
         public const string ObjectTypeUniqueKey = "ObjectTypeUniqueKey";
         public const string OutOfOffice = "OutOfOffice";
         public const string Overview = "Overview";
+        public const string PageInfo = "PageInfo";
         public const string Pagination = "Pagination";
+        public const string Participant = "Participant";
         public const string PeopleEntity = "PeopleEntity";
         public const string PeopleValue = "PeopleValue";
         public const string PersonValue = "PersonValue";
@@ -298,7 +344,10 @@ namespace MondayApi.Schema {
         public const string Reply = "Reply";
         public const string RequiredColumns = "RequiredColumns";
         public const string ResponseForm = "ResponseForm";
+        public const string RestoringPointAgentAttribution = "RestoringPointAgentAttribution";
+        public const string Sequence = "Sequence";
         public const string SetBoardPermissionResponse = "SetBoardPermissionResponse";
+        public const string SnippetSearchResult = "SnippetSearchResult";
         public const string Sprint = "Sprint";
         public const string SprintSnapshot = "SprintSnapshot";
         public const string SprintSnapshotColumnMetadata = "SprintSnapshotColumnMetadata";
@@ -314,6 +363,7 @@ namespace MondayApi.Schema {
         public const string SubtasksValue = "SubtasksValue";
         public const string Tag = "Tag";
         public const string TagsValue = "TagsValue";
+        public const string TalkingPoint = "TalkingPoint";
         public const string Team = "Team";
         public const string TeamValue = "TeamValue";
         public const string Template = "Template";
@@ -324,11 +374,17 @@ namespace MondayApi.Schema {
         public const string TimelineValue = "TimelineValue";
         public const string TimeTrackingHistoryItem = "TimeTrackingHistoryItem";
         public const string TimeTrackingValue = "TimeTrackingValue";
+        public const string ToolEvent = "ToolEvent";
+        public const string ToolEventsPage = "ToolEventsPage";
+        public const string Topic = "Topic";
+        public const string TranscriptEntry = "TranscriptEntry";
         public const string TriggerEvent = "TriggerEvent";
         public const string TriggerEventsPage = "TriggerEventsPage";
+        public const string UnassignDepartmentOwnerResult = "UnassignDepartmentOwnerResult";
         public const string UnsupportedValue = "UnsupportedValue";
         public const string Update = "Update";
         public const string UpdateBoardHierarchyResult = "UpdateBoardHierarchyResult";
+        public const string UpdateDirectoryResourceAttributesResponse = "UpdateDirectoryResourceAttributesResponse";
         public const string UpdateEmailDomainError = "UpdateEmailDomainError";
         public const string UpdateEmailDomainResult = "UpdateEmailDomainResult";
         public const string UpdateFavoriteResultType = "UpdateFavoriteResultType";
@@ -352,7 +408,8 @@ namespace MondayApi.Schema {
         public const string WorkspaceIcon = "WorkspaceIcon";
         public const string WorkspaceSettings = "WorkspaceSettings";
         public const string WorldClockValue = "WorldClockValue";
-
+        public const string AccountTriggersByEntityIdFiltersInput = "AccountTriggersByEntityIdFiltersInput";
+        public const string AccountTriggerStatisticsFiltersInput = "AccountTriggerStatisticsFiltersInput";
         public const string AggregateFromTableInput = "AggregateFromTableInput";
         public const string AggregateGroupByElementInput = "AggregateGroupByElementInput";
         public const string AggregateQueryInput = "AggregateQueryInput";
@@ -369,6 +426,7 @@ namespace MondayApi.Schema {
         public const string ColumnsMappingInput = "ColumnsMappingInput";
         public const string ConvertBoardToProjectInput = "ConvertBoardToProjectInput";
         public const string CreateAppInput = "CreateAppInput";
+        public const string CreateDepartmentDataInput = "CreateDepartmentDataInput";
         public const string CreateDocBoardInput = "CreateDocBoardInput";
         public const string CreateDocInput = "CreateDocInput";
         public const string CreateDocWorkspaceInput = "CreateDocWorkspaceInput";
@@ -376,6 +434,8 @@ namespace MondayApi.Schema {
         public const string CreateDropdownLabelInput = "CreateDropdownLabelInput";
         public const string CreateFavoriteInput = "CreateFavoriteInput";
         public const string CreateFormTagInput = "CreateFormTagInput";
+        public const string CreateMarketplaceAppDiscountInput = "CreateMarketplaceAppDiscountInput";
+        public const string CreateProjectInput = "CreateProjectInput";
         public const string CreateQuestionInput = "CreateQuestionInput";
         public const string CreateStatusColumnSettingsInput = "CreateStatusColumnSettingsInput";
         public const string CreateStatusLabelInput = "CreateStatusLabelInput";
@@ -384,8 +444,11 @@ namespace MondayApi.Schema {
         public const string DateRangeInput = "DateRangeInput";
         public const string DeleteFavoriteInput = "DeleteFavoriteInput";
         public const string DeleteFormTagInput = "DeleteFormTagInput";
+        public const string DependencyPulseValueInput = "DependencyPulseValueInput";
         public const string DependencyValueInput = "DependencyValueInput";
+        public const string DropdownSettingsOverridesInput = "DropdownSettingsOverridesInput";
         public const string DynamicPosition = "DynamicPosition";
+        public const string EnrollToSequenceInput = "EnrollToSequenceInput";
         public const string FileInput = "FileInput";
         public const string FormAccessibilityInput = "FormAccessibilityInput";
         public const string FormAfterSubmissionViewInput = "FormAfterSubmissionViewInput";
@@ -418,10 +481,13 @@ namespace MondayApi.Schema {
         public const string ItemsQueryGroup = "ItemsQueryGroup";
         public const string ItemsQueryOrderBy = "ItemsQueryOrderBy";
         public const string ItemsQueryRule = "ItemsQueryRule";
+        public const string LifecycleEventInput = "LifecycleEventInput";
         public const string MarketplaceAiSearchInput = "MarketplaceAiSearchInput";
         public const string MarketplaceSearchInput = "MarketplaceSearchInput";
+        public const string MeetingsFilterInput = "MeetingsFilterInput";
         public const string MetadataInput = "MetadataInput";
         public const string ObjectDynamicPositionInput = "ObjectDynamicPositionInput";
+        public const string ObjectRelationInput = "ObjectRelationInput";
         public const string PaginationInput = "PaginationInput";
         public const string PayloadInput = "PayloadInput";
         public const string PhonePrefixPredefinedInput = "PhonePrefixPredefinedInput";
@@ -432,11 +498,13 @@ namespace MondayApi.Schema {
         public const string StatusCalculatedCapabilityInput = "StatusCalculatedCapabilityInput";
         public const string StatusColumnCapabilitiesInput = "StatusColumnCapabilitiesInput";
         public const string TableViewSettingsInput = "TableViewSettingsInput";
+        public const string TimelineDateInput = "TimelineDateInput";
         public const string TimelineItemTimeRange = "TimelineItemTimeRange";
         public const string TriggerEventsFiltersInput = "TriggerEventsFiltersInput";
         public const string UpdateAppFeatureInput = "UpdateAppFeatureInput";
         public const string UpdateAppInput = "UpdateAppInput";
         public const string UpdateBoardHierarchyAttributesInput = "UpdateBoardHierarchyAttributesInput";
+        public const string UpdateDepartmentOptionsInput = "UpdateDepartmentOptionsInput";
         public const string UpdateDependencyColumnInput = "UpdateDependencyColumnInput";
         public const string UpdateDropdownColumnSettingsInput = "UpdateDropdownColumnSettingsInput";
         public const string UpdateDropdownLabelInput = "UpdateDropdownLabelInput";
@@ -444,6 +512,7 @@ namespace MondayApi.Schema {
         public const string UpdateFormInput = "UpdateFormInput";
         public const string UpdateFormSettingsInput = "UpdateFormSettingsInput";
         public const string UpdateFormTagInput = "UpdateFormTagInput";
+        public const string UpdateLifecycleSubscriptionsInput = "UpdateLifecycleSubscriptionsInput";
         public const string UpdateMention = "UpdateMention";
         public const string UpdateObjectHierarchyPositionInput = "UpdateObjectHierarchyPositionInput";
         public const string UpdateObjectInput = "UpdateObjectInput";
@@ -455,7 +524,7 @@ namespace MondayApi.Schema {
         public const string UserAttributesInput = "UserAttributesInput";
         public const string UserUpdateInput = "UserUpdateInput";
         public const string WidgetParentInput = "WidgetParentInput";
-
+        public const string WorkspacesQueryInput = "WorkspacesQueryInput";
         public const string AggregateResult = "AggregateResult";
         public const string ColumnSettings = "ColumnSettings";
         public const string FileValueItem = "FileValueItem";
@@ -466,9 +535,11 @@ namespace MondayApi.Schema {
         public static readonly IReadOnlyDictionary<Type, string> ReverseMapping = new Dictionary<Type, string>() {
             { typeof(int), "Int" },
             { typeof(string), "String" },
+            { typeof(DateTimeOffset), "Date" },
             { typeof(bool), "Boolean" },
-            { typeof(DateTimeOffset), "String" },
             { typeof(decimal), "Float" },
+            { typeof(AccountTriggersByEntityIdFiltersInput), "AccountTriggersByEntityIdFiltersInput" },
+            { typeof(AccountTriggerStatisticsFiltersInput), "AccountTriggerStatisticsFiltersInput" },
             { typeof(AggregateFromTableInput), "AggregateFromTableInput" },
             { typeof(AggregateGroupByElementInput), "AggregateGroupByElementInput" },
             { typeof(AggregateQueryInput), "AggregateQueryInput" },
@@ -485,6 +556,7 @@ namespace MondayApi.Schema {
             { typeof(ColumnsMappingInput), "ColumnsMappingInput" },
             { typeof(ConvertBoardToProjectInput), "ConvertBoardToProjectInput" },
             { typeof(CreateAppInput), "CreateAppInput" },
+            { typeof(CreateDepartmentDataInput), "CreateDepartmentDataInput" },
             { typeof(CreateDocBoardInput), "CreateDocBoardInput" },
             { typeof(CreateDocInput), "CreateDocInput" },
             { typeof(CreateDocWorkspaceInput), "CreateDocWorkspaceInput" },
@@ -492,6 +564,8 @@ namespace MondayApi.Schema {
             { typeof(CreateDropdownLabelInput), "CreateDropdownLabelInput" },
             { typeof(CreateFavoriteInput), "CreateFavoriteInput" },
             { typeof(CreateFormTagInput), "CreateFormTagInput" },
+            { typeof(CreateMarketplaceAppDiscountInput), "CreateMarketplaceAppDiscountInput" },
+            { typeof(CreateProjectInput), "CreateProjectInput" },
             { typeof(CreateQuestionInput), "CreateQuestionInput" },
             { typeof(CreateStatusColumnSettingsInput), "CreateStatusColumnSettingsInput" },
             { typeof(CreateStatusLabelInput), "CreateStatusLabelInput" },
@@ -500,8 +574,11 @@ namespace MondayApi.Schema {
             { typeof(DateRangeInput), "DateRangeInput" },
             { typeof(DeleteFavoriteInput), "DeleteFavoriteInput" },
             { typeof(DeleteFormTagInput), "DeleteFormTagInput" },
+            { typeof(DependencyPulseValueInput), "DependencyPulseValueInput" },
             { typeof(DependencyValueInput), "DependencyValueInput" },
+            { typeof(DropdownSettingsOverridesInput), "DropdownSettingsOverridesInput" },
             { typeof(DynamicPosition), "DynamicPosition" },
+            { typeof(EnrollToSequenceInput), "EnrollToSequenceInput" },
             { typeof(FileInput), "FileInput" },
             { typeof(FormAccessibilityInput), "FormAccessibilityInput" },
             { typeof(FormAfterSubmissionViewInput), "FormAfterSubmissionViewInput" },
@@ -534,10 +611,13 @@ namespace MondayApi.Schema {
             { typeof(ItemsQueryGroup), "ItemsQueryGroup" },
             { typeof(ItemsQueryOrderBy), "ItemsQueryOrderBy" },
             { typeof(ItemsQueryRule), "ItemsQueryRule" },
-            { typeof(MarketplaceAiSearchInput), "MarketplaceAiSearchInput" },
+            { typeof(LifecycleEventInput), "LifecycleEventInput" },
+            { typeof(MarketplaceAISearchInput), "MarketplaceAiSearchInput" },
             { typeof(MarketplaceSearchInput), "MarketplaceSearchInput" },
+            { typeof(MeetingsFilterInput), "MeetingsFilterInput" },
             { typeof(MetadataInput), "MetadataInput" },
             { typeof(ObjectDynamicPositionInput), "ObjectDynamicPositionInput" },
+            { typeof(ObjectRelationInput), "ObjectRelationInput" },
             { typeof(PaginationInput), "PaginationInput" },
             { typeof(PayloadInput), "PayloadInput" },
             { typeof(PhonePrefixPredefinedInput), "PhonePrefixPredefinedInput" },
@@ -548,11 +628,13 @@ namespace MondayApi.Schema {
             { typeof(StatusCalculatedCapabilityInput), "StatusCalculatedCapabilityInput" },
             { typeof(StatusColumnCapabilitiesInput), "StatusColumnCapabilitiesInput" },
             { typeof(TableViewSettingsInput), "TableViewSettingsInput" },
+            { typeof(TimelineDateInput), "TimelineDateInput" },
             { typeof(TimelineItemTimeRange), "TimelineItemTimeRange" },
             { typeof(TriggerEventsFiltersInput), "TriggerEventsFiltersInput" },
             { typeof(UpdateAppFeatureInput), "UpdateAppFeatureInput" },
             { typeof(UpdateAppInput), "UpdateAppInput" },
             { typeof(UpdateBoardHierarchyAttributesInput), "UpdateBoardHierarchyAttributesInput" },
+            { typeof(UpdateDepartmentOptionsInput), "UpdateDepartmentOptionsInput" },
             { typeof(UpdateDependencyColumnInput), "UpdateDependencyColumnInput" },
             { typeof(UpdateDropdownColumnSettingsInput), "UpdateDropdownColumnSettingsInput" },
             { typeof(UpdateDropdownLabelInput), "UpdateDropdownLabelInput" },
@@ -560,6 +642,7 @@ namespace MondayApi.Schema {
             { typeof(UpdateFormInput), "UpdateFormInput" },
             { typeof(UpdateFormSettingsInput), "UpdateFormSettingsInput" },
             { typeof(UpdateFormTagInput), "UpdateFormTagInput" },
+            { typeof(UpdateLifecycleSubscriptionsInput), "UpdateLifecycleSubscriptionsInput" },
             { typeof(UpdateMention), "UpdateMention" },
             { typeof(UpdateObjectHierarchyPositionInput), "UpdateObjectHierarchyPositionInput" },
             { typeof(UpdateObjectInput), "UpdateObjectInput" },
@@ -570,7 +653,8 @@ namespace MondayApi.Schema {
             { typeof(UpdateWorkspaceAttributesInput), "UpdateWorkspaceAttributesInput" },
             { typeof(UserAttributesInput), "UserAttributesInput" },
             { typeof(UserUpdateInput), "UserUpdateInput" },
-            { typeof(WidgetParentInput), "WidgetParentInput" }
+            { typeof(WidgetParentInput), "WidgetParentInput" },
+            { typeof(WorkspacesQueryInput), "WorkspacesQueryInput" }
         };
     }
 }

@@ -13,7 +13,8 @@ namespace MondayApi.Schema {
             new GraphQlFieldMetadata { Name = "end_date" },
             new GraphQlFieldMetadata { Name = "status" },
             new GraphQlFieldMetadata { Name = "discounts", IsComplex = true, QueryBuilderType = typeof(SubscriptionDiscountQueryBuilder) },
-            new GraphQlFieldMetadata { Name = "days_left" }
+            new GraphQlFieldMetadata { Name = "days_left" },
+            new GraphQlFieldMetadata { Name = "max_units" }
         };
 
         protected override string TypeName => "AppSubscriptionDetails";
@@ -63,5 +64,9 @@ namespace MondayApi.Schema {
             WithScalarField("days_left", alias, new GraphQlDirective?[] { include, skip });
         public AppSubscriptionDetailsQueryBuilder ExceptDaysLeft() =>
             ExceptField("days_left");
+        public AppSubscriptionDetailsQueryBuilder WithMaxUnits(string? alias = null, IncludeDirective? include = null, SkipDirective? skip = null) =>
+            WithScalarField("max_units", alias, new GraphQlDirective?[] { include, skip });
+        public AppSubscriptionDetailsQueryBuilder ExceptMaxUnits() =>
+            ExceptField("max_units");
     }
 }

@@ -3,16 +3,17 @@ using System.Collections.Generic;
 namespace MondayApi.Schema {
     public class DocumentQueryBuilder : GraphQlQueryBuilder<DocumentQueryBuilder> {
         private static readonly GraphQlFieldMetadata[] AllFieldMetadata = new[] {
+            new GraphQlFieldMetadata { Name = "id" },
+            new GraphQlFieldMetadata { Name = "object_id" },
             new GraphQlFieldMetadata { Name = "blocks", IsComplex = true, QueryBuilderType = typeof(DocumentBlockQueryBuilder) },
             new GraphQlFieldMetadata { Name = "created_at" },
             new GraphQlFieldMetadata { Name = "created_by", IsComplex = true, QueryBuilderType = typeof(UserQueryBuilder) },
             new GraphQlFieldMetadata { Name = "doc_folder_id" },
             new GraphQlFieldMetadata { Name = "doc_kind" },
-            new GraphQlFieldMetadata { Name = "id" },
             new GraphQlFieldMetadata { Name = "name" },
-            new GraphQlFieldMetadata { Name = "object_id" },
             new GraphQlFieldMetadata { Name = "relative_url" },
             new GraphQlFieldMetadata { Name = "settings" },
+            new GraphQlFieldMetadata { Name = "updated_at" },
             new GraphQlFieldMetadata { Name = "url" },
             new GraphQlFieldMetadata { Name = "workspace", IsComplex = true, QueryBuilderType = typeof(WorkspaceQueryBuilder) },
             new GraphQlFieldMetadata { Name = "workspace_id" }
@@ -21,6 +22,14 @@ namespace MondayApi.Schema {
         protected override string TypeName => "Document";
         public override IReadOnlyList<GraphQlFieldMetadata> AllFields => AllFieldMetadata;
 
+        public DocumentQueryBuilder WithID(string? alias = null, IncludeDirective? include = null, SkipDirective? skip = null) =>
+            WithScalarField("id", alias, new GraphQlDirective?[] { include, skip });
+        public DocumentQueryBuilder ExceptID() =>
+            ExceptField("id");
+        public DocumentQueryBuilder WithObjectID(string? alias = null, IncludeDirective? include = null, SkipDirective? skip = null) =>
+            WithScalarField("object_id", alias, new GraphQlDirective?[] { include, skip });
+        public DocumentQueryBuilder ExceptObjectID() =>
+            ExceptField("object_id");
         public DocumentQueryBuilder WithBlocks(DocumentBlockQueryBuilder documentBlockQueryBuilder, QueryBuilderParameter<int?>? limit = null, QueryBuilderParameter<int?>? page = null, string? alias = null, IncludeDirective? include = null, SkipDirective? skip = null) {
             var args = new List<QueryBuilderArgumentInfo>();
             if (limit != null)
@@ -47,18 +56,10 @@ namespace MondayApi.Schema {
             WithScalarField("doc_kind", alias, new GraphQlDirective?[] { include, skip });
         public DocumentQueryBuilder ExceptDocKind() =>
             ExceptField("doc_kind");
-        public DocumentQueryBuilder WithID(string? alias = null, IncludeDirective? include = null, SkipDirective? skip = null) =>
-            WithScalarField("id", alias, new GraphQlDirective?[] { include, skip });
-        public DocumentQueryBuilder ExceptID() =>
-            ExceptField("id");
         public DocumentQueryBuilder WithName(string? alias = null, IncludeDirective? include = null, SkipDirective? skip = null) =>
             WithScalarField("name", alias, new GraphQlDirective?[] { include, skip });
         public DocumentQueryBuilder ExceptName() =>
             ExceptField("name");
-        public DocumentQueryBuilder WithObjectID(string? alias = null, IncludeDirective? include = null, SkipDirective? skip = null) =>
-            WithScalarField("object_id", alias, new GraphQlDirective?[] { include, skip });
-        public DocumentQueryBuilder ExceptObjectID() =>
-            ExceptField("object_id");
         public DocumentQueryBuilder WithRelativeURL(string? alias = null, IncludeDirective? include = null, SkipDirective? skip = null) =>
             WithScalarField("relative_url", alias, new GraphQlDirective?[] { include, skip });
         public DocumentQueryBuilder ExceptRelativeURL() =>
@@ -67,6 +68,10 @@ namespace MondayApi.Schema {
             WithScalarField("settings", alias, new GraphQlDirective?[] { include, skip });
         public DocumentQueryBuilder ExceptSettings() =>
             ExceptField("settings");
+        public DocumentQueryBuilder WithUpdatedAt(string? alias = null, IncludeDirective? include = null, SkipDirective? skip = null) =>
+            WithScalarField("updated_at", alias, new GraphQlDirective?[] { include, skip });
+        public DocumentQueryBuilder ExceptUpdatedAt() =>
+            ExceptField("updated_at");
         public DocumentQueryBuilder WithURL(string? alias = null, IncludeDirective? include = null, SkipDirective? skip = null) =>
             WithScalarField("url", alias, new GraphQlDirective?[] { include, skip });
         public DocumentQueryBuilder ExceptURL() =>

@@ -5,5 +5,7 @@ namespace MondayApi.Schema {
         public string? ExportedAt { get; set; }
         public int? NodeCount { get; set; }
         public int? EdgeCount { get; set; }
+        public object? GraphAttributes { get; set; }
+        public object? Cycles { get; set; }
     }
 }

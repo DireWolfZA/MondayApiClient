@@ -6,6 +6,7 @@ namespace MondayApi.Schema {
             new GraphQlFieldMetadata { Name = "column", IsComplex = true, QueryBuilderType = typeof(ColumnQueryBuilder) },
             new GraphQlFieldMetadata { Name = "entity_id" },
             new GraphQlFieldMetadata { Name = "id" },
+            new GraphQlFieldMetadata { Name = "is_leaf" },
             new GraphQlFieldMetadata { Name = "issue_api_url" },
             new GraphQlFieldMetadata { Name = "issue_id" },
             new GraphQlFieldMetadata { Name = "text" },
@@ -28,6 +29,10 @@ namespace MondayApi.Schema {
             WithScalarField("id", alias, new GraphQlDirective?[] { include, skip });
         public IntegrationValueQueryBuilder ExceptID() =>
             ExceptField("id");
+        public IntegrationValueQueryBuilder WithIsLeaf(string? alias = null, IncludeDirective? include = null, SkipDirective? skip = null) =>
+            WithScalarField("is_leaf", alias, new GraphQlDirective?[] { include, skip });
+        public IntegrationValueQueryBuilder ExceptIsLeaf() =>
+            ExceptField("is_leaf");
         public IntegrationValueQueryBuilder WithIssueApiURL(string? alias = null, IncludeDirective? include = null, SkipDirective? skip = null) =>
             WithScalarField("issue_api_url", alias, new GraphQlDirective?[] { include, skip });
         public IntegrationValueQueryBuilder ExceptIssueApiURL() =>

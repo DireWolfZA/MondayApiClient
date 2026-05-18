@@ -3,6 +3,8 @@ using Newtonsoft.Json;
 
 namespace MondayApi.Schema {
     public class Mutation {
+        [JsonProperty("execute_integration_block")]
+        public IntegrationExecutionResult? ExecuteIntegrationBlock { get; set; }
         [JsonProperty("create_view_table")]
         public BoardView? CreateViewTable { get; set; }
         [JsonProperty("create_view")]
@@ -63,34 +65,64 @@ namespace MondayApi.Schema {
         public Column? CreateDropdownColumn { get; set; }
         [JsonProperty("create_column")]
         public Column? CreateColumn { get; set; }
+        [JsonProperty("attach_status_managed_column")]
+        public Column? AttachStatusManagedColumn { get; set; }
+        [JsonProperty("attach_dropdown_managed_column")]
+        public Column? AttachDropdownManagedColumn { get; set; }
         [JsonProperty("add_required_column")]
         public RequiredColumns? AddRequiredColumn { get; set; }
         [JsonProperty("remove_required_column")]
         public RequiredColumns? RemoveRequiredColumn { get; set; }
+        [JsonProperty("assign_department_members")]
+        public AssignDepartmentMembersResult? AssignDepartmentMembers { get; set; }
+        [JsonProperty("clear_users_department")]
+        public ClearUsersDepartmentResult? ClearUsersDepartment { get; set; }
+        [JsonProperty("assign_department_owner")]
+        public AssignDepartmentOwnerResult? AssignDepartmentOwner { get; set; }
+        [JsonProperty("unassign_department_owners")]
+        public UnassignDepartmentOwnerResult? UnassignDepartmentOwners { get; set; }
+        [JsonProperty("create_department")]
+        public Department? CreateDepartment { get; set; }
+        [JsonProperty("update_department")]
+        public Department? UpdateDepartment { get; set; }
+        [JsonProperty("delete_department")]
+        public Department? DeleteDepartment { get; set; }
         [JsonProperty("update_dependency_column")]
         public object? UpdateDependencyColumn { get; set; }
+        [JsonProperty("batch_update_dependency_column")]
+        public object? BatchUpdateDependencyColumn { get; set; }
         [JsonProperty("add_content_to_doc_from_markdown")]
         public DocBlocksFromMarkdownResult? AddContentToDocFromMarkdown { get; set; }
+        [JsonProperty("create_article")]
+        public ArticleMetadata? CreateArticle { get; set; }
+        [JsonProperty("delete_article")]
+        public ArticleMetadata? DeleteArticle { get; set; }
         [JsonProperty("delete_doc")]
         public object? DeleteDoc { get; set; }
         [JsonProperty("duplicate_doc")]
         public object? DuplicateDoc { get; set; }
         [JsonProperty("import_doc_from_html")]
-        public ImportDocFromHtmlResult? ImportDocFromHtml { get; set; }
+        public ImportDocFromHTMLResult? ImportDocFromHTML { get; set; }
+        [JsonProperty("publish_article")]
+        public ArticleMetadata? PublishArticle { get; set; }
         [JsonProperty("update_article_block")]
         public ArticleBlock? UpdateArticleBlock { get; set; }
         [JsonProperty("update_doc_name")]
         public object? UpdateDocName { get; set; }
+        [JsonProperty("set_item_description_content")]
+        public DocBlocksFromMarkdownResult? SetItemDescriptionContent { get; set; }
         [JsonProperty("create_favorite")]
         public CreateFavoriteResultType? CreateFavorite { get; set; }
         [JsonProperty("delete_favorite")]
         public DeleteFavoriteInputResultType? DeleteFavorite { get; set; }
         [JsonProperty("update_favorite_position")]
         public UpdateFavoriteResultType? UpdateFavoritePosition { get; set; }
-        [JsonProperty("grant_marketplace_app_discount")]
-        public GrantMarketplaceAppDiscountResult? GrantMarketplaceAppDiscount { get; set; }
+        [JsonProperty("create_marketplace_app_discount")]
+        public CreateMarketplaceAppDiscountResult? CreateMarketplaceAppDiscount { get; set; }
         [JsonProperty("delete_marketplace_app_discount")]
         public DeleteMarketplaceAppDiscountResult? DeleteMarketplaceAppDiscount { get; set; }
+        [JsonProperty("grant_marketplace_app_discount")]
+        public GrantMarketplaceAppDiscountResult? GrantMarketplaceAppDiscount { get; set; }
         [JsonProperty("create_app")]
         public CreateAppResponse? CreateApp { get; set; }
         [JsonProperty("update_app")]
@@ -99,6 +131,10 @@ namespace MondayApi.Schema {
         public AppFeatureType? UpdateAppFeature { get; set; }
         [JsonProperty("create_app_feature")]
         public AppFeatureType? CreateAppFeature { get; set; }
+        [JsonProperty("update_app_lifecycle_subscription")]
+        public ICollection<LifecycleSubscriptionKind>? UpdateAppLifecycleSubscription { get; set; }
+        [JsonProperty("delete_app_lifecycle_subscription")]
+        public bool? DeleteAppLifecycleSubscription { get; set; }
         [JsonProperty("add_file_to_column")]
         public Asset? AddFileToColumn { get; set; }
         [JsonProperty("add_file_to_update")]
@@ -220,6 +256,8 @@ namespace MondayApi.Schema {
         public Template? UseTemplate { get; set; }
         [JsonProperty("convert_board_to_project")]
         public ConvertBoardToProjectResult? ConvertBoardToProject { get; set; }
+        [JsonProperty("create_project")]
+        public CreateProjectResult? CreateProject { get; set; }
         [JsonProperty("update_notification_setting")]
         public ICollection<NotificationSetting>? UpdateNotificationSetting { get; set; }
         [JsonProperty("update_mute_board_settings")]
@@ -238,10 +276,18 @@ namespace MondayApi.Schema {
         public ObjectOperationResponse? PublishObject { get; set; }
         [JsonProperty("unpublish_object")]
         public ObjectOperationResponse? UnpublishObject { get; set; }
+        [JsonProperty("create_object_relations")]
+        public ICollection<ObjectRelation>? CreateObjectRelations { get; set; }
+        [JsonProperty("delete_object_relation")]
+        public int? DeleteObjectRelation { get; set; }
         [JsonProperty("connect_project_to_portfolio")]
         public ConnectProjectResult? ConnectProjectToPortfolio { get; set; }
         [JsonProperty("create_portfolio")]
         public CreatePortfolioResult? CreatePortfolio { get; set; }
+        [JsonProperty("update_directory_resources_attributes")]
+        public UpdateDirectoryResourceAttributesResponse? UpdateDirectoryResourcesAttributes { get; set; }
+        [JsonProperty("enroll_items_to_sequence")]
+        public EnrollToSequenceResult? EnrollItemsToSequence { get; set; }
         [JsonProperty("create_team")]
         public Team? CreateTeam { get; set; }
         [JsonProperty("activate_users")]

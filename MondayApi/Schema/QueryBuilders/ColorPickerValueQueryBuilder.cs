@@ -6,6 +6,7 @@ namespace MondayApi.Schema {
             new GraphQlFieldMetadata { Name = "color" },
             new GraphQlFieldMetadata { Name = "column", IsComplex = true, QueryBuilderType = typeof(ColumnQueryBuilder) },
             new GraphQlFieldMetadata { Name = "id" },
+            new GraphQlFieldMetadata { Name = "is_leaf" },
             new GraphQlFieldMetadata { Name = "text" },
             new GraphQlFieldMetadata { Name = "type" },
             new GraphQlFieldMetadata { Name = "updated_at" },
@@ -27,6 +28,10 @@ namespace MondayApi.Schema {
             WithScalarField("id", alias, new GraphQlDirective?[] { include, skip });
         public ColorPickerValueQueryBuilder ExceptID() =>
             ExceptField("id");
+        public ColorPickerValueQueryBuilder WithIsLeaf(string? alias = null, IncludeDirective? include = null, SkipDirective? skip = null) =>
+            WithScalarField("is_leaf", alias, new GraphQlDirective?[] { include, skip });
+        public ColorPickerValueQueryBuilder ExceptIsLeaf() =>
+            ExceptField("is_leaf");
         public ColorPickerValueQueryBuilder WithText(string? alias = null, IncludeDirective? include = null, SkipDirective? skip = null) =>
             WithScalarField("text", alias, new GraphQlDirective?[] { include, skip });
         public ColorPickerValueQueryBuilder ExceptText() =>

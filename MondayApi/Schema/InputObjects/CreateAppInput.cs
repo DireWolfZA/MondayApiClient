@@ -35,9 +35,9 @@ namespace MondayApi.Schema {
             set => _slug = new InputPropertyInfo { Name = "slug", Value = value };
         }
 
-        [JsonConverter(typeof(QueryBuilderParameterConverter<ICollection<string>?>))]
-        public QueryBuilderParameter<ICollection<string>?>? Permissions {
-            get => (QueryBuilderParameter<ICollection<string>?>?)_permissions.Value;
+        [JsonConverter(typeof(QueryBuilderParameterConverter<ICollection<AppPermission>?>))]
+        public QueryBuilderParameter<ICollection<AppPermission>?>? Permissions {
+            get => (QueryBuilderParameter<ICollection<AppPermission>?>?)_permissions.Value;
             set => _permissions = new InputPropertyInfo { Name = "permissions", Value = value };
         }
 

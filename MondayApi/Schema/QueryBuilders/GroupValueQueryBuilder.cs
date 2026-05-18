@@ -7,6 +7,7 @@ namespace MondayApi.Schema {
             new GraphQlFieldMetadata { Name = "group", IsComplex = true, QueryBuilderType = typeof(GroupQueryBuilder) },
             new GraphQlFieldMetadata { Name = "group_id" },
             new GraphQlFieldMetadata { Name = "id" },
+            new GraphQlFieldMetadata { Name = "is_leaf" },
             new GraphQlFieldMetadata { Name = "text" },
             new GraphQlFieldMetadata { Name = "type" },
             new GraphQlFieldMetadata { Name = "value" }
@@ -31,6 +32,10 @@ namespace MondayApi.Schema {
             WithScalarField("id", alias, new GraphQlDirective?[] { include, skip });
         public GroupValueQueryBuilder ExceptID() =>
             ExceptField("id");
+        public GroupValueQueryBuilder WithIsLeaf(string? alias = null, IncludeDirective? include = null, SkipDirective? skip = null) =>
+            WithScalarField("is_leaf", alias, new GraphQlDirective?[] { include, skip });
+        public GroupValueQueryBuilder ExceptIsLeaf() =>
+            ExceptField("is_leaf");
         public GroupValueQueryBuilder WithText(string? alias = null, IncludeDirective? include = null, SkipDirective? skip = null) =>
             WithScalarField("text", alias, new GraphQlDirective?[] { include, skip });
         public GroupValueQueryBuilder ExceptText() =>

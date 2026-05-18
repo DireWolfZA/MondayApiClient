@@ -4,6 +4,7 @@ namespace MondayApi.Schema {
     public class UserQueryBuilder : GraphQlQueryBuilder<UserQueryBuilder> {
         private static readonly GraphQlFieldMetadata[] AllFieldMetadata = new[] {
             new GraphQlFieldMetadata { Name = "id" },
+            new GraphQlFieldMetadata { Name = "department", IsComplex = true, QueryBuilderType = typeof(DepartmentQueryBuilder) },
             new GraphQlFieldMetadata { Name = "account", IsComplex = true, QueryBuilderType = typeof(AccountQueryBuilder) },
             new GraphQlFieldMetadata { Name = "account_products", IsComplex = true, QueryBuilderType = typeof(AccountProductQueryBuilder) },
             new GraphQlFieldMetadata { Name = "birthday" },
@@ -47,6 +48,10 @@ namespace MondayApi.Schema {
             WithScalarField("id", alias, new GraphQlDirective?[] { include, skip });
         public UserQueryBuilder ExceptID() =>
             ExceptField("id");
+        public UserQueryBuilder WithDepartment(DepartmentQueryBuilder departmentQueryBuilder, string? alias = null, IncludeDirective? include = null, SkipDirective? skip = null) =>
+            WithObjectField("department", alias, departmentQueryBuilder, new GraphQlDirective?[] { include, skip });
+        public UserQueryBuilder ExceptDepartment() =>
+            ExceptField("department");
         public UserQueryBuilder WithAccount(AccountQueryBuilder accountQueryBuilder, string? alias = null, IncludeDirective? include = null, SkipDirective? skip = null) =>
             WithObjectField("account", alias, accountQueryBuilder, new GraphQlDirective?[] { include, skip });
         public UserQueryBuilder ExceptAccount() =>

@@ -7,6 +7,8 @@ namespace MondayApi.Schema {
     public class TagsValue : AddShallowCopy<IColumnValue>, IMirroredValue, IColumnValue {
         public Column? Column { get; set; }
         public string? ID { get; set; }
+        [JsonProperty("is_leaf")]
+        public bool? IsLeaf { get; set; }
         [JsonProperty("tag_ids")]
         public ICollection<int>? TagIDs { get; set; }
         public ICollection<Tag>? Tags { get; set; }

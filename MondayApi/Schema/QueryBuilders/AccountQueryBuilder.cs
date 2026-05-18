@@ -5,8 +5,11 @@ namespace MondayApi.Schema {
         private static readonly GraphQlFieldMetadata[] AllFieldMetadata = new[] {
             new GraphQlFieldMetadata { Name = "active_members_count" },
             new GraphQlFieldMetadata { Name = "country_code" },
+            new GraphQlFieldMetadata { Name = "created_at" },
             new GraphQlFieldMetadata { Name = "first_day_of_the_week" },
             new GraphQlFieldMetadata { Name = "id" },
+            new GraphQlFieldMetadata { Name = "is_during_trial" },
+            new GraphQlFieldMetadata { Name = "is_trial_expired" },
             new GraphQlFieldMetadata { Name = "logo" },
             new GraphQlFieldMetadata { Name = "name" },
             new GraphQlFieldMetadata { Name = "plan", IsComplex = true, QueryBuilderType = typeof(PlanQueryBuilder) },
@@ -28,6 +31,10 @@ namespace MondayApi.Schema {
             WithScalarField("country_code", alias, new GraphQlDirective?[] { include, skip });
         public AccountQueryBuilder ExceptCountryCode() =>
             ExceptField("country_code");
+        public AccountQueryBuilder WithCreatedAt(string? alias = null, IncludeDirective? include = null, SkipDirective? skip = null) =>
+            WithScalarField("created_at", alias, new GraphQlDirective?[] { include, skip });
+        public AccountQueryBuilder ExceptCreatedAt() =>
+            ExceptField("created_at");
         public AccountQueryBuilder WithFirstDayOfTheWeek(string? alias = null, IncludeDirective? include = null, SkipDirective? skip = null) =>
             WithScalarField("first_day_of_the_week", alias, new GraphQlDirective?[] { include, skip });
         public AccountQueryBuilder ExceptFirstDayOfTheWeek() =>
@@ -36,6 +43,14 @@ namespace MondayApi.Schema {
             WithScalarField("id", alias, new GraphQlDirective?[] { include, skip });
         public AccountQueryBuilder ExceptID() =>
             ExceptField("id");
+        public AccountQueryBuilder WithIsDuringTrial(string? alias = null, IncludeDirective? include = null, SkipDirective? skip = null) =>
+            WithScalarField("is_during_trial", alias, new GraphQlDirective?[] { include, skip });
+        public AccountQueryBuilder ExceptIsDuringTrial() =>
+            ExceptField("is_during_trial");
+        public AccountQueryBuilder WithIsTrialExpired(string? alias = null, IncludeDirective? include = null, SkipDirective? skip = null) =>
+            WithScalarField("is_trial_expired", alias, new GraphQlDirective?[] { include, skip });
+        public AccountQueryBuilder ExceptIsTrialExpired() =>
+            ExceptField("is_trial_expired");
         public AccountQueryBuilder WithLogo(string? alias = null, IncludeDirective? include = null, SkipDirective? skip = null) =>
             WithScalarField("logo", alias, new GraphQlDirective?[] { include, skip });
         public AccountQueryBuilder ExceptLogo() =>

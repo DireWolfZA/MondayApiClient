@@ -5,7 +5,8 @@ namespace MondayApi.Schema {
         private static readonly GraphQlFieldMetadata[] AllFieldMetadata = new[] {
             new GraphQlFieldMetadata { Name = "default_workspace_id" },
             new GraphQlFieldMetadata { Name = "id" },
-            new GraphQlFieldMetadata { Name = "kind" }
+            new GraphQlFieldMetadata { Name = "kind" },
+            new GraphQlFieldMetadata { Name = "tier" }
         };
 
         protected override string TypeName => "AccountProduct";
@@ -23,5 +24,9 @@ namespace MondayApi.Schema {
             WithScalarField("kind", alias, new GraphQlDirective?[] { include, skip });
         public AccountProductQueryBuilder ExceptKind() =>
             ExceptField("kind");
+        public AccountProductQueryBuilder WithTier(string? alias = null, IncludeDirective? include = null, SkipDirective? skip = null) =>
+            WithScalarField("tier", alias, new GraphQlDirective?[] { include, skip });
+        public AccountProductQueryBuilder ExceptTier() =>
+            ExceptField("tier");
     }
 }

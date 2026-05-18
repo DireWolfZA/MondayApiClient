@@ -8,6 +8,8 @@ namespace MondayApi.Schema {
         [JsonProperty("entity_id")]
         public string? EntityID { get; set; }
         public string? ID { get; set; }
+        [JsonProperty("is_leaf")]
+        public bool? IsLeaf { get; set; }
         [JsonProperty("issue_api_url")]
         public string? IssueAPIURL { get; set; }
         [JsonProperty("issue_id")]

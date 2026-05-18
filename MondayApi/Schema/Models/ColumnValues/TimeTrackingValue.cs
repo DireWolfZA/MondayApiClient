@@ -10,6 +10,8 @@ namespace MondayApi.Schema {
         public int? Duration { get; set; }
         public ICollection<TimeTrackingHistoryItem>? History { get; set; }
         public string? ID { get; set; }
+        [JsonProperty("is_leaf")]
+        public bool? IsLeaf { get; set; }
         public bool? Running { get; set; }
         [JsonProperty("started_at")]
         public object? StartedAt { get; set; }

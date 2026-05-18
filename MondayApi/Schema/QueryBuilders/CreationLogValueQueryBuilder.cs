@@ -8,6 +8,7 @@ namespace MondayApi.Schema {
             new GraphQlFieldMetadata { Name = "creator", IsComplex = true, QueryBuilderType = typeof(UserQueryBuilder) },
             new GraphQlFieldMetadata { Name = "creator_id" },
             new GraphQlFieldMetadata { Name = "id" },
+            new GraphQlFieldMetadata { Name = "is_leaf" },
             new GraphQlFieldMetadata { Name = "text" },
             new GraphQlFieldMetadata { Name = "type" },
             new GraphQlFieldMetadata { Name = "value" }
@@ -36,6 +37,10 @@ namespace MondayApi.Schema {
             WithScalarField("id", alias, new GraphQlDirective?[] { include, skip });
         public CreationLogValueQueryBuilder ExceptID() =>
             ExceptField("id");
+        public CreationLogValueQueryBuilder WithIsLeaf(string? alias = null, IncludeDirective? include = null, SkipDirective? skip = null) =>
+            WithScalarField("is_leaf", alias, new GraphQlDirective?[] { include, skip });
+        public CreationLogValueQueryBuilder ExceptIsLeaf() =>
+            ExceptField("is_leaf");
         public CreationLogValueQueryBuilder WithText(string? alias = null, IncludeDirective? include = null, SkipDirective? skip = null) =>
             WithScalarField("text", alias, new GraphQlDirective?[] { include, skip });
         public CreationLogValueQueryBuilder ExceptText() =>

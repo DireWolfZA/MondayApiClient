@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 
 namespace MondayApi.Schema {
-    public class ImportDocFromHtmlResultQueryBuilder : GraphQlQueryBuilder<ImportDocFromHtmlResultQueryBuilder> {
+    public class ImportDocFromHTMLResultQueryBuilder : GraphQlQueryBuilder<ImportDocFromHTMLResultQueryBuilder> {
         private static readonly GraphQlFieldMetadata[] AllFieldMetadata = new[] {
             new GraphQlFieldMetadata { Name = "success" },
             new GraphQlFieldMetadata { Name = "doc_id" },
@@ -11,17 +11,17 @@ namespace MondayApi.Schema {
         protected override string TypeName => "ImportDocFromHtmlResult";
         public override IReadOnlyList<GraphQlFieldMetadata> AllFields => AllFieldMetadata;
 
-        public ImportDocFromHtmlResultQueryBuilder WithSuccess(string? alias = null, IncludeDirective? include = null, SkipDirective? skip = null) =>
+        public ImportDocFromHTMLResultQueryBuilder WithSuccess(string? alias = null, IncludeDirective? include = null, SkipDirective? skip = null) =>
             WithScalarField("success", alias, new GraphQlDirective?[] { include, skip });
-        public ImportDocFromHtmlResultQueryBuilder ExceptSuccess() =>
+        public ImportDocFromHTMLResultQueryBuilder ExceptSuccess() =>
             ExceptField("success");
-        public ImportDocFromHtmlResultQueryBuilder WithDocID(string? alias = null, IncludeDirective? include = null, SkipDirective? skip = null) =>
+        public ImportDocFromHTMLResultQueryBuilder WithDocID(string? alias = null, IncludeDirective? include = null, SkipDirective? skip = null) =>
             WithScalarField("doc_id", alias, new GraphQlDirective?[] { include, skip });
-        public ImportDocFromHtmlResultQueryBuilder ExceptDocID() =>
+        public ImportDocFromHTMLResultQueryBuilder ExceptDocID() =>
             ExceptField("doc_id");
-        public ImportDocFromHtmlResultQueryBuilder WithError(string? alias = null, IncludeDirective? include = null, SkipDirective? skip = null) =>
+        public ImportDocFromHTMLResultQueryBuilder WithError(string? alias = null, IncludeDirective? include = null, SkipDirective? skip = null) =>
             WithScalarField("error", alias, new GraphQlDirective?[] { include, skip });
-        public ImportDocFromHtmlResultQueryBuilder ExceptError() =>
+        public ImportDocFromHTMLResultQueryBuilder ExceptError() =>
             ExceptField("error");
     }
 }

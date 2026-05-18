@@ -8,7 +8,8 @@ namespace MondayApi.Schema {
             new GraphQlFieldMetadata { Name = "name" },
             new GraphQlFieldMetadata { Name = "createdAt" },
             new GraphQlFieldMetadata { Name = "updatedAt" },
-            new GraphQlFieldMetadata { Name = "createdBy" }
+            new GraphQlFieldMetadata { Name = "createdBy" },
+            new GraphQlFieldMetadata { Name = "app_feature_slug" }
         };
 
         protected override string TypeName => "GraphqlFolder";
@@ -38,5 +39,9 @@ namespace MondayApi.Schema {
             WithScalarField("createdBy", alias, new GraphQlDirective?[] { include, skip });
         public GraphQLFolderQueryBuilder ExceptCreatedBy() =>
             ExceptField("createdBy");
+        public GraphQLFolderQueryBuilder WithAppFeatureSlug(string? alias = null, IncludeDirective? include = null, SkipDirective? skip = null) =>
+            WithScalarField("app_feature_slug", alias, new GraphQlDirective?[] { include, skip });
+        public GraphQLFolderQueryBuilder ExceptAppFeatureSlug() =>
+            ExceptField("app_feature_slug");
     }
 }

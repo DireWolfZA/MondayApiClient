@@ -8,6 +8,8 @@ namespace MondayApi.Schema {
         [JsonProperty("end_date")]
         public object? EndDate { get; set; }
         public string? ID { get; set; }
+        [JsonProperty("is_leaf")]
+        public bool? IsLeaf { get; set; }
         [JsonProperty("start_date")]
         public object? StartDate { get; set; }
         public string? Text { get; set; }

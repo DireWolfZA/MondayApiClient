@@ -8,6 +8,8 @@ namespace MondayApi.Schema {
         public Column? Column { get; set; }
         public string? Email { get; set; }
         public string? ID { get; set; }
+        [JsonProperty("is_leaf")]
+        public bool? IsLeaf { get; set; }
         public string? Label { get; set; }
         public string? Text { get; set; }
         public ColumnType? Type { get; set; }

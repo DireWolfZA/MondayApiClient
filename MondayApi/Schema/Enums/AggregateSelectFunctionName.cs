@@ -69,7 +69,7 @@ namespace MondayApi.Schema {
         [EnumMember(Value = "PERSON")]
         Person,
         [EnumMember(Value = "ID")]
-        Id,
+        ID,
         [EnumMember(Value = "LABEL")]
         Label,
         [EnumMember(Value = "COLOR")]

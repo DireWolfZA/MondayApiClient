@@ -1,3 +1,5 @@
+using Newtonsoft.Json;
+
 namespace MondayApi.Schema {
     [System.Diagnostics.DebuggerDisplay("{Type.ToString(),nq}:{ID}: {Text}")]
     [GraphQlObjectType("ButtonValue")]
@@ -5,6 +7,8 @@ namespace MondayApi.Schema {
         public string? Color { get; set; }
         public Column? Column { get; set; }
         public string? ID { get; set; }
+        [JsonProperty("is_leaf")]
+        public bool? IsLeaf { get; set; }
         public string? Label { get; set; }
         public string? Text { get; set; }
         public ColumnType? Type { get; set; }

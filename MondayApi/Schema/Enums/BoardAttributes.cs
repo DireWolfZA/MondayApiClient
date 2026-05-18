@@ -6,6 +6,8 @@ namespace MondayApi.Schema {
         Communication,
         [EnumMember(Value = "description")]
         Description,
+        [EnumMember(Value = "item_nickname")]
+        ItemNickname,
         [EnumMember(Value = "name")]
         Name
     }

@@ -6,5 +6,6 @@ namespace MondayApi.Schema {
         public string? DefaultWorkspaceID { get; set; }
         public string? ID { get; set; }
         public string? Kind { get; set; }
+        public string? Tier { get; set; }
     }
 }

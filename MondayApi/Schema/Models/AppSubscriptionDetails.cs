@@ -22,5 +22,7 @@ namespace MondayApi.Schema {
         public ICollection<SubscriptionDiscount>? Discounts { get; set; }
         [JsonProperty("days_left")]
         public int? DaysLeft { get; set; }
+        [JsonProperty("max_units")]
+        public int? MaxUnits { get; set; }
     }
 }

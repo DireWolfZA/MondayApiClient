@@ -6,6 +6,7 @@ namespace MondayApi.Schema {
             new GraphQlFieldMetadata { Name = "column", IsComplex = true, QueryBuilderType = typeof(ColumnQueryBuilder) },
             new GraphQlFieldMetadata { Name = "file", IsComplex = true, QueryBuilderType = typeof(DirectDocValueQueryBuilder) },
             new GraphQlFieldMetadata { Name = "id" },
+            new GraphQlFieldMetadata { Name = "is_leaf" },
             new GraphQlFieldMetadata { Name = "text" },
             new GraphQlFieldMetadata { Name = "type" },
             new GraphQlFieldMetadata { Name = "value" }
@@ -26,6 +27,10 @@ namespace MondayApi.Schema {
             WithScalarField("id", alias, new GraphQlDirective?[] { include, skip });
         public DirectDocValueQueryBuilder ExceptID() =>
             ExceptField("id");
+        public DirectDocValueQueryBuilder WithIsLeaf(string? alias = null, IncludeDirective? include = null, SkipDirective? skip = null) =>
+            WithScalarField("is_leaf", alias, new GraphQlDirective?[] { include, skip });
+        public DirectDocValueQueryBuilder ExceptIsLeaf() =>
+            ExceptField("is_leaf");
         public DirectDocValueQueryBuilder WithText(string? alias = null, IncludeDirective? include = null, SkipDirective? skip = null) =>
             WithScalarField("text", alias, new GraphQlDirective?[] { include, skip });
         public DirectDocValueQueryBuilder ExceptText() =>

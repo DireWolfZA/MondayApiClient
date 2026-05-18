@@ -7,6 +7,7 @@ namespace MondayApi.Schema {
             new GraphQlFieldMetadata { Name = "date" },
             new GraphQlFieldMetadata { Name = "icon" },
             new GraphQlFieldMetadata { Name = "id" },
+            new GraphQlFieldMetadata { Name = "is_leaf" },
             new GraphQlFieldMetadata { Name = "text" },
             new GraphQlFieldMetadata { Name = "time" },
             new GraphQlFieldMetadata { Name = "type" },
@@ -33,6 +34,10 @@ namespace MondayApi.Schema {
             WithScalarField("id", alias, new GraphQlDirective?[] { include, skip });
         public DateValueQueryBuilder ExceptID() =>
             ExceptField("id");
+        public DateValueQueryBuilder WithIsLeaf(string? alias = null, IncludeDirective? include = null, SkipDirective? skip = null) =>
+            WithScalarField("is_leaf", alias, new GraphQlDirective?[] { include, skip });
+        public DateValueQueryBuilder ExceptIsLeaf() =>
+            ExceptField("is_leaf");
         public DateValueQueryBuilder WithText(string? alias = null, IncludeDirective? include = null, SkipDirective? skip = null) =>
             WithScalarField("text", alias, new GraphQlDirective?[] { include, skip });
         public DateValueQueryBuilder ExceptText() =>

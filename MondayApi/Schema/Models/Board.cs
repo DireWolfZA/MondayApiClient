@@ -23,8 +23,11 @@ namespace MondayApi.Schema {
         public object? Communication { get; set; }
         [JsonProperty("created_at")]
         public DateTimeOffset? CreatedAt { get; set; }
+        [JsonProperty("created_from_board_id")]
+        public string? CreatedFromBoardID { get; set; }
         public User? Creator { get; set; }
         public string? Description { get; set; }
+        public Folder? Folder { get; set; }
         public ICollection<Group?>? Groups { get; set; }
         [JsonProperty("hierarchy_type")]
         public BoardHierarchy? HierarchyType { get; set; }

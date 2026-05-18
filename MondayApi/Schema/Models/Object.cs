@@ -19,5 +19,6 @@ namespace MondayApi.Schema {
         public string? WorkspaceID { get; set; }
         public ICollection<User>? Owners { get; set; }
         public ICollection<User>? Subscribers { get; set; }
+        public ICollection<ObjectRelation>? Relations { get; set; }
     }
 }

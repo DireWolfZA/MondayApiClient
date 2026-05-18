@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using Newtonsoft.Json;
 
 namespace MondayApi.Schema {
-    public class MarketplaceAiSearchInput : IGraphQlInputObject {
+    public class MarketplaceAISearchInput : IGraphQlInputObject {
         private InputPropertyInfo _query;
         private InputPropertyInfo _limit;
 

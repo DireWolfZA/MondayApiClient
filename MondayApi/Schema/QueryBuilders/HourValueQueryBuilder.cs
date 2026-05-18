@@ -6,6 +6,7 @@ namespace MondayApi.Schema {
             new GraphQlFieldMetadata { Name = "column", IsComplex = true, QueryBuilderType = typeof(ColumnQueryBuilder) },
             new GraphQlFieldMetadata { Name = "hour" },
             new GraphQlFieldMetadata { Name = "id" },
+            new GraphQlFieldMetadata { Name = "is_leaf" },
             new GraphQlFieldMetadata { Name = "minute" },
             new GraphQlFieldMetadata { Name = "text" },
             new GraphQlFieldMetadata { Name = "type" },
@@ -28,6 +29,10 @@ namespace MondayApi.Schema {
             WithScalarField("id", alias, new GraphQlDirective?[] { include, skip });
         public HourValueQueryBuilder ExceptID() =>
             ExceptField("id");
+        public HourValueQueryBuilder WithIsLeaf(string? alias = null, IncludeDirective? include = null, SkipDirective? skip = null) =>
+            WithScalarField("is_leaf", alias, new GraphQlDirective?[] { include, skip });
+        public HourValueQueryBuilder ExceptIsLeaf() =>
+            ExceptField("is_leaf");
         public HourValueQueryBuilder WithMinute(string? alias = null, IncludeDirective? include = null, SkipDirective? skip = null) =>
             WithScalarField("minute", alias, new GraphQlDirective?[] { include, skip });
         public HourValueQueryBuilder ExceptMinute() =>

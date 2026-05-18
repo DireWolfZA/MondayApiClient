@@ -5,6 +5,8 @@ using Newtonsoft.Json;
 namespace MondayApi.Schema {
     [System.Diagnostics.DebuggerDisplay("{ID}: {Name}")]
     public class Folder {
+        [JsonProperty("app_feature_slug")]
+        public string? AppFeatureSlug { get; set; }
         public ICollection<Board?>? Children { get; set; }
         public FolderColor? Color { get; set; }
         [JsonProperty("created_at")]

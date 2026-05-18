@@ -12,9 +12,9 @@ namespace MondayApi.Schema {
             set => _id = new InputPropertyInfo { Name = "id", Value = value };
         }
 
-        [JsonConverter(typeof(QueryBuilderParameterConverter<GraphqlMondayObject?>))]
-        public QueryBuilderParameter<GraphqlMondayObject?>? Type {
-            get => (QueryBuilderParameter<GraphqlMondayObject?>?)_type.Value;
+        [JsonConverter(typeof(QueryBuilderParameterConverter<GraphQLMondayObject?>))]
+        public QueryBuilderParameter<GraphQLMondayObject?>? Type {
+            get => (QueryBuilderParameter<GraphQLMondayObject?>?)_type.Value;
             set => _type = new InputPropertyInfo { Name = "type", Value = value };
         }
 

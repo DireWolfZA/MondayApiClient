@@ -8,6 +8,8 @@ namespace MondayApi.Schema {
     public class PeopleValue : AddShallowCopy<IColumnValue>, IMirroredValue, IColumnValue {
         public Column? Column { get; set; }
         public string? ID { get; set; }
+        [JsonProperty("is_leaf")]
+        public bool? IsLeaf { get; set; }
         [JsonProperty("persons_and_teams")]
         public ICollection<PeopleEntity>? PersonsAndTeams { get; set; }
         public string? Text { get; set; }

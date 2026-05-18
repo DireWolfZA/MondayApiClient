@@ -5,6 +5,7 @@ namespace MondayApi.Schema {
         private static readonly GraphQlFieldMetadata[] AllFieldMetadata = new[] {
             new GraphQlFieldMetadata { Name = "column", IsComplex = true, QueryBuilderType = typeof(ColumnQueryBuilder) },
             new GraphQlFieldMetadata { Name = "id" },
+            new GraphQlFieldMetadata { Name = "is_leaf" },
             new GraphQlFieldMetadata { Name = "persons_and_teams", IsComplex = true, QueryBuilderType = typeof(PeopleEntityQueryBuilder) },
             new GraphQlFieldMetadata { Name = "text" },
             new GraphQlFieldMetadata { Name = "type" },
@@ -23,6 +24,10 @@ namespace MondayApi.Schema {
             WithScalarField("id", alias, new GraphQlDirective?[] { include, skip });
         public PeopleValueQueryBuilder ExceptID() =>
             ExceptField("id");
+        public PeopleValueQueryBuilder WithIsLeaf(string? alias = null, IncludeDirective? include = null, SkipDirective? skip = null) =>
+            WithScalarField("is_leaf", alias, new GraphQlDirective?[] { include, skip });
+        public PeopleValueQueryBuilder ExceptIsLeaf() =>
+            ExceptField("is_leaf");
         public PeopleValueQueryBuilder WithPersonsAndTeams(PeopleEntityQueryBuilder peopleEntityQueryBuilder, string? alias = null, IncludeDirective? include = null, SkipDirective? skip = null) =>
             WithObjectField("persons_and_teams", alias, peopleEntityQueryBuilder, new GraphQlDirective?[] { include, skip });
         public PeopleValueQueryBuilder ExceptPersonsAndTeams() =>

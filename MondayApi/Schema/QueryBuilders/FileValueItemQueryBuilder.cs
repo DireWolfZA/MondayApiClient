@@ -9,6 +9,8 @@ namespace MondayApi.Schema {
         protected override string TypeName => "FileValueItem";
         public override IReadOnlyList<GraphQlFieldMetadata> AllFields => AllFieldMetadata;
 
+        public FileValueItemQueryBuilder WithFileAssetInvalidValueFragment(FileAssetInvalidValueQueryBuilder fileAssetInvalidValueQueryBuilder, IncludeDirective? include = null, SkipDirective? skip = null) =>
+            WithFragment(fileAssetInvalidValueQueryBuilder, new GraphQlDirective?[] { include, skip });
         public FileValueItemQueryBuilder WithFileAssetValueFragment(FileAssetValueQueryBuilder fileAssetValueQueryBuilder, IncludeDirective? include = null, SkipDirective? skip = null) =>
             WithFragment(fileAssetValueQueryBuilder, new GraphQlDirective?[] { include, skip });
         public FileValueItemQueryBuilder WithFileDocValueFragment(FileDocValueQueryBuilder fileDocValueQueryBuilder, IncludeDirective? include = null, SkipDirective? skip = null) =>

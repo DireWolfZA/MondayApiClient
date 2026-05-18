@@ -9,6 +9,8 @@ namespace MondayApi.Schema {
         public string? Date { get; set; }
         public string? Icon { get; set; }
         public string? ID { get; set; }
+        [JsonProperty("is_leaf")]
+        public bool? IsLeaf { get; set; }
         public string? Text { get; set; }
         public string? Time { get; set; }
         public ColumnType? Type { get; set; }

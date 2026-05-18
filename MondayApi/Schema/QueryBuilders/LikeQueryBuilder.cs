@@ -7,6 +7,8 @@ namespace MondayApi.Schema {
             new GraphQlFieldMetadata { Name = "creator_id" },
             new GraphQlFieldMetadata { Name = "creator", IsComplex = true, QueryBuilderType = typeof(UserQueryBuilder) },
             new GraphQlFieldMetadata { Name = "reaction_type" },
+            new GraphQlFieldMetadata { Name = "attribution_entity_ref" },
+            new GraphQlFieldMetadata { Name = "attribution_entity_type" },
             new GraphQlFieldMetadata { Name = "created_at" },
             new GraphQlFieldMetadata { Name = "updated_at" }
         };
@@ -30,6 +32,14 @@ namespace MondayApi.Schema {
             WithScalarField("reaction_type", alias, new GraphQlDirective?[] { include, skip });
         public LikeQueryBuilder ExceptReactionType() =>
             ExceptField("reaction_type");
+        public LikeQueryBuilder WithAttributionEntityRef(string? alias = null, IncludeDirective? include = null, SkipDirective? skip = null) =>
+            WithScalarField("attribution_entity_ref", alias, new GraphQlDirective?[] { include, skip });
+        public LikeQueryBuilder ExceptAttributionEntityRef() =>
+            ExceptField("attribution_entity_ref");
+        public LikeQueryBuilder WithAttributionEntityType(string? alias = null, IncludeDirective? include = null, SkipDirective? skip = null) =>
+            WithScalarField("attribution_entity_type", alias, new GraphQlDirective?[] { include, skip });
+        public LikeQueryBuilder ExceptAttributionEntityType() =>
+            ExceptField("attribution_entity_type");
         public LikeQueryBuilder WithCreatedAt(string? alias = null, IncludeDirective? include = null, SkipDirective? skip = null) =>
             WithScalarField("created_at", alias, new GraphQlDirective?[] { include, skip });
         public LikeQueryBuilder ExceptCreatedAt() =>

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 namespace MondayApi.Schema {
     public class FolderQueryBuilder : GraphQlQueryBuilder<FolderQueryBuilder> {
         private static readonly GraphQlFieldMetadata[] AllFieldMetadata = new[] {
+            new GraphQlFieldMetadata { Name = "app_feature_slug" },
             new GraphQlFieldMetadata { Name = "children", IsComplex = true, QueryBuilderType = typeof(BoardQueryBuilder) },
             new GraphQlFieldMetadata { Name = "color" },
             new GraphQlFieldMetadata { Name = "created_at" },
@@ -19,6 +20,10 @@ namespace MondayApi.Schema {
         protected override string TypeName => "Folder";
         public override IReadOnlyList<GraphQlFieldMetadata> AllFields => AllFieldMetadata;
 
+        public FolderQueryBuilder WithAppFeatureSlug(string? alias = null, IncludeDirective? include = null, SkipDirective? skip = null) =>
+            WithScalarField("app_feature_slug", alias, new GraphQlDirective?[] { include, skip });
+        public FolderQueryBuilder ExceptAppFeatureSlug() =>
+            ExceptField("app_feature_slug");
         public FolderQueryBuilder WithChildren(BoardQueryBuilder boardQueryBuilder, string? alias = null, IncludeDirective? include = null, SkipDirective? skip = null) =>
             WithObjectField("children", alias, boardQueryBuilder, new GraphQlDirective?[] { include, skip });
         public FolderQueryBuilder ExceptChildren() =>

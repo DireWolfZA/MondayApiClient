@@ -6,6 +6,7 @@ namespace MondayApi.Schema {
             new GraphQlFieldMetadata { Name = "column", IsComplex = true, QueryBuilderType = typeof(ColumnQueryBuilder) },
             new GraphQlFieldMetadata { Name = "display_value" },
             new GraphQlFieldMetadata { Name = "id" },
+            new GraphQlFieldMetadata { Name = "is_leaf" },
             new GraphQlFieldMetadata { Name = "linked_item_ids", IsComplex = true },
             new GraphQlFieldMetadata { Name = "linked_items", IsComplex = true, QueryBuilderType = typeof(ItemQueryBuilder) },
             new GraphQlFieldMetadata { Name = "text" },
@@ -29,6 +30,10 @@ namespace MondayApi.Schema {
             WithScalarField("id", alias, new GraphQlDirective?[] { include, skip });
         public DependencyValueQueryBuilder ExceptID() =>
             ExceptField("id");
+        public DependencyValueQueryBuilder WithIsLeaf(string? alias = null, IncludeDirective? include = null, SkipDirective? skip = null) =>
+            WithScalarField("is_leaf", alias, new GraphQlDirective?[] { include, skip });
+        public DependencyValueQueryBuilder ExceptIsLeaf() =>
+            ExceptField("is_leaf");
         public DependencyValueQueryBuilder WithLinkedItemIDs(string? alias = null, IncludeDirective? include = null, SkipDirective? skip = null) =>
             WithScalarField("linked_item_ids", alias, new GraphQlDirective?[] { include, skip });
         public DependencyValueQueryBuilder ExceptLinkedItemIDs() =>

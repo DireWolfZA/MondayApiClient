@@ -10,6 +10,8 @@ namespace MondayApi.Schema {
         public int? Index { get; set; }
         [JsonProperty("is_done")]
         public bool? IsDone { get; set; }
+        [JsonProperty("is_leaf")]
+        public bool? IsLeaf { get; set; }
         public string? Label { get; set; }
         [JsonProperty("label_style")]
         public StatusLabelStyle? LabelStyle { get; set; }

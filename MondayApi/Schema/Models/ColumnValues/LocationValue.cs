@@ -14,6 +14,8 @@ namespace MondayApi.Schema {
         [JsonProperty("country_short")]
         public string? CountryShort { get; set; }
         public string? ID { get; set; }
+        [JsonProperty("is_leaf")]
+        public bool? IsLeaf { get; set; }
         public decimal? Lat { get; set; }
         public decimal? Lng { get; set; }
         [JsonProperty("place_id")]

@@ -9,6 +9,12 @@ namespace MondayApi.Schema {
         [EnumMember(Value = "BATTERY")]
         Battery,
         [EnumMember(Value = "CALENDAR")]
-        Calendar
+        Calendar,
+        [EnumMember(Value = "GANTT")]
+        Gantt,
+        [EnumMember(Value = "APP_FEATURE")]
+        AppFeature,
+        [EnumMember(Value = "LISTVIEW")]
+        Listview
     }
 }

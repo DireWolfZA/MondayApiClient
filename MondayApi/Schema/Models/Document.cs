@@ -5,6 +5,9 @@ using Newtonsoft.Json;
 namespace MondayApi.Schema {
     [System.Diagnostics.DebuggerDisplay("{ID}: {Name}")]
     public class Document {
+        public string? ID { get; set; }
+        [JsonProperty("object_id")]
+        public string? ObjectID { get; set; }
         public ICollection<DocumentBlock?>? Blocks { get; set; }
         [JsonProperty("created_at")]
         public DateTimeOffset? CreatedAt { get; set; }
@@ -14,13 +17,12 @@ namespace MondayApi.Schema {
         public string? DocFolderID { get; set; }
         [JsonProperty("doc_kind")]
         public BoardKind? DocKind { get; set; }
-        public string? ID { get; set; }
         public string? Name { get; set; }
-        [JsonProperty("object_id")]
-        public string? ObjectID { get; set; }
         [JsonProperty("relative_url")]
         public string? RelativeURL { get; set; }
         public object? Settings { get; set; }
+        [JsonProperty("updated_at")]
+        public DateTimeOffset? UpdatedAt { get; set; }
         public string? URL { get; set; }
         public Workspace? Workspace { get; set; }
         [JsonProperty("workspace_id")]

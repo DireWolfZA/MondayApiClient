@@ -7,6 +7,8 @@ namespace MondayApi.Schema {
     public class WorldClockValue : AddShallowCopy<IColumnValue>, IMirroredValue, IColumnValue {
         public Column? Column { get; set; }
         public string? ID { get; set; }
+        [JsonProperty("is_leaf")]
+        public bool? IsLeaf { get; set; }
         public string? Text { get; set; }
         public string? Timezone { get; set; }
         public ColumnType? Type { get; set; }

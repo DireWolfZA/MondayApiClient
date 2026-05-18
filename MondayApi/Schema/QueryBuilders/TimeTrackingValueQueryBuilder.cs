@@ -7,6 +7,7 @@ namespace MondayApi.Schema {
             new GraphQlFieldMetadata { Name = "duration" },
             new GraphQlFieldMetadata { Name = "history", IsComplex = true, QueryBuilderType = typeof(TimeTrackingHistoryItemQueryBuilder) },
             new GraphQlFieldMetadata { Name = "id" },
+            new GraphQlFieldMetadata { Name = "is_leaf" },
             new GraphQlFieldMetadata { Name = "running" },
             new GraphQlFieldMetadata { Name = "started_at" },
             new GraphQlFieldMetadata { Name = "text" },
@@ -34,6 +35,10 @@ namespace MondayApi.Schema {
             WithScalarField("id", alias, new GraphQlDirective?[] { include, skip });
         public TimeTrackingValueQueryBuilder ExceptID() =>
             ExceptField("id");
+        public TimeTrackingValueQueryBuilder WithIsLeaf(string? alias = null, IncludeDirective? include = null, SkipDirective? skip = null) =>
+            WithScalarField("is_leaf", alias, new GraphQlDirective?[] { include, skip });
+        public TimeTrackingValueQueryBuilder ExceptIsLeaf() =>
+            ExceptField("is_leaf");
         public TimeTrackingValueQueryBuilder WithRunning(string? alias = null, IncludeDirective? include = null, SkipDirective? skip = null) =>
             WithScalarField("running", alias, new GraphQlDirective?[] { include, skip });
         public TimeTrackingValueQueryBuilder ExceptRunning() =>

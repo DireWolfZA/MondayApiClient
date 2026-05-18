@@ -23,23 +23,23 @@ namespace MondayApi.Schema {
         [EnumMember(Value = "WORKSPACE_VIEW")]
         WorkspaceView,
         [EnumMember(Value = "AI")]
-        Ai,
+        AI,
         [EnumMember(Value = "AI_BOARD_MAIN_MENU_HEADER")]
-        AiBoardMainMenuHeader,
+        AIBoardMainMenuHeader,
         [EnumMember(Value = "AI_ITEM_UPDATE_ACTIONS")]
-        AiItemUpdateActions,
+        AIItemUpdateActions,
         [EnumMember(Value = "AI_DOC_SLASH_COMMAND")]
-        AiDocSlashCommand,
+        AIDocSlashCommand,
         [EnumMember(Value = "AI_DOC_CONTEXTUAL_MENU")]
-        AiDocContextualMenu,
+        AIDocContextualMenu,
         [EnumMember(Value = "AI_DOC_QUICK_START")]
-        AiDocQuickStart,
+        AIDocQuickStart,
         [EnumMember(Value = "AI_DOC_TOP_BAR")]
-        AiDocTopBar,
+        AIDocTopBar,
         [EnumMember(Value = "COLUMN_TEMPLATE")]
         ColumnTemplate,
         [EnumMember(Value = "AI_IC_ASSISTANT_HELP_CENTER")]
-        AiIcAssistantHelpCenter,
+        AIIcAssistantHelpCenter,
         [EnumMember(Value = "APP_WIZARD")]
         AppWizard,
         [EnumMember(Value = "GROUP_MENU_ACTION")]
@@ -55,11 +55,11 @@ namespace MondayApi.Schema {
         [EnumMember(Value = "ITEM_BATCH_ACTION")]
         ItemBatchAction,
         [EnumMember(Value = "AI_FORMULA")]
-        AiFormula,
+        AIFormula,
         [EnumMember(Value = "AI_ITEM_EMAILS_AND_ACTIVITIES_ACTIONS")]
-        AiItemEmailsAndActivitiesActions,
+        AIItemEmailsAndActivitiesActions,
         [EnumMember(Value = "AI_EMAILS_AND_ACTIVITIES_HEADER_ACTIONS")]
-        AiEmailsAndActivitiesHeaderActions,
+        AIEmailsAndActivitiesHeaderActions,
         [EnumMember(Value = "FIELD_TYPE")]
         FieldType,
         [EnumMember(Value = "PRODUCT")]
@@ -91,7 +91,7 @@ namespace MondayApi.Schema {
         [EnumMember(Value = "SYNCABLE_RESOURCE")]
         SyncableResource,
         [EnumMember(Value = "AI_AGENT")]
-        AiAgent,
+        AIAgent,
         [EnumMember(Value = "SURFACE_VIEW")]
         SurfaceView,
         [EnumMember(Value = "GROWTH_CONFIG")]
@@ -103,6 +103,14 @@ namespace MondayApi.Schema {
         [EnumMember(Value = "DIGITAL_WORKER")]
         DigitalWorker,
         [EnumMember(Value = "AI_AGENT_SKILL")]
-        AiAgentSkill
+        AIAgentSkill,
+        [EnumMember(Value = "SKILL")]
+        Skill,
+        [EnumMember(Value = "VIBE_OBJECT")]
+        VibeObject,
+        [EnumMember(Value = "VIBE_ITEM_VIEW")]
+        VibeItemView,
+        [EnumMember(Value = "AI_PLATFORM_AGENT")]
+        AIPlatformAgent
     }
 }

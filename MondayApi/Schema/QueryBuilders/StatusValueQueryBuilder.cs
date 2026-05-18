@@ -7,6 +7,7 @@ namespace MondayApi.Schema {
             new GraphQlFieldMetadata { Name = "id" },
             new GraphQlFieldMetadata { Name = "index" },
             new GraphQlFieldMetadata { Name = "is_done" },
+            new GraphQlFieldMetadata { Name = "is_leaf" },
             new GraphQlFieldMetadata { Name = "label" },
             new GraphQlFieldMetadata { Name = "label_style", IsComplex = true, QueryBuilderType = typeof(StatusLabelStyleQueryBuilder) },
             new GraphQlFieldMetadata { Name = "text" },
@@ -35,6 +36,10 @@ namespace MondayApi.Schema {
             WithScalarField("is_done", alias, new GraphQlDirective?[] { include, skip });
         public StatusValueQueryBuilder ExceptIsDone() =>
             ExceptField("is_done");
+        public StatusValueQueryBuilder WithIsLeaf(string? alias = null, IncludeDirective? include = null, SkipDirective? skip = null) =>
+            WithScalarField("is_leaf", alias, new GraphQlDirective?[] { include, skip });
+        public StatusValueQueryBuilder ExceptIsLeaf() =>
+            ExceptField("is_leaf");
         public StatusValueQueryBuilder WithLabel(string? alias = null, IncludeDirective? include = null, SkipDirective? skip = null) =>
             WithScalarField("label", alias, new GraphQlDirective?[] { include, skip });
         public StatusValueQueryBuilder ExceptLabel() =>

@@ -11,6 +11,8 @@ namespace MondayApi.Schema {
         public string? Name { get; set; }
         [JsonProperty("app_id")]
         public string? AppID { get; set; }
+        [JsonProperty("reference_id")]
+        public string? ReferenceID { get; set; }
         public string? Type { get; set; }
         public object? Data { get; set; }
         public object? Deployment { get; set; }

@@ -6,6 +6,7 @@ namespace MondayApi.Schema {
             new GraphQlFieldMetadata { Name = "column", IsComplex = true, QueryBuilderType = typeof(ColumnQueryBuilder) },
             new GraphQlFieldMetadata { Name = "end_date" },
             new GraphQlFieldMetadata { Name = "id" },
+            new GraphQlFieldMetadata { Name = "is_leaf" },
             new GraphQlFieldMetadata { Name = "start_date" },
             new GraphQlFieldMetadata { Name = "text" },
             new GraphQlFieldMetadata { Name = "type" },
@@ -27,6 +28,10 @@ namespace MondayApi.Schema {
             WithScalarField("id", alias, new GraphQlDirective?[] { include, skip });
         public WeekValueQueryBuilder ExceptID() =>
             ExceptField("id");
+        public WeekValueQueryBuilder WithIsLeaf(string? alias = null, IncludeDirective? include = null, SkipDirective? skip = null) =>
+            WithScalarField("is_leaf", alias, new GraphQlDirective?[] { include, skip });
+        public WeekValueQueryBuilder ExceptIsLeaf() =>
+            ExceptField("is_leaf");
         public WeekValueQueryBuilder WithStartDate(string? alias = null, IncludeDirective? include = null, SkipDirective? skip = null) =>
             WithScalarField("start_date", alias, new GraphQlDirective?[] { include, skip });
         public WeekValueQueryBuilder ExceptStartDate() =>

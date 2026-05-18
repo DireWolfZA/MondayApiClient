@@ -13,7 +13,8 @@ namespace MondayApi.Schema {
             new GraphQlFieldMetadata { Name = "creator" },
             new GraphQlFieldMetadata { Name = "workspace_id" },
             new GraphQlFieldMetadata { Name = "owners", IsComplex = true, QueryBuilderType = typeof(UserQueryBuilder) },
-            new GraphQlFieldMetadata { Name = "subscribers", IsComplex = true, QueryBuilderType = typeof(UserQueryBuilder) }
+            new GraphQlFieldMetadata { Name = "subscribers", IsComplex = true, QueryBuilderType = typeof(UserQueryBuilder) },
+            new GraphQlFieldMetadata { Name = "relations", IsComplex = true, QueryBuilderType = typeof(ObjectRelationQueryBuilder) }
         };
 
         protected override string TypeName => "Object";
@@ -63,5 +64,15 @@ namespace MondayApi.Schema {
             WithObjectField("subscribers", alias, userQueryBuilder, new GraphQlDirective?[] { include, skip });
         public ObjectQueryBuilder ExceptSubscribers() =>
             ExceptField("subscribers");
+        public ObjectQueryBuilder WithRelations(ObjectRelationQueryBuilder objectRelationQueryBuilder, QueryBuilderParameter<RelationKind?>? kind = null, QueryBuilderParameter<RelationDirection?>? direction = null, string? alias = null, IncludeDirective? include = null, SkipDirective? skip = null) {
+            var args = new List<QueryBuilderArgumentInfo>();
+            if (kind != null)
+                args.Add(new QueryBuilderArgumentInfo { ArgumentName = "kind", ArgumentValue = kind });
+            if (direction != null)
+                args.Add(new QueryBuilderArgumentInfo { ArgumentName = "direction", ArgumentValue = direction });
+            return WithObjectField("relations", alias, objectRelationQueryBuilder, new GraphQlDirective?[] { include, skip }, args);
+        }
+        public ObjectQueryBuilder ExceptRelations() =>
+            ExceptField("relations");
     }
 }

@@ -20,7 +20,10 @@ namespace MondayApi.Schema {
             new GraphQlFieldMetadata { Name = "workflowNodeId" },
             new GraphQlFieldMetadata { Name = "entityKind" },
             new GraphQlFieldMetadata { Name = "billingActionCountForBlock" },
-            new GraphQlFieldMetadata { Name = "errorReason" }
+            new GraphQlFieldMetadata { Name = "errorReason" },
+            new GraphQlFieldMetadata { Name = "iterator_id" },
+            new GraphQlFieldMetadata { Name = "current_iteration" },
+            new GraphQlFieldMetadata { Name = "max_iterations" }
         };
 
         protected override string TypeName => "BlockEvent";
@@ -98,5 +101,17 @@ namespace MondayApi.Schema {
             WithScalarField("errorReason", alias, new GraphQlDirective?[] { include, skip });
         public BlockEventQueryBuilder ExceptErrorReason() =>
             ExceptField("errorReason");
+        public BlockEventQueryBuilder WithIteratorID(string? alias = null, IncludeDirective? include = null, SkipDirective? skip = null) =>
+            WithScalarField("iterator_id", alias, new GraphQlDirective?[] { include, skip });
+        public BlockEventQueryBuilder ExceptIteratorID() =>
+            ExceptField("iterator_id");
+        public BlockEventQueryBuilder WithCurrentIteration(string? alias = null, IncludeDirective? include = null, SkipDirective? skip = null) =>
+            WithScalarField("current_iteration", alias, new GraphQlDirective?[] { include, skip });
+        public BlockEventQueryBuilder ExceptCurrentIteration() =>
+            ExceptField("current_iteration");
+        public BlockEventQueryBuilder WithMaxIterations(string? alias = null, IncludeDirective? include = null, SkipDirective? skip = null) =>
+            WithScalarField("max_iterations", alias, new GraphQlDirective?[] { include, skip });
+        public BlockEventQueryBuilder ExceptMaxIterations() =>
+            ExceptField("max_iterations");
     }
 }

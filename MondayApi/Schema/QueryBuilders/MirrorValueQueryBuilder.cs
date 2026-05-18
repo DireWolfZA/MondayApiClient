@@ -6,6 +6,7 @@ namespace MondayApi.Schema {
             new GraphQlFieldMetadata { Name = "column", IsComplex = true, QueryBuilderType = typeof(ColumnQueryBuilder) },
             new GraphQlFieldMetadata { Name = "display_value" },
             new GraphQlFieldMetadata { Name = "id" },
+            new GraphQlFieldMetadata { Name = "is_leaf" },
             new GraphQlFieldMetadata { Name = "mirrored_items", IsComplex = true, QueryBuilderType = typeof(MirroredItemQueryBuilder) },
             new GraphQlFieldMetadata { Name = "text" },
             new GraphQlFieldMetadata { Name = "type" },
@@ -27,6 +28,10 @@ namespace MondayApi.Schema {
             WithScalarField("id", alias, new GraphQlDirective?[] { include, skip });
         public MirrorValueQueryBuilder ExceptID() =>
             ExceptField("id");
+        public MirrorValueQueryBuilder WithIsLeaf(string? alias = null, IncludeDirective? include = null, SkipDirective? skip = null) =>
+            WithScalarField("is_leaf", alias, new GraphQlDirective?[] { include, skip });
+        public MirrorValueQueryBuilder ExceptIsLeaf() =>
+            ExceptField("is_leaf");
         public MirrorValueQueryBuilder WithMirroredItems(MirroredItemQueryBuilder mirroredItemQueryBuilder, string? alias = null, IncludeDirective? include = null, SkipDirective? skip = null) =>
             WithObjectField("mirrored_items", alias, mirroredItemQueryBuilder, new GraphQlDirective?[] { include, skip });
         public MirrorValueQueryBuilder ExceptMirroredItems() =>

@@ -1,7 +1,7 @@
 # Monday API Client [![Build status](https://ci.appveyor.com/api/projects/status/dud56wnemhwb39m7)](https://ci.appveyor.com/project/Walkman100/MondayApiClient)
 A C# wrapper for the [Monday.com API](https://developer.monday.com/api-reference/reference)
 
-Current API version is **`2025-10`** - this can be seen in [MondayApiClient.cs](/MondayApi/MondayApiClient.cs)
+Current API version is **`2026-04`** - this can be seen in [MondayApiClient.cs](/MondayApi/MondayApiClient.cs)
 
 NuGet package: https://www.nuget.org/packages/DireWolf.MondayApi
 

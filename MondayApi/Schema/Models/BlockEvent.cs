@@ -1,3 +1,5 @@
+using Newtonsoft.Json;
+
 namespace MondayApi.Schema {
     public class BlockEvent {
         public string? ID { get; set; }
@@ -18,5 +20,11 @@ namespace MondayApi.Schema {
         public string? EntityKind { get; set; }
         public int? BillingActionCountForBlock { get; set; }
         public string? ErrorReason { get; set; }
+        [JsonProperty("iterator_id")]
+        public string? IteratorID { get; set; }
+        [JsonProperty("current_iteration")]
+        public int? CurrentIteration { get; set; }
+        [JsonProperty("max_iterations")]
+        public int? MaxIterations { get; set; }
     }
 }

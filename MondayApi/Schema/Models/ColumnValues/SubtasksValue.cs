@@ -9,6 +9,8 @@ namespace MondayApi.Schema {
         [JsonProperty("display_value")]
         public string? DisplayValue { get; set; }
         public string? ID { get; set; }
+        [JsonProperty("is_leaf")]
+        public bool? IsLeaf { get; set; }
         public ICollection<Item>? Subitems { get; set; }
         [JsonProperty("subitems_ids")]
         public ICollection<string>? SubitemsIDs { get; set; }

@@ -6,10 +6,11 @@ namespace MondayApi.Schema {
     [System.Diagnostics.DebuggerDisplay("{ID}: {Name}")]
     public class User {
         public string? ID { get; set; }
+        public Department? Department { get; set; }
         public Account? Account { get; set; }
         [JsonProperty("account_products")]
         public ICollection<AccountProduct>? AccountProducts { get; set; }
-        public object? Birthday { get; set; }
+        public DateTime? Birthday { get; set; }
         [JsonProperty("country_code")]
         public string? CountryCode { get; set; }
         [JsonProperty("created_at")]
@@ -35,9 +36,9 @@ namespace MondayApi.Schema {
         [JsonProperty("is_view_only")]
         public bool? IsViewOnly { get; set; }
         [JsonProperty("join_date")]
-        public object? JoinDate { get; set; }
+        public DateTime? JoinDate { get; set; }
         [JsonProperty("last_activity")]
-        public object? LastActivity { get; set; }
+        public DateTimeOffset? LastActivity { get; set; }
         public string? Location { get; set; }
         [JsonProperty("mobile_phone")]
         public string? MobilePhone { get; set; }

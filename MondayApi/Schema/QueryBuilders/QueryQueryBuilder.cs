@@ -13,6 +13,10 @@ namespace MondayApi.Schema {
             new GraphQlFieldMetadata { Name = "trigger_events", IsComplex = true, QueryBuilderType = typeof(TriggerEventsPageQueryBuilder) },
             new GraphQlFieldMetadata { Name = "trigger_event", RequiresParameters = true, IsComplex = true, QueryBuilderType = typeof(TriggerEventQueryBuilder) },
             new GraphQlFieldMetadata { Name = "block_events", RequiresParameters = true, IsComplex = true, QueryBuilderType = typeof(BlockEventsPageQueryBuilder) },
+            new GraphQlFieldMetadata { Name = "tool_events", RequiresParameters = true, IsComplex = true, QueryBuilderType = typeof(ToolEventsPageQueryBuilder) },
+            new GraphQlFieldMetadata { Name = "account_trigger_statistics", IsComplex = true, QueryBuilderType = typeof(AccountTriggerStatisticsQueryBuilder) },
+            new GraphQlFieldMetadata { Name = "account_triggers_statistics_by_entity_id", RequiresParameters = true, IsComplex = true, QueryBuilderType = typeof(AccountTriggersByEntityIDQueryBuilder) },
+            new GraphQlFieldMetadata { Name = "empty" },
             new GraphQlFieldMetadata { Name = "get_view_schema_by_type", RequiresParameters = true },
             new GraphQlFieldMetadata { Name = "updates", IsComplex = true, QueryBuilderType = typeof(UpdateQueryBuilder) },
             new GraphQlFieldMetadata { Name = "replies", RequiresParameters = true, IsComplex = true, QueryBuilderType = typeof(ReplyQueryBuilder) },
@@ -22,8 +26,16 @@ namespace MondayApi.Schema {
             new GraphQlFieldMetadata { Name = "managed_column", IsComplex = true, QueryBuilderType = typeof(ManagedColumnQueryBuilder) },
             new GraphQlFieldMetadata { Name = "get_column_type_schema", RequiresParameters = true },
             new GraphQlFieldMetadata { Name = "validations", RequiresParameters = true, IsComplex = true, QueryBuilderType = typeof(ValidationsQueryBuilder) },
+            new GraphQlFieldMetadata { Name = "departments", IsComplex = true, QueryBuilderType = typeof(DepartmentQueryBuilder) },
             new GraphQlFieldMetadata { Name = "export_graph", RequiresParameters = true, IsComplex = true, QueryBuilderType = typeof(BoardGraphExportQueryBuilder) },
+            new GraphQlFieldMetadata { Name = "dependency_column_config", RequiresParameters = true, IsComplex = true, QueryBuilderType = typeof(DependencyColumnConfigResultQueryBuilder) },
+            new GraphQlFieldMetadata { Name = "export_events", IsComplex = true, QueryBuilderType = typeof(EventsExportQueryBuilder) },
+            new GraphQlFieldMetadata { Name = "article_blocks", RequiresParameters = true, IsComplex = true, QueryBuilderType = typeof(ArticleBlockQueryBuilder) },
+            new GraphQlFieldMetadata { Name = "articles", RequiresParameters = true, IsComplex = true, QueryBuilderType = typeof(ArticleQueryBuilder) },
+            new GraphQlFieldMetadata { Name = "doc_version_diff", RequiresParameters = true, IsComplex = true, QueryBuilderType = typeof(DocVersionDiffQueryBuilder) },
+            new GraphQlFieldMetadata { Name = "doc_version_history", RequiresParameters = true, IsComplex = true, QueryBuilderType = typeof(DocVersionHistoryQueryBuilder) },
             new GraphQlFieldMetadata { Name = "export_markdown_from_doc", RequiresParameters = true, IsComplex = true, QueryBuilderType = typeof(ExportMarkdownResultQueryBuilder) },
+            new GraphQlFieldMetadata { Name = "knowledge_base_search", RequiresParameters = true, IsComplex = true, QueryBuilderType = typeof(KnowledgeBaseAnswerQueryBuilder) },
             new GraphQlFieldMetadata { Name = "favorites", IsComplex = true, QueryBuilderType = typeof(GraphQLHierarchyObjectItemQueryBuilder) },
             new GraphQlFieldMetadata { Name = "marketplace_app_discounts", RequiresParameters = true, IsComplex = true, QueryBuilderType = typeof(MarketplaceAppDiscountQueryBuilder) },
             new GraphQlFieldMetadata { Name = "app_subscriptions", RequiresParameters = true, IsComplex = true, QueryBuilderType = typeof(AppSubscriptionsQueryBuilder) },
@@ -32,6 +44,8 @@ namespace MondayApi.Schema {
             new GraphQlFieldMetadata { Name = "marketplace_hybrid_search", RequiresParameters = true, IsComplex = true, QueryBuilderType = typeof(MarketplaceSearchResultsQueryBuilder) },
             new GraphQlFieldMetadata { Name = "marketplace_ai_search", RequiresParameters = true, IsComplex = true, QueryBuilderType = typeof(MarketplaceAISearchResultsQueryBuilder) },
             new GraphQlFieldMetadata { Name = "app", RequiresParameters = true, IsComplex = true, QueryBuilderType = typeof(AppTypeQueryBuilder) },
+            new GraphQlFieldMetadata { Name = "ask_developer_docs", RequiresParameters = true, IsComplex = true, QueryBuilderType = typeof(AppDocumentationAIResponseQueryBuilder) },
+            new GraphQlFieldMetadata { Name = "get_app_lifecycle_subscriptions", RequiresParameters = true, IsComplex = true, QueryBuilderType = typeof(LifecycleSubscriptionKindQueryBuilder) },
             new GraphQlFieldMetadata { Name = "account", IsComplex = true, QueryBuilderType = typeof(AccountQueryBuilder) },
             new GraphQlFieldMetadata { Name = "app_installs", RequiresParameters = true, IsComplex = true, QueryBuilderType = typeof(AppInstallQueryBuilder) },
             new GraphQlFieldMetadata { Name = "app_subscription", IsComplex = true, QueryBuilderType = typeof(AppSubscriptionQueryBuilder) },
@@ -53,15 +67,19 @@ namespace MondayApi.Schema {
             new GraphQlFieldMetadata { Name = "webhooks", RequiresParameters = true, IsComplex = true, QueryBuilderType = typeof(WebhookQueryBuilder) },
             new GraphQlFieldMetadata { Name = "workspaces", IsComplex = true, QueryBuilderType = typeof(WorkspaceQueryBuilder) },
             new GraphQlFieldMetadata { Name = "board_candidates", RequiresParameters = true, IsComplex = true, QueryBuilderType = typeof(BoardQueryBuilder) },
+            new GraphQlFieldMetadata { Name = "notetaker", IsComplex = true, QueryBuilderType = typeof(NotetakerQueriesQueryBuilder) },
             new GraphQlFieldMetadata { Name = "notifications", IsComplex = true, QueryBuilderType = typeof(NotificationV2QueryBuilder) },
             new GraphQlFieldMetadata { Name = "notifications_settings", RequiresParameters = true, IsComplex = true, QueryBuilderType = typeof(NotificationSettingQueryBuilder) },
             new GraphQlFieldMetadata { Name = "mute_board_settings", RequiresParameters = true, IsComplex = true, QueryBuilderType = typeof(BoardMuteSettingsQueryBuilder) },
             new GraphQlFieldMetadata { Name = "object_types_unique_keys", IsComplex = true, QueryBuilderType = typeof(ObjectTypeUniqueKeyQueryBuilder) },
             new GraphQlFieldMetadata { Name = "objects", IsComplex = true, QueryBuilderType = typeof(ObjectQueryBuilder) },
+            new GraphQlFieldMetadata { Name = "object_relations", RequiresParameters = true, IsComplex = true, QueryBuilderType = typeof(ObjectRelationQueryBuilder) },
             new GraphQlFieldMetadata { Name = "version", IsComplex = true, QueryBuilderType = typeof(VersionQueryBuilder) },
             new GraphQlFieldMetadata { Name = "versions", IsComplex = true, QueryBuilderType = typeof(VersionQueryBuilder) },
             new GraphQlFieldMetadata { Name = "platform_api", IsComplex = true, QueryBuilderType = typeof(PlatformAPIQueryBuilder) },
             new GraphQlFieldMetadata { Name = "aggregate", RequiresParameters = true, IsComplex = true, QueryBuilderType = typeof(AggregateQueryResultQueryBuilder) },
+            new GraphQlFieldMetadata { Name = "get_directory_resources", IsComplex = true, QueryBuilderType = typeof(DirectoryResourcesResponseQueryBuilder) },
+            new GraphQlFieldMetadata { Name = "allowed_sequences_to_enroll", RequiresParameters = true, IsComplex = true, QueryBuilderType = typeof(SequenceQueryBuilder) },
             new GraphQlFieldMetadata { Name = "sprints", RequiresParameters = true, IsComplex = true, QueryBuilderType = typeof(SprintQueryBuilder) },
             new GraphQlFieldMetadata { Name = "account_roles", IsComplex = true, QueryBuilderType = typeof(AccountRoleQueryBuilder) },
             new GraphQlFieldMetadata { Name = "all_widgets_schema", IsComplex = true, QueryBuilderType = typeof(WidgetSchemaInfoQueryBuilder) },
@@ -157,17 +175,15 @@ namespace MondayApi.Schema {
         public QueryQueryBuilder ExceptAccountConnections() =>
             ExceptField("account_connections");
         public QueryQueryBuilder WithConnection(ConnectionQueryBuilder connectionQueryBuilder, QueryBuilderParameter<int> id, string? alias = null, IncludeDirective? include = null, SkipDirective? skip = null) {
-            var args = new List<QueryBuilderArgumentInfo> {
-                new QueryBuilderArgumentInfo { ArgumentName = "id", ArgumentValue = id }
-            };
+            var args = new List<QueryBuilderArgumentInfo>();
+            args.Add(new QueryBuilderArgumentInfo { ArgumentName = "id", ArgumentValue = id });
             return WithObjectField("connection", alias, connectionQueryBuilder, new GraphQlDirective?[] { include, skip }, args);
         }
         public QueryQueryBuilder ExceptConnection() =>
             ExceptField("connection");
         public QueryQueryBuilder WithConnectionBoardIds(QueryBuilderParameter<int> connectionID, string? alias = null, IncludeDirective? include = null, SkipDirective? skip = null) {
-            var args = new List<QueryBuilderArgumentInfo> {
-                new QueryBuilderArgumentInfo { ArgumentName = "connectionId", ArgumentValue = connectionID }
-            };
+            var args = new List<QueryBuilderArgumentInfo>();
+            args.Add(new QueryBuilderArgumentInfo { ArgumentName = "connectionId", ArgumentValue = connectionID });
             return WithScalarField("connection_board_ids", alias, new GraphQlDirective?[] { include, skip }, args);
         }
         public QueryQueryBuilder ExceptConnectionBoardIds() =>
@@ -183,28 +199,55 @@ namespace MondayApi.Schema {
         public QueryQueryBuilder ExceptTriggerEvents() =>
             ExceptField("trigger_events");
         public QueryQueryBuilder WithTriggerEvent(TriggerEventQueryBuilder triggerEventQueryBuilder, QueryBuilderParameter<string> triggerUUID, string? alias = null, IncludeDirective? include = null, SkipDirective? skip = null) {
-            var args = new List<QueryBuilderArgumentInfo> {
-                new QueryBuilderArgumentInfo { ArgumentName = "triggerUuid", ArgumentValue = triggerUUID }
-            };
+            var args = new List<QueryBuilderArgumentInfo>();
+            args.Add(new QueryBuilderArgumentInfo { ArgumentName = "triggerUuid", ArgumentValue = triggerUUID });
             return WithObjectField("trigger_event", alias, triggerEventQueryBuilder, new GraphQlDirective?[] { include, skip }, args);
         }
         public QueryQueryBuilder ExceptTriggerEvent() =>
             ExceptField("trigger_event");
         public QueryQueryBuilder WithBlockEvents(BlockEventsPageQueryBuilder blockEventsPageQueryBuilder, QueryBuilderParameter<string> triggerUUID, QueryBuilderParameter<int?>? nextPageOffset = null, string? alias = null, IncludeDirective? include = null, SkipDirective? skip = null) {
-            var args = new List<QueryBuilderArgumentInfo> {
-                new QueryBuilderArgumentInfo { ArgumentName = "triggerUuid", ArgumentValue = triggerUUID }
-            };
+            var args = new List<QueryBuilderArgumentInfo>();
+            args.Add(new QueryBuilderArgumentInfo { ArgumentName = "triggerUuid", ArgumentValue = triggerUUID });
             if (nextPageOffset != null)
                 args.Add(new QueryBuilderArgumentInfo { ArgumentName = "nextPageOffset", ArgumentValue = nextPageOffset });
             return WithObjectField("block_events", alias, blockEventsPageQueryBuilder, new GraphQlDirective?[] { include, skip }, args);
         }
         public QueryQueryBuilder ExceptBlockEvents() =>
             ExceptField("block_events");
+        public QueryQueryBuilder WithToolEvents(ToolEventsPageQueryBuilder toolEventsPageQueryBuilder, QueryBuilderParameter<string> triggerUUID, QueryBuilderParameter<int?>? nextPageOffset = null, string? alias = null, IncludeDirective? include = null, SkipDirective? skip = null) {
+            var args = new List<QueryBuilderArgumentInfo>();
+            args.Add(new QueryBuilderArgumentInfo { ArgumentName = "trigger_uuid", ArgumentValue = triggerUUID });
+            if (nextPageOffset != null)
+                args.Add(new QueryBuilderArgumentInfo { ArgumentName = "next_page_offset", ArgumentValue = nextPageOffset });
+            return WithObjectField("tool_events", alias, toolEventsPageQueryBuilder, new GraphQlDirective?[] { include, skip }, args);
+        }
+        public QueryQueryBuilder ExceptToolEvents() =>
+            ExceptField("tool_events");
+        public QueryQueryBuilder WithAccountTriggerStatistics(AccountTriggerStatisticsQueryBuilder accountTriggerStatisticsQueryBuilder, QueryBuilderParameter<AccountTriggerStatisticsFiltersInput?>? filters = null, string? alias = null, IncludeDirective? include = null, SkipDirective? skip = null) {
+            var args = new List<QueryBuilderArgumentInfo>();
+            if (filters != null)
+                args.Add(new QueryBuilderArgumentInfo { ArgumentName = "filters", ArgumentValue = filters });
+            return WithObjectField("account_trigger_statistics", alias, accountTriggerStatisticsQueryBuilder, new GraphQlDirective?[] { include, skip }, args);
+        }
+        public QueryQueryBuilder ExceptAccountTriggerStatistics() =>
+            ExceptField("account_trigger_statistics");
+        public QueryQueryBuilder WithAccountTriggersStatisticsByEntityID(AccountTriggersByEntityIDQueryBuilder accountTriggersByEntityIdQueryBuilder, QueryBuilderParameter<TriggerEventState> runStatus, QueryBuilderParameter<AccountTriggersByEntityIdFiltersInput?>? filters = null, string? alias = null, IncludeDirective? include = null, SkipDirective? skip = null) {
+            var args = new List<QueryBuilderArgumentInfo>();
+            args.Add(new QueryBuilderArgumentInfo { ArgumentName = "run_status", ArgumentValue = runStatus });
+            if (filters != null)
+                args.Add(new QueryBuilderArgumentInfo { ArgumentName = "filters", ArgumentValue = filters });
+            return WithObjectField("account_triggers_statistics_by_entity_id", alias, accountTriggersByEntityIdQueryBuilder, new GraphQlDirective?[] { include, skip }, args);
+        }
+        public QueryQueryBuilder ExceptAccountTriggersStatisticsByEntityID() =>
+            ExceptField("account_triggers_statistics_by_entity_id");
+        public QueryQueryBuilder WithEmpty(string? alias = null, IncludeDirective? include = null, SkipDirective? skip = null) =>
+            WithScalarField("empty", alias, new GraphQlDirective?[] { include, skip });
+        public QueryQueryBuilder ExceptEmpty() =>
+            ExceptField("empty");
         public QueryQueryBuilder WithGetViewSchemaByType(QueryBuilderParameter<ViewKind> type, QueryBuilderParameter<ViewMutationKind> mutationType, string? alias = null, IncludeDirective? include = null, SkipDirective? skip = null) {
-            var args = new List<QueryBuilderArgumentInfo> {
-                new QueryBuilderArgumentInfo { ArgumentName = "type", ArgumentValue = type },
-                new QueryBuilderArgumentInfo { ArgumentName = "mutationType", ArgumentValue = mutationType }
-            };
+            var args = new List<QueryBuilderArgumentInfo>();
+            args.Add(new QueryBuilderArgumentInfo { ArgumentName = "type", ArgumentValue = type });
+            args.Add(new QueryBuilderArgumentInfo { ArgumentName = "mutationType", ArgumentValue = mutationType });
             return WithScalarField("get_view_schema_by_type", alias, new GraphQlDirective?[] { include, skip }, args);
         }
         public QueryQueryBuilder ExceptGetViewSchemaByType() =>
@@ -255,17 +298,15 @@ namespace MondayApi.Schema {
         public QueryQueryBuilder ExceptCustomActivity() =>
             ExceptField("custom_activity");
         public QueryQueryBuilder WithTimelineItem(TimelineItemQueryBuilder timelineItemQueryBuilder, QueryBuilderParameter<string> id, string? alias = null, IncludeDirective? include = null, SkipDirective? skip = null) {
-            var args = new List<QueryBuilderArgumentInfo> {
-                new QueryBuilderArgumentInfo { ArgumentName = "id", ArgumentValue = id }
-            };
+            var args = new List<QueryBuilderArgumentInfo>();
+            args.Add(new QueryBuilderArgumentInfo { ArgumentName = "id", ArgumentValue = id });
             return WithObjectField("timeline_item", alias, timelineItemQueryBuilder, new GraphQlDirective?[] { include, skip }, args);
         }
         public QueryQueryBuilder ExceptTimelineItem() =>
             ExceptField("timeline_item");
         public QueryQueryBuilder WithTimeline(TimelineResponseQueryBuilder timelineResponseQueryBuilder, QueryBuilderParameter<string> id, QueryBuilderParameter<bool?>? skipConnectedItems = null, string? alias = null, IncludeDirective? include = null, SkipDirective? skip = null) {
-            var args = new List<QueryBuilderArgumentInfo> {
-                new QueryBuilderArgumentInfo { ArgumentName = "id", ArgumentValue = id }
-            };
+            var args = new List<QueryBuilderArgumentInfo>();
+            args.Add(new QueryBuilderArgumentInfo { ArgumentName = "id", ArgumentValue = id });
             if (skipConnectedItems != null)
                 args.Add(new QueryBuilderArgumentInfo { ArgumentName = "skipConnectedItems", ArgumentValue = skipConnectedItems });
             return WithObjectField("timeline", alias, timelineResponseQueryBuilder, new GraphQlDirective?[] { include, skip }, args);
@@ -283,57 +324,145 @@ namespace MondayApi.Schema {
         public QueryQueryBuilder ExceptManagedColumn() =>
             ExceptField("managed_column");
         public QueryQueryBuilder WithGetColumnTypeSchema(QueryBuilderParameter<ColumnType> type, string? alias = null, IncludeDirective? include = null, SkipDirective? skip = null) {
-            var args = new List<QueryBuilderArgumentInfo> {
-                new QueryBuilderArgumentInfo { ArgumentName = "type", ArgumentValue = type }
-            };
+            var args = new List<QueryBuilderArgumentInfo>();
+            args.Add(new QueryBuilderArgumentInfo { ArgumentName = "type", ArgumentValue = type });
             return WithScalarField("get_column_type_schema", alias, new GraphQlDirective?[] { include, skip }, args);
         }
         public QueryQueryBuilder ExceptGetColumnTypeSchema() =>
             ExceptField("get_column_type_schema");
         public QueryQueryBuilder WithValidations(ValidationsQueryBuilder validationsQueryBuilder, QueryBuilderParameter<string> id, QueryBuilderParameter<ValidationsEntityType?>? type = null, string? alias = null, IncludeDirective? include = null, SkipDirective? skip = null) {
-            var args = new List<QueryBuilderArgumentInfo> {
-                new QueryBuilderArgumentInfo { ArgumentName = "id", ArgumentValue = id }
-            };
+            var args = new List<QueryBuilderArgumentInfo>();
+            args.Add(new QueryBuilderArgumentInfo { ArgumentName = "id", ArgumentValue = id });
             if (type != null)
                 args.Add(new QueryBuilderArgumentInfo { ArgumentName = "type", ArgumentValue = type });
             return WithObjectField("validations", alias, validationsQueryBuilder, new GraphQlDirective?[] { include, skip }, args);
         }
         public QueryQueryBuilder ExceptValidations() =>
             ExceptField("validations");
+        public QueryQueryBuilder WithDepartments(DepartmentQueryBuilder departmentQueryBuilder, QueryBuilderParameter<IEnumerable<string>>? ids = null, string? alias = null, IncludeDirective? include = null, SkipDirective? skip = null) {
+            var args = new List<QueryBuilderArgumentInfo>();
+            if (ids != null)
+                args.Add(new QueryBuilderArgumentInfo { ArgumentName = "ids", ArgumentValue = ids });
+            return WithObjectField("departments", alias, departmentQueryBuilder, new GraphQlDirective?[] { include, skip }, args);
+        }
+        public QueryQueryBuilder ExceptDepartments() =>
+            ExceptField("departments");
         public QueryQueryBuilder WithExportGraph(BoardGraphExportQueryBuilder boardGraphExportQueryBuilder, QueryBuilderParameter<string> boardID, string? alias = null, IncludeDirective? include = null, SkipDirective? skip = null) {
-            var args = new List<QueryBuilderArgumentInfo> {
-                new QueryBuilderArgumentInfo { ArgumentName = "boardId", ArgumentValue = boardID }
-            };
+            var args = new List<QueryBuilderArgumentInfo>();
+            args.Add(new QueryBuilderArgumentInfo { ArgumentName = "boardId", ArgumentValue = boardID });
             return WithObjectField("export_graph", alias, boardGraphExportQueryBuilder, new GraphQlDirective?[] { include, skip }, args);
         }
         public QueryQueryBuilder ExceptExportGraph() =>
             ExceptField("export_graph");
+        public QueryQueryBuilder WithDependencyColumnConfig(DependencyColumnConfigResultQueryBuilder dependencyColumnConfigResultQueryBuilder, QueryBuilderParameter<string> boardID, QueryBuilderParameter<string> accountID, QueryBuilderParameter<string> userID, string? alias = null, IncludeDirective? include = null, SkipDirective? skip = null) {
+            var args = new List<QueryBuilderArgumentInfo>();
+            args.Add(new QueryBuilderArgumentInfo { ArgumentName = "board_id", ArgumentValue = boardID });
+            args.Add(new QueryBuilderArgumentInfo { ArgumentName = "account_id", ArgumentValue = accountID });
+            args.Add(new QueryBuilderArgumentInfo { ArgumentName = "user_id", ArgumentValue = userID });
+            return WithObjectField("dependency_column_config", alias, dependencyColumnConfigResultQueryBuilder, new GraphQlDirective?[] { include, skip }, args);
+        }
+        public QueryQueryBuilder ExceptDependencyColumnConfig() =>
+            ExceptField("dependency_column_config");
+        public QueryQueryBuilder WithExportEvents(EventsExportQueryBuilder eventsExportQueryBuilder, QueryBuilderParameter<string?>? boardID = null, QueryBuilderParameter<string?>? startDate = null, QueryBuilderParameter<string?>? endDate = null, QueryBuilderParameter<IEnumerable<string>>? state = null, QueryBuilderParameter<IEnumerable<string>>? type = null, QueryBuilderParameter<int?>? limit = null, QueryBuilderParameter<int?>? offset = null, QueryBuilderParameter<string?>? orderBy = null, QueryBuilderParameter<string?>? orderDirection = null, string? alias = null, IncludeDirective? include = null, SkipDirective? skip = null) {
+            var args = new List<QueryBuilderArgumentInfo>();
+            if (boardID != null)
+                args.Add(new QueryBuilderArgumentInfo { ArgumentName = "board_id", ArgumentValue = boardID });
+            if (startDate != null)
+                args.Add(new QueryBuilderArgumentInfo { ArgumentName = "start_date", ArgumentValue = startDate });
+            if (endDate != null)
+                args.Add(new QueryBuilderArgumentInfo { ArgumentName = "end_date", ArgumentValue = endDate });
+            if (state != null)
+                args.Add(new QueryBuilderArgumentInfo { ArgumentName = "state", ArgumentValue = state });
+            if (type != null)
+                args.Add(new QueryBuilderArgumentInfo { ArgumentName = "type", ArgumentValue = type });
+            if (limit != null)
+                args.Add(new QueryBuilderArgumentInfo { ArgumentName = "limit", ArgumentValue = limit });
+            if (offset != null)
+                args.Add(new QueryBuilderArgumentInfo { ArgumentName = "offset", ArgumentValue = offset });
+            if (orderBy != null)
+                args.Add(new QueryBuilderArgumentInfo { ArgumentName = "order_by", ArgumentValue = orderBy });
+            if (orderDirection != null)
+                args.Add(new QueryBuilderArgumentInfo { ArgumentName = "order_direction", ArgumentValue = orderDirection });
+            return WithObjectField("export_events", alias, eventsExportQueryBuilder, new GraphQlDirective?[] { include, skip }, args);
+        }
+        public QueryQueryBuilder ExceptExportEvents() =>
+            ExceptField("export_events");
+        public QueryQueryBuilder WithArticleBlocks(ArticleBlockQueryBuilder articleBlockQueryBuilder, QueryBuilderParameter<string> objectID, QueryBuilderParameter<int?>? limit = null, QueryBuilderParameter<int?>? page = null, string? alias = null, IncludeDirective? include = null, SkipDirective? skip = null) {
+            var args = new List<QueryBuilderArgumentInfo>();
+            args.Add(new QueryBuilderArgumentInfo { ArgumentName = "object_id", ArgumentValue = objectID });
+            if (limit != null)
+                args.Add(new QueryBuilderArgumentInfo { ArgumentName = "limit", ArgumentValue = limit });
+            if (page != null)
+                args.Add(new QueryBuilderArgumentInfo { ArgumentName = "page", ArgumentValue = page });
+            return WithObjectField("article_blocks", alias, articleBlockQueryBuilder, new GraphQlDirective?[] { include, skip }, args);
+        }
+        public QueryQueryBuilder ExceptArticleBlocks() =>
+            ExceptField("article_blocks");
+        public QueryQueryBuilder WithArticles(ArticleQueryBuilder articleQueryBuilder, QueryBuilderParameter<IEnumerable<string>> objectIDs, QueryBuilderParameter<IEnumerable<string>>? workspaceIDs = null, QueryBuilderParameter<int?>? limit = null, QueryBuilderParameter<int?>? page = null, string? alias = null, IncludeDirective? include = null, SkipDirective? skip = null) {
+            var args = new List<QueryBuilderArgumentInfo>();
+            args.Add(new QueryBuilderArgumentInfo { ArgumentName = "object_ids", ArgumentValue = objectIDs });
+            if (workspaceIDs != null)
+                args.Add(new QueryBuilderArgumentInfo { ArgumentName = "workspace_ids", ArgumentValue = workspaceIDs });
+            if (limit != null)
+                args.Add(new QueryBuilderArgumentInfo { ArgumentName = "limit", ArgumentValue = limit });
+            if (page != null)
+                args.Add(new QueryBuilderArgumentInfo { ArgumentName = "page", ArgumentValue = page });
+            return WithObjectField("articles", alias, articleQueryBuilder, new GraphQlDirective?[] { include, skip }, args);
+        }
+        public QueryQueryBuilder ExceptArticles() =>
+            ExceptField("articles");
+        public QueryQueryBuilder WithDocVersionDiff(DocVersionDiffQueryBuilder docVersionDiffQueryBuilder, QueryBuilderParameter<string> docID, QueryBuilderParameter<string> date, QueryBuilderParameter<string> prevDate, string? alias = null, IncludeDirective? include = null, SkipDirective? skip = null) {
+            var args = new List<QueryBuilderArgumentInfo>();
+            args.Add(new QueryBuilderArgumentInfo { ArgumentName = "doc_id", ArgumentValue = docID });
+            args.Add(new QueryBuilderArgumentInfo { ArgumentName = "date", ArgumentValue = date });
+            args.Add(new QueryBuilderArgumentInfo { ArgumentName = "prev_date", ArgumentValue = prevDate });
+            return WithObjectField("doc_version_diff", alias, docVersionDiffQueryBuilder, new GraphQlDirective?[] { include, skip }, args);
+        }
+        public QueryQueryBuilder ExceptDocVersionDiff() =>
+            ExceptField("doc_version_diff");
+        public QueryQueryBuilder WithDocVersionHistory(DocVersionHistoryQueryBuilder docVersionHistoryQueryBuilder, QueryBuilderParameter<string> docID, QueryBuilderParameter<string?>? since = null, QueryBuilderParameter<string?>? until = null, string? alias = null, IncludeDirective? include = null, SkipDirective? skip = null) {
+            var args = new List<QueryBuilderArgumentInfo>();
+            args.Add(new QueryBuilderArgumentInfo { ArgumentName = "doc_id", ArgumentValue = docID });
+            if (since != null)
+                args.Add(new QueryBuilderArgumentInfo { ArgumentName = "since", ArgumentValue = since });
+            if (until != null)
+                args.Add(new QueryBuilderArgumentInfo { ArgumentName = "until", ArgumentValue = until });
+            return WithObjectField("doc_version_history", alias, docVersionHistoryQueryBuilder, new GraphQlDirective?[] { include, skip }, args);
+        }
+        public QueryQueryBuilder ExceptDocVersionHistory() =>
+            ExceptField("doc_version_history");
         public QueryQueryBuilder WithExportMarkdownFromDoc(ExportMarkdownResultQueryBuilder exportMarkdownResultQueryBuilder, QueryBuilderParameter<string> docID, QueryBuilderParameter<IEnumerable<string>>? blockIDs = null, string? alias = null, IncludeDirective? include = null, SkipDirective? skip = null) {
-            var args = new List<QueryBuilderArgumentInfo> {
-                new QueryBuilderArgumentInfo { ArgumentName = "docId", ArgumentValue = docID }
-            };
+            var args = new List<QueryBuilderArgumentInfo>();
+            args.Add(new QueryBuilderArgumentInfo { ArgumentName = "docId", ArgumentValue = docID });
             if (blockIDs != null)
                 args.Add(new QueryBuilderArgumentInfo { ArgumentName = "blockIds", ArgumentValue = blockIDs });
             return WithObjectField("export_markdown_from_doc", alias, exportMarkdownResultQueryBuilder, new GraphQlDirective?[] { include, skip }, args);
         }
         public QueryQueryBuilder ExceptExportMarkdownFromDoc() =>
             ExceptField("export_markdown_from_doc");
+        public QueryQueryBuilder WithKnowledgeBaseSearch(KnowledgeBaseAnswerQueryBuilder knowledgeBaseAnswerQueryBuilder, QueryBuilderParameter<string> query, QueryBuilderParameter<int?>? limit = null, string? alias = null, IncludeDirective? include = null, SkipDirective? skip = null) {
+            var args = new List<QueryBuilderArgumentInfo>();
+            args.Add(new QueryBuilderArgumentInfo { ArgumentName = "query", ArgumentValue = query });
+            if (limit != null)
+                args.Add(new QueryBuilderArgumentInfo { ArgumentName = "limit", ArgumentValue = limit });
+            return WithObjectField("knowledge_base_search", alias, knowledgeBaseAnswerQueryBuilder, new GraphQlDirective?[] { include, skip }, args);
+        }
+        public QueryQueryBuilder ExceptKnowledgeBaseSearch() =>
+            ExceptField("knowledge_base_search");
         public QueryQueryBuilder WithFavorites(GraphQLHierarchyObjectItemQueryBuilder graphqlHierarchyObjectItemQueryBuilder, string? alias = null, IncludeDirective? include = null, SkipDirective? skip = null) =>
             WithObjectField("favorites", alias, graphqlHierarchyObjectItemQueryBuilder, new GraphQlDirective?[] { include, skip });
         public QueryQueryBuilder ExceptFavorites() =>
             ExceptField("favorites");
         public QueryQueryBuilder WithMarketplaceAppDiscounts(MarketplaceAppDiscountQueryBuilder marketplaceAppDiscountQueryBuilder, QueryBuilderParameter<string> appID, string? alias = null, IncludeDirective? include = null, SkipDirective? skip = null) {
-            var args = new List<QueryBuilderArgumentInfo> {
-                new QueryBuilderArgumentInfo { ArgumentName = "app_id", ArgumentValue = appID }
-            };
+            var args = new List<QueryBuilderArgumentInfo>();
+            args.Add(new QueryBuilderArgumentInfo { ArgumentName = "app_id", ArgumentValue = appID });
             return WithObjectField("marketplace_app_discounts", alias, marketplaceAppDiscountQueryBuilder, new GraphQlDirective?[] { include, skip }, args);
         }
         public QueryQueryBuilder ExceptMarketplaceAppDiscounts() =>
             ExceptField("marketplace_app_discounts");
         public QueryQueryBuilder WithAppSubscriptions(AppSubscriptionsQueryBuilder appSubscriptionsQueryBuilder, QueryBuilderParameter<string> appID, QueryBuilderParameter<SubscriptionStatus?>? status = null, QueryBuilderParameter<int?>? accountID = null, QueryBuilderParameter<string?>? cursor = null, QueryBuilderParameter<int?>? limit = null, string? alias = null, IncludeDirective? include = null, SkipDirective? skip = null) {
-            var args = new List<QueryBuilderArgumentInfo> {
-                new QueryBuilderArgumentInfo { ArgumentName = "app_id", ArgumentValue = appID }
-            };
+            var args = new List<QueryBuilderArgumentInfo>();
+            args.Add(new QueryBuilderArgumentInfo { ArgumentName = "app_id", ArgumentValue = appID });
             if (status != null)
                 args.Add(new QueryBuilderArgumentInfo { ArgumentName = "status", ArgumentValue = status });
             if (accountID != null)
@@ -347,45 +476,56 @@ namespace MondayApi.Schema {
         public QueryQueryBuilder ExceptAppSubscriptions() =>
             ExceptField("app_subscriptions");
         public QueryQueryBuilder WithMarketplaceVectorSearch(MarketplaceSearchResultsQueryBuilder marketplaceSearchResultsQueryBuilder, QueryBuilderParameter<MarketplaceSearchInput> input, string? alias = null, IncludeDirective? include = null, SkipDirective? skip = null) {
-            var args = new List<QueryBuilderArgumentInfo> {
-                new QueryBuilderArgumentInfo { ArgumentName = "input", ArgumentValue = input }
-            };
+            var args = new List<QueryBuilderArgumentInfo>();
+            args.Add(new QueryBuilderArgumentInfo { ArgumentName = "input", ArgumentValue = input });
             return WithObjectField("marketplace_vector_search", alias, marketplaceSearchResultsQueryBuilder, new GraphQlDirective?[] { include, skip }, args);
         }
         public QueryQueryBuilder ExceptMarketplaceVectorSearch() =>
             ExceptField("marketplace_vector_search");
         public QueryQueryBuilder WithMarketplaceFulltextSearch(MarketplaceSearchResultsQueryBuilder marketplaceSearchResultsQueryBuilder, QueryBuilderParameter<MarketplaceSearchInput> input, string? alias = null, IncludeDirective? include = null, SkipDirective? skip = null) {
-            var args = new List<QueryBuilderArgumentInfo> {
-                new QueryBuilderArgumentInfo { ArgumentName = "input", ArgumentValue = input }
-            };
+            var args = new List<QueryBuilderArgumentInfo>();
+            args.Add(new QueryBuilderArgumentInfo { ArgumentName = "input", ArgumentValue = input });
             return WithObjectField("marketplace_fulltext_search", alias, marketplaceSearchResultsQueryBuilder, new GraphQlDirective?[] { include, skip }, args);
         }
         public QueryQueryBuilder ExceptMarketplaceFulltextSearch() =>
             ExceptField("marketplace_fulltext_search");
         public QueryQueryBuilder WithMarketplaceHybridSearch(MarketplaceSearchResultsQueryBuilder marketplaceSearchResultsQueryBuilder, QueryBuilderParameter<MarketplaceSearchInput> input, string? alias = null, IncludeDirective? include = null, SkipDirective? skip = null) {
-            var args = new List<QueryBuilderArgumentInfo> {
-                new QueryBuilderArgumentInfo { ArgumentName = "input", ArgumentValue = input }
-            };
+            var args = new List<QueryBuilderArgumentInfo>();
+            args.Add(new QueryBuilderArgumentInfo { ArgumentName = "input", ArgumentValue = input });
             return WithObjectField("marketplace_hybrid_search", alias, marketplaceSearchResultsQueryBuilder, new GraphQlDirective?[] { include, skip }, args);
         }
         public QueryQueryBuilder ExceptMarketplaceHybridSearch() =>
             ExceptField("marketplace_hybrid_search");
-        public QueryQueryBuilder WithMarketplaceAiSearch(MarketplaceAISearchResultsQueryBuilder marketplaceAiSearchResultsQueryBuilder, QueryBuilderParameter<MarketplaceAiSearchInput> input, string? alias = null, IncludeDirective? include = null, SkipDirective? skip = null) {
-            var args = new List<QueryBuilderArgumentInfo> {
-                new QueryBuilderArgumentInfo { ArgumentName = "input", ArgumentValue = input }
-            };
-            return WithObjectField("marketplace_ai_search", alias, marketplaceAiSearchResultsQueryBuilder, new GraphQlDirective?[] { include, skip }, args);
+        public QueryQueryBuilder WithMarketplaceAISearch(MarketplaceAISearchResultsQueryBuilder marketplaceAISearchResultsQueryBuilder, QueryBuilderParameter<MarketplaceAISearchInput> input, string? alias = null, IncludeDirective? include = null, SkipDirective? skip = null) {
+            var args = new List<QueryBuilderArgumentInfo>();
+            args.Add(new QueryBuilderArgumentInfo { ArgumentName = "input", ArgumentValue = input });
+            return WithObjectField("marketplace_ai_search", alias, marketplaceAISearchResultsQueryBuilder, new GraphQlDirective?[] { include, skip }, args);
         }
-        public QueryQueryBuilder ExceptMarketplaceAiSearch() =>
+        public QueryQueryBuilder ExceptMarketplaceAISearch() =>
             ExceptField("marketplace_ai_search");
         public QueryQueryBuilder WithApp(AppTypeQueryBuilder appTypeQueryBuilder, QueryBuilderParameter<string> id, string? alias = null, IncludeDirective? include = null, SkipDirective? skip = null) {
-            var args = new List<QueryBuilderArgumentInfo> {
-                new QueryBuilderArgumentInfo { ArgumentName = "id", ArgumentValue = id }
-            };
+            var args = new List<QueryBuilderArgumentInfo>();
+            args.Add(new QueryBuilderArgumentInfo { ArgumentName = "id", ArgumentValue = id });
             return WithObjectField("app", alias, appTypeQueryBuilder, new GraphQlDirective?[] { include, skip }, args);
         }
         public QueryQueryBuilder ExceptApp() =>
             ExceptField("app");
+        public QueryQueryBuilder WithAskDeveloperDocs(AppDocumentationAIResponseQueryBuilder appDocumentationAiResponseQueryBuilder, QueryBuilderParameter<string> query, string? alias = null, IncludeDirective? include = null, SkipDirective? skip = null) {
+            var args = new List<QueryBuilderArgumentInfo>();
+            args.Add(new QueryBuilderArgumentInfo { ArgumentName = "query", ArgumentValue = query });
+            return WithObjectField("ask_developer_docs", alias, appDocumentationAiResponseQueryBuilder, new GraphQlDirective?[] { include, skip }, args);
+        }
+        public QueryQueryBuilder ExceptAskDeveloperDocs() =>
+            ExceptField("ask_developer_docs");
+        public QueryQueryBuilder WithGetAppLifecycleSubscriptions(LifecycleSubscriptionKindQueryBuilder lifecycleSubscriptionKindQueryBuilder, QueryBuilderParameter<string> appID, QueryBuilderParameter<string?>? versionID = null, string? alias = null, IncludeDirective? include = null, SkipDirective? skip = null) {
+            var args = new List<QueryBuilderArgumentInfo>();
+            args.Add(new QueryBuilderArgumentInfo { ArgumentName = "app_id", ArgumentValue = appID });
+            if (versionID != null)
+                args.Add(new QueryBuilderArgumentInfo { ArgumentName = "version_id", ArgumentValue = versionID });
+            return WithObjectField("get_app_lifecycle_subscriptions", alias, lifecycleSubscriptionKindQueryBuilder, new GraphQlDirective?[] { include, skip }, args);
+        }
+        public QueryQueryBuilder ExceptGetAppLifecycleSubscriptions() =>
+            ExceptField("get_app_lifecycle_subscriptions");
         public QueryQueryBuilder WithAccount(AccountQueryBuilder accountQueryBuilder, string? alias = null, IncludeDirective? include = null, SkipDirective? skip = null) =>
             WithObjectField("account", alias, accountQueryBuilder, new GraphQlDirective?[] { include, skip });
         public QueryQueryBuilder ExceptAccount() =>
@@ -424,9 +564,8 @@ namespace MondayApi.Schema {
         public QueryQueryBuilder ExceptAppsMonetizationStatus() =>
             ExceptField("apps_monetization_status");
         public QueryQueryBuilder WithAssets(AssetQueryBuilder assetQueryBuilder, QueryBuilderParameter<IEnumerable<string>> ids, string? alias = null, IncludeDirective? include = null, SkipDirective? skip = null) {
-            var args = new List<QueryBuilderArgumentInfo> {
-                new QueryBuilderArgumentInfo { ArgumentName = "ids", ArgumentValue = ids }
-            };
+            var args = new List<QueryBuilderArgumentInfo>();
+            args.Add(new QueryBuilderArgumentInfo { ArgumentName = "ids", ArgumentValue = ids });
             return WithObjectField("assets", alias, assetQueryBuilder, new GraphQlDirective?[] { include, skip }, args);
         }
         public QueryQueryBuilder ExceptAssets() =>
@@ -508,9 +647,8 @@ namespace MondayApi.Schema {
         public QueryQueryBuilder ExceptItems() =>
             ExceptField("items");
         public QueryQueryBuilder WithItemsPageByColumnValues(ItemsResponseQueryBuilder itemsResponseQueryBuilder, QueryBuilderParameter<string> boardID, QueryBuilderParameter<int> limit, QueryBuilderParameter<IEnumerable<ItemsPageByColumnValuesQuery>>? columns = null, QueryBuilderParameter<string?>? cursor = null, QueryBuilderParameter<string?>? hierarchyScopeConfig = null, string? alias = null, IncludeDirective? include = null, SkipDirective? skip = null) {
-            var args = new List<QueryBuilderArgumentInfo> {
-                new QueryBuilderArgumentInfo { ArgumentName = "board_id", ArgumentValue = boardID }
-            };
+            var args = new List<QueryBuilderArgumentInfo>();
+            args.Add(new QueryBuilderArgumentInfo { ArgumentName = "board_id", ArgumentValue = boardID });
             if (columns != null)
                 args.Add(new QueryBuilderArgumentInfo { ArgumentName = "columns", ArgumentValue = columns });
             if (cursor != null)
@@ -527,10 +665,9 @@ namespace MondayApi.Schema {
         public QueryQueryBuilder ExceptMe() =>
             ExceptField("me");
         public QueryQueryBuilder WithNextItemsPage(ItemsResponseQueryBuilder itemsResponseQueryBuilder, QueryBuilderParameter<string> cursor, QueryBuilderParameter<int> limit, string? alias = null, IncludeDirective? include = null, SkipDirective? skip = null) {
-            var args = new List<QueryBuilderArgumentInfo> {
-                new QueryBuilderArgumentInfo { ArgumentName = "cursor", ArgumentValue = cursor },
-                new QueryBuilderArgumentInfo { ArgumentName = "limit", ArgumentValue = limit }
-            };
+            var args = new List<QueryBuilderArgumentInfo>();
+            args.Add(new QueryBuilderArgumentInfo { ArgumentName = "cursor", ArgumentValue = cursor });
+            args.Add(new QueryBuilderArgumentInfo { ArgumentName = "limit", ArgumentValue = limit });
             return WithObjectField("next_items_page", alias, itemsResponseQueryBuilder, new GraphQlDirective?[] { include, skip }, args);
         }
         public QueryQueryBuilder ExceptNextItemsPage() =>
@@ -582,7 +719,7 @@ namespace MondayApi.Schema {
         }
         public QueryQueryBuilder ExceptWebhooks() =>
             ExceptField("webhooks");
-        public QueryQueryBuilder WithWorkspaces(WorkspaceQueryBuilder workspaceQueryBuilder, QueryBuilderParameter<IEnumerable<string>>? ids = null, QueryBuilderParameter<WorkspaceKind?>? kind = null, QueryBuilderParameter<int?>? limit = null, QueryBuilderParameter<WorkspacesOrderBy?>? orderBy = null, QueryBuilderParameter<int?>? page = null, QueryBuilderParameter<State?>? state = null, string? alias = null, IncludeDirective? include = null, SkipDirective? skip = null) {
+        public QueryQueryBuilder WithWorkspaces(WorkspaceQueryBuilder workspaceQueryBuilder, QueryBuilderParameter<IEnumerable<string>>? ids = null, QueryBuilderParameter<WorkspaceKind?>? kind = null, QueryBuilderParameter<int?>? limit = null, QueryBuilderParameter<WorkspaceMembershipKind?>? membershipKind = null, QueryBuilderParameter<WorkspacesOrderBy?>? orderBy = null, QueryBuilderParameter<int?>? page = null, QueryBuilderParameter<WorkspacesQueryInput?>? queryParams = null, QueryBuilderParameter<State?>? state = null, string? alias = null, IncludeDirective? include = null, SkipDirective? skip = null) {
             var args = new List<QueryBuilderArgumentInfo>();
             if (ids != null)
                 args.Add(new QueryBuilderArgumentInfo { ArgumentName = "ids", ArgumentValue = ids });
@@ -590,10 +727,14 @@ namespace MondayApi.Schema {
                 args.Add(new QueryBuilderArgumentInfo { ArgumentName = "kind", ArgumentValue = kind });
             if (limit != null)
                 args.Add(new QueryBuilderArgumentInfo { ArgumentName = "limit", ArgumentValue = limit });
+            if (membershipKind != null)
+                args.Add(new QueryBuilderArgumentInfo { ArgumentName = "membership_kind", ArgumentValue = membershipKind });
             if (orderBy != null)
                 args.Add(new QueryBuilderArgumentInfo { ArgumentName = "order_by", ArgumentValue = orderBy });
             if (page != null)
                 args.Add(new QueryBuilderArgumentInfo { ArgumentName = "page", ArgumentValue = page });
+            if (queryParams != null)
+                args.Add(new QueryBuilderArgumentInfo { ArgumentName = "query_params", ArgumentValue = queryParams });
             if (state != null)
                 args.Add(new QueryBuilderArgumentInfo { ArgumentName = "state", ArgumentValue = state });
             return WithObjectField("workspaces", alias, workspaceQueryBuilder, new GraphQlDirective?[] { include, skip }, args);
@@ -601,14 +742,17 @@ namespace MondayApi.Schema {
         public QueryQueryBuilder ExceptWorkspaces() =>
             ExceptField("workspaces");
         public QueryQueryBuilder WithBoardCandidates(BoardQueryBuilder boardQueryBuilder, QueryBuilderParameter<string> workspaceID, QueryBuilderParameter<BoardUsage> usageType, string? alias = null, IncludeDirective? include = null, SkipDirective? skip = null) {
-            var args = new List<QueryBuilderArgumentInfo> {
-                new QueryBuilderArgumentInfo { ArgumentName = "workspaceId", ArgumentValue = workspaceID },
-                new QueryBuilderArgumentInfo { ArgumentName = "usageType", ArgumentValue = usageType }
-            };
+            var args = new List<QueryBuilderArgumentInfo>();
+            args.Add(new QueryBuilderArgumentInfo { ArgumentName = "workspaceId", ArgumentValue = workspaceID });
+            args.Add(new QueryBuilderArgumentInfo { ArgumentName = "usageType", ArgumentValue = usageType });
             return WithObjectField("board_candidates", alias, boardQueryBuilder, new GraphQlDirective?[] { include, skip }, args);
         }
         public QueryQueryBuilder ExceptBoardCandidates() =>
             ExceptField("board_candidates");
+        public QueryQueryBuilder WithNotetaker(NotetakerQueriesQueryBuilder notetakerQueriesQueryBuilder, string? alias = null, IncludeDirective? include = null, SkipDirective? skip = null) =>
+            WithObjectField("notetaker", alias, notetakerQueriesQueryBuilder, new GraphQlDirective?[] { include, skip });
+        public QueryQueryBuilder ExceptNotetaker() =>
+            ExceptField("notetaker");
         public QueryQueryBuilder WithNotifications(NotificationV2QueryBuilder notificationV2QueryBuilder, QueryBuilderParameter<string?>? cursor = null, QueryBuilderParameter<int?>? limit = null, QueryBuilderParameter<bool?>? filterRead = null, QueryBuilderParameter<object?>? since = null, string? alias = null, IncludeDirective? include = null, SkipDirective? skip = null) {
             var args = new List<QueryBuilderArgumentInfo>();
             if (cursor != null)
@@ -624,9 +768,8 @@ namespace MondayApi.Schema {
         public QueryQueryBuilder ExceptNotifications() =>
             ExceptField("notifications");
         public QueryQueryBuilder WithNotificationsSettings(NotificationSettingQueryBuilder notificationSettingQueryBuilder, QueryBuilderParameter<ScopeType> scopeType, QueryBuilderParameter<int?>? scopeID = null, QueryBuilderParameter<IEnumerable<string>>? settingKinds = null, QueryBuilderParameter<IEnumerable<ChannelType>>? channels = null, string? alias = null, IncludeDirective? include = null, SkipDirective? skip = null) {
-            var args = new List<QueryBuilderArgumentInfo> {
-                new QueryBuilderArgumentInfo { ArgumentName = "scope_type", ArgumentValue = scopeType }
-            };
+            var args = new List<QueryBuilderArgumentInfo>();
+            args.Add(new QueryBuilderArgumentInfo { ArgumentName = "scope_type", ArgumentValue = scopeType });
             if (scopeID != null)
                 args.Add(new QueryBuilderArgumentInfo { ArgumentName = "scope_id", ArgumentValue = scopeID });
             if (settingKinds != null)
@@ -638,9 +781,8 @@ namespace MondayApi.Schema {
         public QueryQueryBuilder ExceptNotificationsSettings() =>
             ExceptField("notifications_settings");
         public QueryQueryBuilder WithMuteBoardSettings(BoardMuteSettingsQueryBuilder boardMuteSettingsQueryBuilder, QueryBuilderParameter<IEnumerable<string>> boardIDs, string? alias = null, IncludeDirective? include = null, SkipDirective? skip = null) {
-            var args = new List<QueryBuilderArgumentInfo> {
-                new QueryBuilderArgumentInfo { ArgumentName = "board_ids", ArgumentValue = boardIDs }
-            };
+            var args = new List<QueryBuilderArgumentInfo>();
+            args.Add(new QueryBuilderArgumentInfo { ArgumentName = "board_ids", ArgumentValue = boardIDs });
             return WithObjectField("mute_board_settings", alias, boardMuteSettingsQueryBuilder, new GraphQlDirective?[] { include, skip }, args);
         }
         public QueryQueryBuilder ExceptMuteBoardSettings() =>
@@ -669,6 +811,17 @@ namespace MondayApi.Schema {
         }
         public QueryQueryBuilder ExceptObjects() =>
             ExceptField("objects");
+        public QueryQueryBuilder WithObjectRelations(ObjectRelationQueryBuilder objectRelationQueryBuilder, QueryBuilderParameter<string> objectID, QueryBuilderParameter<RelationKind?>? kind = null, QueryBuilderParameter<RelationDirection?>? direction = null, string? alias = null, IncludeDirective? include = null, SkipDirective? skip = null) {
+            var args = new List<QueryBuilderArgumentInfo>();
+            args.Add(new QueryBuilderArgumentInfo { ArgumentName = "object_id", ArgumentValue = objectID });
+            if (kind != null)
+                args.Add(new QueryBuilderArgumentInfo { ArgumentName = "kind", ArgumentValue = kind });
+            if (direction != null)
+                args.Add(new QueryBuilderArgumentInfo { ArgumentName = "direction", ArgumentValue = direction });
+            return WithObjectField("object_relations", alias, objectRelationQueryBuilder, new GraphQlDirective?[] { include, skip }, args);
+        }
+        public QueryQueryBuilder ExceptObjectRelations() =>
+            ExceptField("object_relations");
         public QueryQueryBuilder WithVersion(VersionQueryBuilder versionQueryBuilder, string? alias = null, IncludeDirective? include = null, SkipDirective? skip = null) =>
             WithObjectField("version", alias, versionQueryBuilder, new GraphQlDirective?[] { include, skip });
         public QueryQueryBuilder ExceptVersion() =>
@@ -682,17 +835,34 @@ namespace MondayApi.Schema {
         public QueryQueryBuilder ExceptPlatformAPI() =>
             ExceptField("platform_api");
         public QueryQueryBuilder WithAggregate(AggregateQueryResultQueryBuilder aggregateQueryResultQueryBuilder, QueryBuilderParameter<AggregateQueryInput> query, string? alias = null, IncludeDirective? include = null, SkipDirective? skip = null) {
-            var args = new List<QueryBuilderArgumentInfo> {
-                new QueryBuilderArgumentInfo { ArgumentName = "query", ArgumentValue = query }
-            };
+            var args = new List<QueryBuilderArgumentInfo>();
+            args.Add(new QueryBuilderArgumentInfo { ArgumentName = "query", ArgumentValue = query });
             return WithObjectField("aggregate", alias, aggregateQueryResultQueryBuilder, new GraphQlDirective?[] { include, skip }, args);
         }
         public QueryQueryBuilder ExceptAggregate() =>
             ExceptField("aggregate");
+        public QueryQueryBuilder WithGetDirectoryResources(DirectoryResourcesResponseQueryBuilder directoryResourcesResponseQueryBuilder, QueryBuilderParameter<ItemsQuery?>? queryParams = null, QueryBuilderParameter<string?>? cursor = null, QueryBuilderParameter<int?>? limit = null, string? alias = null, IncludeDirective? include = null, SkipDirective? skip = null) {
+            var args = new List<QueryBuilderArgumentInfo>();
+            if (queryParams != null)
+                args.Add(new QueryBuilderArgumentInfo { ArgumentName = "query_params", ArgumentValue = queryParams });
+            if (cursor != null)
+                args.Add(new QueryBuilderArgumentInfo { ArgumentName = "cursor", ArgumentValue = cursor });
+            if (limit != null)
+                args.Add(new QueryBuilderArgumentInfo { ArgumentName = "limit", ArgumentValue = limit });
+            return WithObjectField("get_directory_resources", alias, directoryResourcesResponseQueryBuilder, new GraphQlDirective?[] { include, skip }, args);
+        }
+        public QueryQueryBuilder ExceptGetDirectoryResources() =>
+            ExceptField("get_directory_resources");
+        public QueryQueryBuilder WithAllowedSequencesToEnroll(SequenceQueryBuilder sequenceQueryBuilder, QueryBuilderParameter<string> boardID, string? alias = null, IncludeDirective? include = null, SkipDirective? skip = null) {
+            var args = new List<QueryBuilderArgumentInfo>();
+            args.Add(new QueryBuilderArgumentInfo { ArgumentName = "board_id", ArgumentValue = boardID });
+            return WithObjectField("allowed_sequences_to_enroll", alias, sequenceQueryBuilder, new GraphQlDirective?[] { include, skip }, args);
+        }
+        public QueryQueryBuilder ExceptAllowedSequencesToEnroll() =>
+            ExceptField("allowed_sequences_to_enroll");
         public QueryQueryBuilder WithSprints(SprintQueryBuilder sprintQueryBuilder, QueryBuilderParameter<IEnumerable<string>> ids, string? alias = null, IncludeDirective? include = null, SkipDirective? skip = null) {
-            var args = new List<QueryBuilderArgumentInfo> {
-                new QueryBuilderArgumentInfo { ArgumentName = "ids", ArgumentValue = ids }
-            };
+            var args = new List<QueryBuilderArgumentInfo>();
+            args.Add(new QueryBuilderArgumentInfo { ArgumentName = "ids", ArgumentValue = ids });
             return WithObjectField("sprints", alias, sprintQueryBuilder, new GraphQlDirective?[] { include, skip }, args);
         }
         public QueryQueryBuilder ExceptSprints() =>
@@ -706,9 +876,8 @@ namespace MondayApi.Schema {
         public QueryQueryBuilder ExceptAllWidgetsSchema() =>
             ExceptField("all_widgets_schema");
         public QueryQueryBuilder WithForm(ResponseFormQueryBuilder responseFormQueryBuilder, QueryBuilderParameter<string> formToken, string? alias = null, IncludeDirective? include = null, SkipDirective? skip = null) {
-            var args = new List<QueryBuilderArgumentInfo> {
-                new QueryBuilderArgumentInfo { ArgumentName = "formToken", ArgumentValue = formToken }
-            };
+            var args = new List<QueryBuilderArgumentInfo>();
+            args.Add(new QueryBuilderArgumentInfo { ArgumentName = "formToken", ArgumentValue = formToken });
             return WithObjectField("form", alias, responseFormQueryBuilder, new GraphQlDirective?[] { include, skip }, args);
         }
         public QueryQueryBuilder ExceptForm() =>

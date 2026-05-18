@@ -7,7 +7,9 @@ namespace MondayApi.Schema {
             new GraphQlFieldMetadata { Name = "graphData" },
             new GraphQlFieldMetadata { Name = "exportedAt" },
             new GraphQlFieldMetadata { Name = "nodeCount" },
-            new GraphQlFieldMetadata { Name = "edgeCount" }
+            new GraphQlFieldMetadata { Name = "edgeCount" },
+            new GraphQlFieldMetadata { Name = "graphAttributes" },
+            new GraphQlFieldMetadata { Name = "cycles" }
         };
 
         protected override string TypeName => "BoardGraphExport";
@@ -33,5 +35,13 @@ namespace MondayApi.Schema {
             WithScalarField("edgeCount", alias, new GraphQlDirective?[] { include, skip });
         public BoardGraphExportQueryBuilder ExceptEdgeCount() =>
             ExceptField("edgeCount");
+        public BoardGraphExportQueryBuilder WithGraphAttributes(string? alias = null, IncludeDirective? include = null, SkipDirective? skip = null) =>
+            WithScalarField("graphAttributes", alias, new GraphQlDirective?[] { include, skip });
+        public BoardGraphExportQueryBuilder ExceptGraphAttributes() =>
+            ExceptField("graphAttributes");
+        public BoardGraphExportQueryBuilder WithCycles(string? alias = null, IncludeDirective? include = null, SkipDirective? skip = null) =>
+            WithScalarField("cycles", alias, new GraphQlDirective?[] { include, skip });
+        public BoardGraphExportQueryBuilder ExceptCycles() =>
+            ExceptField("cycles");
     }
 }

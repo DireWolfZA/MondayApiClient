@@ -5,6 +5,7 @@ graphql-client-generator --serviceUrl "https://api.monday.com/v2" ^
   --outputType OneClassPerFile ^
   --idTypeMapping string ^
   --csharpVersion CSharp6 ^
+  --includeDeprecatedFields true ^
   --nullableReferences true ^
   --header "Authorization:%1" ^
-  --header "API-Version: 2025-10"
+  --header "API-Version: 2026-04"

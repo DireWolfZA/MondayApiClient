@@ -3,6 +3,7 @@ namespace MondayApi.Schema {
         User,
         Team,
         Project,
-        Board
+        Board,
+        Agent
     }
 }

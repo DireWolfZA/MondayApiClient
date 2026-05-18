@@ -7,6 +7,8 @@ namespace MondayApi.Schema {
     public class RatingValue : AddShallowCopy<IColumnValue>, IMirroredValue, IColumnValue {
         public Column? Column { get; set; }
         public string? ID { get; set; }
+        [JsonProperty("is_leaf")]
+        public bool? IsLeaf { get; set; }
         public int? Rating { get; set; }
         public string? Text { get; set; }
         public ColumnType? Type { get; set; }

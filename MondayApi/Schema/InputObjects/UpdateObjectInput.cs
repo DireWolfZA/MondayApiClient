@@ -6,6 +6,7 @@ namespace MondayApi.Schema {
         private InputPropertyInfo _name;
         private InputPropertyInfo _description;
         private InputPropertyInfo _privacyKind;
+        private InputPropertyInfo _relations;
 
         [JsonConverter(typeof(QueryBuilderParameterConverter<string?>))]
         public QueryBuilderParameter<string?>? Name {
@@ -26,10 +27,17 @@ namespace MondayApi.Schema {
             set => _privacyKind = new InputPropertyInfo { Name = "privacy_kind", Value = value };
         }
 
+        [JsonConverter(typeof(QueryBuilderParameterConverter<ICollection<ObjectRelationInput>?>))]
+        public QueryBuilderParameter<ICollection<ObjectRelationInput>?>? Relations {
+            get => (QueryBuilderParameter<ICollection<ObjectRelationInput>?>?)_relations.Value;
+            set => _relations = new InputPropertyInfo { Name = "relations", Value = value };
+        }
+
         IEnumerable<InputPropertyInfo> IGraphQlInputObject.GetPropertyValues() {
             if (_name.Name != null) yield return _name;
             if (_description.Name != null) yield return _description;
             if (_privacyKind.Name != null) yield return _privacyKind;
+            if (_relations.Name != null) yield return _relations;
         }
     }
 }

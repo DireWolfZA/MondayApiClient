@@ -5,6 +5,7 @@ namespace MondayApi.Schema {
         private static readonly GraphQlFieldMetadata[] AllFieldMetadata = new[] {
             new GraphQlFieldMetadata { Name = "column", IsComplex = true, QueryBuilderType = typeof(ColumnQueryBuilder) },
             new GraphQlFieldMetadata { Name = "id" },
+            new GraphQlFieldMetadata { Name = "is_leaf" },
             new GraphQlFieldMetadata { Name = "rating" },
             new GraphQlFieldMetadata { Name = "text" },
             new GraphQlFieldMetadata { Name = "type" },
@@ -23,6 +24,10 @@ namespace MondayApi.Schema {
             WithScalarField("id", alias, new GraphQlDirective?[] { include, skip });
         public RatingValueQueryBuilder ExceptID() =>
             ExceptField("id");
+        public RatingValueQueryBuilder WithIsLeaf(string? alias = null, IncludeDirective? include = null, SkipDirective? skip = null) =>
+            WithScalarField("is_leaf", alias, new GraphQlDirective?[] { include, skip });
+        public RatingValueQueryBuilder ExceptIsLeaf() =>
+            ExceptField("is_leaf");
         public RatingValueQueryBuilder WithRating(string? alias = null, IncludeDirective? include = null, SkipDirective? skip = null) =>
             WithScalarField("rating", alias, new GraphQlDirective?[] { include, skip });
         public RatingValueQueryBuilder ExceptRating() =>

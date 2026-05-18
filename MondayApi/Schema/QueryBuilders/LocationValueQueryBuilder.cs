@@ -10,6 +10,7 @@ namespace MondayApi.Schema {
             new GraphQlFieldMetadata { Name = "country" },
             new GraphQlFieldMetadata { Name = "country_short" },
             new GraphQlFieldMetadata { Name = "id" },
+            new GraphQlFieldMetadata { Name = "is_leaf" },
             new GraphQlFieldMetadata { Name = "lat" },
             new GraphQlFieldMetadata { Name = "lng" },
             new GraphQlFieldMetadata { Name = "place_id" },
@@ -54,6 +55,10 @@ namespace MondayApi.Schema {
             WithScalarField("id", alias, new GraphQlDirective?[] { include, skip });
         public LocationValueQueryBuilder ExceptID() =>
             ExceptField("id");
+        public LocationValueQueryBuilder WithIsLeaf(string? alias = null, IncludeDirective? include = null, SkipDirective? skip = null) =>
+            WithScalarField("is_leaf", alias, new GraphQlDirective?[] { include, skip });
+        public LocationValueQueryBuilder ExceptIsLeaf() =>
+            ExceptField("is_leaf");
         public LocationValueQueryBuilder WithLat(string? alias = null, IncludeDirective? include = null, SkipDirective? skip = null) =>
             WithScalarField("lat", alias, new GraphQlDirective?[] { include, skip });
         public LocationValueQueryBuilder ExceptLat() =>
