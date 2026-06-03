@@ -54,9 +54,9 @@ namespace MondayApi.Schema {
             WithScalarField("url", alias, new GraphQlDirective?[] { include, skip });
         public AssetQueryBuilder ExceptURL() =>
             ExceptField("url");
-        public AssetQueryBuilder WithUrlThumbnail(string? alias = null, IncludeDirective? include = null, SkipDirective? skip = null) =>
+        public AssetQueryBuilder WithURLThumbnail(string? alias = null, IncludeDirective? include = null, SkipDirective? skip = null) =>
             WithScalarField("url_thumbnail", alias, new GraphQlDirective?[] { include, skip });
-        public AssetQueryBuilder ExceptUrlThumbnail() =>
+        public AssetQueryBuilder ExceptURLThumbnail() =>
             ExceptField("url_thumbnail");
     }
 }

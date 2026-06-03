@@ -31,6 +31,26 @@ namespace MondayApi.Assets {
             return response.Items?.FirstOrDefault()?.ColumnValues?.OfType<FileValue>()!;
         }
 
+        public async Task<IEnumerable<Asset>?> GetItemColumnFileAssets(string itemID, string columnID) {
+            var query = new QueryQueryBuilder().WithItems(
+                new ItemQueryBuilder().WithColumnValues(
+                    new ColumnValueQueryBuilder().WithAllScalarFields().WithFileValueFragment(
+                        new FileValueQueryBuilder().WithFiles(
+                            new FileValueItemQueryBuilder().WithAllScalarFields()
+                                .WithFileAssetValueFragment(new FileAssetValueQueryBuilder().WithAsset(new AssetQueryBuilder().WithAllScalarFields()))
+                        )
+                    ),
+                    ids: new[] { columnID },
+                    types: new ColumnType[] { ColumnType.File }
+                ),
+                ids: new string[] { itemID }
+            );
+            var response = await client.RunQuery(query);
+
+            var assetColumns = response.Items?.FirstOrDefault()?.ColumnValues?.OfType<FileValue>()!;
+            return assetColumns?.FirstOrDefault()?.Files?.OfType<FileAssetValue>().Select(a => a.Asset!);
+        }
+
         public async Task<IEnumerable<Asset>?> GetByItem(string itemID) {
             var query = new QueryQueryBuilder().WithItems(
                 new ItemQueryBuilder().WithAssets(
