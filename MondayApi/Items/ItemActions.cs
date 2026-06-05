@@ -5,226 +5,226 @@ using MondayApi.Schema;
 
 //https://developer.monday.com/api-reference/reference/items
 //https://developer.monday.com/api-reference/reference/items-page
-namespace MondayApi.Items {
-    public class ItemActions : IItemActions {
-        private readonly IMondayApiClient client;
-        public ItemActions(IMondayApiClient client) {
-            this.client = client;
-        }
+namespace MondayApi.Items;
 
-        private ItemQueryBuilder getItemQueryBuilder(bool withColumnValues, IEnumerable<string>? columnIDs) {
-            var itemQueryBuilder = new ItemQueryBuilder().WithAllScalarFields().WithGroup(new GroupQueryBuilder().WithID());
-            if (withColumnValues)
-                itemQueryBuilder = itemQueryBuilder.WithColumnValues(
-                    new ColumnValueQueryBuilder()
-                        .WithAllScalarFields()
-                        .WithPeopleValueFragment(new PeopleValueQueryBuilder().WithPersonsAndTeams(new PeopleEntityQueryBuilder().WithAllScalarFields()))
-                        .WithDropdownValueFragment(new DropdownValueQueryBuilder().WithValues(new DropdownValueOptionQueryBuilder().WithAllScalarFields()))
-                        .WithBoardRelationValueFragment(new BoardRelationValueQueryBuilder().WithLinkedItemIDs())
-                        .WithStatusValueFragment(new StatusValueQueryBuilder().WithIndex())
-                        .WithNumbersValueFragment(new NumbersValueQueryBuilder().WithNumber())
-                        .WithCheckboxValueFragment(new CheckboxValueQueryBuilder().WithChecked())
-                        .WithPhoneValueFragment(new PhoneValueQueryBuilder().WithCountryShortName())
-                        .WithEmailValueFragment(new EmailValueQueryBuilder().WithEmail())
-                        .WithLastUpdatedValueFragment(new LastUpdatedValueQueryBuilder().WithUpdaterID())
-                        .WithMirrorValueFragment(new MirrorValueQueryBuilder().WithDisplayValue())
-                    ,
-                    ids: Utils.Utils.GetParameter(columnIDs)
-                );
-            return itemQueryBuilder;
-        }
+public class ItemActions : IItemActions {
+    private readonly IMondayApiClient client;
+    public ItemActions(IMondayApiClient client) {
+        this.client = client;
+    }
 
-        public async Task<ItemsResponse?> GetByBoard(string? cursor, int numPerPage, string boardID,
-            bool withColumnValues = false, IEnumerable<string>? columnIDs = null, ItemsQuery? queryParams = null
-        ) {
-            var query = new QueryQueryBuilder().WithBoards(
-                new BoardQueryBuilder().WithItemsPage(
+    private ItemQueryBuilder getItemQueryBuilder(bool withColumnValues, IEnumerable<string>? columnIDs) {
+        var itemQueryBuilder = new ItemQueryBuilder().WithAllScalarFields().WithGroup(new GroupQueryBuilder().WithID());
+        if (withColumnValues)
+            itemQueryBuilder = itemQueryBuilder.WithColumnValues(
+                new ColumnValueQueryBuilder()
+                    .WithAllScalarFields()
+                    .WithPeopleValueFragment(new PeopleValueQueryBuilder().WithPersonsAndTeams(new PeopleEntityQueryBuilder().WithAllScalarFields()))
+                    .WithDropdownValueFragment(new DropdownValueQueryBuilder().WithValues(new DropdownValueOptionQueryBuilder().WithAllScalarFields()))
+                    .WithBoardRelationValueFragment(new BoardRelationValueQueryBuilder().WithLinkedItemIDs())
+                    .WithStatusValueFragment(new StatusValueQueryBuilder().WithIndex())
+                    .WithNumbersValueFragment(new NumbersValueQueryBuilder().WithNumber())
+                    .WithCheckboxValueFragment(new CheckboxValueQueryBuilder().WithChecked())
+                    .WithPhoneValueFragment(new PhoneValueQueryBuilder().WithCountryShortName())
+                    .WithEmailValueFragment(new EmailValueQueryBuilder().WithEmail())
+                    .WithLastUpdatedValueFragment(new LastUpdatedValueQueryBuilder().WithUpdaterID())
+                    .WithMirrorValueFragment(new MirrorValueQueryBuilder().WithDisplayValue())
+                ,
+                ids: Utils.Utils.GetParameter(columnIDs)
+            );
+        return itemQueryBuilder;
+    }
+
+    public async Task<ItemsResponse?> GetByBoard(string? cursor, int numPerPage, string boardID,
+        bool withColumnValues = false, IEnumerable<string>? columnIDs = null, ItemsQuery? queryParams = null
+    ) {
+        var query = new QueryQueryBuilder().WithBoards(
+            new BoardQueryBuilder().WithItemsPage(
+                new ItemsResponseQueryBuilder().WithCursor().WithItems(getItemQueryBuilder(withColumnValues, columnIDs)),
+                cursor: cursor,
+                limit: numPerPage,
+                queryParams: queryParams
+            ),
+            ids: new string[] { boardID }
+        );
+        var response = await client.RunQuery(query);
+        return response.Boards?.FirstOrDefault()?.ItemsPage;
+    }
+
+    //https://developer.monday.com/api-reference/docs/items-page-by-column-values
+    public async Task<ItemsResponse> GetByBoardColumnValues(string? cursor, int numPerPage, string boardID,
+        bool withColumnValues = false, IEnumerable<string>? columnIDs = null, IEnumerable<ItemsPageByColumnValuesQuery>? columnFilters = null
+    ) {
+        var query = new QueryQueryBuilder().WithItemsPageByColumnValues(
+            new ItemsResponseQueryBuilder().WithCursor().WithItems(getItemQueryBuilder(withColumnValues, columnIDs)),
+            cursor: cursor,
+            limit: numPerPage,
+            boardID: boardID,
+            columns: Utils.Utils.GetParameter(columnFilters)
+        );
+        var response = await client.RunQuery(query);
+        return response.ItemsPageByColumnValues!;
+    }
+
+
+    public async Task<ItemsResponse> GetByBoardNextPage(string cursor, int numPerPage, bool withColumnValues = false, IEnumerable<string>? columnIDs = null) {
+        Utils.Utils.RequireArgument(cursor);
+        var query = new QueryQueryBuilder().WithNextItemsPage(
+            new ItemsResponseQueryBuilder().WithCursor().WithItems(getItemQueryBuilder(withColumnValues, columnIDs)),
+            cursor: cursor,
+            limit: numPerPage
+        );
+        var response = await client.RunQuery(query);
+        return response.NextItemsPage!;
+    }
+
+    public async Task<ItemsResponse?> GetByBoardGroup(string? cursor, int numPerPage, string boardID, string groupID,
+        bool withColumnValues = false, IEnumerable<string>? columnIDs = null, ItemsQuery? queryParams = null
+    ) {
+        var query = new QueryQueryBuilder().WithBoards(
+            new BoardQueryBuilder().WithGroups(
+                new GroupQueryBuilder().WithItemsPage(
                     new ItemsResponseQueryBuilder().WithCursor().WithItems(getItemQueryBuilder(withColumnValues, columnIDs)),
                     cursor: cursor,
                     limit: numPerPage,
                     queryParams: queryParams
                 ),
-                ids: new string[] { boardID }
-            );
-            var response = await client.RunQuery(query);
-            return response.Boards?.FirstOrDefault()?.ItemsPage;
-        }
+                ids: new string[] { groupID }
+            ),
+            ids: new string[] { boardID }
+        );
+        var response = await client.RunQuery(query);
+        return response.Boards?.FirstOrDefault()?.Groups?.FirstOrDefault()?.ItemsPage;
+    }
 
-        //https://developer.monday.com/api-reference/docs/items-page-by-column-values
-        public async Task<ItemsResponse> GetByBoardColumnValues(string? cursor, int numPerPage, string boardID,
-            bool withColumnValues = false, IEnumerable<string>? columnIDs = null, IEnumerable<ItemsPageByColumnValuesQuery>? columnFilters = null
-        ) {
-            var query = new QueryQueryBuilder().WithItemsPageByColumnValues(
-                new ItemsResponseQueryBuilder().WithCursor().WithItems(getItemQueryBuilder(withColumnValues, columnIDs)),
-                cursor: cursor,
-                limit: numPerPage,
-                boardID: boardID,
-                columns: Utils.Utils.GetParameter(columnFilters)
-            );
-            var response = await client.RunQuery(query);
-            return response.ItemsPageByColumnValues!;
-        }
+    public async Task<Item?> GetOne(string id, bool withColumnValues = false, IEnumerable<string>? columnIDs = null) {
+        var query = new QueryQueryBuilder().WithItems(
+            getItemQueryBuilder(withColumnValues, columnIDs),
+            ids: new string[] { id }
+        );
+        var response = await client.RunQuery(query);
+        return response.Items?.FirstOrDefault();
+    }
 
+    /// <inheritdoc />
+    public async Task<Item> Create(string itemName, string boardID, string? groupID = null, IEnumerable<IColumnValue>? columnValues = null,
+        bool? createLabelsIfMissing = null, string? relativeTo = null, PositionRelative? positionRelative = null
+    ) {
+        Utils.Utils.RequireArgument(itemName);
+        Utils.Utils.RequireArgument(boardID);
 
-        public async Task<ItemsResponse> GetByBoardNextPage(string cursor, int numPerPage, bool withColumnValues = false, IEnumerable<string>? columnIDs = null) {
-            Utils.Utils.RequireArgument(cursor);
-            var query = new QueryQueryBuilder().WithNextItemsPage(
-                new ItemsResponseQueryBuilder().WithCursor().WithItems(getItemQueryBuilder(withColumnValues, columnIDs)),
-                cursor: cursor,
-                limit: numPerPage
-            );
-            var response = await client.RunQuery(query);
-            return response.NextItemsPage!;
-        }
+        var mutation = new MutationQueryBuilder().WithCreateItem(
+            getItemQueryBuilder(true, null),
+            itemName: itemName,
+            boardID: boardID,
+            groupID: groupID,
+            columnValues: Utils.Utils.SerializeColumnValues(columnValues),
+            createLabelsIfMissing: createLabelsIfMissing,
+            relativeTo: relativeTo,
+            positionRelativeMethod: positionRelative
+        );
 
-        public async Task<ItemsResponse?> GetByBoardGroup(string? cursor, int numPerPage, string boardID, string groupID,
-            bool withColumnValues = false, IEnumerable<string>? columnIDs = null, ItemsQuery? queryParams = null
-        ) {
-            var query = new QueryQueryBuilder().WithBoards(
-                new BoardQueryBuilder().WithGroups(
-                    new GroupQueryBuilder().WithItemsPage(
-                        new ItemsResponseQueryBuilder().WithCursor().WithItems(getItemQueryBuilder(withColumnValues, columnIDs)),
-                        cursor: cursor,
-                        limit: numPerPage,
-                        queryParams: queryParams
-                    ),
-                    ids: new string[] { groupID }
-                ),
-                ids: new string[] { boardID }
-            );
-            var response = await client.RunQuery(query);
-            return response.Boards?.FirstOrDefault()?.Groups?.FirstOrDefault()?.ItemsPage;
-        }
+        var response = await client.RunMutation(mutation);
+        return response.CreateItem!;
+    }
 
-        public async Task<Item?> GetOne(string id, bool withColumnValues = false, IEnumerable<string>? columnIDs = null) {
-            var query = new QueryQueryBuilder().WithItems(
-                getItemQueryBuilder(withColumnValues, columnIDs),
-                ids: new string[] { id }
-            );
-            var response = await client.RunQuery(query);
-            return response.Items?.FirstOrDefault();
-        }
+    /// <inheritdoc />
+    public async Task<IEnumerable<Item>> CreateMultiple(IEnumerable<Item> items, bool? createLabelsIfMissing = null) {
+        Utils.Utils.RequireArgument(items);
+        var mutation = new MutationQueryBuilder();
 
-        /// <inheritdoc />
-        public async Task<Item> Create(string itemName, string boardID, string? groupID = null, IEnumerable<IColumnValue>? columnValues = null,
-            bool? createLabelsIfMissing = null, string? relativeTo = null, PositionRelative? positionRelative = null
-        ) {
-            Utils.Utils.RequireArgument(itemName);
-            Utils.Utils.RequireArgument(boardID);
+        int createIndex = 0;
+        foreach (var item in items) {
+            Utils.Utils.RequireArgument(item.Name, $"{nameof(items)}.{nameof(item.Name)}");
+            Utils.Utils.RequireArgument(item.Board?.ID, $"{nameof(items)}.{nameof(item.Board)}.{nameof(item.Board.ID)}");
 
-            var mutation = new MutationQueryBuilder().WithCreateItem(
+            mutation = mutation.WithCreateItem(
                 getItemQueryBuilder(true, null),
-                itemName: itemName,
-                boardID: boardID,
-                groupID: groupID,
-                columnValues: Utils.Utils.SerializeColumnValues(columnValues),
+                itemName: item.Name,
+                boardID: item.Board.ID,
+                groupID: item.Group?.ID,
+                columnValues: Utils.Utils.SerializeColumnValues(item.ColumnValues),
                 createLabelsIfMissing: createLabelsIfMissing,
-                relativeTo: relativeTo,
-                positionRelativeMethod: positionRelative
+
+                alias: $"createItem{createIndex}"
             );
-
-            var response = await client.RunMutation(mutation);
-            return response.CreateItem!;
+            createIndex++;
         }
 
-        /// <inheritdoc />
-        public async Task<IEnumerable<Item>> CreateMultiple(IEnumerable<Item> items, bool? createLabelsIfMissing = null) {
-            Utils.Utils.RequireArgument(items);
-            var mutation = new MutationQueryBuilder();
+        var response = await client.Run<Dictionary<string, Item>>(mutation);
+        return response.Select(kv => kv.Value);
+    }
 
-            int createIndex = 0;
-            foreach (var item in items) {
-                Utils.Utils.RequireArgument(item.Name, $"{nameof(items)}.{nameof(item.Name)}");
-                Utils.Utils.RequireArgument(item.Board?.ID, $"{nameof(items)}.{nameof(item.Board)}.{nameof(item.Board.ID)}");
+    public async Task<Item> MoveToGroup(string itemID, string groupID) {
+        Utils.Utils.RequireArgument(itemID);
+        Utils.Utils.RequireArgument(groupID);
 
-                mutation = mutation.WithCreateItem(
-                    getItemQueryBuilder(true, null),
-                    itemName: item.Name,
-                    boardID: item.Board.ID,
-                    groupID: item.Group?.ID,
-                    columnValues: Utils.Utils.SerializeColumnValues(item.ColumnValues),
-                    createLabelsIfMissing: createLabelsIfMissing,
+        var mutation = new MutationQueryBuilder().WithMoveItemToGroup(
+            new ItemQueryBuilder().WithAllScalarFields(),
+            itemID: itemID,
+            groupID: groupID
+        );
 
-                    alias: $"createItem{createIndex}"
-                );
-                createIndex++;
-            }
+        var response = await client.RunMutation(mutation);
+        return response.MoveItemToGroup!;
+    }
 
-            var response = await client.Run<Dictionary<string, Item>>(mutation);
-            return response.Select(kv => kv.Value);
-        }
+    /// <inheritdoc />
+    public async Task<Item> MoveToBoard(string itemID, string boardID, string groupID, IEnumerable<ColumnMappingInput>? columnsMapping = null, IEnumerable<ColumnMappingInput>? subitemsColumnsMapping = null) {
+        Utils.Utils.RequireArgument(itemID);
+        Utils.Utils.RequireArgument(boardID);
+        Utils.Utils.RequireArgument(groupID);
 
-        public async Task<Item> MoveToGroup(string itemID, string groupID) {
-            Utils.Utils.RequireArgument(itemID);
-            Utils.Utils.RequireArgument(groupID);
+        var mutation = new MutationQueryBuilder().WithMoveItemToBoard(new ItemQueryBuilder().WithAllScalarFields(),
+            itemID: itemID,
+            boardID: boardID,
+            groupID: groupID,
+            columnsMapping: Utils.Utils.GetParameter(columnsMapping),
+            subitemsColumnsMapping: Utils.Utils.GetParameter(subitemsColumnsMapping)
+        );
 
-            var mutation = new MutationQueryBuilder().WithMoveItemToGroup(
+        var response = await client.RunMutation(mutation);
+        return response.MoveItemToBoard!;
+    }
+
+    public async Task<Item> Duplicate(string itemID, string boardID, bool? withUpdates = false) {
+        Utils.Utils.RequireArgument(itemID);
+        Utils.Utils.RequireArgument(boardID);
+
+        var mutation = new MutationQueryBuilder().WithDuplicateItem(new ItemQueryBuilder().WithAllScalarFields(),
+            itemID: itemID,
+            boardID: boardID,
+            withUpdates: withUpdates
+        );
+
+        var response = await client.RunMutation(mutation);
+        return response.DuplicateItem!;
+    }
+
+    public async Task<Item> Delete(string id) {
+        var mutation = new MutationQueryBuilder().WithDeleteItem(new ItemQueryBuilder().WithAllScalarFields(), id);
+
+        var response = await client.RunMutation(mutation);
+        return response.DeleteItem!;
+    }
+
+    public async Task<IEnumerable<Item>> DeleteMultiple(IEnumerable<string> ids) {
+        Utils.Utils.RequireArgument(ids);
+        var mutation = new MutationQueryBuilder();
+
+        int deleteIndex = 0;
+        foreach (string id in ids) {
+            Utils.Utils.RequireArgument(id, $"{nameof(ids)}.Item");
+
+            mutation = mutation.WithDeleteItem(
                 new ItemQueryBuilder().WithAllScalarFields(),
-                itemID: itemID,
-                groupID: groupID
+                id,
+                alias: $"deleteItem{deleteIndex}"
             );
-
-            var response = await client.RunMutation(mutation);
-            return response.MoveItemToGroup!;
+            deleteIndex++;
         }
 
-        /// <inheritdoc />
-        public async Task<Item> MoveToBoard(string itemID, string boardID, string groupID, IEnumerable<ColumnMappingInput>? columnsMapping = null, IEnumerable<ColumnMappingInput>? subitemsColumnsMapping = null) {
-            Utils.Utils.RequireArgument(itemID);
-            Utils.Utils.RequireArgument(boardID);
-            Utils.Utils.RequireArgument(groupID);
-
-            var mutation = new MutationQueryBuilder().WithMoveItemToBoard(new ItemQueryBuilder().WithAllScalarFields(),
-                itemID: itemID,
-                boardID: boardID,
-                groupID: groupID,
-                columnsMapping: Utils.Utils.GetParameter(columnsMapping),
-                subitemsColumnsMapping: Utils.Utils.GetParameter(subitemsColumnsMapping)
-            );
-
-            var response = await client.RunMutation(mutation);
-            return response.MoveItemToBoard!;
-        }
-
-        public async Task<Item> Duplicate(string itemID, string boardID, bool? withUpdates = false) {
-            Utils.Utils.RequireArgument(itemID);
-            Utils.Utils.RequireArgument(boardID);
-
-            var mutation = new MutationQueryBuilder().WithDuplicateItem(new ItemQueryBuilder().WithAllScalarFields(),
-                itemID: itemID,
-                boardID: boardID,
-                withUpdates: withUpdates
-            );
-
-            var response = await client.RunMutation(mutation);
-            return response.DuplicateItem!;
-        }
-
-        public async Task<Item> Delete(string id) {
-            var mutation = new MutationQueryBuilder().WithDeleteItem(new ItemQueryBuilder().WithAllScalarFields(), id);
-
-            var response = await client.RunMutation(mutation);
-            return response.DeleteItem!;
-        }
-
-        public async Task<IEnumerable<Item>> DeleteMultiple(IEnumerable<string> ids) {
-            Utils.Utils.RequireArgument(ids);
-            var mutation = new MutationQueryBuilder();
-
-            int deleteIndex = 0;
-            foreach (string id in ids) {
-                Utils.Utils.RequireArgument(id, $"{nameof(ids)}.Item");
-
-                mutation = mutation.WithDeleteItem(
-                    new ItemQueryBuilder().WithAllScalarFields(),
-                    id,
-                    alias: $"deleteItem{deleteIndex}"
-                );
-                deleteIndex++;
-            }
-
-            var response = await client.Run<Dictionary<string, Item>>(mutation);
-            return response.Select(kv => kv.Value);
-        }
+        var response = await client.Run<Dictionary<string, Item>>(mutation);
+        return response.Select(kv => kv.Value);
     }
 }

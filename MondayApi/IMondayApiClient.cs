@@ -12,27 +12,27 @@ using MondayApi.Updates;
 using MondayApi.Users;
 using MondayApi.Workspaces;
 
-namespace MondayApi {
-    public interface IMondayApiClient {
-        Task<Query> RunQuery(QueryQueryBuilder queryBuilder);
-        Task<Mutation> RunMutation(MutationQueryBuilder queryBuilder);
-        Task<Mutation> RunFileMutation(MutationQueryBuilder queryBuilder, System.IO.Stream file, string filename);
+namespace MondayApi;
 
-        Task<T> Run<T>(GraphQlQueryBuilder queryBuilder);
-        Task<T> RunFileMutation<T>(GraphQlQueryBuilder queryBuilder, System.IO.Stream file, string filename);
+public interface IMondayApiClient {
+    Task<Query> RunQuery(QueryQueryBuilder queryBuilder);
+    Task<Mutation> RunMutation(MutationQueryBuilder queryBuilder);
+    Task<Mutation> RunFileMutation(MutationQueryBuilder queryBuilder, System.IO.Stream file, string filename);
 
-        Task<T> Run<T>(GraphQL.GraphQLRequest request);
+    Task<T> Run<T>(GraphQlQueryBuilder queryBuilder);
+    Task<T> RunFileMutation<T>(GraphQlQueryBuilder queryBuilder, System.IO.Stream file, string filename);
 
-        IActivityLogActions ActivityLogs { get; }
-        IAssetActions Assets { get; }
-        IBoardActions Boards { get; }
-        IColumnActions Columns { get; }
-        IGroupActions Groups { get; }
-        IItemActions Items { get; }
-        ISubitemActions Subitems { get; }
-        ITimelineItemActions TimelineItems { get; }
-        IUpdateActions Updates { get; }
-        IUserActions Users { get; }
-        IWorkspaceActions Workspaces { get; }
-    }
+    Task<T> Run<T>(GraphQL.GraphQLRequest request);
+
+    IActivityLogActions ActivityLogs { get; }
+    IAssetActions Assets { get; }
+    IBoardActions Boards { get; }
+    IColumnActions Columns { get; }
+    IGroupActions Groups { get; }
+    IItemActions Items { get; }
+    ISubitemActions Subitems { get; }
+    ITimelineItemActions TimelineItems { get; }
+    IUpdateActions Updates { get; }
+    IUserActions Users { get; }
+    IWorkspaceActions Workspaces { get; }
 }

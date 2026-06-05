@@ -4,123 +4,123 @@ using System.Threading.Tasks;
 using MondayApi.Schema;
 
 //https://developer.monday.com/api-reference/reference/updates
-namespace MondayApi.Updates {
-    public class UpdateActions : IUpdateActions {
-        private readonly IMondayApiClient client;
-        public UpdateActions(IMondayApiClient client) {
-            this.client = client;
-        }
+namespace MondayApi.Updates;
 
-        private UpdateQueryBuilder getUpdateQueryBuilder(bool includeReplies, bool includeAssets) {
-            var updateQueryBuilder = new UpdateQueryBuilder().WithAllScalarFields();
-            // when client updates past 2025-07: https://developer.monday.com/api-reference/changelog/new-field-to-retrieve-assets-on-reply-object
-            if (includeReplies && includeAssets)
-                updateQueryBuilder = updateQueryBuilder.WithReplies(
-                    new ReplyQueryBuilder().WithAllScalarFields().WithAssets(new AssetQueryBuilder().WithAllScalarFields())
-                ).WithAssets(new AssetQueryBuilder().WithAllScalarFields());
-            else if (includeReplies)
-                updateQueryBuilder = updateQueryBuilder.WithReplies(new ReplyQueryBuilder().WithAllScalarFields());
-            if (includeAssets)
-                updateQueryBuilder = updateQueryBuilder.WithAssets(new AssetQueryBuilder().WithAllScalarFields());
-            return updateQueryBuilder;
-        }
+public class UpdateActions : IUpdateActions {
+    private readonly IMondayApiClient client;
+    public UpdateActions(IMondayApiClient client) {
+        this.client = client;
+    }
 
-        public async Task<IEnumerable<Update>> Get(int pageNumber, int numPerPage, bool includeReplies = false, bool includeAssets = false) {
-            var query = new QueryQueryBuilder().WithUpdates(
+    private UpdateQueryBuilder getUpdateQueryBuilder(bool includeReplies, bool includeAssets) {
+        var updateQueryBuilder = new UpdateQueryBuilder().WithAllScalarFields();
+        // when client updates past 2025-07: https://developer.monday.com/api-reference/changelog/new-field-to-retrieve-assets-on-reply-object
+        if (includeReplies && includeAssets)
+            updateQueryBuilder = updateQueryBuilder.WithReplies(
+                new ReplyQueryBuilder().WithAllScalarFields().WithAssets(new AssetQueryBuilder().WithAllScalarFields())
+            ).WithAssets(new AssetQueryBuilder().WithAllScalarFields());
+        else if (includeReplies)
+            updateQueryBuilder = updateQueryBuilder.WithReplies(new ReplyQueryBuilder().WithAllScalarFields());
+        if (includeAssets)
+            updateQueryBuilder = updateQueryBuilder.WithAssets(new AssetQueryBuilder().WithAllScalarFields());
+        return updateQueryBuilder;
+    }
+
+    public async Task<IEnumerable<Update>> Get(int pageNumber, int numPerPage, bool includeReplies = false, bool includeAssets = false) {
+        var query = new QueryQueryBuilder().WithUpdates(
+            getUpdateQueryBuilder(includeReplies, includeAssets),
+            page: pageNumber,
+            limit: numPerPage
+        );
+        var response = await client.RunQuery(query);
+        return response.Updates!;
+    }
+
+    public async Task<IEnumerable<Update>?> GetByBoard(int pageNumber, int numPerPage, string boardID, bool includeReplies = false, bool includeAssets = false) {
+        var query = new QueryQueryBuilder().WithBoards(
+            new BoardQueryBuilder().WithUpdates(
                 getUpdateQueryBuilder(includeReplies, includeAssets),
                 page: pageNumber,
                 limit: numPerPage
-            );
-            var response = await client.RunQuery(query);
-            return response.Updates!;
-        }
+            ),
+            ids: new string[] { boardID }
+        );
+        var response = await client.RunQuery(query);
+        return response.Boards?.FirstOrDefault()?.Updates;
+    }
 
-        public async Task<IEnumerable<Update>?> GetByBoard(int pageNumber, int numPerPage, string boardID, bool includeReplies = false, bool includeAssets = false) {
-            var query = new QueryQueryBuilder().WithBoards(
-                new BoardQueryBuilder().WithUpdates(
-                    getUpdateQueryBuilder(includeReplies, includeAssets),
-                    page: pageNumber,
-                    limit: numPerPage
-                ),
-                ids: new string[] { boardID }
-            );
-            var response = await client.RunQuery(query);
-            return response.Boards?.FirstOrDefault()?.Updates;
-        }
+    public async Task<IEnumerable<Update>?> GetByItem(int pageNumber, int numPerPage, string itemID, bool includeReplies = false, bool includeAssets = false) {
+        var query = new QueryQueryBuilder().WithItems(
+            new ItemQueryBuilder().WithUpdates(
+                getUpdateQueryBuilder(includeReplies, includeAssets),
+                page: pageNumber,
+                limit: numPerPage
+            ),
+            ids: new string[] { itemID }
+        );
+        var response = await client.RunQuery(query);
+        return response.Items?.FirstOrDefault()?.Updates;
+    }
 
-        public async Task<IEnumerable<Update>?> GetByItem(int pageNumber, int numPerPage, string itemID, bool includeReplies = false, bool includeAssets = false) {
-            var query = new QueryQueryBuilder().WithItems(
-                new ItemQueryBuilder().WithUpdates(
-                    getUpdateQueryBuilder(includeReplies, includeAssets),
-                    page: pageNumber,
-                    limit: numPerPage
-                ),
-                ids: new string[] { itemID }
-            );
-            var response = await client.RunQuery(query);
-            return response.Items?.FirstOrDefault()?.Updates;
-        }
+    public async Task<Update> Create(string itemID, string body) {
+        Utils.Utils.RequireArgument(itemID);
+        Utils.Utils.RequireArgument(body);
 
-        public async Task<Update> Create(string itemID, string body) {
-            Utils.Utils.RequireArgument(itemID);
-            Utils.Utils.RequireArgument(body);
+        var mutation = new MutationQueryBuilder().WithCreateUpdate(
+            getUpdateQueryBuilder(true, true),
+            body: body,
+            itemID: itemID,
+            parentID: null
+        );
+        var response = await client.RunMutation(mutation);
+        return response.CreateUpdate!;
+    }
 
-            var mutation = new MutationQueryBuilder().WithCreateUpdate(
-                getUpdateQueryBuilder(true, true),
-                body: body,
-                itemID: itemID,
-                parentID: null
-            );
-            var response = await client.RunMutation(mutation);
-            return response.CreateUpdate!;
-        }
+    public async Task<Update> CreateReply(string parentUpdateID, string body) {
+        Utils.Utils.RequireArgument(parentUpdateID);
+        Utils.Utils.RequireArgument(body);
 
-        public async Task<Update> CreateReply(string parentUpdateID, string body) {
-            Utils.Utils.RequireArgument(parentUpdateID);
-            Utils.Utils.RequireArgument(body);
+        var mutation = new MutationQueryBuilder().WithCreateUpdate(
+            getUpdateQueryBuilder(true, true),
+            body: body,
+            itemID: null,
+            parentID: parentUpdateID
+        );
+        var response = await client.RunMutation(mutation);
+        return response.CreateUpdate!;
+    }
 
-            var mutation = new MutationQueryBuilder().WithCreateUpdate(
-                getUpdateQueryBuilder(true, true),
-                body: body,
-                itemID: null,
-                parentID: parentUpdateID
-            );
-            var response = await client.RunMutation(mutation);
-            return response.CreateUpdate!;
-        }
+    /// <inheritdoc />
+    public async Task<Update> Like(string updateID) {
+        Utils.Utils.RequireArgument(updateID);
 
-        /// <inheritdoc />
-        public async Task<Update> Like(string updateID) {
-            Utils.Utils.RequireArgument(updateID);
+        var mutation = new MutationQueryBuilder().WithLikeUpdate(
+            new UpdateQueryBuilder().WithID().WithCreatorID().WithCreatedAt().WithUpdatedAt(),
+            updateID: updateID
+        );
+        var response = await client.RunMutation(mutation);
+        return response.LikeUpdate!;
+    }
 
-            var mutation = new MutationQueryBuilder().WithLikeUpdate(
-                new UpdateQueryBuilder().WithID().WithCreatorID().WithCreatedAt().WithUpdatedAt(),
-                updateID: updateID
-            );
-            var response = await client.RunMutation(mutation);
-            return response.LikeUpdate!;
-        }
+    public async Task<Update> Delete(string updateID) {
+        Utils.Utils.RequireArgument(updateID);
 
-        public async Task<Update> Delete(string updateID) {
-            Utils.Utils.RequireArgument(updateID);
+        var mutation = new MutationQueryBuilder().WithDeleteUpdate(
+            getUpdateQueryBuilder(true, true),
+            id: updateID
+        );
+        var response = await client.RunMutation(mutation);
+        return response.DeleteUpdate!;
+    }
 
-            var mutation = new MutationQueryBuilder().WithDeleteUpdate(
-                getUpdateQueryBuilder(true, true),
-                id: updateID
-            );
-            var response = await client.RunMutation(mutation);
-            return response.DeleteUpdate!;
-        }
+    public async Task<Item> ClearForItem(string itemID) {
+        Utils.Utils.RequireArgument(itemID);
 
-        public async Task<Item> ClearForItem(string itemID) {
-            Utils.Utils.RequireArgument(itemID);
-
-            var mutation = new MutationQueryBuilder().WithClearItemUpdates(
-                new ItemQueryBuilder().WithUpdates(new UpdateQueryBuilder().WithAllScalarFields()),
-                itemID: itemID
-            );
-            var response = await client.RunMutation(mutation);
-            return response.ClearItemUpdates!;
-        }
+        var mutation = new MutationQueryBuilder().WithClearItemUpdates(
+            new ItemQueryBuilder().WithUpdates(new UpdateQueryBuilder().WithAllScalarFields()),
+            itemID: itemID
+        );
+        var response = await client.RunMutation(mutation);
+        return response.ClearItemUpdates!;
     }
 }
