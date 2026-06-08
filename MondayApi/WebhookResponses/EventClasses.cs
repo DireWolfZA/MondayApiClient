@@ -2,8 +2,9 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 
+namespace MondayApi.WebhookResponses;
 //https://developer.monday.com/api-reference/reference/webhooks#sample-payload-for-webhook-events
-namespace MondayApi.WebhookResponses; 
+
 [DebuggerDisplay("{BoardID}/{PulseID}")]
 public class EventClassBase {
     public string? App { get; set; }

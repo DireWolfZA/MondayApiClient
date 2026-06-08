@@ -3,9 +3,9 @@ using System.Linq;
 using System.Threading.Tasks;
 using MondayApi.Schema;
 
-//https://developer.monday.com/api-reference/reference/columns
 namespace MondayApi.Columns;
 
+//https://developer.monday.com/api-reference/reference/columns
 public class ColumnActions : IColumnActions {
     private readonly IMondayApiClient client;
     public ColumnActions(IMondayApiClient client) {

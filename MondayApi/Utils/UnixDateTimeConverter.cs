@@ -2,9 +2,9 @@ using System;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 
-// adapted from Newtonsoft.Json.Converters.UnixDateTimeConverter
 namespace MondayApi.Utils;
 
+// adapted from Newtonsoft.Json.Converters.UnixDateTimeConverter
 public class UnixDateTimeConverter : DateTimeConverterBase {
     public enum ETimeType {
         Seconds,

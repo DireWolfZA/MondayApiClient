@@ -2,9 +2,9 @@ using System;
 using System.Threading.Tasks;
 using MondayApi.Schema;
 
-//https://developer.monday.com/api-reference/reference/timeline-item-ea
 namespace MondayApi.TimelineItems;
 
+//https://developer.monday.com/api-reference/reference/timeline-item-ea
 public class TimelineItemActions : ITimelineItemActions {
     private readonly IMondayApiClient client;
     public TimelineItemActions(IMondayApiClient client) {

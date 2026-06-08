@@ -3,9 +3,9 @@ using System.Linq;
 using System.Threading.Tasks;
 using MondayApi.Schema;
 
-//https://developer.monday.com/api-reference/reference/updates
 namespace MondayApi.Updates;
 
+//https://developer.monday.com/api-reference/reference/updates
 public class UpdateActions : IUpdateActions {
     private readonly IMondayApiClient client;
     public UpdateActions(IMondayApiClient client) {

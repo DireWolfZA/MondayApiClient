@@ -7,7 +7,8 @@ using GraphQL.Client.Abstractions.Websocket;
 using GraphQL.Client.Serializer.Newtonsoft;
 using Newtonsoft.Json;
 
-namespace MondayApi.Utils; 
+namespace MondayApi.Utils;
+
 // thanks to https://github.com/graphql-dotnet/graphql-client/issues/527#issuecomment-1655503961
 internal class DebugSerializer : IGraphQLWebsocketJsonSerializer {
     private readonly NewtonsoftJsonSerializer implementation = new NewtonsoftJsonSerializer();

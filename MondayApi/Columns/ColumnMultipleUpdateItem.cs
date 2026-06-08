@@ -1,6 +1,7 @@
 using MondayApi.Schema;
 
-namespace MondayApi.Columns; 
+namespace MondayApi.Columns;
+
 [System.Diagnostics.DebuggerDisplay("{BoardID}/{ItemID} {Value.Type}")]
 public class ColumnMultipleUpdateValue {
     public string BoardID;

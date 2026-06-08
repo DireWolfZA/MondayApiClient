@@ -1,6 +1,7 @@
 using GraphQL.Client.Http;
 
-namespace MondayApi.Utils; 
+namespace MondayApi.Utils;
+
 // as of 2025/08/05 monday requests now require provided parameters to have values
 //  variables: Expected object, received null
 //  operationName: must be a string

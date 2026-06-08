@@ -3,10 +3,10 @@ using System.Linq;
 using System.Threading.Tasks;
 using MondayApi.Schema;
 
-//https://developer.monday.com/api-reference/reference/items
-//https://developer.monday.com/api-reference/reference/items-page
 namespace MondayApi.Items;
 
+//https://developer.monday.com/api-reference/reference/items
+//https://developer.monday.com/api-reference/reference/items-page
 public class ItemActions : IItemActions {
     private readonly IMondayApiClient client;
     public ItemActions(IMondayApiClient client) {

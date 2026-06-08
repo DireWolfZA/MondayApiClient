@@ -4,9 +4,9 @@ using System.Linq;
 using System.Threading.Tasks;
 using MondayApi.Schema;
 
-//https://developer.monday.com/api-reference/reference/activity-logs
 namespace MondayApi.ActivityLogs;
 
+//https://developer.monday.com/api-reference/reference/activity-logs
 public class ActivityLogActions : IActivityLogActions {
     private readonly IMondayApiClient client;
     public ActivityLogActions(IMondayApiClient client) {

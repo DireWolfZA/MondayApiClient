@@ -3,7 +3,8 @@ using System.Net.Http;
 using GraphQL.Client.Abstractions;
 using GraphQL.Client.Http;
 
-namespace MondayApi.Utils; 
+namespace MondayApi.Utils;
+
 // thanks to https://github.com/graphql-dotnet/graphql-client/issues/216#issuecomment-625118457
 public class MondayFileUploadRequest : GraphQLHttpRequest {
     public MondayFileUploadRequest() { }

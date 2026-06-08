@@ -3,9 +3,9 @@ using System.Linq;
 using System.Threading.Tasks;
 using MondayApi.Schema;
 
-//https://developer.monday.com/api-reference/reference/workspaces
 namespace MondayApi.Workspaces;
 
+//https://developer.monday.com/api-reference/reference/workspaces
 public class WorkspaceActions : IWorkspaceActions {
     private readonly IMondayApiClient client;
     public WorkspaceActions(IMondayApiClient client) {
